@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "carbonkivy"
+dynamic = ["version"]
+dependencies = [
+  "kivy>=2.0.0",
+]
+requires-python = ">=3.10"
+authors = [
+  {name = "Kartavya Shukla", email = "novfensec@protonmail.com"},
+]
+maintainers = [
+  {name = "Kartavya Shukla", email = "novfensec@protonmail.com"},
+]
+description = "A library providing IBM's Carbon Design Components for Kivy."
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["kivy", "open source", "carbon", "IBM", "novfensec", "carbonkivy", "kv"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Multimedia :: Graphics",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/Novfensec/CarbonKivy"
+Repository = "https://github.com/Novfensec/CarbonKivy"
+"Bug Tracker" = "https://github.com/Novfensec/CarbonKivy/issues"
+Changelog = "https://github.com/Novfensec/CarbonKivy/blob/main/CHANGELOG.md"
+
+[tool.setuptools.dynamic]
+version = {attr = "carbonkivy.__version__"}
+
+[tool.setuptools]
+packages = ["carbonkivy"]
+
+[tool.setuptools.package-data]
+"carbonkivy" = [
+  "**/*.kv",
+  "**/*.png",
+]
+
+[tool.setuptools.exclude-package-data]
+"carbonkivy" = ["*.pyc", "*.pyo"]
