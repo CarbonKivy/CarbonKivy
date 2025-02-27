@@ -14,7 +14,7 @@ appkv = """
 Screen:
     Button:
         text: "White"
-        background_color: app.interacive
+        background_color: app.interactive
         size_hint: 0.5, 0.2
         size: self.size
         pos_hint: {'center_y': 0.9}
