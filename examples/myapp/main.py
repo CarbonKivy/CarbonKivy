@@ -14,12 +14,12 @@ appkv = """
 Screen:
     Button:
         text: "White"
-        background_color: app.layer_02
+        background_color: app.interacive
         size_hint: 0.5, 0.2
         size: self.size
         pos_hint: {'center_y': 0.9}
         on_touch_up:
-            self.background_color = "interactive"
+            self.background_color = "support_error"
 
 """
 
