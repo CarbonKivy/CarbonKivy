@@ -19,7 +19,7 @@ Screen:
         size: self.size
         pos_hint: {'center_y': 0.9}
         on_touch_up:
-            self.background_color = "support_error"
+            self.background_color = app.support_error
 
 """
 
