@@ -13,34 +13,13 @@ Window.clearcolor = [1, 1, 1, 1]
 appkv = """
 Screen:
     Button:
-        text: "Gray100"
-        background_color: app.background_inverse
-        size_hint: 0.5, 0.2
-        on_touch_up:
-            app.theme = "Gray100"
-    Button:
-        text: "Gray90"
-        background_color: app.background_hover
-        size_hint: 0.5, 0.2
-        pos_hint: {'center_y': 0.3}
-        on_touch_up:
-            app.theme = "Gray90"
-    Button:
-        text: "Gray10"
-        background_color: app.background_selected
-        size_hint: 0.5, 0.2
-        size: self.size
-        pos_hint: {'center_y': 0.7}
-        on_touch_up:
-            app.theme = "Gray10"
-    Button:
         text: "White"
-        background_color: app.border_interactive
+        background_color: app.layer_02
         size_hint: 0.5, 0.2
         size: self.size
         pos_hint: {'center_y': 0.9}
         on_touch_up:
-            app.theme = "White"
+            self.background_color = "interactive"
 
 """
 

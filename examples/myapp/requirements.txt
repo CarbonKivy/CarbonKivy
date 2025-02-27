@@ -1,5 +1,0 @@
-kivy>=2.0.0
-https://github.com/kivymd/KivyMD/archive/master.zip
-watchdog>=4.0.1
-pillow>=10.0.0
-kvdeveloper>=2024.1.10.dev
