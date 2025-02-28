@@ -18,7 +18,7 @@ maintainers = [
 description = "A library providing IBM's Carbon Design Components for Kivy."
 readme = "README.md"
 license = {file = "LICENSE"}
-keywords = ["kivy", "open source", "carbon", "IBM", "novfensec", "carbonkivy", "kv"]
+keywords = ["kivy", "open source", "carbon", "design", "carbondesignsystem", "IBM", "novfensec", "carbonkivy", "kv"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
@@ -32,7 +32,7 @@ classifiers = [
 Homepage = "https://github.com/Novfensec/CarbonKivy"
 Repository = "https://github.com/Novfensec/CarbonKivy"
 "Bug Tracker" = "https://github.com/Novfensec/CarbonKivy/issues"
-Changelog = "https://github.com/Novfensec/CarbonKivy/blob/main/CHANGELOG.md"
+Changelog = "https://github.com/Novfensec/CarbonKivy/blob/master/CHANGELOG.md"
 
 [tool.setuptools.dynamic]
 version = {attr = "carbonkivy.__version__"}
