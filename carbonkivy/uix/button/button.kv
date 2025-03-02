@@ -1,0 +1,12 @@
+<CButton>:
+    size_hint: None, None
+    width: cbutton_label.width + dp(16)
+    Label:
+        id: cbutton_label
+        text: root.text
+        color: root.text_color
+        size_hint: None, None
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+<CButtonPrimary>:
+    text_color: app.text_on_color_disabled if self.cstate == "disabled" else app.text_on_color
