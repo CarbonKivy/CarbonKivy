@@ -23,7 +23,11 @@ class CarbonApp(App, CarbonTheme):
                     "Do not use the word 'carbonkivy' in the name of the "
                     "directory from where you download KV files"
                 )
-            if "venv" in root or ".buildozer" in root or os.path.join("carbonkivy") in root:
+            if (
+                "venv" in root
+                or ".buildozer" in root
+                or os.path.join("carbonkivy") in root
+            ):
                 continue
             for file in files:
                 if (

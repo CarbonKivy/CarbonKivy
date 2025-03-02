@@ -612,6 +612,97 @@ thematic_tokens = {
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
+    # button tokens
+    "button_primary": {
+        "White": "#0f62fe",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_primary_hover": {
+        "White": "#0353e9",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_primary_active": {
+        "White": "#002d9c",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_secondary": {
+        "White": "#393939",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_secondary_hover": {
+        "White": "#4c4c4c",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_secondary_active": {
+        "White": "#6f6f6f",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_tertiary": {
+        "White": "#0f62fe",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_tertiary_hover": {
+        "White": "#0353e9",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_tertiary_active": {
+        "White": "#002d9c",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_danger_primary": {
+        "White": "#da1e28",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_danger_secondary": {
+        "White": "#da1e28",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_danger_hover": {
+        "White": "#ba1b23",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_danger_active": {
+        "White": "#750e13",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_separator": {
+        "White": "#e0e0e0",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
+    "button_disabled": {
+        "White": "#c6c6c6",
+        "Gray10": "#8d8d8d",
+        "Gray90": "#262626",
+        "Gray100": "#161616",
+    },
 }
 
 static_tokens = {
@@ -625,7 +716,6 @@ static_tokens = {
     "blue_80": "#002d9c",
     "blue_90": "#001d6c",
     "blue_100": "#001141",
-
     "cyan_10": "#e5f6ff",
     "cyan_20": "#bae6ff",
     "cyan_30": "#82cfff",
@@ -636,7 +726,6 @@ static_tokens = {
     "cyan_80": "#003a6d",
     "cyan_90": "#012749",
     "cyan_100": "#061727",
-
     "gray_10": "#f4f4f4",
     "gray_20": "#e0e0e0",
     "gray_30": "#c6c6c6",
@@ -647,7 +736,6 @@ static_tokens = {
     "gray_80": "#393939",
     "gray_90": "#262626",
     "gray_100": "#161616",
-
     "green_10": "#defbe6",
     "green_20": "#a7f0ba",
     "green_30": "#6fdc8c",
@@ -658,7 +746,6 @@ static_tokens = {
     "green_80": "#044317",
     "green_90": "#022d0d",
     "green_100": "#071908",
-
     "magenta_10": "#fff0f7",
     "magenta_20": "#ffd6e8",
     "magenta_30": "#ffafd2",
@@ -669,7 +756,6 @@ static_tokens = {
     "magenta_80": "#740937",
     "magenta_90": "#510224",
     "magenta_100": "#2a0a18",
-
     "orange_10": "#fff2e8",
     "orange_20": "#ffd9be",
     "orange_30": "#ffb784",
@@ -680,7 +766,6 @@ static_tokens = {
     "orange_80": "#5e2900",
     "orange_90": "#3e1a00",
     "orange_100": "#231000",
-
     "purple_10": "#f6f2ff",
     "purple_20": "#e8daff",
     "purple_30": "#d4bbff",
@@ -691,7 +776,6 @@ static_tokens = {
     "purple_80": "#491d8b",
     "purple_90": "#31135e",
     "purple_100": "#1c0f30",
-
     "red_10": "#fff1f1",
     "red_20": "#ffd7d9",
     "red_30": "#ffb3b8",
@@ -702,7 +786,6 @@ static_tokens = {
     "red_80": "#750e13",
     "red_90": "#520408",
     "red_100": "#2d0709",
-
     "teal_10": "#d9fbfb",
     "teal_20": "#9ef0f0",
     "teal_30": "#3ddbd9",
@@ -713,7 +796,6 @@ static_tokens = {
     "teal_80": "#004144",
     "teal_90": "#022b30",
     "teal_100": "#081a1c",
-
     "yellow_10": "#fcf4d6",
     "yellow_20": "#fddc69",
     "yellow_30": "#f1c21b",
