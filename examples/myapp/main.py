@@ -12,14 +12,16 @@ Window.clearcolor = [1, 1, 1, 1]
 
 appkv = """
 Screen:
+    CButtonPrimary:
+        text: "Primary"
+        role: "Large Productive"
+        pos_hint: {'center_y': 0.9, 'center_x': 0.2}
+
     Button:
-        text: "White"
         background_color: app.interactive
-        size_hint: 0.5, 0.2
-        size: self.size
-        pos_hint: {'center_y': 0.9}
-        on_touch_up:
-            self.background_color = app.support_error
+        text: "Button"
+        size_hint: .1, .1
+        pos_hint: {"center_x" : .5, "center_y": .5}
 
 """
 
