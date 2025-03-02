@@ -12,6 +12,3 @@ Once registered, the components can be used without explicitly importing them el
 
 # Register the component with Kivy's Factory
 register("CButtonPrimary", module="carbonkivy.uix.button.button")
-register("CTextInput", module="carbonkivy.uix.textinput")
-register("CDropdown", module="carbonkivy.uix.dropdown")
-register("CDatePicker", module="carbonkivy.uix.datepicker")
