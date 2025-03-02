@@ -51,4 +51,3 @@ class CarbonTheme(EventDispatcher, ThematicColors, StaticColors):
             setattr(self, token, colormap[token])
 
 
-CarbonTheme()
