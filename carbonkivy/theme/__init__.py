@@ -1,1 +1,1 @@
-from .theme import CarbonTheme
+from carbonkivy.theme.theme import CarbonTheme
