@@ -49,5 +49,3 @@ class CarbonTheme(EventDispatcher, ThematicColors, StaticColors):
     def update_thematic_colors(self, *args) -> None:
         for token in self.thematic_color_tokens:
             setattr(self, token, colormap[token])
-
-
