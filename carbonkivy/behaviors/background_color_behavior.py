@@ -11,6 +11,7 @@ from kivy.properties import (
     StringProperty,
     VariableListProperty,
 )
+from kivy.metrics import dp
 
 Builder.load_string(
     """
@@ -32,11 +33,11 @@ Builder.load_string(
             pos: self.pos if not isinstance(self, RelativeLayout) else (0, 0)
         Color:
             group: "backgroundcolor-behavior-bg-color"
-            rgba: self.bg_color
+            rgba: self._bg_color
         SmoothRectangle:
             group: "Background_instruction"
-            size: [self.size[0] - dp(self.inset_width), self.size[1] - dp(self.inset_width)]
-            pos: self.pos if not isinstance(self, RelativeLayout) else (dp(self.inset_width/2), dp(self.inset_width/2))
+            size: [self.size[0] - self.inset_width, self.size[1] - self.inset_width]
+            pos: self.pos if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
             source: root.bg_source
         Color:
             rgba: self.line_color if self.line_color else (0, 0, 0, 0)
@@ -88,12 +89,12 @@ class BackgroundColorBehavior:
     The border of the specified color will be used to border the widget.
     """
 
-    inset_width = NumericProperty(4)
+    inset_width = NumericProperty(dp(5))
     """
     The width of border inset.
     """
 
-    line_width = NumericProperty(1)
+    line_width = NumericProperty(dp(1.5))
     """
     Border of the specified width will be used to border the widget.
     """
@@ -101,6 +102,7 @@ class BackgroundColorBehavior:
     angle = NumericProperty(0)
     background_origin = ListProperty(None)
 
+    _bg_color = ColorProperty()
     _background_x = NumericProperty(0)
     _background_y = NumericProperty(0)
     _background_origin = ReferenceListProperty(_background_x, _background_y)
@@ -109,10 +111,10 @@ class BackgroundColorBehavior:
         super().__init__(**kwargs)
         self.bind(pos=self.update_background_origin)
 
-    # def on_bg_color(self, instance: object, color: list | str) -> None:
-    #     """Fired when the values of :attr:`bg_color` change."""
+    def on_bg_color(self, instance: object, color: list | str) -> None:
+        """Fired when the values of :attr:`bg_color` change."""
 
-    #     self.bg_color = color
+        self._bg_color = color
 
     def update_background_origin(self, instance, pos: list) -> None:
         """Fired when the values of :attr:`pos` change."""
