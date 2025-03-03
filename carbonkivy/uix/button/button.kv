@@ -1,12 +1,21 @@
 <CButton>:
     size_hint: None, None
-    width: cbutton_label.width + dp(16)
-    Label:
-        id: cbutton_label
-        text: root.text
-        color: root.text_color
-        size_hint: None, None
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    cbutton_layout: cbutton_box_layout
+    width: self.cbutton_layout.width
+    BoxLayout:
+        id: cbutton_box_layout
+        size_hint: None, 1
+        width: self.minimum_width
+        spacing: dp(32)
+        padding: [dp(16), 0, dp(64) if not root.icon else dp(16), 0]
+
+        Label:
+            id: cbutton_layout_label
+            text: root.text
+            color: root.text_color
+            size_hint: None, 1
+            width: self.texture_size[0]
+
 
 <CButtonPrimary>:
     text_color: app.text_on_color_disabled if self.cstate == "disabled" else app.text_on_color
