@@ -1,5 +1,9 @@
+import os
 from typing import List
 
+from kivy.core.window import Window
+from kivy.metrics import dp
+from kivy.utils import platform
 from kivy.app import App
 
 from carbonkivy.theme.size_tokens import (
@@ -63,3 +67,14 @@ class _Dict(dict):
 
     def __getattr__(self, name):
         return self[name]
+
+
+# Feel free to override this const if you're designing for a device such as
+# a GNU/Linux tablet.
+DEVICE_IOS = platform == "ios" or platform == "macosx"
+if platform != "android" and platform != "ios":
+    DEVICE_TYPE = "desktop"
+elif Window.width >= dp(738) and Window.height >= dp(738):
+    DEVICE_TYPE = "tablet"
+else:
+    DEVICE_TYPE = "mobile"
