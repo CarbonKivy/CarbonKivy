@@ -1,0 +1,2 @@
+class IBMIcon:
+    pass
