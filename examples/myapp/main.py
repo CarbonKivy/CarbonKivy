@@ -12,8 +12,8 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 appkv = """
 Screen:
     CButtonPrimary:
-        text: "Primary"
-        role: "Medium"
+        text: "Primary Large"
+        role: "Extra Large"
         pos_hint: {'center_y': 0.5, 'center_x': 0.5}
 
 """
