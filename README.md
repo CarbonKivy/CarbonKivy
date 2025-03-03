@@ -65,12 +65,12 @@ If you encounter any issues or have questions, feel free to reach out to the com
 - pillow>=10.0.0
 
 ## Contributing
-We welcome contributions from the community! If you're interested in contributing to KvDeveloper or its documentation, please read our [Contributing Guidelines](https://github.com/CarbonKivy/CarbonKivy/blob/master/CONTRIBUTING.md).
+We welcome contributions from the community! If you're interested in contributing to CarbonKivy or its documentation, please read our [Contributing Guidelines](https://github.com/CarbonKivy/CarbonKivy/blob/master/CONTRIBUTING.md).
 
 You can contribute by:
 
 - Reporting bugs or suggesting features in the [Issues](https://github.com/CarbonKivy/CarbonKivy/issues) section.
-- Submitting pull requests to improve the documentation or the KvDeveloper tool.
+- Submitting pull requests to improve the documentation or the package.
 - Helping with translations or writing new guides.
 
 For more detailed instructions, please visit our [Contributing](https://github.com/CarbonKivy/CarbonKivy/blob/master/CONTRIBUTING.md) page.
