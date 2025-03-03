@@ -38,12 +38,11 @@ Changelog = "https://github.com/Novfensec/CarbonKivy/blob/master/CHANGELOG.md"
 version = {attr = "carbonkivy.__version__"}
 
 [tool.setuptools]
-packages = ["carbonkivy"]
+package-dir = {"carbonkivy" = "carbonkivy"}
 
 [tool.setuptools.package-data]
 "carbonkivy" = [
   "**/*.kv",
-  "**/*.png",
 ]
 
 [tool.setuptools.exclude-package-data]
