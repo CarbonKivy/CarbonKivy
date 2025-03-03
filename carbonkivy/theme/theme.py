@@ -26,7 +26,7 @@ class CarbonTheme(EventDispatcher, ThematicColors, StaticColors):
         }
         colormap.update(static_tokenmap)
         colormap.update(self.parse_thematic_tokens())
-
+        Window.clearcolor = colormap["background"]
         self.update_thematic_colors()
 
     def on_theme(self, *args) -> None:
