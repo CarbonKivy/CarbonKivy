@@ -11,11 +11,39 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 Screen:
-    CButtonPrimary:
-        text: "Primary Large"
-        role: "Extra Large"
-        pos_hint: {'center_y': 0.5, 'center_x': 0.5}
 
+    CButtonPrimary:
+        text: "Primary"
+        role: "Large Productive"
+        pos_hint: {'center_y': 0.8, 'center_x': 0.3}
+
+    CButtonSecondary:
+        text: "Secondary"
+        role: "Large Productive"
+        pos_hint: {'center_y': 0.6, 'center_x': 0.25}
+
+    CButtonGhost:
+        text: "Ghost"
+        role: "Large Productive"
+        pos_hint: {'center_y': 0.4, 'center_x': 0.3}
+
+    CButtonPrimary:
+        text: "Primary"
+        role: "Large Productive"
+        cstate: "active"
+        pos_hint: {'center_y': 0.8, 'center_x': 0.7}
+
+    CButtonSecondary:
+        text: "Secondary"
+        role: "Large Productive"
+        cstate: "active"
+        pos_hint: {'center_y': 0.6, 'center_x': 0.75}
+
+    CButtonGhost:
+        text: "Ghost"
+        role: "Large Productive"
+        cstate: "active"
+        pos_hint: {'center_y': 0.4, 'center_x': 0.7}
 """
 
 from kivy.lang import Builder
