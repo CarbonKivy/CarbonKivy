@@ -40,7 +40,7 @@ Builder.load_string(
             pos: self.pos if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
             source: root.bg_source
         Color:
-            rgba: self.line_color if self.line_color else (0, 0, 0, 0)
+            rgba: self._line_color if self._line_color else (0, 0, 0, 0)
         SmoothLine:
             width: root.line_width
             rectangle:
@@ -103,6 +103,8 @@ class BackgroundColorBehavior:
     background_origin = ListProperty(None)
 
     _bg_color = ColorProperty()
+    _line_color = ColorProperty()
+    
     _background_x = NumericProperty(0)
     _background_y = NumericProperty(0)
     _background_origin = ReferenceListProperty(_background_x, _background_y)
@@ -115,6 +117,11 @@ class BackgroundColorBehavior:
         """Fired when the values of :attr:`bg_color` change."""
 
         self._bg_color = color
+
+    def on_line_color(self, instance: object, color: list | str) -> None:
+        """Fired when the values of :attr:`bg_color` change."""
+
+        self._line_color = color
 
     def update_background_origin(self, instance, pos: list) -> None:
         """Fired when the values of :attr:`pos` change."""
