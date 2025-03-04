@@ -2,13 +2,14 @@
     size_hint: None, None
     cbutton_layout: cbutton_box_layout
     _text_color: app.text_on_color_disabled if self.cstate == "disabled" else self.text_color
+    padding: [dp(16), 0, dp(64) if not self.icon else dp(16), 0]
     width: self.cbutton_layout.width
     BoxLayout:
         id: cbutton_box_layout
         size_hint: None, 1
         width: self.minimum_width
         spacing: dp(32)
-        padding: [dp(16), 0, dp(64) if not root.icon else dp(16), 0]
+        padding: root.padding
 
         Label:
             id: cbutton_layout_label
@@ -19,3 +20,4 @@
 
 <CButtonGhost>:
     text_color: app.link_primary_hover if self.cstate == "active" else app.link_primary
+    padding: [dp(16), 0, dp(16), 0]

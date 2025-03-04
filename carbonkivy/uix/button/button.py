@@ -8,6 +8,7 @@ from kivy.properties import (
     OptionProperty,
     ColorProperty,
     BooleanProperty,
+    VariableListProperty,
     ObjectProperty,
 )
 from kivy.metrics import sp
@@ -33,6 +34,8 @@ class CButton(
     icon = StringProperty(None, allownone=True)
 
     font_size = NumericProperty()
+
+    padding = VariableListProperty([0], length=4)
 
     text_color = ColorProperty(getattr(APP, "text_on_color"))
 
