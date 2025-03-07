@@ -11,8 +11,15 @@ from carbonkivy.theme.size_tokens import (
     spacing_tokens,
     button_size_tokens,
 )
+from carbonkivy.config import IBMPlex
+
 
 APP = App.get_running_app()
+
+
+def get_font_name(typeface: str, weight_style: str) -> str:
+    font_dir = os.path.join(IBMPlex, typeface.replace(" ", "_"), "static", f"{typeface.replace(' ', '')}-{weight_style}.ttf")
+    return font_dir
 
 
 def get_font_size(token: str) -> float:

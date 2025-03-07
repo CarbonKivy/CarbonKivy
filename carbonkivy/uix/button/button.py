@@ -14,16 +14,23 @@ from kivy.properties import (
 from kivy.metrics import sp
 from kivy.clock import mainthread
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.label import Label
 from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.utils import get_button_size, get_button_token, APP
-from carbonkivy.behaviors import BackgroundColorBehavior, HoverBehavior
+from carbonkivy.behaviors import BackgroundColorBehavior, HoverBehavior, DeclarativeBehavior
+
+
+class CButtonLabel(Label, DeclarativeBehavior):
+    def __init__(self, **kwargs):
+        super(CButtonLabel, self).__init__(**kwargs)
 
 
 class CButton(
     BackgroundColorBehavior,
-    HoverBehavior,
     ButtonBehavior,
+    DeclarativeBehavior,
+    HoverBehavior,
     RelativeLayout,
 ):
 
@@ -37,13 +44,11 @@ class CButton(
 
     padding = VariableListProperty([0], length=4)
 
-    text_color = ColorProperty(getattr(APP, "text_on_color"))
+    text_color = ColorProperty()
 
     _text_color = ColorProperty()
 
     active_color = ColorProperty()
-
-    line_color = getattr(APP, "focus")
 
     role = OptionProperty(
         "Medium",
@@ -64,20 +69,30 @@ class CButton(
     cbutton_layout = ObjectProperty()
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(CButton, self).__init__(**kwargs)
         self.update_specs()
 
     def on_role(self, *args) -> None:
         self.height = get_button_size(self.role)
 
+    def on_ctoken(self, *args) -> None:
+        self.set_colors()
+
     def on_cstate(self, *args) -> None:
         self.set_colors()
 
+    # def on_text_color(self, *args) -> None:
+    #     self._text_color = self.text_color
+
+    @mainthread
     def set_colors(self, *args) -> None:
         """
         Defines the method to apply the bg_color.
         """
-        self.bg_color = getattr(APP, get_button_token(self.cstate, self.ctoken))
+        try:
+            self.bg_color = getattr(APP, get_button_token(self.cstate, self.ctoken))
+        except Exception as e: # nosec
+            pass
         self._line_color = self.bg_color
         self.inset_color = self.bg_color
 
@@ -134,8 +149,6 @@ class CButtonGhost(CButton):
 
     hover_color = getattr(APP, "background_hover")
 
-    text_color = getattr(APP, "link_primary")
-
     def on_hover(self, *args) -> None:
         super().on_hover(*args)
         if self.hover:
@@ -151,19 +164,15 @@ class CButtonGhost(CButton):
         else:
             self._text_color = self.text_color
 
+# class CButtonDanger(CButton):
 
-class CButtonTeriary(CButton):
-    pass
-
-class CButtonDanger(CButton):
-
-    type = OptionProperty(
-        "Primary",
-        options=[
-            "Primary",
-            "Tertiary",
-            "Ghost",
-        ],
-    )
+#     type = OptionProperty(
+#         "Primary",
+#         options=[
+#             "Primary",
+#             "Tertiary",
+#             "Ghost",
+#         ],
+#     )
 
 

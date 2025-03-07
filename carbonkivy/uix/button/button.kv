@@ -1,9 +1,12 @@
 <CButton>:
     size_hint: None, None
     cbutton_layout: cbutton_box_layout
+    text_color: app.text_on_color
     _text_color: app.text_on_color_disabled if self.cstate == "disabled" else self.text_color
+    line_color: app.focus
     padding: [dp(16), 0, dp(64) if not self.icon else dp(16), 0]
     width: self.cbutton_layout.width
+
     BoxLayout:
         id: cbutton_box_layout
         size_hint: None, 1
@@ -11,7 +14,7 @@
         spacing: dp(32)
         padding: root.padding
 
-        Label:
+        CLabel:
             id: cbutton_layout_label
             text: root.text
             color: root._text_color
