@@ -11,7 +11,8 @@ Once registered, the components can be used without explicitly importing them el
 """
 
 # Register the component with Kivy's Factory
-register("CButtonPrimary", module="carbonkivy.uix.button.button")
-register("CButtonSecondary", module="carbonkivy.uix.button.button")
-register("CButtonTertiary", module="carbonkivy.uix.button.button")
-register("CButtonGhost", module="carbonkivy.uix.button.button")
+register("CLabel", module="carbonkivy.uix.label")
+register("CButton", module="carbonkivy.uix.button")
+register("CButtonPrimary", module="carbonkivy.uix.button")
+register("CButtonSecondary", module="carbonkivy.uix.button")
+register("CButtonGhost", module="carbonkivy.uix.button")

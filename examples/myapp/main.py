@@ -13,37 +13,31 @@ appkv = """
 Screen:
 
     CButtonPrimary:
-        text: "Primary"
+        text: "Primary Button"
         role: "Large Productive"
-        pos_hint: {'center_y': 0.8, 'center_x': 0.3}
+        pos_hint: {'center_y': 0.8, 'center_x': 0.5}
 
     CButtonSecondary:
-        text: "Secondary"
+        text: "Secondary Button"
         role: "Large Productive"
-        pos_hint: {'center_y': 0.6, 'center_x': 0.25}
+        pos_hint: {'center_y': 0.6, 'center_x': 0.5}
 
     CButtonGhost:
-        text: "Ghost"
+        text: "Ghost Button"
         role: "Large Productive"
-        pos_hint: {'center_y': 0.4, 'center_x': 0.3}
+        pos_hint: {'center_y': 0.4, 'center_x': 0.5}
 
-    CButtonPrimary:
-        text: "Primary"
+    CButton:
+        text: "Ghost Button"
+        text_color: app.link_primary
+        _bg_color: app.transparent
+        bg_color: app.transparent
+        active_color: app.transparent
+        line_color: app.focus
+        hover_color: app.background_hover
         role: "Large Productive"
-        cstate: "active"
-        pos_hint: {'center_y': 0.8, 'center_x': 0.7}
-
-    CButtonSecondary:
-        text: "Secondary"
-        role: "Large Productive"
-        cstate: "active"
-        pos_hint: {'center_y': 0.6, 'center_x': 0.75}
-
-    CButtonGhost:
-        text: "Ghost"
-        role: "Large Productive"
-        cstate: "active"
-        pos_hint: {'center_y': 0.4, 'center_x': 0.7}
+        inset_width: 0
+        pos_hint: {'center_y': 0.2, 'center_x': 0.5}
 """
 
 from kivy.lang import Builder
