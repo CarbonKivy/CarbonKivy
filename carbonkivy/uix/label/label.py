@@ -3,7 +3,7 @@ from __future__ import annotations
 __all__ = ("CLabel", )
 
 from kivy.clock import mainthread
-from kivy.properties import OptionProperty, StringProperty
+from kivy.properties import OptionProperty
 from kivy.uix.label import Label
 
 # from carbonkivy.behaviors import BackgroundColorBehavior # SelectionBehavior
