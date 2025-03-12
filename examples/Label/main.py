@@ -16,7 +16,7 @@ Screen:
         style: "body_compact_02"
         typeface: "IBM Plex Sans"
         weight_style: "SemiBold"
-        pos_hint: {"center_x": 0.5, "center_y": 0.2}
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
 
     CLabel:
         text: "IBM Plex Serif"
