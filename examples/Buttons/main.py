@@ -15,17 +15,39 @@ Screen:
     CButtonPrimary:
         text: "Primary Button"
         role: "Large Productive"
-        pos_hint: {'center_y': 0.8, 'center_x': 0.5}
+        icon: "add"
+        pos_hint: {'center_y': 0.8, 'center_x': 0.35}
+
+    CButtonPrimary:
+        icon: "add"
+        role: "2XL"
+        spacing: 0
+        pos_hint: {'center_y': 0.8, 'center_x': 0.8}
 
     CButtonSecondary:
         text: "Secondary Button"
         role: "Large Productive"
-        pos_hint: {'center_y': 0.6, 'center_x': 0.5}
+        icon: "add"
+        pos_hint: {'center_y': 0.6, 'center_x': 0.35}
+
+    CButtonSecondary:
+        icon: "add"
+        role: "2XL"
+        spacing: 0
+        pos_hint: {'center_y': 0.6, 'center_x': 0.8}
 
     CButtonGhost:
         text: "Ghost Button"
         role: "Large Productive"
-        pos_hint: {'center_y': 0.4, 'center_x': 0.5}
+        pos_hint: {'center_y': 0.4,  'center_x': 0.35}
+        on_press:
+            self.icon = "add"
+
+    CButtonGhost:
+        icon: "add"
+        role: "2XL"
+        spacing: 0
+        pos_hint: {'center_y': 0.4, 'center_x': 0.8}
 
     CButton:
         text: "Custom Ghost Button"
@@ -38,6 +60,8 @@ Screen:
         role: "Large Productive"
         inset_width: 0
         pos_hint: {'center_y': 0.2, 'center_x': 0.5}
+        on_press:
+            self.icon = "add"
 
 """
 
