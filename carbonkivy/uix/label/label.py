@@ -3,7 +3,7 @@ from __future__ import annotations
 __all__ = ("CLabel", )
 
 from kivy.clock import mainthread
-from kivy.properties import OptionProperty
+from kivy.properties import NumericProperty, OptionProperty
 from kivy.uix.label import Label
 
 # from carbonkivy.behaviors import BackgroundColorBehavior # SelectionBehavior
@@ -18,6 +18,8 @@ class CLabel(Label):
     typeface = OptionProperty("IBM Plex Sans", options=["IBM Plex Sans", "IBM Plex Serif", "IBM Plex Mono"])
 
     weight_style = OptionProperty("Regular", options=["Regular", "Bold", "SemiBold", "Italic", "Thin", "Light", "ExtraLight", "Medium", "BoldItalic", "SemiBoldItalic"])
+
+    _font_size = NumericProperty()
 
     def __init__(self, **kwargs):
         super(CLabel, self).__init__(**kwargs)
@@ -35,4 +37,4 @@ class CLabel(Label):
     @mainthread
     def update_specs(self, **kwargs):
         self.font_name = get_font_name(self.typeface, self.weight_style)
-        self.font_size = get_font_size(self.style)
+        self._font_size = get_font_size(self.style)

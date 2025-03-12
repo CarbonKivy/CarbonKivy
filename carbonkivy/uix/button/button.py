@@ -17,8 +17,9 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.label import Label
 from kivy.uix.relativelayout import RelativeLayout
 
-from carbonkivy.utils import get_button_size, get_button_token, APP
 from carbonkivy.behaviors import BackgroundColorBehavior, HoverBehavior, DeclarativeBehavior
+from carbonkivy.uix.icon import CIcon
+from carbonkivy.utils import get_button_size, get_button_token, APP
 
 
 class CButtonLabel(Label, DeclarativeBehavior):
@@ -80,6 +81,14 @@ class CButton(
 
     def on_cstate(self, *args) -> None:
         self.set_colors()
+
+    def on_icon(self, *args) -> None:
+        if self.icon:
+            self.cbutton_layout.add_widget(CIcon(icon=self.icon, pos_hint={'center_y': 0.5}, color=self._text_color, font_size=self.font_size+sp(8)))
+        else:
+            for child in self.cbutton_layout.children:
+                if isinstance(child, CIcon):
+                    self.cbutton_layout.remove_widget(child)
 
     # def on_text_color(self, *args) -> None:
     #     self._text_color = self.text_color

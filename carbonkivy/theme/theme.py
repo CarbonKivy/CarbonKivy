@@ -21,13 +21,7 @@ class CarbonTheme(EventDispatcher, ThematicColors, StaticColors):
 
     def __init__(self) -> None:
         super().__init__()
-        static_tokenmap = {
-            token: get_color_from_hex(hex) for token, hex in static_tokens.items()
-        }
-        colormap.update(static_tokenmap)
-        colormap.update(self.parse_thematic_tokens())
-        Window.clearcolor = colormap["background"]
-        self.update_thematic_colors()
+        self.on_theme()
 
     def on_theme(self, *args) -> None:
         colormap.update(self.parse_thematic_tokens())

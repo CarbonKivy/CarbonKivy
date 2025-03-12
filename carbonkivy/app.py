@@ -4,7 +4,7 @@ from kivy.app import App
 from kivy.logger import Logger
 from kivy.lang import Builder
 
-from carbonkivy.theme import CarbonTheme
+from carbonkivy.theme.theme import CarbonTheme
 
 
 class CarbonApp(App, CarbonTheme):
