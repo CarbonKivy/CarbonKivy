@@ -10,7 +10,7 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/CarbonKivy/CarbonKivy?color=red&logo=github&logoColor=white)](https://github.com/CarbonKivy/CarbonKivy)
 [![GitHub issues](https://img.shields.io/github/issues/CarbonKivy/CarbonKivy?color=blueviolet&logo=github&logoColor=white)](https://github.com/CarbonKivy/CarbonKivy/issues)
 
-<p><img src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/assets/images/carbonkivy_logo256.png" height="180" align="right" padding="11"/></p>
+<p><img src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbonkivy_logo256.png" height="180" align="right" padding="11"/></p>
 
 CarbonKivy is a Python library that integrates IBM's [Carbon Design System](https://www.carbondesignsystem.com/) with the Kivy framework. It provides a modern, accessible, and user-friendly UI toolkit inspired by Carbon’s design principles, enabling developers to create consistent and visually appealing applications in Kivy.
 
