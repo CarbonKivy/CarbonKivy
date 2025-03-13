@@ -1,0 +1,2 @@
+sphinx
+sphinxawesome_theme
