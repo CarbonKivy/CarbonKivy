@@ -14,19 +14,34 @@ Screen:
     IconView:
         size_hint: 1, 1
         viewclass: "MyIcon"
+        bar_width: "20dp"
         do_scroll_x: False
+        scroll_type: ['bars', 'content']
         RecycleGridLayout:
-            cols: 3
+            cols: 2
             default_size_hint: 1, None
-            default_size: "32dp", "32dp"
             size_hint: 1, None
             height: self.minimum_height
             padding: [dp(16), dp(16), dp(16), dp(16)]
             spacing: dp(20)
 
-<MyIcon@CIcon>:
-    font_size: plex_32
-    pos_hint: {'center_x': 0.5}
+<MyIcon@AnchorLayout>:
+    anchor_x: 'center'
+    anchor_y: 'center'
+    size_hint: 1, 1
+    text: ""
+    icon: ""
+    BoxLayout:
+        spacing: "20dp"
+        orientation: "vertical"
+        CIcon:
+            multiline: True
+            icon: root.icon
+            font_size: plex_32
+            pos_hint: {'center_x': 0.5}
+        CLabel:
+            text: root.text
+            pos_hint: {'center_x': 0.5}
 """
 
 from kivy.lang import Builder
@@ -39,7 +54,7 @@ class IconView(RecycleView):
         super().__init__(**kwargs)
         self.data = []
         for icons in ibm_icons.keys():
-            self.data.extend([{"icon":icons}])
+            self.data.extend([{"icon":icons, "text": icons}])
 
 
 class myapp(CarbonApp):
