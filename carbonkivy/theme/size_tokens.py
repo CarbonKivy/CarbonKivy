@@ -1,4 +1,4 @@
-from kivy.metrics import dp
+from kivy.metrics import dp, sp
 
 spacing_tokens = {
     "spacing_01": dp("2"),
@@ -16,14 +16,14 @@ spacing_tokens = {
     "spacing_13": dp("160"),
 }
 
-font_size_tokens = {
+font_style_tokens = {
     "body_compact_01": {
-        "font_size": dp("14"),
-        "line_height": dp("18"),
+        "font_size": sp("14"),
+        "line_height": sp("18"),
     },
     "body_compact_02": {
-        "font_size": dp("16"),
-        "line_height": dp("22"),
+        "font_size": sp("16"),
+        "line_height": sp("22"),
     },
 }
 

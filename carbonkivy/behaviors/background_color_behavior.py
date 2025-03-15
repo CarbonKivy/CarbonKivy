@@ -104,7 +104,7 @@ class BackgroundColorBehavior:
 
     _bg_color = ColorProperty()
     _line_color = ColorProperty()
-    
+
     _background_x = NumericProperty(0)
     _background_y = NumericProperty(0)
     _background_origin = ReferenceListProperty(_background_x, _background_y)

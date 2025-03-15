@@ -7,7 +7,7 @@ from kivy.utils import platform
 from kivy.app import App
 
 from carbonkivy.theme.size_tokens import (
-    font_size_tokens,
+    font_style_tokens,
     spacing_tokens,
     button_size_tokens,
 )
@@ -18,12 +18,17 @@ APP = App.get_running_app()
 
 
 def get_font_name(typeface: str, weight_style: str) -> str:
-    font_dir = os.path.join(IBMPlex, typeface.replace(" ", "_"), "static", f"{typeface.replace(' ', '')}-{weight_style}.ttf")
+    font_dir = os.path.join(
+        IBMPlex,
+        typeface.replace(" ", "_"),
+        "static",
+        f"{typeface.replace(' ', '')}-{weight_style}.ttf",
+    )
     return font_dir
 
 
-def get_font_size(token: str) -> float:
-    return font_size_tokens[token]["font_size"]
+def get_font_style(token: str) -> float:
+    return font_style_tokens[token]
 
 
 def get_spacing(token: str) -> float:
