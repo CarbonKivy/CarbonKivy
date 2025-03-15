@@ -9,7 +9,7 @@ from sphinxawesome_theme.postprocess import Icons
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'CarbonKivy'
+project = "CarbonKivy"
 copyright = '2025, "Kartavya Shukla"'
 author = '"Kartavya Shukla"'
 
@@ -17,29 +17,30 @@ author = '"Kartavya Shukla"'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.viewcode',
-    'sphinxawesome_theme',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.viewcode",
+    "sphinxawesome_theme",
 ]
-
-templates_path = ['_templates']
+master_doc = "index"
+templates_path = ["_templates"]
 exclude_patterns = []
-
-
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinxawesome_theme'
+html_theme = "sphinxawesome_theme"
 html_favicon = "_static/images/carbonkivy_logo32.png"
 html_permalinks_icon = Icons.permalinks_icon
 html_theme_options = {
     "logo_light": "_static/images/carbonkivy_logo64.png",
-    "logo_dark": "_static/images/carbonkivy_logo64.png",
+    "logo_dark": "_static/images/carbonkivy_logo_dark64.png",
     "show_breadcrumbs": True,
     "show_prev_next": True,
     "awesome_external_links": True,
+    "main_nav_links": {
+        "Github Sponsors": "https://github.com/sponsors/Novfensec",
+    },
     "extra_header_link_icons": {
         "GitHub": {
             "link": "https://github.com/CarbonKivy/CarbonKivy",
@@ -70,7 +71,5 @@ html_theme_options = {
         },
     },
 }
-html_static_path = ['_static']
-html_css_files = [
-    'css/root.css'
-]
+html_static_path = ["_static"]
+html_css_files = ["css/root.css"]

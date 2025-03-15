@@ -4,7 +4,7 @@ __all__ = ("CIcon",)
 
 import os
 
-from kivy.properties import OptionProperty
+from kivy.properties import ColorProperty, OptionProperty
 from kivy.uix.label import Label
 
 from carbonkivy.config import DATA
@@ -18,13 +18,12 @@ class CIcon(Label):
 
     icon = OptionProperty("", options=ibm_icons.keys())
 
+    _color = ColorProperty(None, allownone=True)
+
     font_name = os.path.join(DATA, "Icons", "carbondesignicons.ttf")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-    def on_style(self, *args) -> None:
-        self.update_specs()
 
     def on_icon(self, *args) -> None:
         self.text = ibm_icons[self.icon]

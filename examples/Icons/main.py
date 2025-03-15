@@ -49,12 +49,13 @@ from kivy.uix.recycleview import RecycleView
 from carbonkivy.app import CarbonApp
 from carbonkivy.theme.icons import ibm_icons
 
+
 class IconView(RecycleView):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.data = []
         for icons in ibm_icons.keys():
-            self.data.extend([{"icon":icons, "text": icons}])
+            self.data.extend([{"icon": icons, "text": icons}])
 
 
 class myapp(CarbonApp):

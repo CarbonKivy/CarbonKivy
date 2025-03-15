@@ -6,14 +6,24 @@
 CarbonKivy - Carbon Design Kivy
 =================================================
 
+.. rst-class:: lead
+
+   A Library providing IBM's Carbon Design Components for `Kivy <https://kivy.org>`_.
+
 CarbonKivy is a Python library that integrates IBM's `Carbon Design System <https://www.carbondesignsystem.com/>`_ with the Kivy framework. It provides a modern, accessible, and user-friendly UI toolkit inspired by Carbon’s design principles, enabling developers to create consistent and visually appealing applications in Kivy.
 
-.. image:: _static/images/carbonkivy_banner512.png
-   :alt: CarbonKivy Banner
+.. image:: _static/images/carbon1.png
+   :alt: CarbonKivy Design Examples
    :class: centered
 
+.. toctree::
+   :hidden:
+
+   Welcome <self>
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :hidden:
+
+   carbondesignsystem
+   contributing
 

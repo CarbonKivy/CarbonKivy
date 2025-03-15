@@ -2298,5 +2298,5 @@ ibm_icons = {
     "zoom--reset": "\uf1f8",
     "zos": "\uf1f9",
     "zos--sysplex": "\uf1fa",
-    "z--systems": "\uf1fb"
+    "z--systems": "\uf1fb",
 }

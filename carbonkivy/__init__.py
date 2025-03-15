@@ -1,3 +1,9 @@
+"""
+Welcome to CarbonKivy.
+
+"""
+
+
 __app_name__ = "CarbonKivy"
 __version__ = "0.0.1.dev"
 
