@@ -28,7 +28,7 @@ Join the CarbonKivy community to get support, share your projects, and collabora
 - **GitHub Discussions**: Participate in discussions and ask questions in the [GitHub Discussions](https://github.com/CarbonKivy/CarbonKivy/discussions) section.
 - **YouTube - CarbonKivy**: Follow us on YouTube [@CarbonKivy](https://youtube.com/@CarbonKivy) for updates and announcements.
 
-[Documentation](#docs): Read the documentation.
+[Documentation](https://carbonkivy.readthedocs.io): Read the documentation.
 
 If you encounter any issues or have questions, feel free to reach out to the community or submit an issue on GitHub.
 
