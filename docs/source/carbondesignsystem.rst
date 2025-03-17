@@ -11,5 +11,9 @@ Carbon Design System
    :alt: CarbonDesignSystem
    :class: centered
 
+A design system is a collection of pre-built, reusable assets—components, patterns, guidance, and code—that allows its users to build consistent digital experiences faster. By using the pre-built and universal assets of Carbon, the time teams spend designing and building is minimized. Instead of building and re-building basic elements, they can spend that time customizing their products to address specific client use cases.
+
+The design system is named Carbon Design System because in nature the element carbon builds complex structures from simpler compounds. This motif mimics how our individual styles and components can combine to make beautifully complex, natural, and intuitive designs.
+
 See more about the `Carbon Design System <https://carbondesignsystem.com>`_.
 

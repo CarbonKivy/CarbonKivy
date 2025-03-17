@@ -26,6 +26,23 @@
             width: self.texture_size[0]
             pos_hint: {'center_y': 0.5}
 
+
+<CButtonPrimary>:
+    ctoken: "Primary"
+    active_color: app.button_primary_active
+    hover_color: app.button_primary_hover
+
+
+<CButtonSecondary>:
+    ctoken: "Secondary"
+    active_color: app.button_secondary_active
+    hover_color: app.button_secondary_hover
+
+
 <CButtonGhost>:
+    ctoken: "Ghost"
+    inset_width: 0
+    active_color: app.background_active
+    hover_color: app.background_hover
     text_color: app.link_primary_hover if self.cstate == "active" else app.link_primary
     padding: [dp(16), 0, dp(16), 0]

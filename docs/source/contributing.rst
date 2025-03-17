@@ -7,7 +7,6 @@ Contributing to CarbonKivy
 
    Thank you for considering contributing to CarbonKivy! We welcome contributions from everyone. By following these guidelines, you help us maintain a high standard of quality and ensure that your contributions are easy to review and integrate.
 
-
 Table of Contents
 -----------------
 

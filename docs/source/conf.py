@@ -3,8 +3,23 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import os, sys
+
 from sphinxawesome_theme.postprocess import Icons
 
+from sphinx.application import Sphinx
+from sphinx.util.docfields import Field
+from sphinx.highlighting import lexers
+
+
+sys.path.append(os.path.abspath("_extensions"))
+sys.path.append(os.path.abspath("../."))
+
+from kivy_lexer import KivyLexer
+from carbonkivy import __version__
+
+# Register the lexer with Sphinx
+lexers["kv"] = KivyLexer()
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -12,19 +27,36 @@ from sphinxawesome_theme.postprocess import Icons
 project = "CarbonKivy"
 copyright = '2025, "Kartavya Shukla"'
 author = '"Kartavya Shukla"'
+version = __version__
+release = __version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "sphinx_design",
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinxawesome_theme",
 ]
 master_doc = "index"
+autodoc_mock_imports = [
+    "kivy",
+]
 templates_path = ["_templates"]
 exclude_patterns = []
+extlinks = {
+    "gh": ("https://github.com/CarbonKivy/CarbonKivy/blob/master/%s", "%s"),
+    "ghdir": ("https://github.com/CarbonKivy/CarbonKivy/tree/master/%s", "%s"),
+    "kivy": ("https://kivy.org/%s", "%s"),
+}
+
+# --Options for Code Highlighting---------------------------------------------
+
+pygments_style = "sphinx"
+pygments_style_dark = "dracula"
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -73,3 +105,26 @@ html_theme_options = {
 }
 html_static_path = ["_static"]
 html_css_files = ["css/root.css"]
+
+
+# -- Register a :confval: interpreted text role ----------------------------------
+def setup(app: Sphinx) -> None:
+    """Register the ``confval`` role and directive.
+
+    This allows to declare theme options as their own object
+    for styling and cross-referencing.
+    """
+    app.add_object_type(
+        "confval",
+        "confval",
+        objname="configuration parameter",
+        doc_field_types=[
+            Field(
+                "default",
+                label="default",
+                has_arg=True,
+                names=("default",),
+                bodyrolename="class",
+            )
+        ],
+    )
