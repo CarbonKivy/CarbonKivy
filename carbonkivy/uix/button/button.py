@@ -1,6 +1,11 @@
 from __future__ import annotations
 
-__all__ = ("CButton",)
+__all__ = (
+    "CButton",
+    "CButtonPrimary",
+    "CButtonSecondary",
+    "CButtonGhost",
+)
 
 from kivy.properties import (
     StringProperty,
@@ -142,32 +147,14 @@ class CButton(
 
 
 class CButtonPrimary(CButton):
-
-    ctoken = "Primary"
-
-    active_color = getattr(APP, "button_primary_active")
-
-    hover_color = getattr(APP, "button_primary_hover")
+    pass
 
 
 class CButtonSecondary(CButton):
-
-    ctoken = "Secondary"
-
-    active_color = getattr(APP, "button_secondary_active")
-
-    hover_color = getattr(APP, "button_secondary_hover")
+    pass
 
 
 class CButtonGhost(CButton):
-
-    inset_width = 0
-
-    ctoken = "Ghost"
-
-    active_color = getattr(APP, "background_active")
-
-    hover_color = getattr(APP, "background_hover")
 
     def on_hover(self, *args) -> None:
         super().on_hover(*args)

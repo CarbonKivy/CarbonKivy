@@ -8,6 +8,10 @@ from carbonkivy.theme.theme import CarbonTheme
 
 
 class CarbonApp(App, CarbonTheme):
+    """
+    The Main App class inherits from CarbonTheme to define and update the theme and appropriate colors based on the given theme.
+    """
+
     def __init__(self, **kwargs):
         super(CarbonApp, self).__init__(**kwargs)
 
