@@ -42,9 +42,9 @@ Carbon App
       app = MyApp()
       app.run()
 
-.. automodule:: carbonkivy.app
+.. autoapimodule:: carbonkivy.app
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
    :no-index:
 

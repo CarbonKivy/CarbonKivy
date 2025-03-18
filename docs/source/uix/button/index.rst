@@ -171,9 +171,9 @@ Run the below python script for a full-fledged running Example.
 API
 ---
 
-.. automodule:: carbonkivy.uix.button.button
+.. autoapimodule:: carbonkivy.uix.button
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
    :no-index:
 
