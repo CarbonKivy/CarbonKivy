@@ -12,6 +12,7 @@ from carbonkivy.utils import get_font_name
 
 
 class CLabel(Label):
+
     style = OptionProperty("body_compact_02", options=[font_style_tokens.keys()])
 
     typeface = OptionProperty(

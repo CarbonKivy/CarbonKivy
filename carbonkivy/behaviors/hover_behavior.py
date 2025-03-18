@@ -1,8 +1,12 @@
+from __future__ import annotations
+
+__all__ = ("HoverBehavior",)
+
 from kivy.core.window import Window
 from kivy.properties import ColorProperty, BooleanProperty
 
 from carbonkivy.utils import DEVICE_TYPE
-from carbonkivy.behaviors import BackgroundColorBehavior
+from .background_color_behavior import BackgroundColorBehavior
 
 
 class HoverBehavior:
