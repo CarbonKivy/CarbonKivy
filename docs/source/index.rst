@@ -64,7 +64,7 @@ Explore the full capabilities of CarbonKivy by diving into the documentation. Le
 
       .. toctree::
          :caption: API
-         :maxdepth: 2
+         :maxdepth: 4
          :glob:
 
          autoapi/index
