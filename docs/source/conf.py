@@ -93,7 +93,6 @@ pygments_style_dark = "dracula"
 
 html_theme = "sphinxawesome_theme"
 html_favicon = "_static/images/carbonkivy_logo64.png"
-html_logo = "_static/images/carbonkivy_logo64.png"
 html_permalinks_icon = Icons.permalinks_icon
 html_theme_options = {
     "logo_light": "_static/images/carbonkivy_logo64.png",
