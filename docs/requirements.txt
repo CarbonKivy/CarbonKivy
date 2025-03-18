@@ -2,3 +2,4 @@ kivy
 sphinxawesome_theme
 sphinx-design
 sphinx-autoapi
+sphinxext-opengraph
