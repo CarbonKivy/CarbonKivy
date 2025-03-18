@@ -47,7 +47,7 @@ extensions = [
     "sphinxawesome_theme",
 ]
 master_doc = "index"
-autodoc_mock_imports = []
+autodoc_mock_imports = ['kivy']
 templates_path = ["_templates"]
 exclude_patterns = []
 extlinks = {
