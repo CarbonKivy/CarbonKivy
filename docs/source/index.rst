@@ -44,7 +44,7 @@ Explore the full capabilities of CarbonKivy by diving into the documentation. Le
 
       .. toctree::
          :caption: Elements
-         :maxdepth: 2
+         :maxdepth: 1
          :glob:
 
          elements/**
@@ -55,7 +55,7 @@ Explore the full capabilities of CarbonKivy by diving into the documentation. Le
 
       .. toctree::
          :caption: Components
-         :maxdepth: 2
+         :maxdepth: 1
          :glob:
 
          uix/**
@@ -64,7 +64,7 @@ Explore the full capabilities of CarbonKivy by diving into the documentation. Le
 
       .. toctree::
          :caption: API
-         :maxdepth: 4
+         :maxdepth: 2
          :glob:
 
          autoapi/index

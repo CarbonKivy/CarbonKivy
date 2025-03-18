@@ -4,6 +4,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import os, sys
+
 # Don't allow Kivy to handle args
 os.environ["KIVY_NO_ARGS"] = "1"
 
@@ -40,6 +41,7 @@ release = __version__
 extensions = [
     "autoapi.extension",
     "sphinx_design",
+    "sphinxext.opengraph",
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
@@ -47,7 +49,7 @@ extensions = [
     "sphinxawesome_theme",
 ]
 master_doc = "index"
-autodoc_mock_imports = ['kivy']
+autodoc_mock_imports = ["kivy"]
 templates_path = ["_templates"]
 exclude_patterns = []
 extlinks = {
@@ -55,14 +57,33 @@ extlinks = {
     "ghdir": ("https://github.com/CarbonKivy/CarbonKivy/tree/master/%s", "%s"),
     "kivy": ("https://kivy.org/%s", "%s"),
 }
-autoapi_dirs = ['../../carbonkivy']
-autoapi_options = ['members', 'undoc-members',]
+
+# -- Autoapi configuration ---------------------------------------------------
+
+autoapi_dirs = ["../../carbonkivy"]
+autoapi_options = [
+    "members",
+    "undoc-members",
+]
 autoapi_file_patterns = ["*.py"]
 autoapi_type = "python"
 autoapi_generate_api_docs = True
 autoapi_keep_files = False
 
-# --Options for Code Highlighting---------------------------------------------
+# -- Options for opengraph ---------------------------------------------------
+
+ogp_site_url = "https://carbonkivy.readthedocs.io"
+ogp_site_name = "CarbonKivy Documentation"
+ogp_image = "_static/images/carbonkivy_banner512.png"
+ogp_custom_tags = [
+    "<meta property='og:title' content='CarbonKivy - Carbon Design Kivy'/>",
+    "<meta property='og:description' content='CarbonKivy is a Python library that integrates IBM's Carbon Design System with the Kivy framework.'/>",
+    "<meta property='og:type' content='website'/>",
+    "<meta property='keywords' content='CarbonKivy, Carbon, Design, System, Kivy, Python, Android, iOS, Windows, Linux, macOS'/>",
+    "<meta property='description' content='CarbonKivy is a Python library that integrates IBM's Carbon Design System with the Kivy framework.'/>",
+]
+
+# -- Options for Code Highlighting -------------------------------------------
 
 pygments_style = "sphinx"
 pygments_style_dark = "dracula"
@@ -71,7 +92,8 @@ pygments_style_dark = "dracula"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinxawesome_theme"
-html_favicon = "_static/images/carbonkivy_logo32.png"
+html_favicon = "_static/images/carbonkivy_logo64.png"
+html_logo = "_static/images/carbonkivy_logo64.png"
 html_permalinks_icon = Icons.permalinks_icon
 html_theme_options = {
     "logo_light": "_static/images/carbonkivy_logo64.png",
@@ -137,6 +159,7 @@ def setup(app: Sphinx) -> None:
             )
         ],
     )
+
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
