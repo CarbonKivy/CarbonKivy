@@ -4,6 +4,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import os, sys
+# Don't allow Kivy to handle args
+os.environ["KIVY_NO_ARGS"] = "1"
 
 from sphinxawesome_theme.postprocess import Icons
 
@@ -12,8 +14,6 @@ from sphinx.util.docfields import Field
 from sphinx.highlighting import lexers
 
 
-# Don't allow Kivy to handle args
-os.environ["KIVY_NO_ARGS"] = "true"
 os.environ["READTHEDOCS"] = "true"
 
 sys.path.append(os.path.abspath("."))
@@ -47,6 +47,7 @@ extensions = [
     "sphinxawesome_theme",
 ]
 master_doc = "index"
+autodoc_mock_imports = ["kivy", ]
 templates_path = ["_templates"]
 exclude_patterns = []
 extlinks = {
@@ -54,9 +55,12 @@ extlinks = {
     "ghdir": ("https://github.com/CarbonKivy/CarbonKivy/tree/master/%s", "%s"),
     "kivy": ("https://kivy.org/%s", "%s"),
 }
-suppress_warnings = ['docutils.nodes', 'autodoc',]
 autoapi_dirs = ['../../carbonkivy']
-autoapi_options = ['members', 'undoc-members', 'show-inheritance']
+autoapi_options = ['members', 'undoc-members',]
+autoapi_file_patterns = ["*.py"]
+autoapi_type = "python"
+autoapi_generate_api_docs = True
+autoapi_keep_files = False
 
 # --Options for Code Highlighting---------------------------------------------
 
