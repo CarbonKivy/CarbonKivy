@@ -12,6 +12,10 @@ from sphinx.util.docfields import Field
 from sphinx.highlighting import lexers
 
 
+# Don't allow Kivy to handle args
+os.environ["KIVY_NO_ARGS"] = "true"
+os.environ["READTHEDOCS"] = "true"
+
 sys.path.append(os.path.abspath("_extensions"))
 sys.path.append(os.path.abspath("../."))
 
