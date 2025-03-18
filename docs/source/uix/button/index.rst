@@ -173,7 +173,6 @@ API
 
 .. automodule:: carbonkivy.uix.button.button
    :members:
-   :private-members:
    :show-inheritance:
    :undoc-members:
    :no-index:

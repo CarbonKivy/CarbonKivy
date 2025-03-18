@@ -16,10 +16,10 @@ from sphinx.highlighting import lexers
 os.environ["KIVY_NO_ARGS"] = "true"
 os.environ["READTHEDOCS"] = "true"
 
-sys.path.append(os.path.abspath("_extensions"))
-sys.path.append(os.path.abspath("../."))
+sys.path.append(os.path.abspath("."))
+sys.path.append(os.path.abspath("../../."))
 
-from kivy_lexer import KivyLexer
+from _extensions.kivy_lexer import KivyLexer
 from carbonkivy import __version__
 
 # Register the lexer with Sphinx
@@ -38,6 +38,7 @@ release = __version__
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "autoapi.extension",
     "sphinx_design",
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
@@ -46,9 +47,6 @@ extensions = [
     "sphinxawesome_theme",
 ]
 master_doc = "index"
-autodoc_mock_imports = [
-    "kivy",
-]
 templates_path = ["_templates"]
 exclude_patterns = []
 extlinks = {
@@ -56,6 +54,9 @@ extlinks = {
     "ghdir": ("https://github.com/CarbonKivy/CarbonKivy/tree/master/%s", "%s"),
     "kivy": ("https://kivy.org/%s", "%s"),
 }
+suppress_warnings = ['docutils.nodes', 'autodoc',]
+autoapi_dirs = ['../../carbonkivy']
+autoapi_options = ['members', 'undoc-members', 'show-inheritance']
 
 # --Options for Code Highlighting---------------------------------------------
 
@@ -132,3 +133,8 @@ def setup(app: Sphinx) -> None:
             )
         ],
     )
+
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+    "kivy": ("https://kivy.org/doc/stable", None),
+}

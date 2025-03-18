@@ -31,11 +31,6 @@ from carbonkivy.uix.icon import CIcon
 from carbonkivy.utils import get_button_size, get_button_token, APP
 
 
-class CButtonLabel(Label, DeclarativeBehavior):
-    def __init__(self, **kwargs):
-        super(CButtonLabel, self).__init__(**kwargs)
-
-
 class CButton(
     BackgroundColorBehavior,
     ButtonBehavior,

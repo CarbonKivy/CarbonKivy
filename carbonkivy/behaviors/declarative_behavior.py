@@ -1,6 +1,14 @@
-# Follows the same declarative pattern as KivyMD's Declarative Behavior.
-# See more at: https://github.com/kivymd/KivyMD/blob/master/kivymd/uix/behaviors/declarative_behavior.py
-# Documentation at: https://kivymd.readthedocs.io/en/latest/behaviors/declarative/
+"""
+Follows the same declarative pattern as KivyMD's Declarative Behavior.
+
+See more at: `KivyMD's Declarative Behavior Github <https://github.com/kivymd/KivyMD/blob/master/kivymd/uix/behaviors/declarative_behavior.py>`_
+
+Documentation at: https://kivymd.readthedocs.io/en/latest/behaviors/declarative/
+"""
+
+from __future__ import annotations
+
+__all__ = ("DeclarativeBehavior",)
 
 from kivy.properties import StringProperty
 from kivy.uix.widget import Widget
