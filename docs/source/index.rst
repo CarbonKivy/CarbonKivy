@@ -43,27 +43,24 @@ Explore the full capabilities of CarbonKivy by diving into the documentation. Le
       Basic Elements of the CarbonKivy library.
 
       .. toctree::
-         :caption: Elements
-         :maxdepth: 1
+         :maxdepth: 2
          :glob:
 
-         elements/**
+         elements/index
 
    .. tab-item:: Components
 
       List of the available Components of the CarbonKivy library.
 
       .. toctree::
-         :caption: Components
-         :maxdepth: 1
+         :maxdepth: 2
          :glob:
 
-         uix/**
+         uix/index
 
    .. tab-item:: API
 
       .. toctree::
-         :caption: API
          :maxdepth: 4
          :glob:
 

@@ -64,6 +64,7 @@ autoapi_dirs = ["../../carbonkivy"]
 autoapi_options = [
     "members",
     "undoc-members",
+    "show-inheritance",
 ]
 autoapi_file_patterns = ["*.py"]
 autoapi_type = "python"
@@ -92,7 +93,7 @@ pygments_style_dark = "dracula"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinxawesome_theme"
-html_favicon = "_static/images/carbonkivy_logo64.png"
+html_favicon = "_static/images/carbonkivy_logo128.png"
 html_permalinks_icon = Icons.permalinks_icon
 html_theme_options = {
     "logo_light": "_static/images/carbonkivy_logo64.png",

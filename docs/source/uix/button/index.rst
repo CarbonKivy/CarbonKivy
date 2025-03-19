@@ -66,7 +66,7 @@ Size
 
 There are six button sizes: small, medium, large productive, large expressive, extra large, and 2XL. The large expressive button is used in editorial and digital marketing experiences.
 
-Use the :confval:`role:` property to defined the token for the button size.
+Use the :class:`~carbonkivy.uix.button.button.CButton.role` property to define the token for the button size.
 
 .. code-block:: kv
 
@@ -77,6 +77,57 @@ Use the :confval:`role:` property to defined the token for the button size.
 .. image:: /_static/images/button/button_sizes.png
    :alt: Carbon Design Button Sizes
    :class: centered
+
+Custom Button
+-------------
+
+To create a custom button using the :class:`~carbonkivy.uix.button.button.CButton` you have certain properties and methods which needs to be customized.
+
+The :class:`~carbonkivy.uix.button.button.CButton` class inherits certain behaviors to enable smooth user interactivity during different interactive states. It also holds some pre-defined properties like `padding`, `spacing`, `font_size`, `text_color`, `bg_color`, inset_color, `cstate`, etc.
+
+Let's start with an example code:
+
+.. code-block:: kv
+
+    CButton:
+        text: "Button"
+        text_color: "blue_60"
+        cstate: "normal" # active, disabled, normal
+        pos_hint: {"center_x" : 0.5, "center_y" : 0.5}
+
+Appearance of Button in different interactive states is shown below:
+
+.. list-table::
+   :widths: 50 50
+   :align: center
+
+   * - .. image:: /_static/images/button/cbuttonexample1.png
+          :width: 180px
+          :height: 180px
+     - .. image:: /_static/images/button/cbuttonexamplehover1.png
+          :width: 180px
+          :height: 180px
+   * - .. image:: /_static/images/button/cbuttonexamplefocus1.png
+          :width: 180px
+          :height: 180px
+     - .. image:: /_static/images/button/cbuttonexampledisabled1.png
+          :width: 180px
+          :height: 180px
+
+Create an active state button:
+
+.. code-block:: kv
+
+    CButton:
+        text: "Button"
+        active_color: app.button_primary_active
+        cstate: "active" # active, disabled, normal
+        pos_hint: {"center_x" : 0.5, "center_y" : 0.5}
+
+.. image:: /_static/images/button/cbuttonexampleactive1.png
+   :class: centered
+   :width: 180px
+   :height: 180px
 
 Example
 -------
