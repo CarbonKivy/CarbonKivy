@@ -85,6 +85,8 @@ class CButton(
 
     def on_cstate(self, *args) -> None:
         self.set_colors()
+        if self.ctoken == "" and self.cstate == "active":
+            self.bg_color = self.active_color
 
     def on_icon(self, *args) -> None:
         if self.icon:
