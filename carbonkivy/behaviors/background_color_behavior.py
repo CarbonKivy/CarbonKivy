@@ -19,7 +19,10 @@ Builder.load_string(
 
 
 <BackgroundColorBehavior>
-    canvas:
+    inset_color: self.bg_color
+    line_color: self.bg_color
+
+    canvas.before:
         PushMatrix
         Rotate:
             angle: self.angle
@@ -37,7 +40,7 @@ Builder.load_string(
         SmoothRectangle:
             group: "Background_instruction"
             size: [self.size[0] - self.inset_width, self.size[1] - self.inset_width]
-            pos: self.pos if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
+            pos: (self.pos[0] + self.inset_width/2, self.pos[1] + self.inset_width/2) if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
             source: root.bg_source
         Color:
             rgba: self._line_color if self._line_color else (0, 0, 0, 0)
@@ -64,7 +67,7 @@ Builder.load_string(
 
 
 class BackgroundColorBehavior:
-    bg_source = StringProperty()
+    bg_source = StringProperty(None, allownone=True)
     """
     Background image path.
     """
@@ -74,17 +77,17 @@ class BackgroundColorBehavior:
     Canvas radius.
     """
 
-    bg_color = ColorProperty([0, 0, 0, 0])
+    bg_color = ColorProperty([1, 1, 1, 0])
     """
     The background color of the widget.
     """
 
-    inset_color = ColorProperty([1, 1, 1, 1])
+    inset_color = ColorProperty([1, 1, 1, 0])
     """
     The color of border inset.
     """
 
-    line_color = ColorProperty([0, 0, 0, 0])
+    line_color = ColorProperty([1, 1, 1, 0])
     """
     The border of the specified color will be used to border the widget.
     """
@@ -102,8 +105,8 @@ class BackgroundColorBehavior:
     angle = NumericProperty(0)
     background_origin = ListProperty(None)
 
-    _bg_color = ColorProperty()
-    _line_color = ColorProperty()
+    _bg_color = ColorProperty([1, 1, 1, 0])
+    _line_color = ColorProperty([1, 1, 1, 0])
 
     _background_x = NumericProperty(0)
     _background_y = NumericProperty(0)
