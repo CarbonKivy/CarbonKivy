@@ -102,19 +102,15 @@ Appearance of Button in different interactive states is shown below:
    :align: center
 
    * - .. image:: /_static/images/button/cbuttonexample1.png
-          :width: 180px
-          :height: 180px
-     - .. image:: /_static/images/button/cbuttonexamplehover1.png
-          :width: 180px
-          :height: 180px
-   * - .. image:: /_static/images/button/cbuttonexamplefocus1.png
-          :width: 180px
-          :height: 180px
-     - .. image:: /_static/images/button/cbuttonexampledisabled1.png
-          :width: 180px
-          :height: 180px
 
-Create an active state button:
+     - .. image:: /_static/images/button/cbuttonexamplehover1.png
+
+   * - .. image:: /_static/images/button/cbuttonexamplefocus1.png
+
+     - .. image:: /_static/images/button/cbuttonexampledisabled1.png
+
+
+To create an active state button you have to define the :class:`~carbonkivy.uix.button.button.CButton.active_color`, the color that appears when the button :class:`~kivy.uix.behaviors.ButtonBehavior.state` is :confval:`down`.
 
 .. code-block:: kv
 
@@ -126,8 +122,24 @@ Create an active state button:
 
 .. image:: /_static/images/button/cbuttonexampleactive1.png
    :class: centered
-   :width: 180px
-   :height: 180px
+
+Let's create a button similar to :class:`~carbonkivy.uix.button.button.CButtonPrimary` by defining the color properties by ourselves.
+
+.. code-block:: kv
+
+    <MyPrimaryButton@CButton>:
+        bg_color: app.button_primary
+        hover_color: app.button_primary_hover
+        active_color: app.button_primary_active
+
+    MyPrimaryButton:
+        text: "My Primary Button"
+        # cstate: "active" # active, disabled, normal (`default`)
+        role: "2XL"
+        pos_hint: {"center_x" : 0.5, "center_y" : 0.5}
+
+.. image:: /_static/images/button/cbuttonexamplefull.png
+   :class: centered
 
 Example
 -------

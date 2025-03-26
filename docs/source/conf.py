@@ -75,7 +75,7 @@ autoapi_keep_files = False
 
 ogp_site_url = "https://carbonkivy.readthedocs.io"
 ogp_site_name = "CarbonKivy Documentation"
-ogp_image = "_static/images/carbonkivy_banner512.png"
+ogp_image = "/_static/images/carbonkivy_banner512.png"
 ogp_custom_tags = [
     "<meta property='og:title' content='CarbonKivy - Carbon Design Kivy'/>",
     "<meta property='og:description' content='CarbonKivy is a Python library that integrates IBM's Carbon Design System with the Kivy framework.'/>",
