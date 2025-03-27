@@ -19,7 +19,6 @@ from kivy.properties import (
 from kivy.metrics import sp
 from kivy.clock import mainthread
 from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.label import Label
 from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.behaviors import (
