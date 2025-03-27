@@ -11,26 +11,18 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 CScreen:
-    CLabel:
-        text: "IBM Plex Sans"
-        style: "body_compact_02"
-        typeface: "IBM Plex Sans"
-        weight_style: "SemiBold"
-        pos_hint: {"center_x": 0.5, "center_y": 0.3}
 
-    CLabel:
-        text: "IBM Plex Serif"
-        style: "body_compact_02"
-        typeface: "IBM Plex Serif"
-        weight_style: "SemiBold"
-        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    CLink:
+        name: "Link"
+        url: "https://github.com/CarbonKivy"
+        pos_hint: {"center_x": 0.5, "center_y": 0.6}
 
-    CLabel:
-        text: "IBM Plex Mono"
-        style: "body_compact_02"
-        typeface: "IBM Plex Mono"
-        weight_style: "SemiBold"
-        pos_hint: {"center_x": 0.5, "center_y": 0.7}
+    CLink:
+        name: "Link"
+        icon: "arrow--right"
+        url: "https://github.com/CarbonKivy"
+        external: True
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
 """
 
 from kivy.lang import Builder
