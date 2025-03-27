@@ -2,7 +2,11 @@
     markup: True
     size_hint: None, None
     text_color: app.link_primary
+    line_color: [1, 1, 1, 0]
+    hover_color: app.link_primary_hover
+    line_width: 0.1
     color: self.text_color
-    text: f"{self.name} [font=cicon]{self.icon_code}[/font]"
+    text: f"{self.name}[font=cicon]{self.icon_code}[/font]"
+    halign: "center"
     width: self.texture_size[0]
     height: self.texture_size[1]
