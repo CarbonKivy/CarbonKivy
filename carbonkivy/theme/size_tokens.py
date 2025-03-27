@@ -17,6 +17,40 @@ spacing_tokens = {
 }
 
 font_style_tokens = {
+    # Productive set suffix '-01'
+    # Expressive set suffix '-02'
+    "code_01": {
+        "font_size": sp("12"),
+        "line_height": sp("16"),
+    },
+    "code_02": {
+        "font_size": sp("14"),
+        "line_height": sp("20"),
+    },
+    "label_01": {
+        "font_size": sp("12"),
+        "line_height": sp("16"),
+    },
+    "label_02": {
+        "font_size": sp("14"),
+        "line_height": sp("18"),
+    },
+    "helper_text_01": {
+        "font_size": sp("12"),
+        "line_height": sp("16"),
+    },
+    "helper_text_02": {
+        "font_size": sp("14"),
+        "line_height": sp("18"),
+    },
+    "legal_01": {
+        "font_size": sp("12"),
+        "line_height": sp("16"),
+    },
+    "legal_02": {
+        "font_size": sp("14"),
+        "line_height": sp("18"),
+    },
     "body_compact_01": {
         "font_size": sp("14"),
         "line_height": sp("18"),
@@ -24,6 +58,56 @@ font_style_tokens = {
     "body_compact_02": {
         "font_size": sp("16"),
         "line_height": sp("22"),
+    },
+    "body_01": {
+        "font_size": sp("14"),
+        "line_height": sp("20"),
+    },
+    "body_02": {
+        "font_size": sp("16"),
+        "line_height": sp("24"),
+    },
+    "heading_compact_01": {
+        "font_size": sp("14"),
+        "line_height": sp("18"),
+        "weight_style": "SemiBold",
+    },
+    "heading_compact_02": {
+        "font_size": sp("16"),
+        "line_height": sp("22"),
+        "weight_style": "SemiBold",
+    },
+    "heading_01": {
+        "font_size": sp("14"),
+        "line_height": sp("20"),
+        "weight_style": "SemiBold",
+    },
+    "heading_02": {
+        "font_size": sp("16"),
+        "line_height": sp("24"),
+        "weight_style": "SemiBold",
+    },
+    "heading_03": {
+        "font_size": sp("20"),
+        "line_height": sp("28"),
+    },
+    "heading_04": {
+        "font_size": sp("28"),
+        "line_height": sp("36"),
+    },
+    "heading_05": {
+        "font_size": sp("32"),
+        "line_height": sp("40"),
+    },
+    "heading_06": {
+        "font_size": sp("42"),
+        "line_height": sp("50"),
+        "weight_style": "Light",
+    },
+    "heading_07": {
+        "font_size": sp("54"),
+        "line_height": sp("64"),
+        "weight_style": "Light",
     },
 }
 
