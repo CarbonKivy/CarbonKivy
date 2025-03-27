@@ -11,9 +11,16 @@ Once registered, the components can be used without explicitly importing them el
 """
 
 # Register the component with Kivy's Factory
-register("CLabel", module="carbonkivy.uix.label")
-register("CIcon", module="carbonkivy.uix.icon")
+register("CAnchorLayout", module="carbonkivy.uix.anchorlyout")
+register("CBoxLayout", module="carbonkivy.uix.boxlayout")
 register("CButton", module="carbonkivy.uix.button")
+register("CButtonGhost", module="carbonkivy.uix.button")
 register("CButtonPrimary", module="carbonkivy.uix.button")
 register("CButtonSecondary", module="carbonkivy.uix.button")
-register("CButtonGhost", module="carbonkivy.uix.button")
+register("CFloatLayout", module="carbonkivy.uix.floatlayout")
+register("CIcon", module="carbonkivy.uix.icon")
+register("CLabel", module="carbonkivy.uix.label")
+register("CRelativeLayout", module="carbonkivy.uix.relativelayout")
+register("CScreen", module="carbonkivy.uix.screen")
+register("CScreenManager", module="carbonkivy.uix.screenmanager")
+register("CStackLayout", module="carbonkivy.uix.stacklayout")
