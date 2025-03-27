@@ -11,7 +11,7 @@ from carbonkivy.theme.size_tokens import font_style_tokens
 from carbonkivy.utils import get_font_name
 
 
-class CLabel(Label, BackgroundColorBehavior):
+class CLabel(BackgroundColorBehavior, Label):
 
     style = OptionProperty("body_compact_02", options=[font_style_tokens.keys()])
 
