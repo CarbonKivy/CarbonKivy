@@ -10,7 +10,7 @@ def set_softinput(*args) -> None:
 Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
-Screen:
+CScreen:
 
     CButtonPrimary:
         text: "Primary Button"
