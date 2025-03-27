@@ -6,7 +6,7 @@ from kivy.clock import mainthread
 from kivy.properties import NumericProperty, OptionProperty
 from kivy.uix.label import Label
 
-from carbonkivy.behaviors import BackgroundColorBehavior # SelectionBehavior
+from carbonkivy.behaviors import BackgroundColorBehavior  # SelectionBehavior
 from carbonkivy.theme.size_tokens import font_style_tokens
 from carbonkivy.utils import get_font_name
 
@@ -22,16 +22,20 @@ class CLabel(Label, BackgroundColorBehavior):
     weight_style = OptionProperty(
         "Regular",
         options=[
-            "Regular",
             "Bold",
-            "SemiBold",
-            "Italic",
-            "Thin",
-            "Light",
-            "ExtraLight",
-            "Medium",
             "BoldItalic",
+            "ExtraLight",
+            "ExtraLightItalic",
+            "Italic",
+            "Light",
+            "LightItalic",
+            "Medium",
+            "MediumItalic",
+            "Regular",
+            "SemiBold",
             "SemiBoldItalic",
+            "Thin",
+            "ThinItalic",
         ],
     )
 
