@@ -20,7 +20,6 @@ Builder.load_string(
 
 <BackgroundColorBehavior>
     inset_color: self.bg_color
-    line_color: self.bg_color
 
     canvas.before:
         PushMatrix
