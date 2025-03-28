@@ -6,7 +6,10 @@ from kivy.clock import mainthread
 from kivy.properties import NumericProperty, OptionProperty
 from kivy.uix.label import Label
 
-from carbonkivy.behaviors import AdaptiveBehavior, BackgroundColorBehavior  # SelectionBehavior
+from carbonkivy.behaviors import (
+    AdaptiveBehavior,
+    BackgroundColorBehavior,
+)  # SelectionBehavior
 from carbonkivy.theme.size_tokens import font_style_tokens
 from carbonkivy.utils import get_font_name
 
@@ -58,7 +61,6 @@ class CLabel(AdaptiveBehavior, BackgroundColorBehavior, Label):
     def update_specs(self, *args):
         try:
             self.weight_style = font_style_tokens[self.style]["weight_style"]
-        except Exception as e: # nosec
+        except Exception as e:  # nosec
             pass
         self.font_name = get_font_name(self.typeface, self.weight_style)
-

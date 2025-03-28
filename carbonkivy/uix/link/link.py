@@ -15,14 +15,20 @@ from kivy.properties import (
 )
 from kivy.uix.label import Label
 
-from carbonkivy.behaviors import AdaptiveBehavior, BackgroundColorBehavior, HoverBehavior
+from carbonkivy.behaviors import (
+    AdaptiveBehavior,
+    BackgroundColorBehavior,
+    HoverBehavior,
+)
 from carbonkivy.theme.icons import ibm_icons
 
 
 APP = App.get_running_app()
 
 
-class CLink(AdaptiveBehavior, BackgroundColorBehavior, ButtonBehavior, HoverBehavior, Label):
+class CLink(
+    AdaptiveBehavior, BackgroundColorBehavior, ButtonBehavior, HoverBehavior, Label
+):
 
     name = StringProperty()
 
@@ -41,6 +47,9 @@ class CLink(AdaptiveBehavior, BackgroundColorBehavior, ButtonBehavior, HoverBeha
     focus = BooleanProperty(False)
 
     external = BooleanProperty(False)
+
+    def __init__(self, **kwargs):
+        super(CLink, self).__init__(**kwargs)
 
     def on_hover(self, *args) -> None:
         if self.hover:
