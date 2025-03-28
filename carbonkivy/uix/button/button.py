@@ -82,6 +82,12 @@ class CButton(
         super(CButton, self).__init__(**kwargs)
         self.update_specs()
 
+    def on_font_size(self, *args) -> None:
+        for child in self.cbutton_layout.children:
+            if isinstance(child, CIcon):
+                child.font_size = self.font_size + sp(8)
+                break
+
     def on_role(self, *args) -> None:
         self.height = get_button_size(self.role)
 
@@ -97,6 +103,7 @@ class CButton(
         if self.icon:
             self.cbutton_layout.add_widget(
                 CIcon(
+                    id="cbutton_layout_icon",
                     icon=self.icon,
                     pos_hint={"center_y": 0.5},
                     _color=self._text_color,
@@ -131,6 +138,7 @@ class CButton(
         super().on_touch_down(touch)
         if self.cstate != "disabled":
             self.focus = self.collide_point(*touch.pos)
+            return self.focus
         return super().on_touch_down(touch)
 
     def on_focus(self, *args) -> None:
