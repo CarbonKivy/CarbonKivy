@@ -1,10 +1,8 @@
 import os
-from typing import List
 
 from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.utils import platform
-from kivy.app import App
 
 from carbonkivy.theme.size_tokens import (
     font_style_tokens,
@@ -12,9 +10,6 @@ from carbonkivy.theme.size_tokens import (
     button_size_tokens,
 )
 from carbonkivy.config import IBMPlex
-
-
-APP = App.get_running_app()
 
 
 def get_font_name(typeface: str, weight_style: str) -> str:
