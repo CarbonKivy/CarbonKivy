@@ -15,14 +15,14 @@ from kivy.properties import (
 )
 from kivy.uix.label import Label
 
-from carbonkivy.behaviors import BackgroundColorBehavior, HoverBehavior
+from carbonkivy.behaviors import AdaptiveBehavior, BackgroundColorBehavior, HoverBehavior
 from carbonkivy.theme.icons import ibm_icons
 
 
 APP = App.get_running_app()
 
 
-class CLink(BackgroundColorBehavior, ButtonBehavior, HoverBehavior, Label):
+class CLink(AdaptiveBehavior, BackgroundColorBehavior, ButtonBehavior, HoverBehavior, Label):
 
     name = StringProperty()
 
