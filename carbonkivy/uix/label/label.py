@@ -6,14 +6,14 @@ from kivy.clock import mainthread
 from kivy.properties import NumericProperty, OptionProperty
 from kivy.uix.label import Label
 
-from carbonkivy.behaviors import BackgroundColorBehavior  # SelectionBehavior
+from carbonkivy.behaviors import AdaptiveBehavior, BackgroundColorBehavior  # SelectionBehavior
 from carbonkivy.theme.size_tokens import font_style_tokens
 from carbonkivy.utils import get_font_name
 
 
-class CLabel(BackgroundColorBehavior, Label):
+class CLabel(AdaptiveBehavior, BackgroundColorBehavior, Label):
 
-    style = OptionProperty("body_compact_02", options=[font_style_tokens.keys()])
+    style = OptionProperty("body_compact_02", options=font_style_tokens.keys())
 
     typeface = OptionProperty(
         "IBM Plex Sans", options=["IBM Plex Sans", "IBM Plex Serif", "IBM Plex Mono"]
@@ -55,7 +55,10 @@ class CLabel(BackgroundColorBehavior, Label):
         self.update_specs()
 
     @mainthread
-    def update_specs(self, **kwargs):
+    def update_specs(self, *args):
+        try:
+            self.weight_style = font_style_tokens[self.style]["weight_style"]
+        except Exception as e: # nosec
+            pass
         self.font_name = get_font_name(self.typeface, self.weight_style)
-        self._font_size = font_style_tokens[self.style]["font_size"]
-        self.line_height = font_style_tokens[self.style]["line_height"]
+
