@@ -10,7 +10,5 @@ from carbonkivy.behaviors import (
 )
 
 
-class CScrollView(
-    BackgroundColorBehavior, ScrollView, DeclarativeBehavior
-):
+class CScrollView(BackgroundColorBehavior, ScrollView, DeclarativeBehavior):
     pass
