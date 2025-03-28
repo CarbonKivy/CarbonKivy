@@ -7,12 +7,12 @@ import os
 from kivy.properties import ColorProperty, OptionProperty
 from kivy.uix.label import Label
 
-from carbonkivy.behaviors import BackgroundColorBehavior
+from carbonkivy.behaviors import BackgroundColorBehavior, DeclarativeBehavior
 from carbonkivy.config import DATA
 from carbonkivy.theme.icons import ibm_icons
 
 
-class CIcon(Label, BackgroundColorBehavior):
+class CIcon(BackgroundColorBehavior, DeclarativeBehavior, Label):
     """
     The CIcon class inherits from Label to display icons from IBM's icon library using the generated icon font.
     """
