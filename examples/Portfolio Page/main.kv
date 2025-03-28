@@ -1,0 +1,52 @@
+<HomeScreen>:
+    CStackLayout:
+        size_hint: 1, 1
+
+        CBoxLayout:
+            adaptive: [False, True]
+            padding: [dp(15), dp(15), dp(15), dp(15)]
+            spacing: dp(15)
+
+            CLabel:
+                text: "Carbon Design System"
+                style: "heading_04"
+                color: "gray_100"
+                pos_hint: {'center_y': 0.5}
+
+            CAnchorLayout:
+                anchor_x: "right"
+                size_hint: None, None
+                size: menu_layout.size
+                pos_hint: {'center_y': 0.5}
+                
+                CBoxLayout:
+                    id: menu_layout
+                    adaptive: [True, True]
+
+                    CButtonPrimary:
+                        icon: "thumbs-up"
+                        role: "Extra Large"
+                        spacing: 0
+
+        CScrollView:
+            CBoxLayout:
+                orientation: "vertical"
+                padding: [dp(15), dp(15), dp(15), dp(15)]
+                spacing: dp(15)
+                adaptive: [False, True]
+
+                CImage:
+                    id: image
+                    source: "carbondesignsystem512.png"
+
+                CLabel:
+                    color: app.text_secondary
+                    font_size: plex_18
+                    text: "Carbon is IBM’s open source design system for products and digital experiences. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors."
+
+                CLink:
+                    name: "Carbon Design System"
+                    url: "https://carbondesignsystem.com"
+                    icon: "arrow--up-right"
+                    font_size: plex_16
+                    # external: True
