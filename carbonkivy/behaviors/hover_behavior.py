@@ -4,6 +4,7 @@ __all__ = ("HoverBehavior",)
 
 from kivy.core.window import Window
 from kivy.properties import ColorProperty, BooleanProperty
+from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.utils import DEVICE_TYPE
 from .background_color_behavior import BackgroundColorBehavior
@@ -16,13 +17,13 @@ class HoverBehavior:
     hover_color = ColorProperty([0, 0, 0, 0.1])
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
         if DEVICE_TYPE != "mobile":
             Window.bind(mouse_pos=self.element_hover)
+        super().__init__(**kwargs)
 
     def element_hover(self, instance: object, pos: list, *args) -> None:
         if self.cstate != "disabled":
-            self.hover = self.collide_point(pos[0], pos[1])
+            self.hover = self.collide_point(*self.to_widget(*pos) if not isinstance(self, RelativeLayout) else (pos[0], pos[1]))
 
     def on_hover(self, *args) -> None:
         if isinstance(self, BackgroundColorBehavior):
