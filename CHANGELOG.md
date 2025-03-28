@@ -7,6 +7,7 @@
     - CAnchorLayout
     - CBoxLayout
     - CButton
+    - CDivider
     - CFloatLayout
     - CIcon
     - CImage
