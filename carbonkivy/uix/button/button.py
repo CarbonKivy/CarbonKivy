@@ -7,6 +7,7 @@ __all__ = (
     "CButtonGhost",
 )
 
+from kivy.app import App
 from kivy.properties import (
     StringProperty,
     NumericProperty,
@@ -22,15 +23,20 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.behaviors import (
+    AdaptiveBehavior,
     BackgroundColorBehavior,
-    HoverBehavior,
     DeclarativeBehavior,
+    HoverBehavior,
 )
 from carbonkivy.uix.icon import CIcon
-from carbonkivy.utils import get_button_size, get_button_token, APP
+from carbonkivy.utils import get_button_size, get_button_token
+
+
+APP = App.get_running_app()
 
 
 class CButton(
+    AdaptiveBehavior,
     BackgroundColorBehavior,
     ButtonBehavior,
     DeclarativeBehavior,
