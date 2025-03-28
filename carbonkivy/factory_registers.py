@@ -24,11 +24,13 @@ register("CButtonPrimary", module="carbonkivy.uix.button")
 register("CButtonSecondary", module="carbonkivy.uix.button")
 register("CFloatLayout", module="carbonkivy.uix.floatlayout")
 register("CIcon", module="carbonkivy.uix.icon")
+register("CImage", module="carbonkivy.uix.image")
 register("CLabel", module="carbonkivy.uix.label")
 register("CLink", module="carbonkivy.uix.link")
 register("CRelativeLayout", module="carbonkivy.uix.relativelayout")
 register("CScreen", module="carbonkivy.uix.screen")
 register("CScreenManager", module="carbonkivy.uix.screenmanager")
+register("CScrollView", module="carbonkivy.uix.scrollview")
 register("CStackLayout", module="carbonkivy.uix.stacklayout")
 
 # Alias for the register function from Factory
