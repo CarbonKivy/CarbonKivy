@@ -16,21 +16,24 @@ CScreen:
         style: "body_compact_02"
         typeface: "IBM Plex Sans"
         weight_style: "SemiBold"
-        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        halign: "center"
+        pos_hint: {"center_y": 0.3}
 
     CLabel:
         text: "IBM Plex Serif"
         style: "body_compact_02"
         typeface: "IBM Plex Serif"
         weight_style: "SemiBold"
-        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        halign: "center"
+        pos_hint: {"center_y": 0.5}
 
     CLabel:
         text: "IBM Plex Mono"
         style: "body_compact_02"
         typeface: "IBM Plex Mono"
         weight_style: "SemiBold"
-        pos_hint: {"center_x": 0.5, "center_y": 0.7}
+        halign: "center"
+        pos_hint: {"center_y": 0.7}
 """
 
 from kivy.lang import Builder

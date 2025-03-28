@@ -1,10 +1,11 @@
 <HomeScreen>:
     CStackLayout:
         size_hint: 1, 1
+        padding: [dp(10), 0, dp(10), 0]
 
         CBoxLayout:
             adaptive: [False, True]
-            padding: [dp(15), dp(15), dp(15), dp(15)]
+            padding: [dp(10), dp(10), dp(10), dp(10)]
             spacing: dp(15)
 
             CLabel:
@@ -23,15 +24,15 @@
                     id: menu_layout
                     adaptive: [True, True]
 
-                    CButtonPrimary:
-                        icon: "thumbs-up"
+                    CButtonGhost:
+                        icon: "share"
                         role: "Extra Large"
                         spacing: 0
 
         CScrollView:
             CBoxLayout:
                 orientation: "vertical"
-                padding: [dp(15), dp(15), dp(15), dp(15)]
+                padding: [dp(10), dp(10), dp(10), dp(10)]
                 spacing: dp(15)
                 adaptive: [False, True]
 
@@ -50,3 +51,6 @@
                     icon: "arrow--up-right"
                     font_size: plex_16
                     # external: True
+
+                CDivider:
+

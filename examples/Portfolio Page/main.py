@@ -13,11 +13,14 @@ from carbonkivy.app import CarbonApp
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
 
+
 class UI(CScreenManager):
     pass
 
+
 class HomeScreen(CScreen):
     pass
+
 
 class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
