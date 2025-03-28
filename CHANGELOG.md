@@ -9,9 +9,13 @@
     - CButton
     - CFloatLayout
     - CIcon
+    - CImage
     - CLabel
+    - CLink
+    - CRelativeLayout
     - CScreen
     - CScreenManager
+    - CScrollView
     - CStackLayout
 
   - `BEHAVIORS`
@@ -21,10 +25,10 @@
     - HoverBehavior
 
   - `THEMES`
-    - [] White
-    - [x] Gray10
-    - [x] Gray90
-    - [x] Gray100
+    - [x] White
+    - [ ] Gray10
+    - [ ] Gray90
+    - [ ] Gray100
 
   - `TYPOGRAPHY`
     - IBM Plex Sans
