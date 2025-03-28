@@ -4,6 +4,7 @@ __all__ = ("CLink",)
 
 import webbrowser
 
+from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.properties import (
@@ -16,7 +17,9 @@ from kivy.uix.label import Label
 
 from carbonkivy.behaviors import BackgroundColorBehavior, HoverBehavior
 from carbonkivy.theme.icons import ibm_icons
-from carbonkivy.utils import APP
+
+
+APP = App.get_running_app()
 
 
 class CLink(BackgroundColorBehavior, ButtonBehavior, HoverBehavior, Label):
