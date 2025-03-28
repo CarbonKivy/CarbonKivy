@@ -12,9 +12,7 @@ from carbonkivy.behaviors import (
 )
 
 
-class CImage(
-    AsyncImage, DeclarativeBehavior
-):
+class CImage(AsyncImage, DeclarativeBehavior):
 
     ratio = ListProperty([4, 3])
 
