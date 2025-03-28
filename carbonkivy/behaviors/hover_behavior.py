@@ -23,7 +23,13 @@ class HoverBehavior:
 
     def element_hover(self, instance: object, pos: list, *args) -> None:
         if self.cstate != "disabled":
-            self.hover = self.collide_point(*self.to_widget(*pos) if not isinstance(self, RelativeLayout) else (pos[0], pos[1]))
+            self.hover = self.collide_point(
+                *(
+                    self.to_widget(*pos)
+                    if not isinstance(self, RelativeLayout)
+                    else (pos[0], pos[1])
+                )
+            )
 
     def on_hover(self, *args) -> None:
         if isinstance(self, BackgroundColorBehavior):

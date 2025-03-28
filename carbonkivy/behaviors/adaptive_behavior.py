@@ -19,15 +19,13 @@ class AdaptiveBehavior:
             if issubclass(self.__class__, Label):
                 self.text_size = (None, None)
                 self.bind(
-                    texture_size=lambda *x: self.setter("size")(
-                        self, self.texture_size
-                    )
+                    texture_size=lambda *x: self.setter("size")(self, self.texture_size)
                 )
             else:
                 if not isinstance(self, (FloatLayout, Screen)):
                     self.bind(minimum_size=self.setter("size"))
                     if not self.children:
-                        self.size = (0, 0)   
+                        self.size = (0, 0)
 
         elif self.adaptive[0]:
             self.size_hint_x = None
