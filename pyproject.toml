@@ -43,6 +43,7 @@ package-dir = {"carbonkivy" = "carbonkivy"}
 [tool.setuptools.package-data]
 "carbonkivy" = [
   "**/*.kv",
+  "**/*.ttf",
 ]
 
 [tool.setuptools.exclude-package-data]
