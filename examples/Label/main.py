@@ -38,13 +38,14 @@ CScreen:
 
 from kivy.lang import Builder
 from carbonkivy.app import CarbonApp
+from carbonkivy.uix.screen import CScreen
 
 
 class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
 
-    def build(self):
+    def build(self) -> CScreen:
         screen = Builder.load_string(appkv)
         return screen
 
