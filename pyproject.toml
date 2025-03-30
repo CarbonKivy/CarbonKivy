@@ -15,7 +15,7 @@ authors = [
 maintainers = [
   {name = "Kartavya Shukla", email = "novfensec@protonmail.com"},
 ]
-description = "A library providing IBM's Carbon Design Components for Kivy."
+description = "CarbonKivy is a Python library that integrates IBM's Carbon Design System with the Kivy framework. It provides a modern, accessible, and user-friendly UI toolkit inspired by Carbon’s design principles, enabling developers to create consistent and visually appealing applications in Kivy."
 readme = "README.md"
 license = {file = "LICENSE"}
 keywords = ["kivy", "open source", "carbon", "design", "carbondesignsystem", "IBM", "novfensec", "carbonkivy", "kv"]
