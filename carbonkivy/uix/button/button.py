@@ -138,7 +138,6 @@ class CButton(
         super().on_touch_down(touch)
         if self.cstate != "disabled":
             self.focus = self.collide_point(*touch.pos)
-            return self.focus
         return super().on_touch_down(touch)
 
     def on_focus(self, *args) -> None:
