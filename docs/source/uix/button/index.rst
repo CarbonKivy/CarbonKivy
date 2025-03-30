@@ -36,6 +36,7 @@ Click the below buttons to test user interactivity.
          CButtonPrimary:
             text: "Button"
             role: "Large Productive"
+            # icon: "add"
 
    .. tab-item:: Secondary
 
@@ -48,6 +49,7 @@ Click the below buttons to test user interactivity.
          CButtonSecondary:
             text: "Button"
             role: "Large Productive"
+            # icon: "add"
    
    .. tab-item:: Ghost
 
@@ -60,11 +62,12 @@ Click the below buttons to test user interactivity.
          CButtonGhost:
             text: "Button"
             role: "Large Productive"
+            # icon: "add"
 
 Size
 ----
 
-There are six button sizes: small, medium, large productive, large expressive, extra large, and 2XL. The large expressive button is used in editorial and digital marketing experiences.
+There are six button sizes: `Small`, `Medium`, `Large Productive`, `Large Expressive`, `Extra Large`, and `2XL`. The `Large Expressive` button is used in editorial and digital marketing experiences.
 
 Use the :class:`~carbonkivy.uix.button.button.CButton.role` property to define the token for the button size.
 
@@ -83,7 +86,7 @@ Custom Button
 
 To create a custom button using the :class:`~carbonkivy.uix.button.button.CButton` you have certain properties and methods which needs to be customized.
 
-The :class:`~carbonkivy.uix.button.button.CButton` class inherits certain behaviors to enable smooth user interactivity during different interactive states. It also holds some pre-defined properties like `padding`, `spacing`, `font_size`, `text_color`, `bg_color`, inset_color, `cstate`, etc.
+The :class:`~carbonkivy.uix.button.button.CButton` class inherits certain behaviors to enable smooth user interactivity during different interactive states. It also holds some pre-defined properties like `padding`, `spacing`, `font_size`, `text_color`, `bg_color`, `inset_color`, `cstate`, etc.
 
 Let's start with an example code:
 
@@ -112,6 +115,9 @@ Appearance of Button in different interactive states is shown below:
 
 To create an active state button you have to define the :class:`~carbonkivy.uix.button.button.CButton.active_color`, the color that appears when the button :class:`~kivy.uix.behaviors.ButtonBehavior.state` is :confval:`down`.
 
+.. image:: /_static/images/button/cbuttonexampleactive1.png
+   :class: centered
+
 .. code-block:: kv
 
     CButton:
@@ -120,10 +126,12 @@ To create an active state button you have to define the :class:`~carbonkivy.uix.
         cstate: "active" # active, disabled, normal
         pos_hint: {"center_x" : 0.5, "center_y" : 0.5}
 
-.. image:: /_static/images/button/cbuttonexampleactive1.png
-   :class: centered
+----
 
 Let's create a button similar to :class:`~carbonkivy.uix.button.button.CButtonPrimary` by defining the color properties by ourselves.
+
+.. image:: /_static/images/button/cbuttonexamplefull.png
+   :class: centered
 
 .. code-block:: kv
 
@@ -138,8 +146,36 @@ Let's create a button similar to :class:`~carbonkivy.uix.button.button.CButtonPr
         role: "2XL"
         pos_hint: {"center_x" : 0.5, "center_y" : 0.5}
 
-.. image:: /_static/images/button/cbuttonexamplefull.png
+Icon Button
+-----------
+
+To add icons to the button you have to define the :class:`~carbonkivy.uix.button.button.CButton.icon`, the icon that would appear at the specific slot aside the label or centralized in `Icon Only Buttons`.
+
+.. image:: /_static/images/button/primaryiconbutton.png
    :class: centered
+
+.. code-block:: kv
+
+   CButtonPrimary:
+      text: "Button"
+      role: "Large Productive"
+      icon: "add"
+
+----
+
+.. image:: /_static/images/button/primaryicononlybutton.png
+   :class: centered
+
+.. code-block:: kv
+
+   CButtonPrimary:
+      icon: "add"
+      role: "Large Productive"
+      spacing: 0
+
+.. note::
+
+   For an `Icon Only Button` you have to only define the :class:`~carbonkivy.uix.button.button.CButton.icon` property and set the button :class:`spacing` to **0** for centralized the icon slot.
 
 Example
 -------
