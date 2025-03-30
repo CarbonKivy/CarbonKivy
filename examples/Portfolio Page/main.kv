@@ -1,4 +1,5 @@
 <HomeScreen>:
+
     CStackLayout:
         size_hint: 1, 1
         padding: [dp(10), 0, dp(10), 0]
@@ -30,11 +31,12 @@
                         spacing: 0
 
         CScrollView:
+
             CBoxLayout:
                 orientation: "vertical"
+                adaptive: [False, True]
                 padding: [dp(10), dp(10), dp(10), dp(10)]
                 spacing: dp(15)
-                adaptive: [False, True]
 
                 CImage:
                     id: image
@@ -50,7 +52,15 @@
                     url: "https://carbondesignsystem.com"
                     icon: "arrow--up-right"
                     font_size: plex_16
-                    # external: True
+                    external: True
 
                 CDivider:
+
+                CLabel:
+                    color: app.text_primary
+                    text: f"A design system is a collection of pre-built, reusable assets—components, patterns, guidance, and code—that allows its users to build consistent digital experiences faster. By using the pre-built and universal assets of Carbon, the time teams spend designing and building is minimized. Instead of building and re-building basic elements, they can spend that time customizing their products to address specific client use cases.\n\nThe design system is named Carbon Design System because in nature the element carbon builds complex structures from simpler compounds. This motif mimics how our individual styles and components can combine to make beautifully complex, natural, and intuitive designs."
+
+                Widget:
+                    size_hint: 1, None
+                    height: dp(100)
 

@@ -41,12 +41,13 @@ CScreen:
             pos_hint: {'center_x': 0.5}
         CLabel:
             text: root.text
-            pos_hint: {'center_x': 0.5}
+            halign: "center"
 """
 
 from kivy.lang import Builder
 from kivy.uix.recycleview import RecycleView
 from carbonkivy.app import CarbonApp
+from carbonkivy.uix.screen import CScreen
 from carbonkivy.theme.icons import ibm_icons
 
 
@@ -62,7 +63,7 @@ class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
 
-    def build(self):
+    def build(self) -> CScreen:
         screen = Builder.load_string(appkv)
         return screen
 
