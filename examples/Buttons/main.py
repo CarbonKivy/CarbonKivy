@@ -49,16 +49,9 @@ CScreen:
         spacing: 0
         pos_hint: {'center_y': 0.4, 'center_x': 0.8}
 
-    CButton:
-        text: "Custom Ghost Button"
-        text_color: app.link_primary
-        _bg_color: app.transparent
-        bg_color: app.transparent
-        active_color: app.transparent
-        line_color: app.focus
-        hover_color: app.background_hover
+    CButtonTertiary:
+        text: "Tertiary Button"
         role: "Large Productive"
-        inset_width: 0
         pos_hint: {'center_y': 0.2, 'center_x': 0.5}
         on_press:
             self.icon = "add"
