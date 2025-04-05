@@ -14,7 +14,9 @@ class HoverBehavior:
 
     hover = BooleanProperty(False)
 
-    hover_color = ColorProperty([0, 0, 0, 0.1])
+    hover_enabled = BooleanProperty(True)
+
+    hover_color = ColorProperty([1, 1, 1, 0])
 
     def __init__(self, **kwargs):
         if DEVICE_TYPE != "mobile":
@@ -22,12 +24,12 @@ class HoverBehavior:
         super().__init__(**kwargs)
 
     def element_hover(self, instance: object, pos: list, *args) -> None:
-        if self.cstate != "disabled":
+        if self.cstate != "disabled" and self.hover_enabled:
             self.hover = self.collide_point(
                 *(
                     self.to_widget(*pos)
                     if not isinstance(self, RelativeLayout)
-                    else (pos[0], pos[1])
+                    else self.to_parent(*self.to_widget(*pos))
                 )
             )
 
@@ -37,9 +39,9 @@ class HoverBehavior:
                 self._bg_color = self.hover_color
                 if not self.focus:
                     self._line_color = self.hover_color
-                    self.inset_color = self.hover_color
+                    self._inset_color = self.hover_color
             else:
                 self._bg_color = self.bg_color
                 if not self.focus:
                     self._line_color = self.bg_color
-                    self.inset_color = self.bg_color
+                    self._inset_color = self.bg_color
