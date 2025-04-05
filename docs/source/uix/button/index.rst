@@ -175,7 +175,7 @@ To add icons to the button you have to define the :class:`~carbonkivy.uix.button
 
 .. note::
 
-   For an `Icon Only Button` you have to only define the :class:`~carbonkivy.uix.button.button.CButton.icon` property and set the button :class:`spacing` to **0** for centralized the icon slot.
+   For an `Icon Only Button` you have to only define the :class:`~carbonkivy.uix.button.button.CButton.icon` property and set the button :class:`spacing` to **0** for centralized icon slot.
 
 Example
 -------
