@@ -18,8 +18,7 @@ Builder.load_string(
 #:import RelativeLayout kivy.uix.relativelayout.RelativeLayout
 
 
-<BackgroundColorBehavior>
-    inset_color: self.bg_color
+<BackgroundColorBehavior>:
 
     canvas.before:
         PushMatrix
@@ -28,7 +27,7 @@ Builder.load_string(
             origin: self._background_origin
         Color:
             group: "backgroundcolor-behavior-inset-color"
-            rgba: self.inset_color
+            rgba: self._inset_color
         SmoothRectangle:
             group: "Background_inset_instruction"
             size: self.size
@@ -42,7 +41,7 @@ Builder.load_string(
             pos: (self.pos[0] + self.inset_width/2, self.pos[1] + self.inset_width/2) if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
             source: root.bg_source
         Color:
-            rgba: self._line_color if self._line_color else (0, 0, 0, 0)
+            rgba: self._line_color
         SmoothLine:
             width: root.line_width
             rectangle:
@@ -105,6 +104,7 @@ class BackgroundColorBehavior:
     background_origin = ListProperty(None)
 
     _bg_color = ColorProperty([1, 1, 1, 0])
+    _inset_color = ColorProperty([1, 1, 1, 0])
     _line_color = ColorProperty([1, 1, 1, 0])
 
     _background_x = NumericProperty(0)
@@ -120,8 +120,13 @@ class BackgroundColorBehavior:
 
         self._bg_color = color
 
+    def on_inset_color(self, instance: object, color: list | str) -> None:
+        """Fired when the values of :attr:`inset_color` change."""
+
+        self._inset_color = color
+
     def on_line_color(self, instance: object, color: list | str) -> None:
-        """Fired when the values of :attr:`bg_color` change."""
+        """Fired when the values of :attr:`line_color` change."""
 
         self._line_color = color
 
