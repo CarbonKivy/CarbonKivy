@@ -12,6 +12,9 @@ from carbonkivy.behaviors import (
 
 
 class CBoxLayout(
-    AdaptiveBehavior, BackgroundColorBehavior, BoxLayout, DeclarativeBehavior
+    AdaptiveBehavior,
+    BackgroundColorBehavior,
+    BoxLayout,
+    DeclarativeBehavior,
 ):
     pass
