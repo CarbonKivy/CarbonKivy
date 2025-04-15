@@ -12,16 +12,17 @@ Carbon App
   from kivy.lang import Builder
 
   from carbonkivy.app import CarbonApp
+  from carbonkivy.uix.screen import CScreen
 
   class MyApp(CarbonApp):
 
       def __init__(self, **kwargs):
           super(MyApp, self).__init__(**kwargs)
 
-      def build(self, *args) -> None:
+      def build(self, *args) -> CScreen:
           self.kvlang = '''
 
-  Screen:
+  CScreen:
 
       CLabel:
           text: "Carbon Design System"

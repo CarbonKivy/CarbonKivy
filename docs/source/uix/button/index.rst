@@ -1,4 +1,4 @@
-.. Button:
+.. _button:
 
 Button
 ======
