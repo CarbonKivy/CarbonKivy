@@ -1,0 +1,44 @@
+<CodeSnippet>:
+    height: codesnippet_layout.height
+    inset_width: 0
+    inset_color: app.transparent
+    icon_color: app.text_primary
+    icon_color_hover: self.icon_color
+    icon_color_active: self.icon_color
+    bg_color: app.layer_01
+    _icon_bg_color_active: self.icon_bg_color_active if self.icon_bg_color_active else app.transparent
+    padding: [dp(16), dp(16), dp(16), dp(16)]
+
+    BoxLayout:
+        id: codesnippet_layout
+        size_hint: 1, None
+        height: self.minimum_height
+        padding: root.padding
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+        CodeSnippetInput:
+            id: codesnippet_input
+            background_normal: ""
+            background_active: ""
+            size_hint: 1, None
+            width: codesnippet_layout.width
+            text: root.text
+            lexer: root.lexer
+            style_name: root.style_name
+            style: root.style if root.style else self.style
+            radius: root.radius
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+    CButtonGhost:
+        id: codesnippet_input_copy_button
+        text_color: root.icon_color
+        text_color_hover: root.icon_color_hover
+        text_color_active: root.icon_color_active
+        active_color: root._icon_bg_color_active
+        font_size: plex_12
+        line_width: dp(1)
+        spacing: 0
+        icon: "copy"
+        pos: codesnippet_layout.width - (self.actual_width + dp(16)), codesnippet_layout.height - (self.actual_width + dp(16))
+        on_press:
+            root.on_copy(codesnippet_input.text)
