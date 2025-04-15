@@ -80,14 +80,29 @@ class BackgroundColorBehavior:
     The background color of the widget.
     """
 
+    bg_color_disabled = ColorProperty([1, 1, 1, 0])
+    """
+    The background color of the widget if disabled.
+    """
+
     inset_color = ColorProperty([1, 1, 1, 0])
     """
     The color of border inset.
     """
 
+    inset_color_disabled = ColorProperty([1, 1, 1, 0])
+    """
+    The color of border inset if disabled.
+    """
+
     line_color = ColorProperty([1, 1, 1, 0])
     """
     The border of the specified color will be used to border the widget.
+    """
+
+    line_color_disabled = ColorProperty([1, 1, 1, 0])
+    """
+    The border of the specified color will be used to border the widget if disabled.
     """
 
     inset_width = NumericProperty(dp(5))
