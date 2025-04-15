@@ -36,10 +36,22 @@ CScreen:
         spacing: 0
         pos_hint: {'center_y': 0.6, 'center_x': 0.8}
 
+    CButtonTertiary:
+        text: "Tertiary Button"
+        role: "Large Productive"
+        icon: "add"
+        pos_hint: {'center_y': 0.4, 'center_x': 0.35}
+
+    CButtonTertiary:
+        icon: "add"
+        role: "2XL"
+        spacing: 0
+        pos_hint: {'center_y': 0.4, 'center_x': 0.8}
+
     CButtonGhost:
         text: "Ghost Button"
         role: "Large Productive"
-        pos_hint: {'center_y': 0.4,  'center_x': 0.35}
+        pos_hint: {'center_y': 0.2,  'center_x': 0.35}
         on_press:
             self.icon = "add"
 
@@ -47,14 +59,7 @@ CScreen:
         icon: "add"
         role: "2XL"
         spacing: 0
-        pos_hint: {'center_y': 0.4, 'center_x': 0.8}
-
-    CButtonTertiary:
-        text: "Tertiary Button"
-        role: "Large Productive"
-        pos_hint: {'center_y': 0.2, 'center_x': 0.5}
-        on_press:
-            self.icon = "add"
+        pos_hint: {'center_y': 0.2, 'center_x': 0.8}
 
 """
 
