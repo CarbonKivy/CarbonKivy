@@ -52,13 +52,25 @@ class CButton(
 
     font_size = NumericProperty()
 
+    actual_width = NumericProperty()
+
     padding = VariableListProperty([0], length=4)
+
+    icon_color = ColorProperty()
 
     text_color = ColorProperty()
 
+    text_color_hover = ColorProperty()
+
+    text_color_active = ColorProperty()
+
+    text_color_disabled = ColorProperty()
+
     _text_color = ColorProperty()
 
-    active_color = ColorProperty()
+    active_color = ColorProperty([1, 1, 1, 0])
+
+    cstate = OptionProperty("normal", options=["active", "disabled", "normal"])
 
     role = OptionProperty(
         "Medium",
@@ -72,8 +84,6 @@ class CButton(
         ],
     )
 
-    cstate = OptionProperty("normal", options=["active", "disabled", "normal"])
-
     focus = BooleanProperty(False)
 
     cbutton_layout = ObjectProperty()
@@ -83,10 +93,10 @@ class CButton(
         self.update_specs()
 
     def on_font_size(self, *args) -> None:
-        for child in self.cbutton_layout.children:
-            if isinstance(child, CIcon):
-                child.font_size = self.font_size + sp(8)
-                break
+        try:
+            self.ids.cbutton_layout_icon.font_size = self.font_size + sp(8)
+        except Exception:
+            return
 
     def on_role(self, *args) -> None:
         self.height = get_button_size(self.role)
@@ -95,40 +105,35 @@ class CButton(
         self.set_colors()
 
     def on_cstate(self, *args) -> None:
-        self.set_colors()
         if self.ctoken == "" and self.cstate == "active":
             self.bg_color = self.active_color
+            self._text_color = self.text_color_active
+        self.set_colors()
+
+    def on_icon_color(self, *args) -> None:
+        try:
+            self.ids.cbutton_layout_icon._color = self.icon_color
+        except Exception as e:
+            return
 
     def on_icon(self, *args) -> None:
         if self.icon:
-            self.cbutton_layout.add_widget(
-                CIcon(
-                    id="cbutton_layout_icon",
+            self.cbutton_layout_icon = CIcon(
                     icon=self.icon,
                     pos_hint={"center_y": 0.5},
-                    _color=self._text_color,
+                    _color=self.icon_color,
                     font_size=self.font_size + sp(8),
                 )
+            self.cbutton_layout.add_widget(
+                self.cbutton_layout_icon
             )
+            self.ids["cbutton_layout_icon"] = self.cbutton_layout_icon
+            
         else:
-            for child in self.cbutton_layout.children:
-                if isinstance(child, CIcon):
-                    self.cbutton_layout.remove_widget(child)
-
-    # def on_text_color(self, *args) -> None:
-    #     self._text_color = self.text_color
-
-    @mainthread
-    def set_colors(self, *args) -> None:
-        """
-        Defines the method to apply the bg_color.
-        """
-        try:
-            self.bg_color = getattr(APP, get_button_token(self.cstate, self.ctoken))
-        except Exception as e:  # nosec
-            pass
-        self._line_color = self.bg_color
-        self.inset_color = self.bg_color
+            try:
+                self.cbutton_layout.remove_widget(self.ids.cbutton_layout_icon)
+            except Exception:
+                return
 
     def update_specs(self, *args) -> None:
         self.height = get_button_size(self.role)
@@ -140,19 +145,43 @@ class CButton(
             self.focus = self.collide_point(*touch.pos)
         return super().on_touch_down(touch)
 
+    def on_hover(self, *args) -> None:
+        if self.hover:
+            self._text_color = self.text_color_hover
+        else:
+            if not self.focus:
+                self._text_color = self.text_color
+        self.icon_color = self._text_color
+        return super().on_hover(*args)
+
     def on_focus(self, *args) -> None:
         if self.focus:
-            self.inset_color = getattr(APP, "focus_inset")
+            self._inset_color = self.inset_color
             self._line_color = self.line_color
+            self._text_color = self.text_color_active
         else:
-            self.inset_color = self.bg_color
+            self._inset_color = self.bg_color
             self._line_color = self.bg_color
+            self._text_color = self.text_color
+        self.icon_color = self._text_color
 
     def on_state(self, *args) -> None:
         if self.state == "down" and self.cstate != "disabled":
             self._bg_color = self.active_color
         else:
             self._bg_color = self.bg_color if not self.hover else self.hover_color
+
+    @mainthread
+    def set_colors(self, *args) -> None:
+        """
+        Defines the method to apply the bg_color.
+        """
+        try:
+            self.bg_color = getattr(APP, get_button_token(self.cstate, self.ctoken))
+        except Exception as e:  # nosec
+            pass
+        self._line_color = self.bg_color
+        self._inset_color = self.bg_color
 
 
 class CButtonPrimary(CButton):
@@ -164,30 +193,38 @@ class CButtonSecondary(CButton):
 
 
 class CButtonGhost(CButton):
+    pass
+
+
+class CButtonTertiary(CButton):
+
+    def set_colors(self, *args) -> None:
+        self._line_color = self.line_color
+        self._inset_color = self.bg_color
 
     def on_hover(self, *args) -> None:
-        super().on_hover(*args)
         if self.hover:
-            self._text_color = getattr(APP, "link_primary_hover")
+            self._bg_color = self.hover_color
+            self._line_color = self.hover_color
+            self._inset_color = self.hover_color
+            self._text_color = self.text_color_hover
         else:
-            if not self.focus:
-                self._text_color = self.text_color
+            self._bg_color = self.bg_color
+            self._line_color = self.line_color
+            self._inset_color = self.bg_color
+            self._text_color = self.text_color
+        self.icon_color = self._text_color
 
     def on_focus(self, *args) -> None:
-        super().on_focus(*args)
+        self.hover_enabled = not self.focus
         if self.focus:
-            self._text_color = getattr(APP, "link_primary_hover")
+            self._inset_color = self.inset_color
         else:
-            self._text_color = self.text_color
+            self.hover = False
 
-
-# class CButtonDanger(CButton):
-
-#     type = OptionProperty(
-#         "Primary",
-#         options=[
-#             "Primary",
-#             "Tertiary",
-#             "Ghost",
-#         ],
-#     )
+    def on_cstate(self, *args) -> None:
+        if self.ctoken == "" and self.cstate == "active":
+            self.bg_color = self.active_color
+            self.line_color = self.active_color
+            self._text_color = self.text_color_active
+        self.set_colors()

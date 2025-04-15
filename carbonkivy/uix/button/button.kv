@@ -2,12 +2,15 @@
     size_hint: None, None
     cbutton_layout: cbutton_box_layout
     text_color: app.text_on_color
-    _text_color: app.text_on_color_disabled if self.cstate == "disabled" else self.text_color
+    icon_color: self.text_color
+    _text_color: self.text_color_disabled if self.cstate == "disabled" else self.text_color
+    inset_color: app.focus_inset
     line_color: app.focus
     font_size: plex_16
     spacing: dp(32)
     padding: [dp(16), 0, dp(64) if not self.icon else dp(16), 0]
     width: self.cbutton_layout.width if (self.text.rstrip() != "") else self.height
+    actual_width: self.width + self.line_width
 
     BoxLayout:
         id: cbutton_box_layout
@@ -44,5 +47,17 @@
     inset_width: 0
     active_color: app.background_active
     hover_color: app.background_hover
-    text_color: app.link_primary_hover if self.cstate == "active" else app.link_primary
+    inset_color: app.transparent
+    text_color: app.link_primary
+    text_color_hover: app.link_primary_hover
+    text_color_active: app.link_primary_hover
     padding: [dp(16), 0, dp(16), 0]
+
+
+<CButtonTertiary>:
+    text_color: app.link_primary
+    active_color: app.button_primary_active
+    hover_color: app.button_primary_hover
+    text_color: app.link_primary
+    text_color_hover: app.text_on_color
+    text_color_active: app.text_on_color
