@@ -5,11 +5,11 @@ Button
 
 .. rst-class:: lead
 
-  Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.
+    Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.
 
 .. image:: /_static/images/button/carbondesignbutton.png
-   :alt: Carbon Design Button
-   :class: centered
+    :alt: Carbon Design Button
+    :class: centered
 
 Overview
 --------
@@ -25,44 +25,44 @@ Click the below buttons to test user interactivity.
 
 .. tab-set::
 
-   .. tab-item:: Primary
+    .. tab-item:: Primary
 
-      .. raw:: html
+        .. raw:: html
 
-         <iframe title="Component demo" class="StorybookDemo-module--iframe--dc8d2" src="https://react.carbondesignsystem.com/iframe.html?id=components-button--default&amp;globals=theme:white" frameborder="no" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+            <iframe title="Component demo" class="StorybookDemo-module--iframe--dc8d2" src="https://react.carbondesignsystem.com/iframe.html?id=components-button--default&amp;globals=theme:white" frameborder="no" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
 
-      .. code-block:: kv
+        .. code-block:: kv
 
-         CButtonPrimary:
-            text: "Button"
-            role: "Large Productive"
-            # icon: "add"
+            CButtonPrimary:
+                text: "Button"
+                role: "Large Productive"
+                # icon: "add"
 
-   .. tab-item:: Secondary
+    .. tab-item:: Secondary
 
-      .. raw:: html
+        .. raw:: html
 
-         <iframe title="Component demo" class="StorybookDemo-module--iframe--dc8d2" src="https://react.carbondesignsystem.com/iframe.html?id=components-button--secondary&amp;globals=theme:white" frameborder="no" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+            <iframe title="Component demo" class="StorybookDemo-module--iframe--dc8d2" src="https://react.carbondesignsystem.com/iframe.html?id=components-button--secondary&amp;globals=theme:white" frameborder="no" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
 
-      .. code-block:: kv
+        .. code-block:: kv
 
-         CButtonSecondary:
-            text: "Button"
-            role: "Large Productive"
-            # icon: "add"
-   
-   .. tab-item:: Ghost
+            CButtonSecondary:
+                text: "Button"
+                role: "Large Productive"
+                # icon: "add"
+    
+    .. tab-item:: Ghost
 
-      .. raw:: html
+        .. raw:: html
 
-         <iframe title="Component demo" class="StorybookDemo-module--iframe--dc8d2" src="https://react.carbondesignsystem.com/iframe.html?id=components-button--ghost&amp;globals=theme:white" frameborder="no" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+            <iframe title="Component demo" class="StorybookDemo-module--iframe--dc8d2" src="https://react.carbondesignsystem.com/iframe.html?id=components-button--ghost&amp;globals=theme:white" frameborder="no" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
 
-      .. code-block:: kv
+        .. code-block:: kv
 
-         CButtonGhost:
-            text: "Button"
-            role: "Large Productive"
-            # icon: "add"
+            CButtonGhost:
+                text: "Button"
+                role: "Large Productive"
+                # icon: "add"
 
 Size
 ----
@@ -73,13 +73,13 @@ Use the :class:`~carbonkivy.uix.button.button.CButton.role` property to define t
 
 .. code-block:: kv
 
-   CButtonPrimary:
-      text: "Button"
-      role: "Extra Large" # Define the specific size token here (capitalized first letter of every word.)
+    CButtonPrimary:
+        text: "Button"
+        role: "Extra Large" # Define the specific size token here (capitalized first letter of every word.)
 
 .. image:: /_static/images/button/button_sizes.png
-   :alt: Carbon Design Button Sizes
-   :class: centered
+    :alt: Carbon Design Button Sizes
+    :class: centered
 
 Custom Button
 -------------
@@ -101,22 +101,22 @@ Let's start with an example code:
 Appearance of Button in different interactive states is shown below:
 
 .. list-table::
-   :widths: 50 50
-   :align: center
+    :widths: 50 50
+    :align: center
 
-   * - .. image:: /_static/images/button/cbuttonexample1.png
+    * - .. image:: /_static/images/button/cbuttonexample1.png
 
-     - .. image:: /_static/images/button/cbuttonexamplehover1.png
+        - .. image:: /_static/images/button/cbuttonexamplehover1.png
 
-   * - .. image:: /_static/images/button/cbuttonexamplefocus1.png
+    * - .. image:: /_static/images/button/cbuttonexamplefocus1.png
 
-     - .. image:: /_static/images/button/cbuttonexampledisabled1.png
+        - .. image:: /_static/images/button/cbuttonexampledisabled1.png
 
 
 To create an active state button you have to define the :class:`~carbonkivy.uix.button.button.CButton.active_color`, the color that appears when the button :class:`~kivy.uix.behaviors.ButtonBehavior.state` is :confval:`down`.
 
 .. image:: /_static/images/button/cbuttonexampleactive1.png
-   :class: centered
+       :class: centered
 
 .. code-block:: kv
 
@@ -131,7 +131,7 @@ To create an active state button you have to define the :class:`~carbonkivy.uix.
 Let's create a button similar to :class:`~carbonkivy.uix.button.button.CButtonPrimary` by defining the color properties by ourselves.
 
 .. image:: /_static/images/button/cbuttonexamplefull.png
-   :class: centered
+       :class: centered
 
 .. code-block:: kv
 
@@ -152,30 +152,30 @@ Icon Button
 To add icons to the button you have to define the :class:`~carbonkivy.uix.button.button.CButton.icon`, the icon that would appear at the specific slot aside the label or centralized in `Icon Only Buttons`.
 
 .. image:: /_static/images/button/primaryiconbutton.png
-   :class: centered
+       :class: centered
 
 .. code-block:: kv
 
-   CButtonPrimary:
-      text: "Button"
-      role: "Large Productive"
-      icon: "add"
+    CButtonPrimary:
+        text: "Button"
+        role: "Large Productive"
+        icon: "add"
 
 ----
 
 .. image:: /_static/images/button/primaryicononlybutton.png
-   :class: centered
+       :class: centered
 
 .. code-block:: kv
 
-   CButtonPrimary:
-      icon: "add"
-      role: "Large Productive"
-      spacing: 0
+    CButtonPrimary:
+        icon: "add"
+        role: "Large Productive"
+        spacing: 0
 
 .. note::
 
-   For an `Icon Only Button` you have to only define the :class:`~carbonkivy.uix.button.button.CButton.icon` property and set the button :class:`spacing` to **0** for centralized icon slot.
+    For an `Icon Only Button` you have to only define the :class:`~carbonkivy.uix.button.button.CButton.icon` property and set the button :class:`spacing` to **0** for centralized icon slot.
 
 Example
 -------
@@ -184,94 +184,94 @@ Run the below python script for a full-fledged running Example.
 
 .. code-block:: python
 
-   from kivy.core.window import Window
-   from kivy.clock import Clock
+    from kivy.core.window import Window
+    from kivy.clock import Clock
 
 
-   def set_softinput(*args) -> None:
-      Window.keyboard_anim_args = {"d": 0.2, "t": "in_out_expo"}
-      Window.softinput_mode = "below_target"
+    def set_softinput(*args) -> None:
+        Window.keyboard_anim_args = {"d": 0.2, "t": "in_out_expo"}
+        Window.softinput_mode = "below_target"
 
 
-   Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
+    Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
-   appkv = """
-   Screen:
+    appkv = """
+    Screen:
 
-      CButtonPrimary:
-         text: "Primary Button"
-         role: "Large Productive"
-         icon: "add"
-         pos_hint: {'center_y': 0.8, 'center_x': 0.35}
+        CButtonPrimary:
+            text: "Primary Button"
+            role: "Large Productive"
+            icon: "add"
+            pos_hint: {'center_y': 0.8, 'center_x': 0.35}
 
-      CButtonPrimary:
-         icon: "add"
-         role: "2XL"
-         spacing: 0
-         pos_hint: {'center_y': 0.8, 'center_x': 0.8}
+        CButtonPrimary:
+            icon: "add"
+            role: "2XL"
+            spacing: 0
+            pos_hint: {'center_y': 0.8, 'center_x': 0.8}
 
-      CButtonSecondary:
-         text: "Secondary Button"
-         role: "Large Productive"
-         icon: "add"
-         pos_hint: {'center_y': 0.6, 'center_x': 0.35}
+        CButtonSecondary:
+            text: "Secondary Button"
+            role: "Large Productive"
+            icon: "add"
+            pos_hint: {'center_y': 0.6, 'center_x': 0.35}
 
-      CButtonSecondary:
-         icon: "add"
-         role: "2XL"
-         spacing: 0
-         pos_hint: {'center_y': 0.6, 'center_x': 0.8}
+        CButtonSecondary:
+            icon: "add"
+            role: "2XL"
+            spacing: 0
+            pos_hint: {'center_y': 0.6, 'center_x': 0.8}
 
-      CButtonGhost:
-         text: "Ghost Button"
-         role: "Large Productive"
-         pos_hint: {'center_y': 0.4,  'center_x': 0.35}
-         on_press:
-               self.icon = "add"
+        CButtonGhost:
+            text: "Ghost Button"
+            role: "Large Productive"
+            pos_hint: {'center_y': 0.4,  'center_x': 0.35}
+            on_press:
+                self.icon = "add"
 
-      CButtonGhost:
-         icon: "add"
-         role: "2XL"
-         spacing: 0
-         pos_hint: {'center_y': 0.4, 'center_x': 0.8}
+        CButtonGhost:
+            icon: "add"
+            role: "2XL"
+            spacing: 0
+            pos_hint: {'center_y': 0.4, 'center_x': 0.8}
 
-      CButton:
-         text: "Custom Ghost Button"
-         text_color: app.link_primary
-         _bg_color: app.transparent
-         bg_color: app.transparent
-         active_color: app.transparent
-         line_color: app.focus
-         hover_color: app.background_hover
-         role: "Large Productive"
-         inset_width: 0
-         pos_hint: {'center_y': 0.2, 'center_x': 0.5}
-         on_press:
-               self.icon = "add"
+        CButton:
+            text: "Custom Ghost Button"
+            text_color: app.link_primary
+            _bg_color: app.transparent
+            bg_color: app.transparent
+            active_color: app.transparent
+            line_color: app.focus
+            hover_color: app.background_hover
+            role: "Large Productive"
+            inset_width: 0
+            pos_hint: {'center_y': 0.2, 'center_x': 0.5}
+            on_press:
+                self.icon = "add"
 
-   """
+    """
 
-   from kivy.lang import Builder
-   from carbonkivy.app import CarbonApp
-
-
-   class myapp(CarbonApp):
-      def __init__(self, *args, **kwargs):
-         super(myapp, self).__init__(*args, **kwargs)
-
-      def build(self, *args) -> None:
-         screen = Builder.load_string(appkv)
-         return screen
+    from kivy.lang import Builder
+    from carbonkivy.app import CarbonApp
 
 
-   if __name__ == "__main__":
-      myapp().run()
+    class myapp(CarbonApp):
+        def __init__(self, *args, **kwargs):
+            super(myapp, self).__init__(*args, **kwargs)
+
+        def build(self, *args) -> None:
+            screen = Builder.load_string(appkv)
+            return screen
+
+
+    if __name__ == "__main__":
+        myapp().run()
 
 API
 ---
 
 .. automodule:: carbonkivy.uix.button.button
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :no-index:
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :no-index:

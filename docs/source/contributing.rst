@@ -5,7 +5,7 @@ Contributing to CarbonKivy
 
 .. rst-class:: lead
 
-   Thank you for considering contributing to CarbonKivy! We welcome contributions from everyone. By following these guidelines, you help us maintain a high standard of quality and ensure that your contributions are easy to review and integrate.
+    Thank you for considering contributing to CarbonKivy! We welcome contributions from everyone. By following these guidelines, you help us maintain a high standard of quality and ensure that your contributions are easy to review and integrate.
 
 Table of Contents
 -----------------
@@ -26,42 +26,42 @@ How to Contribute
 -----------------
 
 1. **Fork the Repository**:
-   - Click the "Fork" button at the top right of the CarbonKivy GitHub page.
-   - Clone your forked repository to your local machine::
+    - Click the "Fork" button at the top right of the CarbonKivy GitHub page.
+    - Clone your forked repository to your local machine::
 
-      git clone https://github.com/<your-username>/CarbonKivy.git
-      cd CarbonKivy
+        git clone https://github.com/<your-username>/CarbonKivy.git
+        cd CarbonKivy
 
 2. **Install in Editable Mode**:
-   - Set up the project in editable mode using pip::
+    - Set up the project in editable mode using pip::
 
-      pip install -e .
+        pip install -e .
 
 3. **Create a Branch**:
-   - Create a new branch for your changes::
+    - Create a new branch for your changes::
 
-      git checkout -b my-feature-branch
+        git checkout -b my-feature-branch
 
 4. **Make Your Changes**:
-   - Make your changes, ensuring proper type hinting and formatting your code using the Black formatter::
+    - Make your changes, ensuring proper type hinting and formatting your code using the Black formatter::
 
-      pip install black
-      black .
+        pip install black
+        black .
 
 5. **Commit Your Changes**:
-   - Commit your changes with a clear and descriptive commit message::
+    - Commit your changes with a clear and descriptive commit message::
 
-      git add .
-      git commit -m "Add feature X to CarbonKivy"
+        git add .
+        git commit -m "Add feature X to CarbonKivy"
 
 6. **Push Your Branch**:
-   - Push your branch to your forked repository::
+    - Push your branch to your forked repository::
 
-      git push origin my-feature-branch
+        git push origin my-feature-branch
 
 7. **Create a Pull Request**:
-   - Go to the CarbonKivy GitHub page and click the "New Pull Request" button.
-   - Provide a detailed description of your changes, including screenshots if applicable.
+    - Go to the CarbonKivy GitHub page and click the "New Pull Request" button.
+    - Provide a detailed description of your changes, including screenshots if applicable.
 
 Reporting Bugs
 --------------

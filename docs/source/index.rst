@@ -8,11 +8,11 @@ CarbonKivy - Carbon Design Kivy
 
 .. rst-class:: lead
 
-   A Library providing IBM's Carbon Design Components for `Kivy <https://kivy.org>`_.
+    A Library providing IBM's Carbon Design Components for `Kivy <https://kivy.org>`_.
 
 .. image:: _static/images/carbon1.png
-   :alt: Carbon Design Examples
-   :class: centered
+    :alt: Carbon Design Examples
+    :class: centered
 
 Introduction
 ------------
@@ -32,43 +32,43 @@ Getting Started
 Explore the full capabilities of CarbonKivy by diving into the documentation. Let's build better, together!
 
 .. toctree::
-   :hidden:
+    :hidden:
 
-   Introduction <self>
+    Introduction <self>
 
 .. toctree::
-   :hidden:
+    :hidden:
 
-   carbondesignsystem
-   contributing
-   financialsupport
+    carbondesignsystem
+    contributing
+    financialsupport
 
 .. tab-set::
 
-   .. tab-item:: Elements
+    .. tab-item:: Elements
 
-      Basic Elements of the CarbonKivy library.
+        Basic Elements of the CarbonKivy library.
 
-      .. toctree::
-         :maxdepth: 2
-         :glob:
+        .. toctree::
+            :maxdepth: 2
+            :glob:
 
-         elements/index
+            elements/index
 
-   .. tab-item:: Components
+    .. tab-item:: Components
 
-      List of the available Components of the CarbonKivy library.
+        List of the available Components of the CarbonKivy library.
 
-      .. toctree::
-         :maxdepth: 2
-         :glob:
+        .. toctree::
+            :maxdepth: 2
+            :glob:
 
-         uix/index
+            uix/index
 
-   .. tab-item:: API
+    .. tab-item:: API
 
-      .. toctree::
-         :maxdepth: 4
-         :glob:
+        .. toctree::
+            :maxdepth: 4
+            :glob:
 
-         autoapi/index
+            autoapi/index
