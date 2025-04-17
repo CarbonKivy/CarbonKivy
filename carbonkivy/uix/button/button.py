@@ -198,6 +198,10 @@ class CButtonGhost(CButton):
 
 class CButtonTertiary(CButton):
 
+    def __init__(self, **kwargs):
+        super(CButtonTertiary, self).__init__(**kwargs)
+
+    @mainthread
     def set_colors(self, *args) -> None:
         self._line_color = self.line_color
         self._inset_color = self.bg_color
