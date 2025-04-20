@@ -2,8 +2,12 @@
     size_hint: None, None
     cbutton_layout: cbutton_box_layout
     text_color: app.text_on_color
-    icon_color: self.text_color
+    text_color_hover: self.text_color
+    text_color_active: self.text_color
+    text_color_disabled: app.text_on_color_disabled
+    hover_color: app.background_hover
     _text_color: self.text_color_disabled if self.cstate == "disabled" else self.text_color
+    icon_color: self._text_color
     inset_color: app.focus_inset
     line_color: app.focus
     font_size: plex_16
@@ -46,7 +50,6 @@
     ctoken: "Ghost"
     inset_width: 0
     active_color: app.background_active
-    hover_color: app.background_hover
     inset_color: app.transparent
     text_color: app.link_primary
     text_color_hover: app.link_primary_hover
