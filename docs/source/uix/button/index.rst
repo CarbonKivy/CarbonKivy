@@ -7,12 +7,14 @@ Button
 
     Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.
 
-.. image:: /_static/images/button/carbondesignbutton.png
+Overview
+--------
+
+.. figure:: /_static/images/button/carbondesignbuttons.png
     :alt: Carbon Design Button
     :class: centered
 
-Overview
---------
+    Carbon Design Buttons Overview
 
 Buttons are clickable elements that are used to trigger actions. They communicate calls to action to the user and allow users to interact with pages in a variety of ways. Button labels express what action will occur when the user interacts with it. 
 
@@ -77,9 +79,11 @@ Use the :class:`~carbonkivy.uix.button.button.CButton.role` property to define t
         text: "Button"
         role: "Extra Large" # Define the specific size token here (capitalized first letter of every word.)
 
-.. image:: /_static/images/button/button_sizes.png
+.. figure:: /_static/images/button/button_sizes.png
     :alt: Carbon Design Button Sizes
     :class: centered
+
+    Sizes of buttons in relation to its usage.
 
 Custom Button
 -------------
@@ -95,6 +99,7 @@ Let's start with an example code:
     CButton:
         text: "Button"
         text_color: "blue_60"
+        icon: "add"
         cstate: "normal" # active, disabled, normal
         pos_hint: {"center_x" : 0.5, "center_y" : 0.5}
 
@@ -104,24 +109,35 @@ Appearance of Button in different interactive states is shown below:
     :widths: 50 50
     :align: center
 
-    * - .. image:: /_static/images/button/cbuttonexample1.png
+    *   - .. figure:: /_static/images/button/cbuttonnormal.png
 
-        - .. image:: /_static/images/button/cbuttonexamplehover1.png
+            normal
 
-    * - .. image:: /_static/images/button/cbuttonexamplefocus1.png
+        - .. figure:: /_static/images/button/cbuttonhover.png
 
-        - .. image:: /_static/images/button/cbuttonexampledisabled1.png
+            hover
+
+    *   - .. figure:: /_static/images/button/cbuttonfocus.png
+
+            focus
+
+        - .. figure:: /_static/images/button/cbuttondisabled.png
+
+            disabled
 
 
 To create an active state button you have to define the :class:`~carbonkivy.uix.button.button.CButton.active_color`, the color that appears when the button :class:`~kivy.uix.behaviors.ButtonBehavior.state` is :confval:`down`.
 
-.. image:: /_static/images/button/cbuttonexampleactive1.png
-       :class: centered
+.. figure:: /_static/images/button/cbuttonactive.png
+    :class: centered
+
+    active
 
 .. code-block:: kv
 
     CButton:
         text: "Button"
+        icon: "add"
         active_color: app.button_primary_active
         cstate: "active" # active, disabled, normal
         pos_hint: {"center_x" : 0.5, "center_y" : 0.5}
@@ -130,8 +146,8 @@ To create an active state button you have to define the :class:`~carbonkivy.uix.
 
 Let's create a button similar to :class:`~carbonkivy.uix.button.button.CButtonPrimary` by defining the color properties by ourselves.
 
-.. image:: /_static/images/button/cbuttonexamplefull.png
-       :class: centered
+.. figure:: /_static/images/button/cbuttoncustom.png
+    :class: centered
 
 .. code-block:: kv
 
@@ -144,6 +160,7 @@ Let's create a button similar to :class:`~carbonkivy.uix.button.button.CButtonPr
         text: "My Primary Button"
         # cstate: "active" # active, disabled, normal (`default`)
         role: "2XL"
+        icon: "add"
         pos_hint: {"center_x" : 0.5, "center_y" : 0.5}
 
 Icon Button
@@ -151,20 +168,20 @@ Icon Button
 
 To add icons to the button you have to define the :class:`~carbonkivy.uix.button.button.CButton.icon`, the icon that would appear at the specific slot aside the label or centralized in `Icon Only Buttons`.
 
-.. image:: /_static/images/button/primaryiconbutton.png
-       :class: centered
+.. figure:: /_static/images/button/primary/normal.png
 
 .. code-block:: kv
 
     CButtonPrimary:
         text: "Button"
+        icon: "add"
         role: "Large Productive"
         icon: "add"
 
 ----
 
-.. image:: /_static/images/button/primaryicononlybutton.png
-       :class: centered
+.. figure:: /_static/images/button/primary/iconnormal.png
+    :class: centered
 
 .. code-block:: kv
 

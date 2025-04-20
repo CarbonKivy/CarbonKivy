@@ -1,5 +1,17 @@
 .centered {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    margin: auto;
+}
+
+#content figure .centered {
+    display: flex;
+    margin: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+figure figcaption {
+    display: flex;
+    justify-content: center;
+
 }
