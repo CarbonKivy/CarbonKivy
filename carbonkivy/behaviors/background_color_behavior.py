@@ -115,7 +115,7 @@ class BackgroundColorBehavior:
     The width of border inset.
     """
 
-    line_width = NumericProperty(dp(1.5))
+    line_width = NumericProperty(dp(1.25))
     """
     Border of the specified width will be used to border the widget.
     """

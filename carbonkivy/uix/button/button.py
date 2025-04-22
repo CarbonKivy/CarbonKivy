@@ -5,6 +5,7 @@ __all__ = (
     "CButtonPrimary",
     "CButtonSecondary",
     "CButtonGhost",
+    "CButtonTertiary",
 )
 
 from kivy.app import App
@@ -169,7 +170,7 @@ class CButton(
         if self.state == "down" and self.cstate != "disabled":
             self._bg_color = self.active_color
         else:
-            self._bg_color = self.bg_color if not self.hover else self.hover_color
+            self._bg_color = self.bg_color_focus if not self.hover else self.hover_color
 
     @mainthread
     def set_colors(self, *args) -> None:
@@ -200,6 +201,7 @@ class CButtonTertiary(CButton):
 
     def __init__(self, **kwargs):
         super(CButtonTertiary, self).__init__(**kwargs)
+        self.hover_enabled = False
 
     @mainthread
     def set_colors(self, *args) -> None:
@@ -220,11 +222,14 @@ class CButtonTertiary(CButton):
         self.icon_color = self._text_color
 
     def on_focus(self, *args) -> None:
-        self.hover_enabled = not self.focus
+        # self.hover_enabled = not self.focus
         if self.focus:
             self._inset_color = self.inset_color
+            self._text_color = self.text_color_active
         else:
-            self.hover = False
+            self._bg_color = self.bg_color
+            self._inset_color = self.bg_color
+            self._text_color = self.text_color
 
     def on_cstate(self, *args) -> None:
         if self.ctoken == "" and self.cstate == "active":
