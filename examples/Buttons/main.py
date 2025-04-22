@@ -10,24 +10,19 @@ def set_softinput(*args) -> None:
 Window.on_restore(Clock.schedule_once(set_softinput, 4))
 
 appkv = """
-#: import Clock kivy.clock.Clock
-
 CScreen:
 
     CButtonPrimary:
-        text: "My Primary Button"
-        role: "2XL"
+        text: "Primary Button"
+        role: "Large Productive"
         icon: "add"
         pos_hint: {'center_y': 0.8, 'center_x': 0.35}
-        on_release:
-            Clock.schedule_once(lambda e: self.export_to_png("cbuttoncustom.png"), 1)
 
     CButtonPrimary:
         icon: "add"
         role: "2XL"
         spacing: 0
         pos_hint: {'center_y': 0.8, 'center_x': 0.8}
-        cstate: "active"
 
     CButtonSecondary:
         text: "Secondary Button"
