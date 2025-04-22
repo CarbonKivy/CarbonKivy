@@ -85,6 +85,11 @@ class BackgroundColorBehavior:
     The background color of the widget if disabled.
     """
 
+    bg_color_focus = ColorProperty([1, 1, 1, 0])
+    """
+    The background color of the widget if focused.
+    """
+
     inset_color = ColorProperty([1, 1, 1, 0])
     """
     The color of border inset.

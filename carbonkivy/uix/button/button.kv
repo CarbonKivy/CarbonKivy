@@ -4,6 +4,7 @@
     text_color: app.text_on_color
     text_color_hover: self.text_color
     text_color_active: self.text_color
+    bg_color_focus: self.bg_color
     text_color_disabled: app.text_on_color_disabled
     hover_color: app.background_hover
     _text_color: self.text_color_disabled if self.cstate == "disabled" else self.text_color
@@ -59,7 +60,8 @@
 
 <CButtonTertiary>:
     text_color: app.link_primary
-    active_color: app.button_primary_active
+    bg_color_focus: app.button_primary
+    active_color: app.button_tertiary_active
     hover_color: app.button_primary_hover
     text_color: app.link_primary
     text_color_hover: app.text_on_color
