@@ -167,7 +167,9 @@ class CodeSnippet(
         :class:`~kivy.clipboard.Clipboard`
         class documentation.
         """
+
         def select(*args) -> None:
             self.ids.codesnippet_input.select_all()
+
         Clock.schedule_once(select, 0.5)
         Clipboard.copy(text)
