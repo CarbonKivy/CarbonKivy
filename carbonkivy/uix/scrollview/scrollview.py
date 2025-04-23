@@ -2,6 +2,8 @@ from __future__ import annotations
 
 __all__ = ("CScrollView",)
 
+from kivy.effects.opacityscroll import OpacityScrollEffect
+from kivy.metrics import dp
 from kivy.uix.scrollview import ScrollView
 
 from carbonkivy.behaviors import (
@@ -11,4 +13,5 @@ from carbonkivy.behaviors import (
 
 
 class CScrollView(BackgroundColorBehavior, ScrollView, DeclarativeBehavior):
-    pass
+
+    effect_cls = OpacityScrollEffect
