@@ -35,6 +35,7 @@ register("CScreen", module="carbonkivy.uix.screen")
 register("CScreenManager", module="carbonkivy.uix.screenmanager")
 register("CScrollView", module="carbonkivy.uix.scrollview")
 register("CStackLayout", module="carbonkivy.uix.stacklayout")
+register("FocusContainer", module="carbonkivy.uix.focuscontainer")
 
 # Alias for the register function from Factory
 font_register = LabelBase.register
