@@ -1,8 +1,9 @@
 import os
+from typing import Literal
 
 from kivy.core.window import Window
 from kivy.metrics import dp
-from kivy.utils import platform
+from kivy.utils import platform, get_hex_from_color
 
 from carbonkivy.theme.size_tokens import (
     font_style_tokens,
@@ -67,6 +68,67 @@ button_background_tokens = {
 
 def get_button_token(state: str, type: str) -> str:
     return button_background_tokens[state][type]
+
+
+def update_system_ui(status_bar_color: list[float] | str, navigation_bar_color: list[float] | str, icon_style: Literal["Light", "Dark"]) -> None:
+    """
+    Update the color system of the status and navigation bar.
+    
+    Currently supports Android only.
+    
+    The code is taken from AKivyMD project -
+        https://github.com/kivymd-extensions/akivymd
+
+    Source code -
+        kivymd_extensions/akivymd/uix/statusbarcolor.py
+
+    Author Sina Namadian -
+        https://github.com/quitegreensky
+
+    Author Kartavya Shukla (Bug Fix Related to Navigation Icon colors) -
+        https://github.com/Novfensec
+    """
+
+    if platform == "android":
+        from android.runnable import run_on_ui_thread # type: ignore
+        from jnius import autoclass
+
+        Color = autoclass("android.graphics.Color")
+        WindowManager = autoclass("android.view.WindowManager$LayoutParams")
+        activity = autoclass("org.kivy.android.PythonActivity").mActivity
+        View = autoclass("android.view.View")
+
+        def statusbar(*args):
+            status_color = None
+            navigation_color = None
+            visibility_flags = 0
+
+            if status_bar_color:
+                status_color = get_hex_from_color(status_bar_color)[:7]
+            if navigation_bar_color:
+                navigation_color = get_hex_from_color(navigation_bar_color)[:7]
+
+            window = activity.getWindow()
+
+            if icon_style == "Dark":
+                visibility_flags = (
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR 
+                    | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                )
+            elif icon_style == "Light":
+                visibility_flags = 0
+
+            window.getDecorView().setSystemUiVisibility(visibility_flags)
+
+            window.clearFlags(WindowManager.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+
+            if status_color:
+                window.setStatusBarColor(Color.parseColor(status_color))
+            if navigation_color:
+                window.setNavigationBarColor(Color.parseColor(navigation_color))
+
+        return run_on_ui_thread(statusbar)()
 
 
 class _Dict(dict):
