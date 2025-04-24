@@ -33,7 +33,6 @@ class FocusContainer(
 
     def on_focus(self, *args) -> None:
         if self.focus:
-            self._bg_color = self.active_color
+            self._bg_color = self.bg_color_focus
         elif not self.hover:
-            self._bg_color = self.bg_color
-
+                self._bg_color = self.bg_color
