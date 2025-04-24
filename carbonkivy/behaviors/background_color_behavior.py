@@ -7,6 +7,7 @@ from kivy.properties import (
     ColorProperty,
     ListProperty,
     NumericProperty,
+    OptionProperty,
     ReferenceListProperty,
     StringProperty,
     VariableListProperty,
@@ -65,6 +66,7 @@ Builder.load_string(
 
 
 class BackgroundColorBehavior:
+
     bg_source = StringProperty(None, allownone=True)
     """
     Background image path.
@@ -78,6 +80,11 @@ class BackgroundColorBehavior:
     bg_color = ColorProperty([1, 1, 1, 0])
     """
     The background color of the widget.
+    """
+
+    active_color = ColorProperty([1, 1, 1, 0])
+    """
+    The background color of the widget if its touch state is down.
     """
 
     bg_color_disabled = ColorProperty([1, 1, 1, 0])
@@ -122,6 +129,8 @@ class BackgroundColorBehavior:
 
     angle = NumericProperty(0)
     background_origin = ListProperty(None)
+    
+    cstate = OptionProperty("normal", options=["active", "disabled", "normal"])
 
     _bg_color = ColorProperty([1, 1, 1, 0])
     _inset_color = ColorProperty([1, 1, 1, 0])
