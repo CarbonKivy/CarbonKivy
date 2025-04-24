@@ -69,10 +69,6 @@ class CButton(
 
     _text_color = ColorProperty()
 
-    active_color = ColorProperty([1, 1, 1, 0])
-
-    cstate = OptionProperty("normal", options=["active", "disabled", "normal"])
-
     role = OptionProperty(
         "Medium",
         options=[
