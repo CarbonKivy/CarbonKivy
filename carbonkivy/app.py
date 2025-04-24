@@ -5,6 +5,7 @@ from kivy.logger import Logger
 from kivy.lang import Builder
 
 from carbonkivy.theme.theme import CarbonTheme
+from carbonkivy.utils import update_system_ui
 
 
 class CarbonApp(App, CarbonTheme):
@@ -14,6 +15,11 @@ class CarbonApp(App, CarbonTheme):
 
     def __init__(self, **kwargs):
         super(CarbonApp, self).__init__(**kwargs)
+        update_system_ui(
+            self.background,
+            self.background,
+            "Dark"
+        )
 
     def load_all_kv_files(self, directory: str, *args) -> None:
         """
