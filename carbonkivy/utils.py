@@ -70,12 +70,16 @@ def get_button_token(state: str, type: str) -> str:
     return button_background_tokens[state][type]
 
 
-def update_system_ui(status_bar_color: list[float] | str, navigation_bar_color: list[float] | str, icon_style: Literal["Light", "Dark"]) -> None:
+def update_system_ui(
+    status_bar_color: list[float] | str,
+    navigation_bar_color: list[float] | str,
+    icon_style: Literal["Light", "Dark"],
+) -> None:
     """
     Update the color system of the status and navigation bar.
-    
+
     Currently supports Android only.
-    
+
     The code is taken from AKivyMD project -
         https://github.com/kivymd-extensions/akivymd
 
@@ -90,7 +94,7 @@ def update_system_ui(status_bar_color: list[float] | str, navigation_bar_color: 
     """
 
     if platform == "android":
-        from android.runnable import run_on_ui_thread # type: ignore
+        from android.runnable import run_on_ui_thread  # type: ignore
         from jnius import autoclass
 
         Color = autoclass("android.graphics.Color")
@@ -112,7 +116,7 @@ def update_system_ui(status_bar_color: list[float] | str, navigation_bar_color: 
 
             if icon_style == "Dark":
                 visibility_flags = (
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR 
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                     | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 )
             elif icon_style == "Light":
