@@ -35,4 +35,4 @@ class FocusContainer(
         if self.focus:
             self._bg_color = self.bg_color_focus
         elif not self.hover:
-                self._bg_color = self.bg_color
+            self._bg_color = self.bg_color
