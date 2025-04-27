@@ -129,7 +129,7 @@ class BackgroundColorBehavior:
 
     angle = NumericProperty(0)
     background_origin = ListProperty(None)
-    
+
     cstate = OptionProperty("normal", options=["active", "disabled", "normal"])
 
     _bg_color = ColorProperty([1, 1, 1, 0])
