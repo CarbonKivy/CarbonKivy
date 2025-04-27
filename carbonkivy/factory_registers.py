@@ -36,6 +36,8 @@ register("CScreenManager", module="carbonkivy.uix.screenmanager")
 register("CScrollView", module="carbonkivy.uix.scrollview")
 register("CStackLayout", module="carbonkivy.uix.stacklayout")
 register("CTextInput", module="carbonkivy.uix.textinput")
+register("CTextInputLabel", module="carbonkivy.uix.textinput")
+register("CTextInputHelperText", module="carbonkivy.uix.textinput")
 register("FocusContainer", module="carbonkivy.uix.focuscontainer")
 
 # Alias for the register function from Factory
