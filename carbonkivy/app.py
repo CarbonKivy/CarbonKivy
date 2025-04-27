@@ -15,11 +15,7 @@ class CarbonApp(App, CarbonTheme):
 
     def __init__(self, **kwargs):
         super(CarbonApp, self).__init__(**kwargs)
-        update_system_ui(
-            self.background,
-            self.background,
-            "Dark"
-        )
+        update_system_ui(self.background, self.background, "Dark")
 
     def load_all_kv_files(self, directory: str, *args) -> None:
         """
