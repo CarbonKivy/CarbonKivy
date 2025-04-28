@@ -38,6 +38,7 @@ register("CStackLayout", module="carbonkivy.uix.stacklayout")
 register("CTextInput", module="carbonkivy.uix.textinput")
 register("CTextInputLabel", module="carbonkivy.uix.textinput")
 register("CTextInputHelperText", module="carbonkivy.uix.textinput")
+register("CTextInputTrailingIconButton", module="carbonkivy.uix.textinput")
 register("FocusContainer", module="carbonkivy.uix.focuscontainer")
 
 # Alias for the register function from Factory
