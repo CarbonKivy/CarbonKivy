@@ -16,31 +16,34 @@
 <CTextInputLabel>:
     color: app.text_secondary
     style: "label_01"
-    pos: (0, self.parent.height + (self.height/2))
+    pos: [0, self.parent.height + (self.height/2)]
     adaptive: [False, True]
 
 <CTextInputHelperText>:
     color: app.text_helper
     style: "helper_text_01"
-    pos: (0, -self.height)
+    pos: [0, -self.height]
     adaptive: [False, True]
-    
+
+<CTextInputTrailingIconButton>:
+    text_color: app.icon_primary
+    pos_hint: {'center_y': 0.5}
+    pos: [self.parent.width - (self.width + dp(8)), self.pos[1]]
 
 <CTextInputArea@TextInput>:
-    canvas:
+    canvas.after:
         Color:
             rgba: app.border_strong_01
         SmoothLine:
             points: [self.x, self.y, self.right, self.y]
             width: dp(1)
-    padding: [dp(16), dp(16), dp(16), dp(16)]
+    padding: [dp(16), dp(16), dp(48), dp(16)]
     size_hint_y: None
     font_size: plex_14
     height: self.minimum_height
     background_normal: ""
     background_color: app.transparent
-    cursor_color: app.text_primary
     background_active: ""
     hint_text_color: app.text_placeholder
     foreground_color: app.text_primary
-
+    cursor_color: app.text_primary
