@@ -1,1 +1,90 @@
-# empty main.kv
+<LoginScreen>:
+
+    CStackLayout:
+        size_hint: 1, 1
+        spacing: dp(10)
+        padding: [dp(10), dp(10), dp(10), dp(10)]
+
+        CBoxLayout:
+            orientation: "horizontal"
+            adaptive: [False, True]
+            
+            CButtonGhost:
+                icon: "arrow--left"
+                spacing: 0
+
+        CScrollView:
+            LoginBoxLayout:
+
+<LoginBoxLayout@CBoxLayout>:
+    orientation: "vertical"
+    padding: [dp(16), dp(16), dp(16), dp(16)]
+    adaptive: [False, True]
+    spacing: dp(48)
+
+    CLabel:
+        text: "Login"
+        style: "heading_06"
+        halign: "center"
+
+    CBoxLayout:
+        orientation: "vertical"
+        spacing: dp(64)
+        adaptive: [False, True]
+
+        CTextInput:
+            CTextInputLabel:
+                text: "Username"
+            CTextInputHelperText:
+                text: "Maximum 10 characters"
+
+        CTextInput:
+            CTextInputLabel:
+                text: "Password"
+            CTextInputHelperText:
+                text: "Minimum 8 characters"
+
+    CBoxLayout:
+        spacing: dp(8)
+        adaptive: [False, True]
+
+        CButtonPrimary:
+            text: "Login"
+            icon: "login"
+            role: "Large Productive"
+            size_hint_x: 0.5
+
+        CButtonSecondary:
+            text: "Signup"
+            icon: "user--profile"
+            role: "Large Productive"
+            size_hint_x: 0.5
+
+    CDivider:
+
+    CLabel:
+        text: "or continue with..."
+        style: "body_compact_02"
+        halign: "center"
+
+    GridLayout:
+        cols:2
+        size_hint: 1, None
+        height: self.minimum_height
+
+        AnchorLayout:
+
+            CButtonGhost:
+                font_size: plex_48
+                text_color: app.text_primary
+                icon: "logo--github"
+                role: "2XL"
+                spacing: 0
+
+        AnchorLayout:
+
+            CButtonGhost:
+                font_size: plex_48
+                icon: "logo--facebook"
+                role: "2XL"
+                spacing: 0
