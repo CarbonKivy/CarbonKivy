@@ -4,6 +4,7 @@ __all__ = (
     "CTextInput", 
     "CTextInputLabel",
     "CTextInputHelperText",
+    "CTextInputTrailingIconButton",
 )
 
 from kivy.properties import BooleanProperty, StringProperty
@@ -16,6 +17,7 @@ from carbonkivy.behaviors import (
     HoverBehavior,
 )
 from carbonkivy.uix.label import CLabel
+from carbonkivy.uix.button import CButtonGhost
 
 
 class CTextInputLabel(CLabel):
@@ -23,6 +25,10 @@ class CTextInputLabel(CLabel):
 
 
 class CTextInputHelperText(CLabel):
+    pass
+
+
+class CTextInputTrailingIconButton(CButtonGhost):
     pass
 
 
