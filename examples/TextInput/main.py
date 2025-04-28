@@ -24,6 +24,10 @@ CScreen:
 
             CTextInputHelperText:
                 text: "Helper Text"
+            
+            CTextInputTrailingIconButton:
+                icon: "error"
+                spacing: 0
     
 """
 
