@@ -26,6 +26,7 @@
         text: "Login"
         style: "heading_06"
         halign: "center"
+        color: app.text_primary
 
     CBoxLayout:
         orientation: "vertical"
@@ -33,12 +34,16 @@
         adaptive: [False, True]
 
         CTextInput:
+            hint_text: "Enter your username"
+
             CTextInputLabel:
                 text: "Username"
             CTextInputHelperText:
                 text: "Maximum 10 characters"
 
         CTextInput:
+            hint_text: "Enter your password"
+
             CTextInputLabel:
                 text: "Password"
             CTextInputHelperText:
@@ -66,6 +71,7 @@
         text: "or continue with..."
         style: "body_compact_02"
         halign: "center"
+        adaptive: [False, True]
 
     GridLayout:
         cols:2
