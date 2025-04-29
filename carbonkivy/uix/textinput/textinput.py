@@ -46,10 +46,11 @@ class CTextInput(
     def __init__(self, **kwargs):
         super(CTextInput, self).__init__(**kwargs)
 
-    def on_touch_down(self, touch) -> bool:
+    def on_touch_down(self, touch) -> bool | None:
         super().on_touch_down(touch)
         self.focus = self.collide_point(*touch.pos)
-        return super().on_touch_down(touch)
+        if not self.focus:
+            return super().on_touch_down(touch)
 
     def on_focus(self, *args) -> None:
         if self.focus:
