@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 __all__ = (
-    "CTextInput", 
+    "CTextInput",
     "CTextInputLabel",
     "CTextInputHelperText",
     "CTextInputTrailingIconButton",
@@ -53,7 +53,7 @@ class CTextInput(
 
     hint_text = StringProperty()
 
-    password_mask = StringProperty(u"\u2022")
+    password_mask = StringProperty("\u2022")
 
     def __init__(self, **kwargs):
         super(CTextInput, self).__init__(**kwargs)
@@ -72,4 +72,3 @@ class CTextInput(
 
     def on_password(self, *args) -> None:
         self.ids.ctextinput_area.cursor = (0, 0)
-
