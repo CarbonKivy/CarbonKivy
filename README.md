@@ -17,6 +17,7 @@ CarbonKivy is a Python library that integrates IBM's [Carbon Design System](http
 CarbonKivy is more than just a framework—it’s a philosophy of professional application design. With features tailored for both backend functionality and frontend aesthetics, this toolkit bridges the gap between coding and creativity. Designed with both creativity and performance in mind, CarbonKivy empowers developers to build stunning, feature-rich applications with ease. Whether you’re a seasoned developer or just starting with Kivy, this framework provides the tools and resources to bring your ideas to life
 
 ## Community and Support
+[![OpenCollective](https://img.shields.io/opencollective/all/CarbonKivy?style=for-the-badge&label=Support%20CarbonKivy&logo=opencollective&color=blue)](https://opencollective.com/CarbonKivy)
 [![Discord](https://img.shields.io/discord/566880874789076992?style=for-the-badge&color=7289da&logo=discord&logoColor=7289da)](https://discord.gg/jxZ5xr3pUt)
 [![Reddit](https://img.shields.io/static/v1?label=reddit&message=CarbonKivy&style=for-the-badge&color=orangered&logo=reddit&logoColor=orangered)](https://reddit.com/r/CarbonKivy)
 [![GitHub Discussions](https://img.shields.io/static/v1?label=GitHub%20Discussions&message=ask%20questions&style=for-the-badge&color=blueviolet&logo=github&logoColor=white)](https://github.com/CarbonKivy/CarbonKivy/discussions)
@@ -30,7 +31,7 @@ Join the CarbonKivy community to get support, share your projects, and collabora
 - **GitHub Discussions**: Participate in discussions and ask questions in the [GitHub Discussions](https://github.com/CarbonKivy/CarbonKivy/discussions) section.
 - **YouTube - CarbonKivy**: Follow us on YouTube [@CarbonKivy](https://youtube.com/@CarbonKivy) for updates and announcements.
 
-[Documentation](https://carbonkivy.readthedocs.io): Read the documentation.
+[Documentation](https://carbonkivy.readthedocs.io/en/latest): Read the documentation.
 
 If you encounter any issues or have questions, feel free to reach out to the community or submit an issue on GitHub.
 
