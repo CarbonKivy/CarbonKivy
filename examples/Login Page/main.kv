@@ -42,12 +42,18 @@
                 text: "Maximum 10 characters"
 
         CTextInput:
+            id: pwd_input
             hint_text: "Enter your password"
+            password: True
 
             CTextInputLabel:
                 text: "Password"
             CTextInputHelperText:
                 text: "Minimum 8 characters"
+            CTextInputTrailingIconButton:
+                icon: "view--off" if pwd_input.password else "view"
+                on_press:
+                    pwd_input.password = (not pwd_input.password)
 
     CBoxLayout:
         spacing: dp(8)
