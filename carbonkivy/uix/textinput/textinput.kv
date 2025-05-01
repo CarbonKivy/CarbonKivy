@@ -11,7 +11,12 @@
 
     CTextInputArea:
         id: ctextinput_area
+        text: root.text
         hint_text: root.hint_text
+        password: root.password
+        password_mask: root.password_mask
+        readonly: root.readonly
+        font_size: root.font_size
 
 <CTextInputLabel>:
     color: app.text_secondary
@@ -27,8 +32,8 @@
 
 <CTextInputTrailingIconButton>:
     text_color: app.icon_primary
-    pos_hint: {'center_y': 0.5}
-    pos: [self.parent.width - (self.width + dp(8)), self.pos[1]]
+    spacing: 0
+    pos: [self.parent.width - (self.width + dp(8)), (dp(4))]
 
 <CTextInputArea@TextInput>:
     canvas.after:
@@ -37,10 +42,8 @@
         SmoothLine:
             points: [self.x, self.y, self.right, self.y]
             width: dp(1)
-
     padding: [dp(16), dp(16), dp(48), dp(16)]
     size_hint_y: None
-    font_size: plex_14
     height: self.minimum_height
     background_normal: ""
     background_color: app.transparent

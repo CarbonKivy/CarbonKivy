@@ -7,7 +7,8 @@ __all__ = (
     "CTextInputTrailingIconButton",
 )
 
-from kivy.properties import BooleanProperty, StringProperty
+from kivy.metrics import dp
+from kivy.properties import BooleanProperty, NumericProperty, StringProperty
 from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.behaviors import (
@@ -39,9 +40,20 @@ class CTextInput(
     DeclarativeBehavior,
     HoverBehavior,
 ):
-    hint_text = StringProperty()
+
+    password = BooleanProperty(False)
+
+    readonly = BooleanProperty(False)
 
     focus = BooleanProperty(False)
+
+    font_size = NumericProperty(dp(14))
+
+    text = StringProperty()
+
+    hint_text = StringProperty()
+
+    password_mask = StringProperty(u"\u2022")
 
     def __init__(self, **kwargs):
         super(CTextInput, self).__init__(**kwargs)
@@ -57,3 +69,7 @@ class CTextInput(
             self._line_color = self.line_color
         else:
             self._line_color = self.bg_color
+
+    def on_password(self, *args) -> None:
+        self.ids.ctextinput_area.cursor = (0, 0)
+

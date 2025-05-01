@@ -114,7 +114,12 @@ class CButton(
             return
 
     def on_icon(self, *args) -> None:
-        if self.icon:
+        try:
+            self.ids.cbutton_layout_icon.icon = self.icon
+            return
+        except Exception:
+            pass
+        if self.icon and (not "cbutton_layout_icon" in self.ids):
             self.cbutton_layout_icon = CIcon(
                 icon=self.icon,
                 pos_hint={"center_y": 0.5},
@@ -123,7 +128,6 @@ class CButton(
             )
             self.cbutton_layout.add_widget(self.cbutton_layout_icon)
             self.ids["cbutton_layout_icon"] = self.cbutton_layout_icon
-
         else:
             try:
                 self.cbutton_layout.remove_widget(self.ids.cbutton_layout_icon)
