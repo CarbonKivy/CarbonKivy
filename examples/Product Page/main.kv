@@ -1,0 +1,47 @@
+<ProductScreen>:
+
+    CStackLayout:
+        size_hint: 1, 1
+
+        CRelativeLayout:
+            id: imagelayout
+            size_hint: 1, None
+            height: productimage.height
+
+            CImage:
+                id: productimage
+                source: "nikeshoes.png"
+                ratio: [7, 8]
+                fit_mode: "cover"
+
+            CBoxLayout:
+                orientation: "vertical"
+                adaptive: [False, True]
+                padding: [dp(16), dp(16), dp(16), dp(16)]
+                pos_hint: {"top": 1}
+
+                CButtonGhost:
+                    icon: "arrow--left"
+                    spacing: 0
+                    text_color: app.text_primary
+
+        InfoLayout:
+            orientation: "vertical"
+            adaptive: [False, True]
+            padding: [dp(16), dp(8), dp(16), dp(8)]
+
+<InfoLayout@CBoxLayout>:
+    CBoxLayout:
+        adaptive: [False, True]
+
+        CLabel:
+            style: "heading_02"
+            color: app.text_primary
+
+        CButtonGhost:
+            icon: "heart"
+            spacing: 0
+            
+        
+            
+
