@@ -14,6 +14,12 @@
 
 CarbonKivy is a Python library that integrates IBM's [Carbon Design System](https://www.carbondesignsystem.com/) with the Kivy framework. It provides a modern, accessible, and user-friendly UI toolkit inspired by Carbon’s design principles, enabling developers to create consistent and visually appealing applications in Kivy.
 
+<p align="center">
+    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbondesignexamples.png" style="border-radius:1em" 
+            title="kvdeveloper create MyApp --template nav_toolbar"
+        />
+</p>
+
 CarbonKivy is more than just a framework—it’s a philosophy of professional application design. With features tailored for both backend functionality and frontend aesthetics, this toolkit bridges the gap between coding and creativity. Designed with both creativity and performance in mind, CarbonKivy empowers developers to build stunning, feature-rich applications with ease. Whether you’re a seasoned developer or just starting with Kivy, this framework provides the tools and resources to bring your ideas to life
 
 ## Community and Support
