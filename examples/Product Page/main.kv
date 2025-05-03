@@ -11,7 +11,7 @@
             CImage:
                 id: productimage
                 source: "nikeshoes.png"
-                ratio: [7, 8]
+                ratio: [1, 1]
                 fit_mode: "cover"
 
             CBoxLayout:
@@ -29,6 +29,7 @@
             orientation: "vertical"
             adaptive: [False, True]
             padding: [dp(16), dp(8), dp(16), dp(8)]
+            spacing: dp(8)
 
 <InfoLayout@CBoxLayout>:
     CBoxLayout:
@@ -45,3 +46,70 @@
             spacing: 0
             pos_hint: {"center_y": 0.5}
             text_color: app.text_primary
+
+    CBoxLayout:
+        adaptive: [False, True]
+        spacing: dp(16)
+
+        CLabel:
+            text: "423 SOLD "
+            style: "body_compact_01"
+            size_hint_x: None
+            width: self.texture_size[0]
+            text_size: None, self.texture_size[1]
+            bg_color: app.layer_01
+            padding: dp(8)
+            pos_hint: {"center_y": 0.5}
+
+        CIcon:
+            icon: "star--filled"
+            color: app.text_primary
+            pos_hint: {"center_y": 0.5}
+
+        CLabel:
+            text: "4.3"
+            size_hint_x: None
+            width: self.texture_size[0]
+            text_size: None, self.texture_size[1]
+            pos_hint: {"center_y": 0.5}
+
+        CLabel:
+            text: "153 reviews"
+            pos_hint: {"center_y": 0.5}
+
+    CDivider:
+
+    CLabel:
+        text: "Description"
+        style: "heading_04"
+        color: app.text_primary
+
+    CLabel:
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        style: "body_01"
+
+    CBoxLayout:
+        adaptive: [False, True]
+        
+        CBoxLayout:
+            size_hint_x: 0.5
+            orientation: "vertical"
+            adaptive: [False, True]
+            spacing: dp(8)
+
+            CLabel:
+                text: "Size"
+                style: "heading_04"
+                color: app.text_primary
+
+        CBoxLayout:
+            size_hint_x: 0.5
+            orientation: "vertical"
+            adaptive: [False, True]
+            spacing: dp(8)
+
+            CLabel:
+                text: "Color"
+                style: "heading_04"
+                color: app.text_primary
+
