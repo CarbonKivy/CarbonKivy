@@ -25,11 +25,13 @@
                     spacing: 0
                     text_color: app.text_primary
 
-        InfoLayout:
-            orientation: "vertical"
-            adaptive: [False, True]
-            padding: [dp(16), dp(8), dp(16), dp(8)]
-            spacing: dp(8)
+        ScrollView:
+            InfoLayout:
+                orientation: "vertical"
+                size_hint: 1, None
+                height: self.minimum_height
+                padding: [dp(16), dp(8), dp(16), dp(8)]
+                spacing: dp(8)
 
 <InfoLayout@CBoxLayout>:
     CBoxLayout:
@@ -81,35 +83,102 @@
 
     CLabel:
         text: "Description"
-        style: "heading_04"
+        style: "heading_03"
         color: app.text_primary
 
     CLabel:
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         style: "body_01"
 
-    CBoxLayout:
-        adaptive: [False, True]
+    GridLayout:
+        cols: 2
+        size_hint: 1, None
+        height: self.minimum_height
+        spacing: dp(8)
         
         CBoxLayout:
-            size_hint_x: 0.5
             orientation: "vertical"
             adaptive: [False, True]
             spacing: dp(8)
 
             CLabel:
                 text: "Size"
-                style: "heading_04"
+                style: "heading_03"
                 color: app.text_primary
 
+            CBoxLayout:
+                adaptive: [True, True]
+
+                CIcon:
+                    icon: "number--7"
+                    font_size: plex_48
+                    radius: self.height/2
+
+                CIcon:
+                    icon: "number--8"
+                    color: app.text_on_color
+                    font_size: plex_48
+                    radius: self.height/2
+                    bg_color: app.layer_selected_inverse
+
+                CIcon:
+                    icon: "number--9"
+                    font_size: plex_48
+                    radius: self.height/2
+
         CBoxLayout:
-            size_hint_x: 0.5
             orientation: "vertical"
             adaptive: [False, True]
             spacing: dp(8)
 
             CLabel:
                 text: "Color"
+                style: "heading_03"
+                color: app.text_primary
+
+            CBoxLayout:
+                adaptive: [True, True]
+
+                CIcon:
+                    bg_color: app.blue_60
+                    size: dp(48), dp(48)
+                    radius: self.height/2
+
+                CIcon:
+                    bg_color: app.gray_100
+                    color: app.text_on_color
+                    line_color: app.focus
+                    size: dp(48), dp(48)
+                    radius: self.height/2
+
+                CIcon:
+                    bg_color: app.gray_60
+                    size: dp(48), dp(48)
+                    radius: self.height/2
+
+    CDivider:
+
+    CBoxLayout:
+        adaptive: [False, True]
+
+        CBoxLayout:
+            orientation: "vertical"
+            adaptive: [False, True]
+
+            CLabel:
+                text: "TOTAL PRICE"
+                style: "body_compact_02"
+            
+            CLabel:
+                text: "$690"
                 style: "heading_04"
                 color: app.text_primary
+        
+        CButtonSecondary:
+            text: "ADD TO CART"
+            icon: "shopping--cart"
+
+    Widget:
+        size_hint: 1, None
+        height: dp(150)
 
