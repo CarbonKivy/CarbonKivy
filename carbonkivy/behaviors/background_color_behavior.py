@@ -29,28 +29,31 @@ Builder.load_string(
         Color:
             group: "backgroundcolor-behavior-inset-color"
             rgba: self._inset_color
-        SmoothRectangle:
+        SmoothRoundedRectangle:
             group: "Background_inset_instruction"
             size: self.size
             pos: self.pos if not isinstance(self, RelativeLayout) else (0, 0)
+            radius: self.radius if self.radius else [0, 0, 0, 0]
         Color:
             group: "backgroundcolor-behavior-bg-color"
             rgba: self._bg_color
-        SmoothRectangle:
+        SmoothRoundedRectangle:
             group: "Background_instruction"
             size: [self.size[0] - self.inset_width, self.size[1] - self.inset_width]
             pos: (self.pos[0] + self.inset_width/2, self.pos[1] + self.inset_width/2) if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
-            source: root.bg_source
+            source: self.bg_source
+            radius: self.radius if self.radius else [0, 0, 0, 0]
         Color:
             rgba: self._line_color
         SmoothLine:
             width: root.line_width
-            rectangle:
+            rounded_rectangle:
                 [ \
                 0,
                 0, \
                 self.width, \
                 self.height, \
+                *self.radius, \
                 ] \
                 if isinstance(self, RelativeLayout) else \
                 [ \
@@ -58,6 +61,7 @@ Builder.load_string(
                 self.y, \
                 self.width, \
                 self.height, \
+                *self.radius, \
                 ]
         PopMatrix
 """,
@@ -129,6 +133,7 @@ class BackgroundColorBehavior:
 
     angle = NumericProperty(0)
     background_origin = ListProperty(None)
+    radius = VariableListProperty([0], length=4)
 
     cstate = OptionProperty("normal", options=["active", "disabled", "normal"])
 
