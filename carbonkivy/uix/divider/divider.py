@@ -7,8 +7,6 @@ from kivy.metrics import dp
 from kivy.properties import ColorProperty, NumericProperty, OptionProperty
 from kivy.uix.boxlayout import BoxLayout
 
-from carbonkivy.behaviors import BackgroundColorBehavior
-
 
 class CDivider(BoxLayout):
 

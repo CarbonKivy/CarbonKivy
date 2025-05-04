@@ -8,13 +8,13 @@ from kivy.uix.label import Label
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
 )  # SelectionBehavior
 from carbonkivy.theme.size_tokens import font_style_tokens
 from carbonkivy.utils import get_font_name
 
 
-class CLabel(AdaptiveBehavior, BackgroundColorBehavior, Label):
+class CLabel(AdaptiveBehavior, BackgroundColorBehaviorRectangular, Label):
 
     style = OptionProperty("body_compact_02", options=font_style_tokens.keys())
 

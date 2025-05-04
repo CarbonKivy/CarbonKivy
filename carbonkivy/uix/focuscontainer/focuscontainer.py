@@ -7,7 +7,7 @@ from kivy.uix.boxlayout import BoxLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
 )
@@ -15,7 +15,7 @@ from carbonkivy.behaviors import (
 
 class FocusContainer(
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     BoxLayout,
     DeclarativeBehavior,
     HoverBehavior,

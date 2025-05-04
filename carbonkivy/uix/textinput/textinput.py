@@ -13,7 +13,7 @@ from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
 )
@@ -35,7 +35,7 @@ class CTextInputTrailingIconButton(CButtonGhost):
 
 class CTextInput(
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     RelativeLayout,
     DeclarativeBehavior,
     HoverBehavior,

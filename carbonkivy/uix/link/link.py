@@ -17,7 +17,7 @@ from kivy.uix.label import Label
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     HoverBehavior,
 )
 from carbonkivy.theme.icons import ibm_icons
@@ -27,7 +27,11 @@ APP = App.get_running_app()
 
 
 class CLink(
-    AdaptiveBehavior, BackgroundColorBehavior, ButtonBehavior, HoverBehavior, Label
+    AdaptiveBehavior,
+    BackgroundColorBehaviorRectangular,
+    ButtonBehavior,
+    HoverBehavior,
+    Label,
 ):
 
     name = StringProperty()

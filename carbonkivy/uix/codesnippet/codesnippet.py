@@ -21,7 +21,7 @@ from kivy.uix.codeinput import CodeInput
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
 )
@@ -42,7 +42,7 @@ class CodeSnippetInput(CodeInput):
 
 class CodeSnippet(
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     RelativeLayout,
 ):
