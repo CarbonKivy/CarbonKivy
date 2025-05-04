@@ -204,6 +204,10 @@ class BackgroundColorBehavior:
 
         self._line_color = color
 
+    def on_cstate(self, *args) -> None:
+        if self.cstate == "disabled":
+            self.disabled = True
+
     def update_background_origin(self, instance, pos: list) -> None:
         """Fired when the values of :attr:`pos` change."""
 
