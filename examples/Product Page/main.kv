@@ -25,13 +25,16 @@
                     spacing: 0
                     text_color: app.text_primary
 
-        ScrollView:
-            InfoLayout:
-                orientation: "vertical"
-                size_hint: 1, None
-                height: self.minimum_height
-                padding: [dp(16), dp(8), dp(16), dp(8)]
-                spacing: dp(8)
+        CBoxLayout:
+            size_hint: 1, None
+            height: root.height - productimage.height
+            
+            CScrollView:
+                InfoLayout:
+                    orientation: "vertical"
+                    adaptive: [False, True]
+                    padding: [dp(16), dp(8), dp(16), dp(8)]
+                    spacing: dp(12)
 
 <InfoLayout@CBoxLayout>:
     CBoxLayout:
@@ -177,6 +180,7 @@
         CButtonSecondary:
             text: "ADD TO CART"
             icon: "shopping--cart"
+            role: "Large Productive"
 
     Widget:
         size_hint: 1, None
