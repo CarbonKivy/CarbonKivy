@@ -37,6 +37,20 @@ class DeclarativeBehavior:
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
 
+        """
+        Bug Fix for updating colors defined in python.
+        Author:
+            Ansh Dadwal (https://github.com/T-Dynamos)
+        """
+        for key, value in kwargs.items():
+            if (
+                value.__class__.__module__ == "kivy.properties"
+                and value.__class__.__name__ == "ObservableList"
+            ):
+                value.obj().bind(
+                    **{value.prop.name: lambda *args, k=key: setattr(self, k, args[-1])}
+                )
+
         for child in args:
             if issubclass(child.__class__, Widget):
                 self.add_widget(child)

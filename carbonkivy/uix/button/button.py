@@ -102,6 +102,7 @@ class CButton(
         self.set_colors()
 
     def on_cstate(self, *args) -> None:
+        super().on_cstate(*args)
         if self.ctoken == "" and self.cstate == "active":
             self.bg_color = self.active_color
             self._text_color = self.text_color_active
@@ -117,7 +118,7 @@ class CButton(
         try:
             self.ids.cbutton_layout_icon.icon = self.icon
             return
-        except Exception:
+        except Exception as e:  # nosec
             pass
         if self.icon and (not "cbutton_layout_icon" in self.ids):
             self.cbutton_layout_icon = CIcon(
@@ -159,6 +160,7 @@ class CButton(
             self._line_color = self.line_color
             self._text_color = self.text_color_active
         else:
+            self._bg_color = self.bg_color
             self._inset_color = self.bg_color
             self._line_color = self.bg_color
             self._text_color = self.text_color
