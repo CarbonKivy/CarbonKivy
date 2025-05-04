@@ -12,6 +12,7 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 from carbonkivy.app import CarbonApp
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
+from carbonkivy.utils import update_system_ui
 
 
 class UI(CScreenManager):
@@ -28,6 +29,7 @@ class myapp(CarbonApp):
         self.load_all_kv_files(self.directory)
 
     def build(self) -> CScreenManager:
+        update_system_ui(self.layer_01, self.background, "Dark")
         self.manager_screens = CScreenManager()
         self.manager_screens.add_widget(ProductScreen(name="product"))
         return self.manager_screens

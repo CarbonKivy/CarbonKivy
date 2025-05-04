@@ -14,7 +14,13 @@
 
 CarbonKivy is a Python library that integrates IBM's [Carbon Design System](https://www.carbondesignsystem.com/) with the Kivy framework. It provides a modern, accessible, and user-friendly UI toolkit inspired by Carbon’s design principles, enabling developers to create consistent and visually appealing applications in Kivy.
 
-CarbonKivy is more than just a framework—it’s a philosophy of professional application design. With features tailored for both backend functionality and frontend aesthetics, this toolkit bridges the gap between coding and creativity. Designed with both creativity and performance in mind, CarbonKivy empowers developers to build stunning, feature-rich applications with ease. Whether you’re a seasoned developer or just starting with Kivy, this framework provides the tools and resources to bring your ideas to life
+CarbonKivy is more than just a framework—it’s a philosophy of professional application design. With features tailored for both backend functionality and frontend aesthetics, this toolkit bridges the gap between coding and creativity. Designed with both creativity and performance in mind, CarbonKivy empowers developers to build stunning, feature-rich applications with ease. Whether you’re a seasoned developer or just starting with Kivy, this framework provides the tools and resources to bring your ideas to life.
+
+<p align="center">
+    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbonkivy_banner720.png" style="border-radius:1em" 
+            title="kvdeveloper create MyApp --template nav_toolbar"
+        />
+</p>
 
 ## Community and Support
 [![OpenCollective](https://img.shields.io/opencollective/all/CarbonKivy?style=for-the-badge&label=Support%20CarbonKivy&logo=opencollective&color=blue)](https://opencollective.com/CarbonKivy)
@@ -36,6 +42,13 @@ Join the CarbonKivy community to get support, share your projects, and collabora
 If you encounter any issues or have questions, feel free to reach out to the community or submit an issue on GitHub.
 
 ## Features
+
+<p align="center">
+    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbondesignexamples.png" style="border-radius:1em" 
+            title="kvdeveloper create MyApp --template nav_toolbar"
+        />
+</p>
+
 - Comprehensive Carbon Design components tailored for Kivy.
 - Modern and accessible UI elements.
 - Customizable widgets for seamless integration.
