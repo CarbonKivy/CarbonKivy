@@ -7,11 +7,11 @@ from kivy.metrics import dp
 from kivy.uix.scrollview import ScrollView
 
 from carbonkivy.behaviors import (
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
 )
 
 
-class CScrollView(BackgroundColorBehavior, ScrollView, DeclarativeBehavior):
+class CScrollView(BackgroundColorBehaviorRectangular, ScrollView, DeclarativeBehavior):
 
     effect_cls = OpacityScrollEffect

@@ -6,12 +6,15 @@ from kivy.uix.floatlayout import FloatLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
 )
 
 
 class CFloatLayout(
-    AdaptiveBehavior, BackgroundColorBehavior, FloatLayout, DeclarativeBehavior
+    AdaptiveBehavior,
+    BackgroundColorBehaviorRectangular,
+    FloatLayout,
+    DeclarativeBehavior,
 ):
     pass

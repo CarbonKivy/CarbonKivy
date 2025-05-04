@@ -18,8 +18,49 @@ Builder.load_string(
     """
 #:import RelativeLayout kivy.uix.relativelayout.RelativeLayout
 
+<BackgroundColorBehaviorRectangular>:
 
-<BackgroundColorBehavior>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: self.angle
+            origin: self._background_origin
+        Color:
+            group: "backgroundcolor-behavior-inset-color"
+            rgba: self._inset_color
+        SmoothRectangle:
+            group: "Background_inset_instruction"
+            size: self.size
+            pos: self.pos if not isinstance(self, RelativeLayout) else (0, 0)
+        Color:
+            group: "backgroundcolor-behavior-bg-color"
+            rgba: self._bg_color
+        SmoothRectangle:
+            group: "Background_instruction"
+            size: [self.size[0] - self.inset_width, self.size[1] - self.inset_width]
+            pos: (self.pos[0] + self.inset_width/2, self.pos[1] + self.inset_width/2) if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
+            source: self.bg_source
+        Color:
+            rgba: self._line_color
+        SmoothLine:
+            width: root.line_width
+            rectangle:
+                [ \
+                0,
+                0, \
+                self.width, \
+                self.height, \
+                ] \
+                if isinstance(self, RelativeLayout) else \
+                [ \
+                self.x,
+                self.y, \
+                self.width, \
+                self.height, \
+                ]
+        PopMatrix
+
+<BackgroundColorBehaviorCircular>:
 
     canvas.before:
         PushMatrix
@@ -133,7 +174,6 @@ class BackgroundColorBehavior:
 
     angle = NumericProperty(0)
     background_origin = ListProperty(None)
-    radius = VariableListProperty([0], length=4)
 
     cstate = OptionProperty("normal", options=["active", "disabled", "normal"])
 
@@ -171,3 +211,12 @@ class BackgroundColorBehavior:
             self._background_origin = self.background_origin
         else:
             self._background_origin = self.center
+
+
+class BackgroundColorBehaviorRectangular(BackgroundColorBehavior):
+    pass
+
+
+class BackgroundColorBehaviorCircular(BackgroundColorBehavior):
+
+    radius = VariableListProperty([0], length=4)

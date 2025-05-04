@@ -6,12 +6,15 @@ from kivy.uix.stacklayout import StackLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
 )
 
 
 class CStackLayout(
-    AdaptiveBehavior, BackgroundColorBehavior, StackLayout, DeclarativeBehavior
+    AdaptiveBehavior,
+    BackgroundColorBehaviorRectangular,
+    StackLayout,
+    DeclarativeBehavior,
 ):
     pass

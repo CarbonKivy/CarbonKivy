@@ -6,12 +6,15 @@ from kivy.uix.anchorlayout import AnchorLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
 )
 
 
 class CAnchorLayout(
-    AdaptiveBehavior, BackgroundColorBehavior, AnchorLayout, DeclarativeBehavior
+    AdaptiveBehavior,
+    BackgroundColorBehaviorRectangular,
+    AnchorLayout,
+    DeclarativeBehavior,
 ):
     pass

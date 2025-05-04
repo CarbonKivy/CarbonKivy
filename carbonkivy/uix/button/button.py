@@ -25,7 +25,7 @@ from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
 )
@@ -38,7 +38,7 @@ APP = App.get_running_app()
 
 class CButton(
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     ButtonBehavior,
     DeclarativeBehavior,
     HoverBehavior,

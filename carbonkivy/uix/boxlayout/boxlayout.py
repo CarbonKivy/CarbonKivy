@@ -6,14 +6,14 @@ from kivy.uix.boxlayout import BoxLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
 )
 
 
 class CBoxLayout(
     AdaptiveBehavior,
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     BoxLayout,
     DeclarativeBehavior,
 ):

@@ -5,10 +5,12 @@ __all__ = ("CScreenManager",)
 from kivy.uix.screenmanager import ScreenManager
 
 from carbonkivy.behaviors import (
-    BackgroundColorBehavior,
+    BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
 )
 
 
-class CScreenManager(BackgroundColorBehavior, ScreenManager, DeclarativeBehavior):
+class CScreenManager(
+    BackgroundColorBehaviorRectangular, ScreenManager, DeclarativeBehavior
+):
     pass
