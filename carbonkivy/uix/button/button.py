@@ -98,16 +98,7 @@ class CButton(
     def on_role(self, *args) -> None:
         self.height = get_button_size(self.role)
 
-    def on_ctoken(self, *args) -> None:
-        self.set_colors()
-
-    def on_cstate(self, *args) -> None:
-        super().on_cstate(*args)
-        if self.ctoken == "" and self.cstate == "active":
-            self.bg_color = self.active_color
-            self._text_color = self.text_color_active
-        self.set_colors()
-
+    @mainthread
     def on_icon_color(self, *args) -> None:
         try:
             self.ids.cbutton_layout_icon._color = self.icon_color
@@ -137,7 +128,6 @@ class CButton(
 
     def update_specs(self, *args) -> None:
         self.height = get_button_size(self.role)
-        self.set_colors()
 
     def on_touch_down(self, touch) -> bool:
         super().on_touch_down(touch)
@@ -170,19 +160,7 @@ class CButton(
         if self.state == "down" and self.cstate != "disabled":
             self._bg_color = self.active_color
         else:
-            self._bg_color = self.bg_color_focus if not self.hover else self.hover_color
-
-    @mainthread
-    def set_colors(self, *args) -> None:
-        """
-        Defines the method to apply the bg_color.
-        """
-        try:
-            self.bg_color = getattr(APP, get_button_token(self.cstate, self.ctoken))
-        except Exception as e:  # nosec
-            pass
-        self._line_color = self.bg_color
-        self._inset_color = self.bg_color
+            self._bg_color = (self.bg_color_focus if self.focus else self.bg_color) if not self.hover else self.hover_color
 
 
 class CButtonPrimary(CButton):
@@ -201,7 +179,6 @@ class CButtonTertiary(CButton):
 
     def __init__(self, **kwargs):
         super(CButtonTertiary, self).__init__(**kwargs)
-        self.hover_enabled = False
 
     @mainthread
     def set_colors(self, *args) -> None:
@@ -215,14 +192,15 @@ class CButtonTertiary(CButton):
             self._inset_color = self.hover_color
             self._text_color = self.text_color_hover
         else:
-            self._bg_color = self.bg_color
+            if not self.focus:
+                self._bg_color = self.bg_color
             self._line_color = self.line_color
             self._inset_color = self.bg_color
             self._text_color = self.text_color
         self.icon_color = self._text_color
 
     def on_focus(self, *args) -> None:
-        # self.hover_enabled = not self.focus
+        self.hover_enabled = not self.focus
         if self.focus:
             self._inset_color = self.inset_color
             self._text_color = self.text_color_active
@@ -235,5 +213,4 @@ class CButtonTertiary(CButton):
         if self.ctoken == "" and self.cstate == "active":
             self.bg_color = self.active_color
             self.line_color = self.active_color
-            self._text_color = self.text_color_active
         self.set_colors()
