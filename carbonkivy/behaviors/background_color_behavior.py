@@ -152,6 +152,11 @@ class BackgroundColorBehavior:
     The color of border inset if disabled.
     """
 
+    inset_color_focus = ColorProperty([1, 1, 1, 0])
+    """
+    The color of border inset if focused.
+    """
+
     line_color = ColorProperty([1, 1, 1, 0])
     """
     The border of the specified color will be used to border the widget.
@@ -160,6 +165,11 @@ class BackgroundColorBehavior:
     line_color_disabled = ColorProperty([1, 1, 1, 0])
     """
     The border of the specified color will be used to border the widget if disabled.
+    """
+
+    line_color_focus = ColorProperty([1, 1, 1, 0])
+    """
+    The border of the specified color will be used to border the widget if focused.
     """
 
     inset_width = NumericProperty(dp(5))
