@@ -43,5 +43,5 @@ class HoverBehavior:
             else:
                 self._bg_color = self.bg_color
                 if not self.focus:
-                    self._line_color = self.bg_color
+                    self._line_color = self.line_color
                     self._inset_color = self.bg_color
