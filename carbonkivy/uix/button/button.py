@@ -2,13 +2,13 @@ from __future__ import annotations
 
 __all__ = (
     "CButton",
+    "CButtonDanger",
     "CButtonPrimary",
     "CButtonSecondary",
     "CButtonGhost",
     "CButtonTertiary",
 )
 
-from kivy.app import App
 from kivy.properties import (
     StringProperty,
     NumericProperty,
@@ -19,7 +19,6 @@ from kivy.properties import (
     ObjectProperty,
 )
 from kivy.metrics import sp
-from kivy.clock import mainthread
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.relativelayout import RelativeLayout
 
@@ -30,10 +29,7 @@ from carbonkivy.behaviors import (
     HoverBehavior,
 )
 from carbonkivy.uix.icon import CIcon
-from carbonkivy.utils import get_button_size, get_button_token
-
-
-APP = App.get_running_app()
+from carbonkivy.utils import get_button_size
 
 
 class CButton(
@@ -78,8 +74,6 @@ class CButton(
             "2XL",
         ],
     )
-
-    focus = BooleanProperty(False)
 
     cbutton_layout = ObjectProperty()
 
@@ -126,38 +120,41 @@ class CButton(
     def update_specs(self, *args) -> None:
         self.height = get_button_size(self.role)
 
-    def on_touch_down(self, touch) -> bool:
-        super().on_touch_down(touch)
-        if self.cstate != "disabled":
-            self.focus = self.collide_point(*touch.pos)
-        return super().on_touch_down(touch)
-
     def on_hover(self, *args) -> None:
         if self.hover:
             self._text_color = self.text_color_hover
         else:
-            if not self.focus:
-                self._text_color = self.text_color
+            self._text_color = self.text_color
         self.icon_color = self._text_color
         return super().on_hover(*args)
 
     def on_focus(self, *args) -> None:
         if self.focus:
-            self._inset_color = self.inset_color_focus
-            self._line_color = self.line_color_focus
             self._text_color = self.text_color_focus
         else:
-            self._bg_color = self.bg_color
-            self._inset_color = self.bg_color
-            self._line_color = self.line_color
             self._text_color = self.text_color
         self.icon_color = self._text_color
+        return super().on_focus(*args)
 
     def on_state(self, *args) -> None:
         if self.state == "down" and self.cstate != "disabled":
             self._bg_color = self.active_color
         else:
-            self._bg_color = (self.bg_color_focus if self.focus else self.bg_color) if not self.hover else self.hover_color
+            self._bg_color = (
+                (self.bg_color_focus if self.focus else self.bg_color)
+                if not self.hover
+                else self.hover_color
+            )
+
+
+class CButtonDanger(CButton):
+
+    variant = OptionProperty("Primary", options=["Ghost", "Primary", "Tertiary"])
+
+    def on_focus(self, *args) -> None:
+        if self.variant == "Tertiary":
+            self.hover_enabled = not self.focus
+        return super().on_focus(*args)
 
 
 class CButtonPrimary(CButton):

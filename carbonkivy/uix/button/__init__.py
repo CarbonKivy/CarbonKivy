@@ -4,6 +4,7 @@ from kivy.lang import Builder
 
 from .button import (
     CButton,
+    CButtonDanger,
     CButtonGhost,
     CButtonPrimary,
     CButtonSecondary,
