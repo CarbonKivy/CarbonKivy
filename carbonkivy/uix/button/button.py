@@ -24,6 +24,7 @@ from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
+    BackgroundColorBehaviorCircular,
     BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
@@ -32,9 +33,8 @@ from carbonkivy.uix.icon import CIcon
 from carbonkivy.utils import get_button_size
 
 
-class CButton(
+class CBaseButton(
     AdaptiveBehavior,
-    BackgroundColorBehaviorRectangular,
     ButtonBehavior,
     DeclarativeBehavior,
     HoverBehavior,
@@ -145,6 +145,14 @@ class CButton(
                 if not self.hover
                 else self.hover_color
             )
+
+
+class CButton(CBaseButton, BackgroundColorBehaviorRectangular):
+    pass
+
+
+class CButtonCircular(CBaseButton, BackgroundColorBehaviorCircular):
+    pass
 
 
 class CButtonDanger(CButton):
