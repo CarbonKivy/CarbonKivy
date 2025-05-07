@@ -1,20 +1,21 @@
 <CButton>:
+    focus_enabled: True
     size_hint: None, None
     cbutton_layout: cbutton_box_layout
     text_color:
         { \
         "normal": self.text_color, \
         "disabled": app.text_on_color_disabled, \
-        "active": self.text_color_active,\
+        "active": self.text_color_focus,\
         }[self.cstate]
     _text_color:
         { \
         "normal": self.text_color, \
         "disabled": self.text_color_disabled, \
-        "active": self.text_color_active,\
+        "active": self.text_color_focus,\
         }[self.cstate]
     text_color_hover: app.text_on_color
-    text_color_active: app.text_on_color
+    text_color_focus: app.text_on_color
     text_color_disabled: app.text_on_color_disabled
     icon_color: self._text_color
     bg_color:
@@ -25,15 +26,11 @@
         }[self.cstate]
     bg_color_focus: self.bg_color
     hover_color: app.background_hover
+    active_color: app.background_active
     _inset_color: self.bg_color
     inset_color: app.focus_inset
     inset_color_focus: app.focus_inset
-    line_color_focus:
-        { \
-        "normal": app.focus, \
-        "disabled": app.button_disabled, \
-        "active": app.focus,\
-        }[self.cstate]
+    line_color_focus: app.focus
     line_color: self.bg_color
     font_size: plex_16
     spacing: dp(32)
@@ -74,8 +71,6 @@
 <CButtonGhost>:
     bg_color: app.transparent
     inset_width: 0
-    active_color: app.background_active
-    inset_color: app.transparent
     text_color: app.link_primary
     text_color_hover: app.link_primary_hover
     text_color_focus: app.link_primary_hover
@@ -86,10 +81,19 @@
     bg_color: app.transparent
     bg_color_focus: app.button_tertiary
     active_color: app.button_tertiary_active
-    hover_color: app.button_primary_hover
+    hover_color: app.button_tertiary_hover
     inset_color: app.transparent
     inset_color_focus: app.focus_inset
     text_color: app.link_primary
     text_color_hover: app.text_inverse
     text_color_focus: app.text_inverse
     line_color: app.focus
+
+
+<CButtonDanger>:
+    bg_color: app.button_danger_primary if self.variant == "Primary" else app.transparent
+    bg_color_focus: app.button_danger_primary
+    hover_color: app.button_danger_hover
+    active_color: app.button_danger_active
+    line_color: app.button_danger_secondary if self.variant == "Tertiary" else self.line_color
+    text_color: self.text_color if self.variant == "Primary" else app.button_danger_secondary
