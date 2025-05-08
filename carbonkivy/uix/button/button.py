@@ -90,6 +90,9 @@ class CBaseButton(
     def on_role(self, *args) -> None:
         self.height = get_button_size(self.role)
 
+    def on_text_color(self, instance: object, color: list | str) -> None:
+        self._text_color = color
+
     def on_icon_color(self, *args) -> None:
         try:
             self.ids.cbutton_layout_icon._color = self.icon_color
@@ -128,14 +131,6 @@ class CBaseButton(
         self.icon_color = self._text_color
         return super().on_hover(*args)
 
-    def on_focus(self, *args) -> None:
-        if self.focus:
-            self._text_color = self.text_color_focus
-        else:
-            self._text_color = self.text_color
-        self.icon_color = self._text_color
-        return super().on_focus(*args)
-
     def on_state(self, *args) -> None:
         if self.state == "down" and self.cstate != "disabled":
             self._bg_color = self.active_color
@@ -148,11 +143,26 @@ class CBaseButton(
 
 
 class CButton(BackgroundColorBehaviorRectangular, CBaseButton):
-    pass
+
+    def on_focus(self, *args) -> None:
+        super().on_focus(*args)
+        if self.focus:
+            self._text_color = self.text_color_focus
+        else:
+            self._text_color = self.text_color
+        self.icon_color = self._text_color 
 
 
 class CButtonCircular(BackgroundColorBehaviorCircular, CBaseButton):
-    pass
+
+    def on_focus(self, *args) -> None:
+        super().on_focus(*args)
+        if self.focus:
+            self._text_color = self.text_color_focus
+        else:
+            self._text_color = self.text_color
+        self.icon_color = self._text_color 
+
 
 
 class CButtonDanger(CButton):
