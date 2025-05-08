@@ -3,6 +3,7 @@ import os
 from kivy.lang import Builder
 
 from .button import (
+    CBaseButton,
     CButton,
     CButtonCircular,
     CButtonDanger,
