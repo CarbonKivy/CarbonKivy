@@ -9,6 +9,7 @@ __all__ = (
     "CButtonTertiary",
 )
 
+from kivy.clock import mainthread
 from kivy.properties import (
     StringProperty,
     NumericProperty,
@@ -24,17 +25,19 @@ from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
-    BackgroundColorBehaviorCircular,
     BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
+    StateFocusBehavior,
 )
 from carbonkivy.uix.icon import CIcon
 from carbonkivy.utils import get_button_size
 
 
-class CBaseButton(
+class CButton(
     AdaptiveBehavior,
+    BackgroundColorBehaviorRectangular,
+    StateFocusBehavior,
     ButtonBehavior,
     DeclarativeBehavior,
     HoverBehavior,
@@ -78,7 +81,7 @@ class CBaseButton(
     cbutton_layout = ObjectProperty()
 
     def __init__(self, **kwargs):
-        super(CBaseButton, self).__init__(**kwargs)
+        super(CButton, self).__init__(**kwargs)
         self.update_specs()
 
     def on_font_size(self, *args) -> None:
@@ -92,6 +95,7 @@ class CBaseButton(
 
     def on_text_color(self, instance: object, color: list | str) -> None:
         self._text_color = color
+        self.icon_color = color
 
     def on_icon_color(self, *args) -> None:
         try:
@@ -141,9 +145,6 @@ class CBaseButton(
                 else self.hover_color
             )
 
-
-class CButton(BackgroundColorBehaviorRectangular, CBaseButton):
-
     def on_focus(self, *args) -> None:
         super().on_focus(*args)
         if self.focus:
@@ -151,23 +152,16 @@ class CButton(BackgroundColorBehaviorRectangular, CBaseButton):
         else:
             self._text_color = self.text_color
         self.icon_color = self._text_color 
-
-
-class CButtonCircular(BackgroundColorBehaviorCircular, CBaseButton):
-
-    def on_focus(self, *args) -> None:
-        super().on_focus(*args)
-        if self.focus:
-            self._text_color = self.text_color_focus
-        else:
-            self._text_color = self.text_color
-        self.icon_color = self._text_color 
-
 
 
 class CButtonDanger(CButton):
 
     variant = OptionProperty("Primary", options=["Ghost", "Primary", "Tertiary"])
+
+    cstate = OptionProperty("normal", options=["normal"])
+
+    def __init__(self, **kwargs):
+        super(CButtonDanger, self).__init__(**kwargs)
 
     def on_focus(self, *args) -> None:
         if self.variant == "Tertiary":

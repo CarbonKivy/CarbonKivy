@@ -10,12 +10,14 @@ from carbonkivy.behaviors import (
     BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
+    StateFocusBehavior,
 )
 
 
 class FocusContainer(
     AdaptiveBehavior,
     BackgroundColorBehaviorRectangular,
+    StateFocusBehavior,
     BoxLayout,
     DeclarativeBehavior,
     HoverBehavior,

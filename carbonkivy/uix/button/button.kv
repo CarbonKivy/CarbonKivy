@@ -8,12 +8,6 @@
         "disabled": app.text_on_color_disabled, \
         "active": self.text_color_focus,\
         }[self.cstate]
-    _text_color:
-        { \
-        "normal": self.text_color, \
-        "disabled": self.text_color_disabled, \
-        "active": self.text_color_focus,\
-        }[self.cstate]
     text_color_hover: app.text_on_color
     text_color_focus: app.text_on_color
     text_color_disabled: app.text_on_color_disabled
@@ -25,6 +19,7 @@
         "active": self.active_color,\
         }[self.cstate]
     bg_color_focus: self.bg_color
+    bg_color_disabled: app.button_disabled
     hover_color: app.background_hover
     active_color: app.background_active
     _inset_color: self.bg_color
@@ -32,6 +27,7 @@
     inset_color_focus: app.focus_inset
     line_color_focus: app.focus
     line_color: self.bg_color
+    line_color_disabled: app.button_disabled
     font_size: plex_16
     spacing: dp(32)
     padding: [dp(16), 0, dp(64) if not self.icon else dp(16), 0]
@@ -70,6 +66,7 @@
 
 <CButtonGhost>:
     bg_color: app.transparent
+    bg_color_disabled: app.transparent
     inset_width: 0
     text_color: app.link_primary
     icon_color: app.link_primary
@@ -83,6 +80,7 @@
 <CButtonTertiary>:
     bg_color: app.transparent
     bg_color_focus: app.button_tertiary
+    bg_color_disabled: app.transparent
     active_color: app.button_tertiary_active
     hover_color: app.button_tertiary_hover
     inset_color: app.transparent
@@ -91,7 +89,12 @@
     icon_color: app.link_primary
     text_color_hover: app.text_inverse
     text_color_focus: app.text_inverse
-    line_color: app.focus
+    line_color:
+        { \
+        "normal": app.focus, \
+        "active": self.bg_color, \
+        "disabled": self.line_color_disabled, \
+        }[self.cstate]
 
 
 <CButtonDanger>:
