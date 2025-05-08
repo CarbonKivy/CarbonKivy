@@ -147,11 +147,11 @@ class CBaseButton(
             )
 
 
-class CButton(CBaseButton, BackgroundColorBehaviorRectangular):
+class CButton(BackgroundColorBehaviorRectangular, CBaseButton):
     pass
 
 
-class CButtonCircular(CBaseButton, BackgroundColorBehaviorCircular):
+class CButtonCircular(BackgroundColorBehaviorRectangular, CBaseButton):
     pass
 
 
