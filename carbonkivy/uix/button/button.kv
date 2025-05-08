@@ -4,16 +4,11 @@
     cbutton_layout: cbutton_box_layout
     _text_color:
         { \
-        "normal": self._text_color, \
+        "normal": self.text_color, \
         "disabled": self.text_color_disabled, \
         "active": self.text_color_focus,\
         }[self.cstate]
-    text_color:
-        { \
-        "normal": self.text_color, \
-        "disabled": app.text_on_color_disabled, \
-        "active": self.text_color_focus,\
-        }[self.cstate]
+    text_color: app.text_on_color
     text_color_hover: app.text_on_color
     text_color_focus: app.text_on_color
     text_color_disabled: app.text_on_color_disabled
