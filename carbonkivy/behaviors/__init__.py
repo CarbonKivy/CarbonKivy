@@ -6,3 +6,4 @@ from .background_color_behavior import (
 )
 from .declarative_behavior import DeclarativeBehavior
 from .hover_behavior import HoverBehavior
+from .state_focus_behavior import StateFocusBehavior
