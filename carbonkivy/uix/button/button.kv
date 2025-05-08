@@ -2,22 +2,22 @@
     focus_enabled: True
     size_hint: None, None
     cbutton_layout: cbutton_box_layout
-    _text_color:
-        { \
-        "normal": self._text_color, \
-        "disabled": self.text_color_disabled, \
-        "active": self.text_color_focus,\
-        }[self.cstate]
     text_color:
         { \
         "normal": self.text_color, \
         "disabled": app.text_on_color_disabled, \
         "active": self.text_color_focus,\
         }[self.cstate]
+    _text_color:
+        { \
+        "normal": self.text_color, \
+        "disabled": self.text_color_disabled, \
+        "active": self.text_color_focus,\
+        }[self.cstate]
     text_color_hover: app.text_on_color
     text_color_focus: app.text_on_color
     text_color_disabled: app.text_on_color_disabled
-    icon_color: self._text_color
+    icon_color: app.text_on_color
     bg_color:
         { \
         "normal": self.bg_color, \
@@ -72,6 +72,7 @@
     bg_color: app.transparent
     inset_width: 0
     text_color: app.link_primary
+    icon_color: app.link_primary
     text_color_hover: app.link_primary_hover
     text_color_focus: app.link_primary_hover
     inset_color: app.transparent
@@ -87,6 +88,7 @@
     inset_color: app.transparent
     inset_color_focus: app.focus_inset
     text_color: app.link_primary
+    icon_color: app.link_primary
     text_color_hover: app.text_inverse
     text_color_focus: app.text_inverse
     line_color: app.focus
