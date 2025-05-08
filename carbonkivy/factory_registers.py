@@ -19,6 +19,7 @@ Once registered, the components can be used without explicitly importing them el
 register("CodeSnippet", module="carbonkivy.uix.codesnippet")
 register("CAnchorLayout", module="carbonkivy.uix.anchorlayout")
 register("CBoxLayout", module="carbonkivy.uix.boxlayout")
+register("CBaseButton", module="carbonkivy.uix.button")
 register("CButton", module="carbonkivy.uix.button")
 register("CButtonCircular", module="carbonkivy.uix.button")
 register("CButtonDanger", module="carbonkivy.uix.button")
