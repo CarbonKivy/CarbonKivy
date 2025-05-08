@@ -78,7 +78,7 @@ class CBaseButton(
     cbutton_layout = ObjectProperty()
 
     def __init__(self, **kwargs):
-        super(CButton, self).__init__(**kwargs)
+        super(CBaseButton, self).__init__(**kwargs)
         self.update_specs()
 
     def on_font_size(self, *args) -> None:
