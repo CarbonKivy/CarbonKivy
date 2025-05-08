@@ -151,7 +151,7 @@ class CButton(BackgroundColorBehaviorRectangular, CBaseButton):
     pass
 
 
-class CButtonCircular(BackgroundColorBehaviorRectangular, CBaseButton):
+class CButtonCircular(BackgroundColorBehaviorCircular, CBaseButton):
     pass
 
 
