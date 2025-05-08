@@ -16,51 +16,61 @@ CScreen:
         text: "Primary Button"
         role: "Large Productive"
         icon: "add"
-        pos_hint: {'center_y': 0.8, 'center_x': 0.35}
+        pos_hint: {'center_y': 0.9, 'center_x': 0.35}
 
     CButtonPrimary:
         icon: "add"
         role: "2XL"
         spacing: 0
-        pos_hint: {'center_y': 0.8, 'center_x': 0.8}
+        pos_hint: {'center_y': 0.9, 'center_x': 0.8}
 
     CButtonSecondary:
         text: "Secondary Button"
         role: "Large Productive"
         icon: "add"
-        pos_hint: {'center_y': 0.6, 'center_x': 0.35}
+        pos_hint: {'center_y': 0.7, 'center_x': 0.35}
 
     CButtonSecondary:
         icon: "add"
         role: "2XL"
         spacing: 0
-        pos_hint: {'center_y': 0.6, 'center_x': 0.8}
+        pos_hint: {'center_y': 0.7, 'center_x': 0.8}
 
     CButtonTertiary:
         text: "Tertiary Button"
         role: "Large Productive"
         icon: "add"
-        pos_hint: {'center_y': 0.4, 'center_x': 0.35}
+        pos_hint: {'center_y': 0.5, 'center_x': 0.35}
 
     CButtonTertiary:
         icon: "add"
         role: "2XL"
         spacing: 0
-        pos_hint: {'center_y': 0.4, 'center_x': 0.8}
+        pos_hint: {'center_y': 0.5, 'center_x': 0.8}
 
     CButtonGhost:
         text: "Ghost Button"
         role: "Large Productive"
-        pos_hint: {'center_y': 0.2,  'center_x': 0.35}
-        on_press:
-            self.icon = "add"
+        icon: "add"
+        pos_hint: {'center_y': 0.3,  'center_x': 0.35}
 
     CButtonGhost:
         icon: "add"
         role: "2XL"
         spacing: 0
-        pos_hint: {'center_y': 0.2, 'center_x': 0.8}
+        pos_hint: {'center_y': 0.3, 'center_x': 0.8}
 
+    CButtonDanger:
+        text: "Danger Button"
+        role: "Large Productive"
+        icon: "add"
+        pos_hint: {'center_y': 0.1,  'center_x': 0.35}
+
+    CButtonDanger:
+        icon: "add"
+        role: "2XL"
+        spacing: 0
+        pos_hint: {'center_y': 0.1, 'center_x': 0.8}
 """
 
 from kivy.lang import Builder
