@@ -5,6 +5,7 @@ from kivy.lang import Builder
 from .textinput import (
     CTextInput,
     CTextInputLabel,
+    CTextInputLayout,
     CTextInputHelperText,
     CTextInputTrailingIconButton,
 )

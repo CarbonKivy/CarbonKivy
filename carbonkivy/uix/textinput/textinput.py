@@ -3,30 +3,53 @@ from __future__ import annotations
 __all__ = (
     "CTextInput",
     "CTextInputLabel",
+    "CTextInputLayout",
     "CTextInputHelperText",
     "CTextInputTrailingIconButton",
 )
 
-from kivy.metrics import dp
-from kivy.properties import BooleanProperty, NumericProperty, StringProperty
+from kivy.clock import mainthread
+from kivy.logger import Logger
+from kivy.properties import ObjectProperty
 from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.textinput import TextInput
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
     BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
+    StateFocusBehavior,
 )
 from carbonkivy.uix.label import CLabel
 from carbonkivy.uix.button import CButtonGhost
+
+
+class CTextInputHelperText(CLabel):
+    pass
 
 
 class CTextInputLabel(CLabel):
     pass
 
 
-class CTextInputHelperText(CLabel):
-    pass
+class CTextInputLayout(AdaptiveBehavior, BackgroundColorBehaviorRectangular, StateFocusBehavior, RelativeLayout, DeclarativeBehavior, HoverBehavior):
+
+    ctextinput_area = ObjectProperty(None, allownone=True)
+
+    def __init__(self, **kwargs) -> None:
+        super(CTextInputLayout, self).__init__(**kwargs)
+
+    def on_kv_post(self, *args):
+        self.update_specs()
+        return super().on_kv_post(*args)
+
+    @mainthread
+    def update_specs(self, *args) -> None:
+        if self.ctextinput_area != None:
+            self.height = self.ctextinput_area.height
+        else:
+            Logger.warning("CTextInputLayout must contain a CTextInput widget.")
 
 
 class CTextInputTrailingIconButton(CButtonGhost):
@@ -35,40 +58,19 @@ class CTextInputTrailingIconButton(CButtonGhost):
 
 class CTextInput(
     AdaptiveBehavior,
-    BackgroundColorBehaviorRectangular,
-    RelativeLayout,
+    TextInput,
     DeclarativeBehavior,
-    HoverBehavior,
 ):
 
-    password = BooleanProperty(False)
-
-    readonly = BooleanProperty(False)
-
-    focus = BooleanProperty(False)
-
-    font_size = NumericProperty(dp(14))
-
-    text = StringProperty()
-
-    hint_text = StringProperty()
-
-    password_mask = StringProperty("\u2022")
-
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CTextInput, self).__init__(**kwargs)
 
-    def on_touch_down(self, touch) -> bool | None:
-        super().on_touch_down(touch)
-        self.focus = self.collide_point(*touch.pos)
-        if not self.focus:
-            return super().on_touch_down(touch)
-
-    def on_focus(self, *args) -> None:
-        if self.focus:
-            self._line_color = self.line_color
+    def on_parent(self, *args) -> None:
+        if isinstance(self.parent, CTextInputLayout):
+            self.parent.ctextinput_area = self
+            self.bind(height=self.parent.update_specs)
         else:
-            self._line_color = self.bg_color
+            Logger.warning("CTextInput must be contained inside CTextInputLayout.")
 
     def on_password(self, *args) -> None:
-        self.ids.ctextinput_area.cursor = (0, 0)
+        self.cursor = (0, 0)
