@@ -9,7 +9,6 @@ __all__ = (
     "CButtonTertiary",
 )
 
-from kivy.clock import mainthread
 from kivy.properties import (
     StringProperty,
     NumericProperty,
@@ -80,7 +79,7 @@ class CButton(
 
     cbutton_layout = ObjectProperty()
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CButton, self).__init__(**kwargs)
         self.update_specs()
 
@@ -151,7 +150,7 @@ class CButton(
             self._text_color = self.text_color_focus
         else:
             self._text_color = self.text_color
-        self.icon_color = self._text_color 
+        self.icon_color = self._text_color
 
 
 class CButtonDanger(CButton):
@@ -160,7 +159,7 @@ class CButtonDanger(CButton):
 
     cstate = OptionProperty("normal", options=["normal"])
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CButtonDanger, self).__init__(**kwargs)
 
     def on_focus(self, *args) -> None:
@@ -183,7 +182,7 @@ class CButtonGhost(CButton):
 
 class CButtonTertiary(CButton):
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CButtonTertiary, self).__init__(**kwargs)
 
     def on_focus(self, *args) -> None:
