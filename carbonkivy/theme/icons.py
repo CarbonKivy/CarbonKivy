@@ -148,6 +148,7 @@ ibm_icons = {
     "binding--02": "\ue992",
     "binoculars": "\ue993",
     "bland-altman-plot": "\ue994",
+    "blank": " ",
     "blockchain": "\ue995",
     "block-storage": "\ue996",
     "block-storage--alt": "\ue997",
