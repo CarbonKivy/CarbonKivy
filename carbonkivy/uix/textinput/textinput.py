@@ -33,7 +33,14 @@ class CTextInputLabel(CLabel):
     pass
 
 
-class CTextInputLayout(AdaptiveBehavior, BackgroundColorBehaviorRectangular, StateFocusBehavior, RelativeLayout, DeclarativeBehavior, HoverBehavior):
+class CTextInputLayout(
+    AdaptiveBehavior,
+    BackgroundColorBehaviorRectangular,
+    StateFocusBehavior,
+    RelativeLayout,
+    DeclarativeBehavior,
+    HoverBehavior,
+):
 
     ctextinput_area = ObjectProperty(None, allownone=True)
 

@@ -7,6 +7,7 @@ from kivy.properties import BooleanProperty
 
 from carbonkivy.behaviors import BackgroundColorBehavior
 
+
 class StateFocusBehavior(Widget):
 
     focus = BooleanProperty(False)
