@@ -33,19 +33,21 @@
         spacing: dp(64)
         adaptive: [False, True]
 
-        CTextInput:
-            hint_text: "Enter your username"
-
+        CTextInputLayout:
+            CTextInput:
+                hint_text: "Enter your username"
             CTextInputLabel:
                 text: "Username"
             CTextInputHelperText:
                 text: "Maximum 10 characters"
 
-        CTextInput:
-            id: pwd_input
-            hint_text: "Enter your password"
-            password: True
+        
+        CTextInputLayout:
 
+            CTextInput:
+                id: pwd_input
+                hint_text: "Enter your password"
+                password: True
             CTextInputLabel:
                 text: "Password"
             CTextInputHelperText:
@@ -56,7 +58,7 @@
                     pwd_input.password = (not pwd_input.password)
 
     CBoxLayout:
-        spacing: dp(8)
+        spacing: dp(3)
         adaptive: [False, True]
 
         CButtonPrimary:

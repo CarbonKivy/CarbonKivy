@@ -16,8 +16,10 @@ CScreen:
         size_hint: 1, 1
         padding: [dp(16), dp(16), dp(16), dp(16)]
 
-        CTextInput:
+        CTextInputLayout:
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+            CTextInput:
 
             CTextInputLabel:
                 text: "Label"
