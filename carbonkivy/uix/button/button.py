@@ -145,12 +145,12 @@ class CButton(
             )
 
     def on_focus(self, *args) -> None:
-        super().on_focus(*args)
         if self.focus:
             self._text_color = self.text_color_focus
         else:
             self._text_color = self.text_color
         self.icon_color = self._text_color
+        return super().on_focus(*args)
 
 
 class CButtonDanger(CButton):

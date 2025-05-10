@@ -2,6 +2,7 @@ from __future__ import annotations
 
 __all__ = ("StateFocusBehavior",)
 
+from kivy.core.window import Window
 from kivy.uix.widget import Widget
 from kivy.properties import BooleanProperty
 
@@ -14,11 +15,24 @@ class StateFocusBehavior(Widget):
 
     focus_enabled = BooleanProperty(True)
 
-    def on_touch_down(self, touch) -> bool:
-        super().on_touch_down(touch)
-        if self.cstate != "disabled" and self.focus_enabled:
-            self.focus = self.collide_point(*touch.pos)
-        return super().on_touch_down(touch)
+    def __init__(self, **kwargs) -> None:
+        super(StateFocusBehavior, self).__init__(**kwargs)
+        self.on_focus_enabled()
+
+    def on_focus_enabled(self, *args) -> None:
+        if self.focus_enabled:
+            Window.bind(on_touch_down=self.on_touch)
+        else:
+            Window.unbind(on_touch_down=self.on_touch)
+
+    def on_touch(self, instance: object, touch: list[float, float], *args) -> None:
+        if issubclass(self.__class__, BackgroundColorBehavior):
+            if self.cstate != "disabled":
+                self.focus = self.collide_point(*self.to_parent(*self.to_widget(*touch.pos)))
+            else:
+                return
+        else:
+            self.focus = self.collide_point(*self.to_parent(*self.to_widget(*touch.pos)))
 
     def on_focus(self, *args) -> None:
         if issubclass(self.__class__, BackgroundColorBehavior):
