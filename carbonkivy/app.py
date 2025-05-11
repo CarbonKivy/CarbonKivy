@@ -1,8 +1,8 @@
 import os
 
 from kivy.app import App
-from kivy.logger import Logger
 from kivy.lang import Builder
+from kivy.logger import Logger
 
 from carbonkivy.theme.theme import CarbonTheme
 from carbonkivy.utils import update_system_ui

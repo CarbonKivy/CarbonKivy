@@ -1,7 +1,7 @@
 import os
 
-from kivy.factory import Factory
 from kivy.core.text import LabelBase
+from kivy.factory import Factory
 
 from carbonkivy.config import DATA
 
@@ -17,6 +17,8 @@ Once registered, the components can be used without explicitly importing them el
 
 # Register the component with Kivy's Factory
 register("CodeSnippet", module="carbonkivy.uix.codesnippet")
+register("CodeSnippetCopyButton", module="carbonkivy.uix.codesnippet")
+register("CodeSnippetLayout", module="carbonkivy.uix.codesnippet")
 register("CAnchorLayout", module="carbonkivy.uix.anchorlayout")
 register("CBoxLayout", module="carbonkivy.uix.boxlayout")
 register("CBaseButton", module="carbonkivy.uix.button")

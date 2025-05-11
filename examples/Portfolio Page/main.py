@@ -1,5 +1,5 @@
-from kivy.core.window import Window
 from kivy.clock import Clock
+from kivy.core.window import Window
 
 
 def set_softinput(*args) -> None:

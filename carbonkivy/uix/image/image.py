@@ -7,9 +7,7 @@ from kivy.core.window import Window
 from kivy.properties import ListProperty, NumericProperty
 from kivy.uix.image import AsyncImage
 
-from carbonkivy.behaviors import (
-    DeclarativeBehavior,
-)
+from carbonkivy.behaviors import DeclarativeBehavior
 
 
 class CImage(AsyncImage, DeclarativeBehavior):

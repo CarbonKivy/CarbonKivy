@@ -3,6 +3,7 @@ from __future__ import annotations
 __all__ = ("BackgroundColorBehavior",)
 
 from kivy.lang import Builder
+from kivy.metrics import dp
 from kivy.properties import (
     BooleanProperty,
     ColorProperty,
@@ -13,7 +14,6 @@ from kivy.properties import (
     StringProperty,
     VariableListProperty,
 )
-from kivy.metrics import dp
 
 Builder.load_string(
     """

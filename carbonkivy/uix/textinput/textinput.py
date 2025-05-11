@@ -21,8 +21,8 @@ from carbonkivy.behaviors import (
     HoverBehavior,
     StateFocusBehavior,
 )
-from carbonkivy.uix.label import CLabel
 from carbonkivy.uix.button import CButtonGhost
+from carbonkivy.uix.label import CLabel
 
 
 class CTextInputHelperText(CLabel):
@@ -56,7 +56,7 @@ class CTextInputLayout(
         if self.ctextinput_area != None:
             self.height = self.ctextinput_area.height
         else:
-            Logger.warning("CTextInputLayout must contain a CTextInput widget.")
+            Logger.error("CTextInputLayout must contain a single CTextInput widget.")
 
 
 class CTextInputTrailingIconButton(CButtonGhost):
@@ -77,7 +77,7 @@ class CTextInput(
             self.parent.ctextinput_area = self
             self.bind(height=self.parent.update_specs)
         else:
-            Logger.warning("CTextInput must be contained inside CTextInputLayout.")
+            Logger.error("CTextInput must be contained inside CTextInputLayout.")
 
     def on_password(self, *args) -> None:
         self.cursor = (0, 0)

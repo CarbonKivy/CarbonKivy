@@ -6,13 +6,13 @@ import webbrowser
 
 from kivy.app import App
 from kivy.clock import Clock
-from kivy.uix.behaviors import ButtonBehavior
 from kivy.properties import (
     BooleanProperty,
     ColorProperty,
     OptionProperty,
     StringProperty,
 )
+from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.label import Label
 
 from carbonkivy.behaviors import (
@@ -21,7 +21,6 @@ from carbonkivy.behaviors import (
     HoverBehavior,
 )
 from carbonkivy.theme.icons import ibm_icons
-
 
 APP = App.get_running_app()
 

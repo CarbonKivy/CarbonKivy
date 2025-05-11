@@ -4,10 +4,7 @@ __all__ = ("CScreen",)
 
 from kivy.uix.screenmanager import Screen
 
-from carbonkivy.behaviors import (
-    BackgroundColorBehaviorRectangular,
-    DeclarativeBehavior,
-)
+from carbonkivy.behaviors import BackgroundColorBehaviorRectangular, DeclarativeBehavior
 
 
 class CScreen(BackgroundColorBehaviorRectangular, Screen, DeclarativeBehavior):

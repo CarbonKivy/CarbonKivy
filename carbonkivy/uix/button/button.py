@@ -9,16 +9,16 @@ __all__ = (
     "CButtonTertiary",
 )
 
-from kivy.properties import (
-    StringProperty,
-    NumericProperty,
-    OptionProperty,
-    ColorProperty,
-    BooleanProperty,
-    VariableListProperty,
-    ObjectProperty,
-)
 from kivy.metrics import sp
+from kivy.properties import (
+    BooleanProperty,
+    ColorProperty,
+    NumericProperty,
+    ObjectProperty,
+    OptionProperty,
+    StringProperty,
+    VariableListProperty,
+)
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.relativelayout import RelativeLayout
 

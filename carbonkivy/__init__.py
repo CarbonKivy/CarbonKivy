@@ -4,7 +4,6 @@ __version__ = "0.0.3.dev"
 from kivy.logger import Logger
 
 import carbonkivy.factory_registers
-
 from carbonkivy.config import ROOT
 
 Logger.info(f"{__app_name__}: {__version__}")

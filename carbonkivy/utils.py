@@ -3,14 +3,14 @@ from typing import Literal
 
 from kivy.core.window import Window
 from kivy.metrics import dp
-from kivy.utils import platform, get_hex_from_color
+from kivy.utils import get_hex_from_color, platform
 
+from carbonkivy.config import IBMPlex
 from carbonkivy.theme.size_tokens import (
+    button_size_tokens,
     font_style_tokens,
     spacing_tokens,
-    button_size_tokens,
 )
-from carbonkivy.config import IBMPlex
 
 
 def get_font_name(typeface: str, weight_style: str) -> str:

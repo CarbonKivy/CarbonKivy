@@ -2,6 +2,8 @@ import os
 
 from kivy.lang import Builder
 
+from carbonkivy.config import UIX
+
 from .button import (
     CButton,
     CButtonDanger,
@@ -10,6 +12,5 @@ from .button import (
     CButtonSecondary,
     CButtonTertiary,
 )
-from carbonkivy.config import UIX
 
 Builder.load_file(os.path.join(UIX, "button", "button.kv"))

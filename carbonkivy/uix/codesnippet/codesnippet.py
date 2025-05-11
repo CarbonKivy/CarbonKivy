@@ -1,78 +1,27 @@
 from __future__ import annotations
 
-__all__ = ("CodeSnippet",)
+__all__ = ("CodeSnippetLayout", "CodeSnippet", "CodeSnippetCopyButton")
 
-from pygments import styles
-from pygments import lexers
-
-from kivy.clock import Clock
+from kivy.clock import Clock, mainthread
 from kivy.core.clipboard import Clipboard
-from kivy.properties import (
-    ColorProperty,
-    NumericProperty,
-    ObjectProperty,
-    OptionProperty,
-    StringProperty,
-)
-from kivy.metrics import sp
-from kivy.uix.relativelayout import RelativeLayout
-
+from kivy.logger import Logger
+from kivy.properties import ObjectProperty
 from kivy.uix.codeinput import CodeInput
+from kivy.uix.relativelayout import RelativeLayout
+from pygments import lexers
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
     BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
     HoverBehavior,
+    StateFocusBehavior,
 )
+from carbonkivy.uix.button import CButtonGhost
 from carbonkivy.utils import get_font_name, get_font_style
 
 
-class CodeSnippetInput(CodeInput):
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-    def on_style_name(self, *args) -> None:
-        super().on_style_name(*args)
-        self.background_color = [1, 1, 1, 0]
-        self.font_name = get_font_name("IBM Plex Mono", "SemiBold")
-        self.line_height = get_font_style("code_02")["line_height"]
-
-
-class CodeSnippet(
-    AdaptiveBehavior,
-    BackgroundColorBehaviorRectangular,
-    DeclarativeBehavior,
-    RelativeLayout,
-):
-    """
-    CodeSnippet class.
-
-    For more information, see in the
-    :class:`~carbonkivy.behaviors.declarative_behavior.DeclarativeBehavior`,
-    :class:`~carbonkivy.behaviors.adaptive_behavior.AdaptiveBehavior`,
-    :class:`~carbonkivy.behaviors.background_color_behavior.BackgroundColorBehavior`,
-    :class:`~kivy.uix.relativelayout.RelativeLayout` and
-    :class:`~kivy.uix.codeinput.CodeInput`
-    classes documentation.
-    """
-
-    text = StringProperty()
-    """
-    Text of the CodeSnippet.
-
-    :attr:`text` is an :class:`~kivy.properties.StringProperty`
-    and defaults to `''`.
-    """
-
-    font_size = NumericProperty(sp(16))
-    """
-    Font size of the text of the CodeSnippet.
-
-    :attr:`font_size` is an :class:`~kivy.properties.NumericProperty`
-    and defaults to `''`.
-    """
+class CodeSnippet(AdaptiveBehavior, CodeInput, DeclarativeBehavior):
 
     lexer = ObjectProperty(lexers.Python3Lexer())
     """
@@ -83,81 +32,61 @@ class CodeSnippet(
     defaults to `PythonLexer`.
     """
 
-    style_name = OptionProperty("colorful", options=list(styles.get_all_styles()))
+    def __init__(self, **kwargs) -> None:
+        super(CodeSnippet, self).__init__(**kwargs)
+
+    def on_parent(self, *args) -> None:
+        if isinstance(self.parent, CodeSnippetLayout):
+            self.parent.codesnippet_area = self
+            self.bind(height=self.parent.update_specs)
+        else:
+            Logger.error("CodeSnippet must be contained inside CodeSnippetLayout.")
+
+    def on_style(self, *args) -> None:
+        super().on_style(*args)
+        def set_color(*args):
+            self.background_color = [1, 1, 1, 0]
+
+        Clock.schedule_once(set_color, 0.5)
+
+    def on_style_name(self, *args) -> None:
+        super().on_style_name(*args)
+        self.background_color = [1, 1, 1, 0]
+        self.font_name = get_font_name("IBM Plex Mono", "SemiBold")
+        self.line_height = get_font_style("code_02")["line_height"]
+
+
+class CodeSnippetLayout(
+    AdaptiveBehavior,
+    BackgroundColorBehaviorRectangular,
+    StateFocusBehavior,
+    DeclarativeBehavior,
+    HoverBehavior,
+    RelativeLayout,
+):
     """
-    Name of the pygments style to use for formatting.
+    CodeSnippetLayout class.
 
-    :attr:`style_name` is an :class:`~kivy.properties.OptionProperty`
-    and defaults to ``'default'``.
-    """
-
-    style = ObjectProperty(None)
-    """
-    The pygments style object to use for formatting.
-
-    When ``style_name`` is set, this will be changed to the
-    corresponding style object.
-
-    :attr:`style` is a :class:`~kivy.properties.ObjectProperty` and
-    defaults to ``None``
-    """
-
-    icon_color = ColorProperty()
-    """
-    Color of the copy button icon to use.
-
-    :attr:`icon_color` is an :class:`~kivy.properties.ColorProperty`
-    and defaults to ``None``.
-    """
-
-    icon_color_hover = ColorProperty()
-    """
-    Hover state color of the copy button icon to use.
-
-    :attr:`icon_color_hover` is an :class:`~kivy.properties.ColorProperty`
-    and defaults to `[1, 1, 1, 0]`.
-    """
-
-    icon_color_active = ColorProperty()
-    """
-    Active state color of the copy button icon to use.
-
-    :attr:`icon_color_active` is an :class:`~kivy.properties.ColorProperty`
-    and defaults to `[1, 1, 1, 0]`.
-    """
-
-    icon_bg_color = ColorProperty([1, 1, 1, 0])
-    """
-    Background Color of the copy button to use.
-
-    :attr:`icon_bg_color` is an :class:`~kivy.properties.ColorProperty`
-    and defaults to ``[1, 1, 1, 0]``.
+    For more information, see in the
+    :class:`~carbonkivy.behaviors.adaptive_behavior.AdaptiveBehavior`,
+    :class:`~carbonkivy.behaviors.background_color_behavior.BackgroundColorBehaviorRectangular`,
+    :class:`~carbonkivy.behaviors.declarative_behavior.DeclarativeBehavior`,
+    :class:`~carbonkivy.behaviors.hover_behavior.HoverBehavior`,
+    :class:`~kivy.uix.relativelayout.RelativeLayout` and
+    :class:`~carbonkivy.behaviors.state_focus_behavior.StateFocusBehavior`
+    classes documentation.
     """
 
-    icon_bg_color_active = ColorProperty(None, allownone=True)
-    """
-    Active Background Color of the copy button to use.
+    codesnippet_area = ObjectProperty()
 
-    :attr:`icon_bg_color_active` is an :class:`~kivy.properties.ColorProperty`
-    and defaults to ``None``.
-    """
-
-    _icon_bg_color_active = ColorProperty()
-
-    def __init__(self, *args, **kwargs):
-        super(CodeSnippet, self).__init__(*args, **kwargs)
+    def __init__(self, **kwargs) -> None:
+        super(CodeSnippetLayout, self).__init__(**kwargs)
         Clock.schedule_once(self.set_colors, 1)
 
     def set_colors(self, *args) -> None:
         self._bg_color = self.bg_color
         self._line_color = self.line_color
         self._inset_color = self.inset_color
-
-    def on_style(self, *args) -> None:
-        def set_color(*args):
-            self.ids.codesnippet_input.background_color = [1, 1, 1, 0]
-
-        Clock.schedule_once(set_color, 2)
 
     def on_copy(self, text: str = "", *args) -> None:
         """
@@ -169,7 +98,23 @@ class CodeSnippet(
         """
 
         def select(*args) -> None:
-            self.ids.codesnippet_input.select_all()
+            self.codesnippet_area.select_all()
+            Clock.schedule_once(lambda x: self.codesnippet_area.cancel_selection(), 2)
 
         Clock.schedule_once(select, 0.5)
         Clipboard.copy(text)
+
+    def on_kv_post(self, *args):
+        self.update_specs()
+        return super().on_kv_post(*args)
+
+    @mainthread
+    def update_specs(self, *args) -> None:
+        if self.codesnippet_area != None:
+            self.height = self.codesnippet_area.height
+        else:
+            Logger.error("CodeSnippetLayout must contain a single CodeSnippet widget.")
+
+
+class CodeSnippetCopyButton(CButtonGhost):
+    pass
