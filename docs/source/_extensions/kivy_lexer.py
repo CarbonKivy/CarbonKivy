@@ -1,5 +1,5 @@
 from pygments.lexer import RegexLexer, bygroups
-from pygments.token import Text, Comment, Keyword, Name, String, Number
+from pygments.token import Comment, Keyword, Name, Number, String, Text
 
 
 class KivyLexer(RegexLexer):

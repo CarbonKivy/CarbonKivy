@@ -1,5 +1,5 @@
-from kivy.core.window import Window
 from kivy.clock import Clock
+from kivy.core.window import Window
 
 
 def set_softinput(*args) -> None:
@@ -46,9 +46,10 @@ CScreen:
 
 from kivy.lang import Builder
 from kivy.uix.recycleview import RecycleView
+
 from carbonkivy.app import CarbonApp
-from carbonkivy.uix.screen import CScreen
 from carbonkivy.theme.icons import ibm_icons
+from carbonkivy.uix.screen import CScreen
 
 
 class IconView(RecycleView):

@@ -3,8 +3,8 @@ from __future__ import annotations
 __all__ = ("StateFocusBehavior",)
 
 from kivy.core.window import Window
-from kivy.uix.widget import Widget
 from kivy.properties import BooleanProperty
+from kivy.uix.widget import Widget
 
 from carbonkivy.behaviors import BackgroundColorBehavior
 
@@ -28,11 +28,15 @@ class StateFocusBehavior(Widget):
     def on_touch(self, instance: object, touch: list[float, float], *args) -> None:
         if issubclass(self.__class__, BackgroundColorBehavior):
             if self.cstate != "disabled":
-                self.focus = self.collide_point(*self.to_parent(*self.to_widget(*touch.pos)))
+                self.focus = self.collide_point(
+                    *self.to_parent(*self.to_widget(*touch.pos))
+                )
             else:
                 return
         else:
-            self.focus = self.collide_point(*self.to_parent(*self.to_widget(*touch.pos)))
+            self.focus = self.collide_point(
+                *self.to_parent(*self.to_widget(*touch.pos))
+            )
 
     def on_focus(self, *args) -> None:
         if issubclass(self.__class__, BackgroundColorBehavior):

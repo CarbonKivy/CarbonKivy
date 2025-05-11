@@ -7,9 +7,9 @@ from kivy.properties import NumericProperty, OptionProperty
 from kivy.uix.label import Label
 
 from carbonkivy.behaviors import (
-    AdaptiveBehavior,
+    AdaptiveBehavior,  # SelectionBehavior
     BackgroundColorBehaviorRectangular,
-)  # SelectionBehavior
+)
 from carbonkivy.theme.size_tokens import font_style_tokens
 from carbonkivy.utils import get_font_name
 

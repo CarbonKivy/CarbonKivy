@@ -3,17 +3,16 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-import os, sys
+import os
+import sys
 
 # Don't allow Kivy to handle args
 os.environ["KIVY_NO_ARGS"] = "1"
 
-from sphinxawesome_theme.postprocess import Icons
-
 from sphinx.application import Sphinx
-from sphinx.util.docfields import Field
 from sphinx.highlighting import lexers
-
+from sphinx.util.docfields import Field
+from sphinxawesome_theme.postprocess import Icons
 
 os.environ["READTHEDOCS"] = "true"
 
@@ -21,6 +20,7 @@ sys.path.append(os.path.abspath("."))
 sys.path.append(os.path.abspath("../../."))
 
 from _extensions.kivy_lexer import KivyLexer
+
 from carbonkivy import __version__
 
 # Register the lexer with Sphinx

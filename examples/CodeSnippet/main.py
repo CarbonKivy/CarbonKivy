@@ -4,7 +4,6 @@ from kivy.lang import Builder
 from carbonkivy.app import CarbonApp
 from carbonkivy.uix.screen import CScreen
 
-
 appkv = """
 CScreen:
     CStackLayout:
@@ -15,16 +14,12 @@ CScreen:
             adaptive: [False, True]
             padding: [dp(20), dp(20), dp(20), dp(20)]
 
-            CodeSnippet:
-                size_hint: 1, None
-                text: "import os"
-                # style_name: "monokai" # pygments builtin styles
-                # bg_color: app.background_inverse
-                # icon_color:
-                # icon_color_hover:
-                # icon_color_active
-                # icon_bg_color:
-                # icon_bg_color_active:
+            CodeSnippetLayout:
+
+                CodeSnippet:
+                    text: "import os"
+
+                CodeSnippetCopyButton:
 """
 
 

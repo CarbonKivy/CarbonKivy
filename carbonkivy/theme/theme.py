@@ -1,15 +1,14 @@
 import os
 
 from kivy.core.window import Window
-from kivy.lang import Builder
-from kivy.utils import colormap, get_color_from_hex
 from kivy.event import EventDispatcher
-from kivy.properties import OptionProperty, ListProperty
+from kivy.lang import Builder
+from kivy.properties import ListProperty, OptionProperty
+from kivy.utils import colormap, get_color_from_hex
 
 from carbonkivy.config import THEME
-from carbonkivy.theme.color_tokens import thematic_tokens, static_tokens
-from carbonkivy.theme.colors import ThematicColors, StaticColors
-
+from carbonkivy.theme.color_tokens import static_tokens, thematic_tokens
+from carbonkivy.theme.colors import StaticColors, ThematicColors
 
 Builder.load_file(os.path.join(THEME, "theme.kv"))
 

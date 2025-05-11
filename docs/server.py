@@ -1,8 +1,8 @@
 import os
-
-from flask import Flask, send_from_directory, Response
 import threading
-from file_watcher import start_file_watcher, file_change_event
+
+from file_watcher import file_change_event, start_file_watcher
+from flask import Flask, Response, send_from_directory
 from utils import get_ip_address
 
 app = Flask(__name__)

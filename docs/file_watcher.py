@@ -1,6 +1,7 @@
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 import threading
+
+from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
 
 # Global event to signal file change
 file_change_event = threading.Event()
