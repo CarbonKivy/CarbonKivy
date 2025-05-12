@@ -16,8 +16,8 @@ class StateFocusBehavior(Widget):
     focus_enabled = BooleanProperty(True)
 
     def __init__(self, **kwargs) -> None:
-        super(StateFocusBehavior, self).__init__(**kwargs)
         self.on_focus_enabled()
+        super(StateFocusBehavior, self).__init__(**kwargs)
 
     def on_focus_enabled(self, *args) -> None:
         if self.focus_enabled:
