@@ -20,8 +20,7 @@ class HoverBehavior:
     hover_color = ColorProperty([1, 1, 1, 0])
 
     def __init__(self, **kwargs):
-        if DEVICE_TYPE != "mobile":
-            Window.bind(mouse_pos=self.element_hover)
+        self.on_hover_enabled()
         super().__init__(**kwargs)
 
     def element_hover(self, instance: object, pos: list, *args) -> None:
@@ -33,6 +32,14 @@ class HoverBehavior:
                     else self.to_parent(*self.to_widget(*pos))
                 )
             )
+
+    def on_hover_enabled(self, *args) -> None:
+        if DEVICE_TYPE != "mobile":
+            if self.hover_enabled:
+                Window.bind(mouse_pos=self.element_hover)
+            else:
+                Window.unbind(mouse_pos=self.element_hover)
+                
 
     def on_hover(self, *args) -> None:
         if isinstance(self, BackgroundColorBehavior):
