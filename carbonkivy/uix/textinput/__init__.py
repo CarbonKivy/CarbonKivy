@@ -12,4 +12,6 @@ from .textinput import (
     CTextInputTrailingIconButton,
 )
 
-Builder.load_file(os.path.join(UIX, "textinput", "textinput.kv"))
+filename = os.path.join(UIX, "textinput", "textinput.kv")
+if not filename in Builder.files:
+    Builder.load_file(filename)

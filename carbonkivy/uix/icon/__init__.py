@@ -6,4 +6,6 @@ from carbonkivy.config import UIX
 
 from .icon import CBaseIcon, CIcon, CIconCircular
 
-Builder.load_file(os.path.join(UIX, "icon", "icon.kv"))
+filename = os.path.join(UIX, "icon", "icon.kv")
+if not filename in Builder.files:
+    Builder.load_file(filename)
