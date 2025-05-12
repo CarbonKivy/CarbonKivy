@@ -6,4 +6,6 @@ from carbonkivy.config import UIX
 
 from .codesnippet import CodeSnippet, CodeSnippetCopyButton, CodeSnippetLayout
 
-Builder.load_file(os.path.join(UIX, "codesnippet", "codesnippet.kv"))
+filename = os.path.join(UIX, "codesnippet", "codesnippet.kv")
+if not filename in Builder.files:
+    Builder.load_file(filename)

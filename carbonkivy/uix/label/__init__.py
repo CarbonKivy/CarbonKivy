@@ -6,4 +6,6 @@ from carbonkivy.config import UIX
 
 from .label import CLabel
 
-Builder.load_file(os.path.join(UIX, "label", "label.kv"))
+filename = os.path.join(UIX, "label", "label.kv")
+if not filename in Builder.files:
+    Builder.load_file(filename)
