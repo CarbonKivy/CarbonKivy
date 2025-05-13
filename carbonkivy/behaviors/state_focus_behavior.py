@@ -2,8 +2,6 @@ from __future__ import annotations
 
 __all__ = ("StateFocusBehavior",)
 
-import asyncio
-
 from kivy.core.window import Window
 from kivy.properties import BooleanProperty
 from kivy.uix.widget import Widget
@@ -23,11 +21,11 @@ class StateFocusBehavior:
 
     def on_focus_enabled(self, *args) -> None:
         if self.focus_enabled:
-            Window.bind(on_touch_down=lambda x, y: asyncio.run(self.on_touch(x, y)))
+            Window.bind(on_touch_down=self.on_touch)
         else:
-            Window.unbind(on_touch_down=lambda x, y: asyncio.run(self.on_touch(x, y)))
+            Window.unbind(on_touch_down=self.on_touch)
 
-    async def on_touch(self, instance: object, touch: list[float, float], *args) -> None:
+    def on_touch(self, instance: object, touch: list[float, float], *args) -> None:
         if issubclass(self.__class__, BackgroundColorBehavior):
             if self.cstate != "disabled":
                 self.focus = self.collide_point(
