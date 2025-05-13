@@ -2,7 +2,7 @@ from __future__ import annotations
 
 __all__ = ("HierarchicalLayerBehavior",)
 
-import asyncio
+import asyncgui
 
 from kivy.properties import OptionProperty
 
@@ -14,7 +14,7 @@ class HierarchicalLayerBehavior:
         super(HierarchicalLayerBehavior, self).__init__()
 
     def on_parent(self, *args) -> None:
-        asyncio.run(self.set_layer_code())
+        asyncgui.start(self.set_layer_code())
 
     async def set_layer_code(self, *args) -> None:
         if isinstance(self.parent, HierarchicalLayerBehavior):
