@@ -13,4 +13,6 @@ from .button import (
     CButtonTertiary,
 )
 
-Builder.load_file(os.path.join(UIX, "button", "button.kv"))
+filename = os.path.join(UIX, "button", "button.kv")
+if not filename in Builder.files:
+    Builder.load_file(filename)

@@ -6,4 +6,6 @@ from carbonkivy.config import UIX
 
 from .link import CLink
 
-Builder.load_file(os.path.join(UIX, "link", "link.kv"))
+filename = os.path.join(UIX, "link", "link.kv")
+if not filename in Builder.files:
+    Builder.load_file(filename)

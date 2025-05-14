@@ -25,6 +25,10 @@ Live demo
 
 Click the below buttons to test user interactivity.
 
+.. note::
+
+    This live demo contains only a preview of functionality and styles available for this component. Actual widgets may not show the exact same behavior but similar to expected.
+
 .. tab-set::
 
     .. tab-item:: Primary
@@ -52,7 +56,7 @@ Click the below buttons to test user interactivity.
                 text: "Button"
                 role: "Large Productive"
                 # icon: "add"
-    
+
     .. tab-item:: Ghost
 
         .. raw:: html
@@ -62,6 +66,32 @@ Click the below buttons to test user interactivity.
         .. code-block:: kv
 
             CButtonGhost:
+                text: "Button"
+                role: "Large Productive"
+                # icon: "add"
+
+    .. tab-item:: Tertiary
+
+        .. raw:: html
+
+            <iframe title="Component demo" class="StorybookDemo-module--iframe--dc8d2" src="https://react.carbondesignsystem.com/iframe.html?id=components-button--tertiary&amp;globals=theme:white" frameborder="no" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+
+        .. code-block:: kv
+
+            CButtonTertiary:
+                text: "Button"
+                role: "Large Productive"
+                # icon: "add"
+
+    .. tab-item:: Danger
+
+        .. raw:: html
+
+            <iframe title="Component demo" class="StorybookDemo-module--iframe--dc8d2" src="https://react.carbondesignsystem.com/iframe.html?id=components-button--danger&amp;globals=theme:white" frameborder="no" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+
+        .. code-block:: kv
+
+            CButtonDanger:
                 text: "Button"
                 role: "Large Productive"
                 # icon: "add"
@@ -169,6 +199,7 @@ Icon Button
 To add icons to the button you have to define the :class:`~carbonkivy.uix.button.button.CButton.icon`, the icon that would appear at the specific slot aside the label or centralized in `Icon Only Buttons`.
 
 .. figure:: /_static/images/button/primary/normal.png
+    :class: centered
 
 .. code-block:: kv
 
@@ -213,59 +244,67 @@ Run the below python script for a full-fledged running Example.
     Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
     appkv = """
-    Screen:
+    CScreen:
 
         CButtonPrimary:
             text: "Primary Button"
             role: "Large Productive"
             icon: "add"
-            pos_hint: {'center_y': 0.8, 'center_x': 0.35}
+            pos_hint: {'center_y': 0.9, 'center_x': 0.35}
 
         CButtonPrimary:
             icon: "add"
             role: "2XL"
             spacing: 0
-            pos_hint: {'center_y': 0.8, 'center_x': 0.8}
+            pos_hint: {'center_y': 0.9, 'center_x': 0.8}
 
         CButtonSecondary:
             text: "Secondary Button"
             role: "Large Productive"
             icon: "add"
-            pos_hint: {'center_y': 0.6, 'center_x': 0.35}
+            pos_hint: {'center_y': 0.7, 'center_x': 0.35}
 
         CButtonSecondary:
             icon: "add"
             role: "2XL"
             spacing: 0
-            pos_hint: {'center_y': 0.6, 'center_x': 0.8}
+            pos_hint: {'center_y': 0.7, 'center_x': 0.8}
+
+        CButtonTertiary:
+            text: "Tertiary Button"
+            role: "Large Productive"
+            icon: "add"
+            pos_hint: {'center_y': 0.5, 'center_x': 0.35}
+
+        CButtonTertiary:
+            icon: "add"
+            role: "2XL"
+            spacing: 0
+            pos_hint: {'center_y': 0.5, 'center_x': 0.8}
 
         CButtonGhost:
             text: "Ghost Button"
             role: "Large Productive"
-            pos_hint: {'center_y': 0.4,  'center_x': 0.35}
-            on_press:
-                self.icon = "add"
+            icon: "add"
+            pos_hint: {'center_y': 0.3,  'center_x': 0.35}
 
         CButtonGhost:
             icon: "add"
             role: "2XL"
             spacing: 0
-            pos_hint: {'center_y': 0.4, 'center_x': 0.8}
+            pos_hint: {'center_y': 0.3, 'center_x': 0.8}
 
-        CButton:
-            text: "Custom Ghost Button"
-            text_color: app.link_primary
-            _bg_color: app.transparent
-            bg_color: app.transparent
-            active_color: app.transparent
-            line_color: app.focus
-            hover_color: app.background_hover
+        CButtonDanger:
+            text: "Danger Button"
             role: "Large Productive"
-            inset_width: 0
-            pos_hint: {'center_y': 0.2, 'center_x': 0.5}
-            on_press:
-                self.icon = "add"
+            icon: "add"
+            pos_hint: {'center_y': 0.1,  'center_x': 0.35}
 
+        CButtonDanger:
+            icon: "add"
+            role: "2XL"
+            spacing: 0
+            pos_hint: {'center_y': 0.1, 'center_x': 0.8}
     """
 
     from kivy.lang import Builder

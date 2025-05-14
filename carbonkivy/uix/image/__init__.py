@@ -6,4 +6,6 @@ from carbonkivy.config import UIX
 
 from .image import CImage
 
-Builder.load_file(os.path.join(UIX, "image", "image.kv"))
+filename = os.path.join(UIX, "image", "image.kv")
+if not filename in Builder.files:
+    Builder.load_file(filename)

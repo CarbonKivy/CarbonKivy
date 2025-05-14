@@ -1,10 +1,18 @@
 <CTextInputLayout>:
     size_hint: 1, None
     inset_color: app.transparent
-    bg_color: app.field_01
+    bg_color:
+        { \
+        1: app.field_01, \
+        2: app.field_02, \
+        }[self.layer_code]
     line_color_focus: app.focus
     inset_width: 0
-    hover_color: app.field_hover_01
+    hover_color:
+        { \
+        1: app.field_hover_01, \
+        2: app.field_hover_02, \
+        }[self.layer_code]
 
 <CTextInputLabel>:
     color: app.text_secondary

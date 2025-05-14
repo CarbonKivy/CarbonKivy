@@ -1,5 +1,6 @@
 from kivy.clock import Clock
 from kivy.core.window import Window
+from kivy.lang import Builder
 
 
 def set_softinput(*args) -> None:
@@ -32,6 +33,7 @@ class myapp(CarbonApp):
         update_system_ui(self.layer_01, self.background, "Dark")
         self.manager_screens = CScreenManager()
         self.manager_screens.add_widget(ProductScreen(name="product"))
+        print(Builder.files)
         return self.manager_screens
 
 

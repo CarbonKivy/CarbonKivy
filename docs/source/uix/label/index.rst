@@ -10,11 +10,11 @@ Label
 Overview
 --------
 
-.. figure:: /_static/images/label/label.png
+.. figure:: /_static/images/label/carbondesignlabels.png
     :alt: Carbon Design Label
     :class: centered
 
-	Carbon Design Labels
+    Carbon Design Labels Overview
 
 The :class:`~kivy.uix.label.Label` widget is used to display non-editable text in a Kivy application. It is primarily employed for presenting static content such as titles, descriptions, instructions, messages, and status indicators throughout the user interface.
 

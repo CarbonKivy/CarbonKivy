@@ -2,8 +2,7 @@ from __future__ import annotations
 
 __all__ = ("CImage",)
 
-from kivy.clock import Clock, mainthread
-from kivy.core.window import Window
+from kivy.clock import mainthread
 from kivy.properties import ListProperty, NumericProperty
 from kivy.uix.image import AsyncImage
 
