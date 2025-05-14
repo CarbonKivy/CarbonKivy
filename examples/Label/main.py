@@ -11,29 +11,33 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 CScreen:
+    bg_color: app.background
+    on_touch_down:
+        self.export_to_png("carbondesignlabels.png")
+
     CLabel:
         text: "IBM Plex Sans"
-        style: "body_compact_02"
+        style: "heading_04"
         typeface: "IBM Plex Sans"
-        weight_style: "SemiBold"
+        weight_style: "Medium"
         halign: "center"
-        pos_hint: {"center_y": 0.3}
+        pos_hint: {"center_y": 0.8}
 
     CLabel:
         text: "IBM Plex Serif"
-        style: "body_compact_02"
+        style: "heading_04"
         typeface: "IBM Plex Serif"
-        weight_style: "SemiBold"
+        weight_style: "Medium"
         halign: "center"
         pos_hint: {"center_y": 0.5}
 
     CLabel:
         text: "IBM Plex Mono"
-        style: "body_compact_02"
+        style: "heading_04"
         typeface: "IBM Plex Mono"
-        weight_style: "SemiBold"
+        weight_style: "Medium"
         halign: "center"
-        pos_hint: {"center_y": 0.7}
+        pos_hint: {"center_y": 0.2}
 """
 
 from kivy.lang import Builder

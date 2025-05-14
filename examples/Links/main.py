@@ -13,14 +13,17 @@ appkv = """
 CScreen:
 
     CLink:
-        name: "Link"
+        name: "CarbonKivy Github"
+        valign: "center"
+        icon: "logo--github"
         url: "https://github.com/CarbonKivy"
         pos_hint: {"center_x": 0.5, "center_y": 0.6}
 
+
     CLink:
-        name: "Link"
-        icon: "arrow--right"
-        url: "https://github.com/CarbonKivy"
+        name: "Carbon Design System"
+        icon: "arrow--up-right"
+        url: "https://carbondesignsystem.com"
         external: True
         pos_hint: {"center_x": 0.5, "center_y": 0.4}
 """

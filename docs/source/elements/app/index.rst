@@ -27,6 +27,7 @@ Carbon App
         CLabel:
             text: "Carbon Design System"
             font_size: plex_18
+            halign: "center"
             pos_hint: {"center_x" : 0.5, "center_y" : 0.6}
 
         CButtonPrimary:
