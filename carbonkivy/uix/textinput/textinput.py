@@ -18,6 +18,7 @@ from carbonkivy.behaviors import (
     AdaptiveBehavior,
     BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
+    HierarchicalLayerBehavior,
     HoverBehavior,
     StateFocusBehavior,
 )
@@ -39,6 +40,7 @@ class CTextInputLayout(
     StateFocusBehavior,
     RelativeLayout,
     DeclarativeBehavior,
+    HierarchicalLayerBehavior,
     HoverBehavior,
 ):
 

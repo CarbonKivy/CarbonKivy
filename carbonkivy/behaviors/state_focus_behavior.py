@@ -4,12 +4,11 @@ __all__ = ("StateFocusBehavior",)
 
 from kivy.core.window import Window
 from kivy.properties import BooleanProperty
-from kivy.uix.widget import Widget
 
 from carbonkivy.behaviors import BackgroundColorBehavior
 
 
-class StateFocusBehavior(Widget):
+class StateFocusBehavior:
 
     focus = BooleanProperty(False)
 

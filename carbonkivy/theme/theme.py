@@ -10,7 +10,9 @@ from carbonkivy.config import THEME
 from carbonkivy.theme.color_tokens import static_tokens, thematic_tokens
 from carbonkivy.theme.colors import StaticColors, ThematicColors
 
-Builder.load_file(os.path.join(THEME, "theme.kv"))
+filename = os.path.join(THEME, "theme.kv")
+if not filename in Builder.files:
+    Builder.load_file(filename)
 
 
 class CarbonTheme(EventDispatcher, ThematicColors, StaticColors):
