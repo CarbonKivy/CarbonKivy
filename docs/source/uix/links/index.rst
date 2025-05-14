@@ -60,7 +60,7 @@ Click below links to test user interactivity.
 API
 ---
 
-.. automodule:: carbonkivy.uix.button.button
+.. automodule:: carbonkivy.uix.link.link
     :members:
     :undoc-members:
     :show-inheritance:
