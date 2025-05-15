@@ -13,19 +13,22 @@ appkv = """
 CScreen:
 
     CLink:
-        name: "CarbonKivy Github"
-        valign: "center"
-        icon: "logo--github"
+        text: "CarbonKivy Github"
         url: "https://github.com/CarbonKivy"
         pos_hint: {"center_x": 0.5, "center_y": 0.6}
 
+        CLinkIcon:
+            icon: "logo--github"
+
 
     CLink:
-        name: "Carbon Design System"
-        icon: "arrow--up-right"
+        text: "Carbon Design System"
         url: "https://carbondesignsystem.com"
         external: True
         pos_hint: {"center_x": 0.5, "center_y": 0.4}
+
+        CLinkIcon:
+            icon: "arrow--up-right"
 """
 
 from kivy.lang import Builder
