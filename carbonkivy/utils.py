@@ -35,41 +35,6 @@ def get_button_size(token: str) -> float:
     return button_size_tokens[token]
 
 
-button_background_tokens = {
-    "active": {
-        "Primary": "button_primary_active",
-        "Secondary": "button_secondary_active",
-        "Tertiary": "button_tertiary_active",
-        "Ghost": "background_active",
-        "Danger Primary": "button_danger_active",
-        "Danger Tertiary": "button_danger_active",
-        "Danger Ghost": "button_danger_active",
-    },
-    "normal": {
-        "Primary": "button_primary",
-        "Secondary": "button_secondary",
-        "Tertiary": "transparent",
-        "Ghost": "transparent",
-        "Danger Primary": "button_danger_primary",
-        "Danger Tertiary": "transparent",
-        "Danger Ghost": "button_danger_active",
-    },
-    "disabled": {
-        "Primary": "button_disabled",
-        "Secondary": "button_disabled",
-        "Tertiary": "transparent",
-        "Ghost": "transparent",
-        "Danger Primary": "button_disabled",
-        "Danger Tertiary": "transparent",
-        "Danger Ghost": "transparent",
-    },
-}
-
-
-def get_button_token(state: str, type: str) -> str:
-    return button_background_tokens[state][type]
-
-
 def update_system_ui(
     status_bar_color: list[float] | str,
     navigation_bar_color: list[float] | str,

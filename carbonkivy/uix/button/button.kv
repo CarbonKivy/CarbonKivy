@@ -41,13 +41,14 @@
         padding: root.padding
         pos_hint: {'center_x': 0.5,'center_y': 0.5}
 
-        Label:
+        CLabel:
             id: cbutton_layout_label
+            size_hint: None, None
+            size: self.texture_size
+            text_size: None, self.texture_size[1]
             text: root.text
             color: root._text_color
             font_size: root.font_size
-            size_hint: None, 1
-            width: self.texture_size[0]
             pos_hint: {'center_y': 0.5}
 
 
