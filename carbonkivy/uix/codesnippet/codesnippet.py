@@ -44,6 +44,7 @@ class CodeSnippet(AdaptiveBehavior, CodeInput, DeclarativeBehavior):
 
     def on_style(self, *args) -> None:
         super().on_style(*args)
+
         def set_color(*args):
             self.background_color = [1, 1, 1, 0]
 

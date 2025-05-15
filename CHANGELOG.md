@@ -1,5 +1,9 @@
 # Changelog
 
+- # 0.0.2
+  - Bug fixes related to missing font files, add inclusion to packaging.
+  - Improvements in CButton behaviors in different interactive states.
+
 - # 0.0.1
   Introductory release with basic widgets and core utilities and behaviors.
 
