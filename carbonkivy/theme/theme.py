@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+__all__ = ("CarbonTheme",)
+
 import os
 
 from kivy.core.window import Window

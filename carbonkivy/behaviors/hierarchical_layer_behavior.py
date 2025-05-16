@@ -5,6 +5,7 @@ __all__ = ("HierarchicalLayerBehavior",)
 from kivy.clock import mainthread
 from kivy.properties import OptionProperty
 
+
 class HierarchicalLayerBehavior:
 
     layer_code = OptionProperty(1, options=[1, 2])

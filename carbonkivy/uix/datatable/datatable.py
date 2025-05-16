@@ -14,6 +14,7 @@ from carbonkivy.behaviors import (
     StateFocusBehavior,
 )
 
+
 class CDatatable(
     AdaptiveBehavior,
     BackgroundColorBehaviorRectangular,

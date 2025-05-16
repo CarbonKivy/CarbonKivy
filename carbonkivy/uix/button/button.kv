@@ -4,7 +4,7 @@
     text_color:
         { \
         "normal": self.text_color, \
-        "disabled": app.text_on_color_disabled, \
+        "disabled": self.text_color_disabled, \
         "active": self.text_color_focus,\
         }[self.cstate]
     text_color_hover: app.text_on_color
@@ -41,13 +41,15 @@
         padding: root.padding
         pos_hint: {'center_x': 0.5,'center_y': 0.5}
 
-        Label:
+        CLabel:
             id: cbutton_layout_label
+            size_hint: None, None
+            disabled_color: root.text_color_disabled
+            size: self.texture_size
+            text_size: None, self.texture_size[1]
             text: root.text
             color: root._text_color
             font_size: root.font_size
-            size_hint: None, 1
-            width: self.texture_size[0]
             pos_hint: {'center_y': 0.5}
 
 
