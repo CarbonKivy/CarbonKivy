@@ -11,24 +11,56 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 CScreen:
+    bg_color: app.background
+    on_touch_down:
+        self.export_to_png("carbondesignlinks.png")
 
-    CLink:
-        text: "CarbonKivy Github"
-        url: "https://github.com/CarbonKivy"
-        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+    CBoxLayout:
+        orientation: "vertical"
+        padding: dp(16)
+        spacing: dp(128)
+        adaptive: [True, True]
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-        CLinkIcon:
-            icon: "logo--github"
+        CLink:
+            text: "Standalone Link"
+            url: "https://github.com/CarbonKivy/CarbonKivy"
+            external: True
+            pos_hint: {"center_y": 0.6}
 
+            CLinkIcon:
+                icon: "arrow--up-right"
 
-    CLink:
-        text: "Carbon Design System"
-        url: "https://carbondesignsystem.com"
-        external: True
-        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+        CLink:
+            text: "Standalone Link Visited"
+            url: "https://github.com/CarbonKivy/CarbonKivy"
+            external: True
+            cstate: "visited"
+            pos_hint: {"center_y": 0.6}
 
-        CLinkIcon:
-            icon: "arrow--up-right"
+            CLinkIcon:
+                icon: "arrow--up-right"
+
+        CLink:
+            text: "Standalone Link Active"
+            url: "https://github.com/CarbonKivy/CarbonKivy"
+            external: True
+            cstate: "active"
+            pos_hint: {"center_y": 0.6}
+
+            CLinkIcon:
+                icon: "arrow--up-right"
+
+        CLink:
+            text: "Standalone Link Disabled"
+            url: "https://github.com/CarbonKivy/CarbonKivy"
+            external: True
+            cstate: "disabled"
+            pos_hint: {"center_y": 0.6}
+
+            CLinkIcon:
+                icon: "arrow--up-right"
+
 """
 
 from kivy.lang import Builder

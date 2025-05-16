@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+__all__ = ("CarbonApp",)
+
 import os
 
 from kivy.app import App
@@ -13,7 +17,7 @@ class CarbonApp(App, CarbonTheme):
     The Main App class inherits from CarbonTheme to define and update the theme and appropriate colors based on the given theme.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CarbonApp, self).__init__(**kwargs)
         update_system_ui(self.background, self.background, "Dark")
 
