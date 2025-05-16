@@ -2,7 +2,6 @@
     orientation: "horizontal"
     size_hint: None, None
     size: self.minimum_width, self.minimum_height
-    line_width: dp(0.5)
     line_color: self.line_color_focus if (self.cstate == "active") else self.line_color
     line_color_focus: app.focus
     text_color_active: app.text_primary
@@ -17,7 +16,7 @@
         "normal": app.link_primary, \
         "visited": self.text_color_visited, \
         }[self.cstate]
-    line_width: dp(1)
+    line_width: dp(0.5)
     font_size:
         { \
         "Small": plex_12, \
