@@ -4,7 +4,7 @@ __all__ = ("CLink",)
 
 import webbrowser
 
-from kivy.clock import Clock
+from kivy.clock import Clock, mainthread
 from kivy.properties import (
     BooleanProperty,
     ColorProperty,
@@ -47,7 +47,7 @@ class CLink(
 
     text_color = ColorProperty()
 
-    text_color_focus = ColorProperty([1, 1, 1, 1])
+    text_color_focus = ColorProperty()
 
     text_color_disabled = ColorProperty()
 
@@ -62,8 +62,8 @@ class CLink(
     def __init__(self, **kwargs):
         super(CLink, self).__init__(**kwargs)
 
-    def on_text_color(self, instance: object, color: list[float], *args) -> None:
-        self._text_color = color
+    def on_text_color(self, *args) -> None:
+        self._text_color = self.text_color
 
     def on_focus(self, *args) -> None:
         if self.focus:

@@ -2,6 +2,13 @@
     orientation: "horizontal"
     size_hint: None, None
     size: self.minimum_width, self.minimum_height
+    line_color: self.line_color_focus if (self.cstate == "active") else self.line_color
+    line_color_focus: app.focus
+    text_color_active: app.text_primary
+    text_color_focus: app.link_primary_hover
+    text_color_hover: app.link_primary_hover
+    text_color_visited: app.link_visited
+    text_color_disabled: app.text_disabled
     text_color:
         { \
         "active": self.text_color_active, \
@@ -9,13 +16,6 @@
         "normal": app.link_primary, \
         "visited": self.text_color_visited, \
         }[self.cstate]
-    line_color: self.line_color_focus if (self.cstate == "active") else self.line_color
-    line_color_focus: app.focus
-    text_color_active: app.text_primary
-    text_color_focus: app.link_primary_hover
-    text_color_hover: app.link_primary_hover
-    text_color_visited: app.link_visited
-    text_color_disabled: app.text_on_color_disabled
     line_width: dp(1)
     font_size:
         { \
@@ -44,6 +44,7 @@
             }[root.role]
         font_size: root.font_size
         color: root._text_color
+        disabled_color: root.text_color_disabled
         pos_hint: {'center_y': 0.5}
 
 <CLinkIcon>:
