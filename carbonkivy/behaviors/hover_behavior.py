@@ -39,7 +39,6 @@ class HoverBehavior:
                 Window.bind(mouse_pos=self.element_hover)
             else:
                 Window.unbind(mouse_pos=self.element_hover)
-                
 
     def on_hover(self, *args) -> None:
         if isinstance(self, BackgroundColorBehavior):

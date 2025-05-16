@@ -1,14 +1,54 @@
 <CLink>:
-    markup: True
+    orientation: "horizontal"
     size_hint: None, None
-    text_color: app.link_primary
+    size: self.minimum_width, self.minimum_height
+    line_color: self.line_color_focus if (self.cstate == "active") else self.line_color
     line_color_focus: app.focus
-    hover_color: app.link_primary_hover
-    line_width: 0.1
-    color: self.text_color
-    text: f"{self.name}[font=cicon]{self.icon_code}[/font]"
-    halign: "center"
-    valign: "middle"
-    width: self.texture_size[0]
-    height: self.texture_size[1]
-    font_size: plex_16
+    text_color_active: app.text_primary
+    text_color_focus: app.link_primary_hover
+    text_color_hover: app.link_primary_hover
+    text_color_visited: app.link_visited
+    text_color_disabled: app.text_disabled
+    text_color:
+        { \
+        "active": self.text_color_active, \
+        "disabled": self.text_color_disabled, \
+        "normal": app.link_primary, \
+        "visited": self.text_color_visited, \
+        }[self.cstate]
+    line_width: dp(1)
+    font_size:
+        { \
+        "Small": plex_12, \
+        "Medium": plex_14, \
+        "Large": plex_16, \
+        }[self.role]
+    spacing: dp(8)
+    padding: [dp(1), dp(1), dp(1), dp(1)]
+
+    CLabel:
+        id: clink_label
+        markup: True
+        text: root.text
+        size_hint: None, None
+        size: self.texture_size
+        text_size: None, self.texture_size[1]
+        underline: True if (root.cstate == "active") else root.focus
+        halign: "center"
+        valign: "middle"
+        style:
+            { \
+            "Small": "helper_text_01", \
+            "Medium": "body_compact_01", \
+            "Large": "body_compact_02", \
+            }[root.role]
+        font_size: root.font_size
+        color: root._text_color
+        disabled_color: root.text_color_disabled
+        pos_hint: {'center_y': 0.5}
+
+<CLinkIcon>:
+    font_size: self.parent.font_size + sp(4)
+    pos_hint: {'center_y': 0.5}
+    valign: "center"
+    color: self.parent._text_color

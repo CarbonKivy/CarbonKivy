@@ -35,7 +35,7 @@ class DeclarativeBehavior:
     __ids = _Dict()
 
     def __init__(self, *args, **kwargs):
-        super().__init__(**kwargs)
+        super().__init__(*args, **kwargs)
 
         """
         Bug Fix for updating colors defined in python.

@@ -54,8 +54,11 @@ Click below links to test user interactivity.
             CLink:
                 text: "Carbon Docs"
                 url: "https://carbondesignsystem.com"
-                icon: "arrow--right"
                 external: True # if true will open a webbrowser tab redirecting to the url provided.
+
+                CLinkIcon:
+                    icon: "arrow--up-right"
+                    font_size: plex_16
 
 API
 ---
