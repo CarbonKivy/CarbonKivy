@@ -26,29 +26,32 @@
     spacing: dp(8)
     padding: [dp(1), dp(1), dp(1), dp(1)]
 
-    CLabel:
-        id: clink_label
-        markup: True
-        text: root.text
-        size_hint: None, None
-        size: self.texture_size
-        text_size: None, self.texture_size[1]
-        underline: True if (root.cstate == "active") else root.focus
-        halign: "center"
-        valign: "middle"
-        style:
-            { \
-            "Small": "helper_text_01", \
-            "Medium": "body_compact_01", \
-            "Large": "body_compact_02", \
-            }[root.role]
-        font_size: root.font_size
-        color: root._text_color
-        disabled_color: root.text_color_disabled
-        pos_hint: {'center_y': 0.5}
+<CLinkLabel>:
+    markup: True
+    size_hint: None, None
+    size: self.texture_size
+    text_size: None, self.texture_size[1]
+    underline: True if (self.parent.cstate == "active") else self.parent.focus
+    halign: "center"
+    valign: "middle"
+    style:
+        { \
+        "Small": "helper_text_01", \
+        "Medium": "body_compact_01", \
+        "Large": "body_compact_02", \
+        }[self.parent.role]
+    font_size: self.parent.font_size
+    color: self.parent._text_color
+    disabled_color: self.parent.text_color_disabled
+    pos_hint: {'center_y': 0.5}
 
 <CLinkIcon>:
-    font_size: self.parent.font_size + sp(4)
+    font_size:
+        { \
+        "Small": plex_16, \
+        "Medium": plex_16, \
+        "Large": plex_20, \
+        }[self.parent.role]
     pos_hint: {'center_y': 0.5}
     valign: "center"
     color: self.parent._text_color
