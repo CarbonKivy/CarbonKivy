@@ -16,7 +16,7 @@
         "normal": app.link_primary, \
         "visited": self.text_color_visited, \
         }[self.cstate]
-    line_width: dp(1)
+    line_width: dp(0.5)
     font_size:
         { \
         "Small": plex_12, \
@@ -54,4 +54,5 @@
         }[self.parent.role]
     pos_hint: {'center_y': 0.5}
     valign: "center"
+    disabled_color: self.parent.text_color_disabled
     color: self.parent._text_color
