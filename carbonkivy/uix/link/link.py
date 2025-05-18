@@ -5,6 +5,7 @@ __all__ = ("CLink",)
 import webbrowser
 
 from kivy.clock import Clock, mainthread
+from kivy.logger import Logger
 from kivy.properties import (
     BooleanProperty,
     ColorProperty,
@@ -22,6 +23,7 @@ from carbonkivy.behaviors import (
     StateFocusBehavior,
 )
 from carbonkivy.uix.icon import CIcon
+from carbonkivy.uix.label import CLabel
 
 
 class CLink(
@@ -86,5 +88,21 @@ class CLink(
         return super().on_touch_down(touch)
 
 
+class CLinkLabel(CLabel):
+
+    def __init__(self, **kwargs) -> None:
+        super(CLinkLabel).__init__(**kwargs)
+
+    def on_parent(self, *args) -> None:
+        if not isinstance(self.parent, CLink):
+            Logger.error("CLinkLabel must be children widget of CLink only.")
+
+
 class CLinkIcon(CIcon):
-    pass
+
+    def __init__(self, **kwargs) -> None:
+        super(CLinkIcon).__init__(**kwargs)
+
+    def on_parent(self, *args) -> None:
+        if not isinstance(self.parent, CLink):
+            Logger.error("CLinkLabel must be children widget of CLink only.")
