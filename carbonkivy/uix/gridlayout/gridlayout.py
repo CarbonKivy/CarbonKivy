@@ -2,15 +2,16 @@ from __future__ import annotations
 
 __all__ = ("CGridLayout",)
 
+from kivy.clock import mainthread
+from kivy.metrics import dp
+from kivy.properties import BooleanProperty, NumericProperty, OptionProperty
+from kivy.uix.gridlayout import GridLayout
+
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
     BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
 )
-from kivy.clock import mainthread
-from kivy.metrics import dp
-from kivy.properties import BooleanProperty, NumericProperty, OptionProperty
-from kivy.uix.gridlayout import GridLayout
 
 
 class CGridLayout(

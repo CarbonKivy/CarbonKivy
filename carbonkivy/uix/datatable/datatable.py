@@ -2,7 +2,7 @@ from __future__ import annotations
 
 __all__ = ("CDatatable",)
 
-from kivy.properties import DictProperty, StringProperty
+from kivy.properties import DictProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 
@@ -27,11 +27,10 @@ class CDatatable(
 ):
 
     widget_matrix = DictProperty()
-    
+
     def add_widget(self, widget, *args, **kwargs):
         self.widget_matrix[widget.row][widget.column] = widget
         return super().add_widget(widget, *args, **kwargs)
-
 
 
 class CDataRow(

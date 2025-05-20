@@ -4,7 +4,7 @@ __all__ = ("CLink",)
 
 import webbrowser
 
-from kivy.clock import Clock, mainthread
+from kivy.clock import Clock
 from kivy.logger import Logger
 from kivy.properties import (
     BooleanProperty,
