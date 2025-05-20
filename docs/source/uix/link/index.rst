@@ -39,9 +39,11 @@ Click below links to test user interactivity.
         .. code-block:: kv
 
             CLink:
-                text: "Link"
                 url: "https://github.com/CarbonKivy"
                 external: True # if true will open a webbrowser tab redirecting to the url provided.
+
+                CLinkText:
+                    text: "Link"
 
     .. tab-item:: Paired with Icon
 
@@ -52,13 +54,90 @@ Click below links to test user interactivity.
         .. code-block:: kv
 
             CLink:
-                text: "Carbon Docs"
                 url: "https://carbondesignsystem.com"
                 external: True # if true will open a webbrowser tab redirecting to the url provided.
+
+                CLinkText:
+                    text: "Carbon Docs"
 
                 CLinkIcon:
                     icon: "arrow--up-right"
                     font_size: plex_16
+
+Size
+----
+
+There are three available size tokens for a link:
+
+- Small
+- Medium
+- Large
+
+Use the :class:`~carbonkivy.uix.link.link.CLink.role` property to define the token for the link size.
+
+.. code-block:: kv
+
+    CLink:
+        url: "https://github.com/CarbonKivy"
+        external: True # if true will open a webbrowser tab redirecting to the url provided.
+        role: "Large" # Define the specific size token here (capitalized first letter of every word.)
+
+        CLinkText:
+            text: "CarbonKivy - Github"
+
+Paired with Icon
+~~~~~~~~~~~~~~~~
+
+.. code-block:: kv
+
+    CLink:
+        url: "https://github.com/CarbonKivy"
+        external: True # if true will open a webbrowser tab redirecting to the url provided.
+        role: "Medium" # Define the specific size token here (capitalized first letter of every word.)
+
+        CLinkText:
+            text: "CarbonKivy - Github"
+
+        CLinkIcon:
+            icon: "logo--github"
+
+Icon Only Link
+--------------
+
+    Additionally, CarbonKivy provides you with the ability to create an Icon Only Link.
+
+.. code-block:: kv
+
+    CLink:
+        url: "https://github.com/CarbonKivy"
+        external: True # if true will open a webbrowser tab redirecting to the url provided.
+        role: "Medium" # Define the specific size token here (capitalized first letter of every word.)
+
+        CLinkIcon:
+            icon: "logo--github"
+
+Styles
+------
+
+There are four default styles available for a link:
+
+- active
+- disabled
+- normal
+- visited
+
+Use the :class:`~carbonkivy.uix.link.link.CLink.cstate` property to define the token for the link style.
+
+.. code-block:: kv
+
+    CLink:
+        url: "https://github.com/CarbonKivy"
+        external: True # if true will open a webbrowser tab redirecting to the url provided.
+        role: "Medium" # Define the specific size token here (capitalized first letter of every word.)
+        cstate: "visited"
+
+        CLinkIcon:
+            icon: "logo--github"
 
 API
 ---

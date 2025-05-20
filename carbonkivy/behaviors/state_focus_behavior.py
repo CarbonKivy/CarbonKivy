@@ -5,7 +5,7 @@ __all__ = ("StateFocusBehavior",)
 from kivy.core.window import Window
 from kivy.properties import BooleanProperty
 
-from carbonkivy.behaviors import BackgroundColorBehavior
+from .background_color_behavior import BackgroundColorBehavior
 
 
 class StateFocusBehavior:
