@@ -8,6 +8,8 @@ from .button import (
     CButton,
     CButtonDanger,
     CButtonGhost,
+    CButtonIcon,
+    CButtonLabel,
     CButtonPrimary,
     CButtonSecondary,
     CButtonTertiary,

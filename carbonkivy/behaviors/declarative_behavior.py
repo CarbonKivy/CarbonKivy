@@ -16,8 +16,6 @@ from kivy.uix.widget import Widget
 from carbonkivy.utils import _Dict
 
 
-# TODO: Add cleaning of the `__ids` collection when removing child widgets
-#  from the parent.
 class DeclarativeBehavior:
     """
     Implements the creation and addition of child widgets as declarative
@@ -36,7 +34,10 @@ class DeclarativeBehavior:
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.bind_color_update(*args, **kwargs)
+        self.register_element(*args)
 
+    def bind_color_update(self, *args, **kwargs) -> None:
         """
         Bug Fix for updating colors defined in python.
         Author:
@@ -51,12 +52,6 @@ class DeclarativeBehavior:
                     **{value.prop.name: lambda *args, k=key: setattr(self, k, args[-1])}
                 )
 
-        for child in args:
-            if issubclass(child.__class__, Widget):
-                self.add_widget(child)
-                if hasattr(child, "id") and child.id:
-                    self.__ids[child.id] = child
-
     def get_ids(self) -> dict:
         """
         Returns a dictionary of widget IDs defined in Python
@@ -64,3 +59,12 @@ class DeclarativeBehavior:
         """
 
         return self.__ids
+
+    def register_element(self, *args) -> None:
+        for child in args:
+            if issubclass(child.__class__, Widget):
+                self.add_widget(child)
+                if hasattr(child, "id") and child.id:
+                    self.__ids[child.id] = child
+                if hasattr(child, "classname") and child.classname:
+                    self.__classnames[child.classname] = child

@@ -11,9 +11,6 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 CScreen:
-    bg_color: app.background
-    on_touch_down:
-        self.export_to_png("carbondesignlinks.png")
 
     CBoxLayout:
         orientation: "vertical"
@@ -23,11 +20,13 @@ CScreen:
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
         CLink:
-            text: "Standalone Link"
             url: "https://github.com/CarbonKivy/CarbonKivy"
             external: True
             pos_hint: {"center_y": 0.6}
 
+            CLinkLabel:
+                text: "Standalone Link"
+            
             CLinkIcon:
                 icon: "arrow--up-right"
 
