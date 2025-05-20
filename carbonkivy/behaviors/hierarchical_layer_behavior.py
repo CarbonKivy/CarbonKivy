@@ -3,6 +3,7 @@ from __future__ import annotations
 __all__ = ("HierarchicalLayerBehavior",)
 
 from kivy.clock import mainthread
+from kivy.lang import Builder
 from kivy.properties import OptionProperty
 
 
@@ -10,8 +11,8 @@ class HierarchicalLayerBehavior:
 
     layer_code = OptionProperty(1, options=[1, 2])
 
-    def __init__(self) -> None:
-        super(HierarchicalLayerBehavior, self).__init__()
+    def __init__(self, *args, **kwargs) -> None:
+        super(HierarchicalLayerBehavior, self).__init__(*args, **kwargs)
 
     def on_parent(self, *args) -> None:
         self.set_layer_code()

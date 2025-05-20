@@ -93,13 +93,23 @@ Click the below buttons to test user interactivity.
 
             CButtonDanger:
                 text: "Button"
+                variant: "Primary" # Primary (default), Tertiary, Ghost
                 role: "Large Productive"
                 # icon: "add"
 
 Size
 ----
 
-There are six button sizes: `Small`, `Medium`, `Large Productive`, `Large Expressive`, `Extra Large`, and `2XL`. The `Large Expressive` button is used in editorial and digital marketing experiences.
+There are six available size tokens for a button:
+
+- **Small**
+- **Medium**
+- **Large Productive**
+- **Large Expressive**
+- **Extra Large**
+- **2XL**
+
+The **Large Expressive** button is used in editorial and digital marketing experiences.
 
 Use the :class:`~carbonkivy.uix.button.button.CButton.role` property to define the token for the button size.
 
