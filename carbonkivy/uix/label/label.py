@@ -6,10 +6,8 @@ from kivy.clock import mainthread
 from kivy.properties import NumericProperty, OptionProperty
 from kivy.uix.label import Label
 
-from carbonkivy.behaviors import (
-    AdaptiveBehavior,  # SelectionBehavior
-    BackgroundColorBehaviorRectangular,
-)
+from carbonkivy.behaviors import AdaptiveBehavior  # SelectionBehavior
+from carbonkivy.behaviors import BackgroundColorBehaviorRectangular
 from carbonkivy.theme.size_tokens import font_style_tokens
 from carbonkivy.utils import get_font_name
 
