@@ -101,6 +101,7 @@ class CodeSnippetLayout(
         def select(*args) -> None:
             self.codesnippet_area.select_all()
             Clock.schedule_once(lambda x: self.codesnippet_area.cancel_selection(), 2)
+            self.codesnippet_area.focus = False
 
         Clock.schedule_once(select, 0.5)
         Clipboard.copy(text)
