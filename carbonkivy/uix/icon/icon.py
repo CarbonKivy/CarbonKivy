@@ -27,8 +27,8 @@ class CBaseIcon(DeclarativeBehavior, Label):
 
     font_name = os.path.join(DATA, "Icons", "carbondesignicons.ttf")
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, **kwargs) -> None:
+        super(CBaseIcon, self).__init__(**kwargs)
 
     def on_icon(self, *args) -> None:
         self.text = ibm_icons[self.icon]

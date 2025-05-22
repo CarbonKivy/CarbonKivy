@@ -42,7 +42,7 @@ register("CImage", module="carbonkivy.uix.image")
 register("CLabel", module="carbonkivy.uix.label")
 register("CLink", module="carbonkivy.uix.link")
 register("CLinkIcon", module="carbonkivy.uix.link")
-register("CLinkLabel", module="carbonkivy.uix.link")
+register("CLinkText", module="carbonkivy.uix.link")
 register("CRelativeLayout", module="carbonkivy.uix.relativelayout")
 register("CScreen", module="carbonkivy.uix.screen")
 register("CScreenManager", module="carbonkivy.uix.screenmanager")
@@ -66,3 +66,24 @@ Once registered, the fonts can be used without explicitly importing them elsewhe
 
 # Register the font with the LabelBase
 font_register("cicon", os.path.join(DATA, "Icons", "carbondesignicons.ttf"))
+
+ibmplexsansregular = os.path.join(
+    DATA, "IBMPlex", "IBM_Plex_Sans", "static", "IBMPlexSans-Regular.ttf"
+)
+ibmplexsansbold = os.path.join(
+    DATA, "IBMPlex", "IBM_Plex_Sans", "static", "IBMPlexSans-Bold.ttf"
+)
+ibmplexsansitalic = os.path.join(
+    DATA, "IBMPlex", "IBM_Plex_Sans", "static", "IBMPlexSans-Italic.ttf"
+)
+ibmplexsansbolditalic = os.path.join(
+    DATA, "IBMPlex", "IBM_Plex_Sans", "static", "IBMPlexSans-BoldItalic.ttf"
+)
+
+font_register(
+    "ibmplexsans",
+    fn_regular=ibmplexsansregular,
+    fn_bold=ibmplexsansbold,
+    fn_italic=ibmplexsansitalic,
+    fn_bolditalic=ibmplexsansbolditalic,
+)

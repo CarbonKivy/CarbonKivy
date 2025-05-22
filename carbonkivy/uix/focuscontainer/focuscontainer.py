@@ -24,10 +24,10 @@ class FocusContainer(
 ):
     focus = BooleanProperty(False)
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(FocusContainer, self).__init__(**kwargs)
 
-    def on_touch_down(self, touch) -> bool:
+    def on_touch_down(self, touch) -> bool | None:
         super().on_touch_down(touch)
         if self.cstate != "disabled":
             self.focus = self.collide_point(*touch.pos)
