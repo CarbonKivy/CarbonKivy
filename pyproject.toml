@@ -17,14 +17,13 @@ maintainers = [
 ]
 description = "CarbonKivy is a Python library that integrates IBM's Carbon Design System with the Kivy framework. It provides a modern, accessible, and user-friendly UI toolkit inspired by Carbon’s design principles, enabling developers to create consistent and visually appealing applications in Kivy."
 readme = "README.md"
-license = {file = "LICENSE"}
+license = "MIT"
 keywords = ["kivy", "open source", "carbon", "design", "carbondesignsystem", "IBM", "novfensec", "carbonkivy", "kv"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
   "Topic :: Software Development :: Libraries",
   "Topic :: Multimedia :: Graphics",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
 ]
 
@@ -44,6 +43,7 @@ package-dir = {"carbonkivy" = "carbonkivy"}
 "carbonkivy" = [
   "**/*.kv",
   "**/*.ttf",
+  "**/OFL.txt",
 ]
 
 [tool.setuptools.exclude-package-data]
