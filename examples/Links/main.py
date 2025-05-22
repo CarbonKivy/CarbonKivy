@@ -24,38 +24,44 @@ CScreen:
             external: True
             pos_hint: {"center_y": 0.6}
 
-            CLinkLabel:
+            CLinkText:
                 text: "Standalone Link"
-            
+
             CLinkIcon:
                 icon: "arrow--up-right"
 
         CLink:
-            text: "Standalone Link Visited"
             url: "https://github.com/CarbonKivy/CarbonKivy"
             external: True
             cstate: "visited"
             pos_hint: {"center_y": 0.6}
 
+            CLinkText:
+                text: "Standalone Link Visited"
+
             CLinkIcon:
                 icon: "arrow--up-right"
 
         CLink:
-            text: "Standalone Link Active"
             url: "https://github.com/CarbonKivy/CarbonKivy"
             external: True
             cstate: "active"
             pos_hint: {"center_y": 0.6}
 
+            CLinkText:
+                text: "Standalone Link Active"
+
             CLinkIcon:
                 icon: "arrow--up-right"
 
         CLink:
-            text: "Standalone Link Disabled"
             url: "https://github.com/CarbonKivy/CarbonKivy"
             external: True
             cstate: "disabled"
             pos_hint: {"center_y": 0.6}
+
+            CLinkText:
+                text: "Standalone Link Disabled"
 
             CLinkIcon:
                 icon: "arrow--up-right"

@@ -196,8 +196,8 @@ class BackgroundColorBehavior:
     _background_y = NumericProperty(0)
     _background_origin = ReferenceListProperty(_background_x, _background_y)
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, **kwargs) -> None:
+        super(BackgroundColorBehavior, self).__init__(**kwargs)
         self.bind(pos=self.update_background_origin)
 
     def on_bg_color(self, instance: object, color: list | str) -> None:

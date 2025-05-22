@@ -31,8 +31,8 @@ class CarbonTheme(EventDispatcher, ThematicColors, StaticColors):
         list(thematic_tokens.keys()) + list(static_tokens.keys())
     )
 
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, **kwargs) -> None:
+        super(CarbonTheme, self).__init__(**kwargs)
         self.on_theme()
 
     def on_theme(self, *args) -> None:
@@ -40,7 +40,7 @@ class CarbonTheme(EventDispatcher, ThematicColors, StaticColors):
         Window.clearcolor = colormap["background"]
         self.update_thematic_colors()
 
-    def parse_thematic_tokens(self):
+    def parse_thematic_tokens(self, *args) -> dict:
         tokenmap = {}
         for token, values in thematic_tokens.items():
             color_value = values[self.theme]

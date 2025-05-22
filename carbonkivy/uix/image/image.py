@@ -17,7 +17,7 @@ class CImage(AsyncImage, DeclarativeBehavior):
 
     width_ratio = NumericProperty()
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super(CImage, self).__init__(*args, **kwargs)
         self.on_ratio()
         self.bind(texture_size=self.adjust_image_size)

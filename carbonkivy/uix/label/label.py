@@ -42,7 +42,7 @@ class CLabel(AdaptiveBehavior, BackgroundColorBehaviorRectangular, Label):
 
     _font_size = NumericProperty(None, allownone=True)
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CLabel, self).__init__(**kwargs)
         self.update_specs()
 

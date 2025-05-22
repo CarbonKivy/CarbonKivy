@@ -32,8 +32,8 @@ class DeclarativeBehavior:
 
     __ids = _Dict()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs) -> None:
+        super(DeclarativeBehavior, self).__init__(*args, **kwargs)
         self.bind_color_update(*args, **kwargs)
         self.register_element(*args)
 
