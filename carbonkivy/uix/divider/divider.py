@@ -16,7 +16,7 @@ class CDivider(BoxLayout):
 
     divider_width = NumericProperty(dp(1))
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CDivider, self).__init__(**kwargs)
         Clock.schedule_once(self.on_orientation)
 

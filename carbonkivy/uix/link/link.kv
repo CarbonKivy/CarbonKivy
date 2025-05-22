@@ -17,33 +17,24 @@
         "visited": self.text_color_visited, \
         }[self.cstate]
     line_width: dp(0.5)
-    font_size:
-        { \
-        "Small": plex_12, \
-        "Medium": plex_14, \
-        "Large": plex_16, \
-        }[self.role]
     spacing: dp(8)
     padding: [dp(1), dp(1), dp(1), dp(1)]
 
-<CLinkLabel>:
+<CLinkText>:
     markup: True
     size_hint: None, None
     size: self.texture_size
     text_size: None, self.texture_size[1]
     underline: True if (self.parent.cstate == "active") else self.parent.focus
     halign: "center"
-    valign: "middle"
     style:
         { \
         "Small": "helper_text_01", \
         "Medium": "body_compact_01", \
         "Large": "body_compact_02", \
         }[self.parent.role]
-    font_size: self.parent.font_size
     color: self.parent._text_color
     disabled_color: self.parent.text_color_disabled
-    pos_hint: {'center_y': 0.5}
 
 <CLinkIcon>:
     font_size:

@@ -1,5 +1,24 @@
 # Changelog
 
+- # 0.0.3
+  Major Upgrades and Improvements. Implementation of new widgets.
+
+  - `UIX`
+    - CodeSnippet
+    - FocusContainer
+    - GridLayout
+    - TextInput
+  
+  - `BEHAVIORS`
+    - HierarchicalLayerBehavior
+    - StateFocusBehavior
+
+  - Completed and improved Button component implmentation with all available styles.
+  - Completed and improved Link component implmentation.
+  - Completed and improved TextInput component implmentation.
+  - Improved `focus` interactive state behavior.
+  - General bug fixes and improvements.
+
 - # 0.0.2
   - Bug fixes related to missing font files, add inclusion to packaging.
   - Improvements in CButton behaviors in different interactive states.
@@ -8,25 +27,25 @@
   Introductory release with basic widgets and core utilities and behaviors.
 
   - `UIX`
-    - CAnchorLayout
-    - CBoxLayout
-    - CButton
-    - CDivider
-    - CFloatLayout
-    - CIcon
-    - CImage
-    - CLabel
-    - CLink
-    - CRelativeLayout
-    - CScreen
-    - CScreenManager
-    - CScrollView
-    - CStackLayout
+    - AnchorLayout
+    - BoxLayout
+    - Button
+    - Divider
+    - FloatLayout
+    - Icon
+    - Image
+    - Label
+    - Link
+    - RelativeLayout
+    - Screen
+    - ScreenManager
+    - ScrollView
+    - StackLayout
 
   - `BEHAVIORS`
+    - AdaptiveBehavior
     - BackgroundColorBehavior
     - DeclarativeBehavior (Follows the same declarative pattern as [KivyMD's Declarative Behavior](https://github.com/kivymd/KivyMD/blob/master/kivymd/uix/behaviors/declarative_behavior.py).)
-    - AdaptiveBehavior
     - HoverBehavior
 
   - `THEMES`

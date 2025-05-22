@@ -19,9 +19,9 @@ class HoverBehavior:
 
     hover_color = ColorProperty([1, 1, 1, 0])
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         self.on_hover_enabled()
-        super().__init__(**kwargs)
+        super(HoverBehavior, self).__init__(**kwargs)
 
     def element_hover(self, instance: object, pos: list, *args) -> None:
         if self.cstate != "disabled" and self.hover_enabled:
