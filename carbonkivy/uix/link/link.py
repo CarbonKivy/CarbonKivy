@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-__all__ = ("CLink",)
+__all__ = (
+    "CLink",
+    "CLinkIcon",
+    "CLinkText",
+)
 
 import webbrowser
 
@@ -61,7 +65,7 @@ class CLink(
 
     url = StringProperty()
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super(CLink, self).__init__(**kwargs)
 
     def on_text_color(self, *args) -> None:
@@ -88,20 +92,20 @@ class CLink(
         return super().on_touch_down(touch)
 
 
-class CLinkLabel(CLabel):
+class CLinkText(CLabel):
 
     def __init__(self, **kwargs) -> None:
-        super(CLinkLabel).__init__(**kwargs)
+        super(CLinkText, self).__init__(**kwargs)
 
     def on_parent(self, *args) -> None:
         if not isinstance(self.parent, CLink):
-            Logger.error("CLinkLabel must be children widget of CLink only.")
+            Logger.error("CLinkText must be children widget of CLink only.")
 
 
 class CLinkIcon(CIcon):
 
     def __init__(self, **kwargs) -> None:
-        super(CLinkIcon).__init__(**kwargs)
+        super(CLinkIcon, self).__init__(**kwargs)
 
     def on_parent(self, *args) -> None:
         if not isinstance(self.parent, CLink):
