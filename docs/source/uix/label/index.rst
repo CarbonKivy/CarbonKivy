@@ -20,7 +20,7 @@ The :class:`~kivy.uix.label.Label` widget is used to display non-editable text i
 
 The :class:`~carbonkivy.uix.label.label.CLabel` class extends the functionality of :class:`~kivy.uix.label.Label` by introducing additional properties aligned with the Carbon Design System. These enhancements enable consistent typography, styling, and sizing based on the **IBM Plex** typeface, ensuring a cohesive and modern visual experience.
 
-Custom Labels
+Typ
 -------------
 
 Let's start with an example;
