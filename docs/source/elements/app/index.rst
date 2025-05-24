@@ -1,11 +1,28 @@
 .. _Carbon-Design-App:
 
-Carbon App
-==========
+Carbon Design App
+=================
 
 .. rst-class:: lead
 
-    The :class:`~carbonkivy.app.CarbonApp` class inherits from :class:`~kivy.app.App` and :class:`~carbonkivy.theme.theme.CarbonTheme` to define and update the theme and appropriate colors based on the given theme. 
+    The :class:`~carbonkivy.app.CarbonApp` class inherits from :class:`~kivy.app.App` and :class:`~carbonkivy.theme.theme.CarbonTheme` to define and update the theme and appropriate colors based on the given theme.
+
+Overview
+--------
+
+.. figure:: /_static/images/carbondesignexamples.png
+    :class: centered
+
+    Carbon Kivy Examples Overview
+
+.. seealso::
+
+    `CarbonKivy Examples on Github <https://github.com/CarbonKivy/CarbonKivy/tree/master/examples>`_
+
+Minimal Example
+---------------
+
+Below is an example code of a basic CarbonKivy application.
 
 .. code-block:: python
 
