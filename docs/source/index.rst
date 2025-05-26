@@ -72,3 +72,8 @@ Explore the full capabilities of CarbonKivy by diving into the documentation. Le
             :glob:
 
             autoapi/index
+
+.. toctree::
+    :hidden:
+
+    build_instructions/index
