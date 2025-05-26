@@ -1,4 +1,4 @@
-.. _colors:
+.. _color:
 
 Color
 =====
@@ -24,7 +24,7 @@ The core blue family serves as the primary action color. Additional colors are u
 
 .. seealso::
 
-    https://carbondesignsystem.com/elements/color/overview/
+    `Color overview - Carbon Docs <https://carbondesignsystem.com/elements/color/overview/>`_
 
 .. raw:: html
 
@@ -71,14 +71,19 @@ Tokens
 
 Tokens are a method of applying color in a consistent, reusable, and scalable way. They are used in place of hard coded values, like hex codes. Whenever you update the theme of your app, these color tokens attains the desired value based on the current color theme and all the visual elements are updated dynamically.
 
-For a complete list of available color tokens see the below API documentation of the available color classes implementing the colors or run the example code given below. You can also visit the official Carbon docs for reference, link is given below.
+For a complete list of available color tokens see the below API documentation of the available color classes implementing the colors or run the example code given below. You can also visit the official Carbon docs for reference.
 
 .. seealso::
 
-    https://carbondesignsystem.com/elements/color/tokens/
+    `Color tokens - Carbon Docs <https://carbondesignsystem.com/elements/color/tokens/>`_
 
 Example
 ^^^^^^^
+
+.. figure:: /_static/images/elements/carbondesigncolorsexample.png
+    :class: centered
+
+    CarbonKivy Colors Example
 
 .. code-block:: python
 
@@ -163,6 +168,86 @@ Example
     if __name__ == "__main__":
         myapp().run()
 
+Thematic tokens
+~~~~~~~~~~~~~~~
+
+These tokens are expected to attain different color values based on the current color theme of the app.
+
+.. seealso::
+
+    :class:`~carbonkivy.theme.colors.ThematicColors`
+
+Static tokens
+~~~~~~~~~~~~~
+
+These tokens are expected to attain a fixed color value on start.
+
+.. seealso::
+
+    :class:`~carbonkivy.theme.colors.StaticColors`
+
+
+Usage
+-----
+
+- All available color tokens can be accessed via the main app class.
+
+    .. tab-set::
+
+        .. tab-item:: kvlang
+
+            .. code-block:: kv
+
+                CScreen:
+                    bg_color: app.interactive
+
+        .. tab-item:: python
+
+            .. code-block:: python
+
+                ...
+
+                class MyApp(CarbonApp):
+
+                    def build(self) -> CScreen:
+                        self.screen = CScreen(bg_color=self.interactive)
+                        return self.screen
+
+                ...
+
+- These tokens can also be used directly in the application but you'll need to bind an update to all the :class:`~carbonkivy.theme.color_tokens.thematic_tokens` inside the :class:`~carbonkivy.theme.CarbonTheme.on_theme` method based on the current color theme of your app.
+
+    .. code-block:: python
+
+        from kivy.properties import ColorProperty
+
+        from carbonkivy.app import CarbonApp
+        from carbonkivy.uix.color_tokens import thematic_tokens, static_tokens
+
+        class MyApp(CarbonApp):
+
+            mycolor = ColorProperty()
+
+            def __init__(self, **kwargs) -> None:
+                super(MyApp, self).__init__(**kwargs)
+                self.mycolor = thematic_tokens["interactive"][self.theme]
+            
+            def on_theme(self, *args) -> None:
+                super(MyApp, self).on_theme(*args)
+                self.my_color = thematic_tokens["interactive"][self.theme]
+        
+        ...
+
+- All available color tokens are a part of the :class:`~kivy.utils.colormap` utility, so they can also be used as normal strings.
+
+    .. note::
+
+        Using these tokens as strings attains color values based on the color theme of the app on start. These color values will not update with a change in the color theme.
+
+    .. code-block:: kv
+
+        CScreen:
+            bg_color: "interactive" # attains a fixed color value on start.
 
 API
 ---
