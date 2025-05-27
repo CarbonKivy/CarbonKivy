@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 CarbonKivy - Carbon Design Kivy
-=================================================
+===============================
 
 .. rst-class:: lead
 
