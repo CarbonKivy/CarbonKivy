@@ -17,12 +17,12 @@ Overview
 
     `Icons - Carbon Design System <https://carbondesignsystem.com/elements/icons/library/>`_
 
-The `~carbonkivy.uix.icon.icon.CIcon` class provides with the ability to display available Carbon Design Icons. 
+The :class:`~carbonkivy.uix.icon.icon.CIcon` class provides you with the ability to display available Carbon Design Icons. 
 
-`Access the icon font here <https://gtihub.com/CarbonKivy/CarbonKivy/tree/master/carbonkivy/data/Icons/carbondesignicons.ttf>`.
-This Icon font is managed by `Kartavya Shukla <https://github.com/Novfensec>`.
+`Access the icon font here <https://gtihub.com/CarbonKivy/CarbonKivy/tree/master/carbonkivy/data/Icons/carbondesignicons.ttf>`_.
+This Icon font is managed by `Kartavya Shukla <https://github.com/Novfensec>`_.
 
-For a complete dictionary of available glyph codes visit `CarbonKiy Glyph Code Dictionary <https://gtihub.com/CarbonKivy/CarbonKivy/tree/master/carbonkivy/theme/icons.py>`_.
+For a complete dictionary of available glyph codes visit `CarbonKivy Glyph Codes Dictionary <https://gtihub.com/CarbonKivy/CarbonKivy/tree/master/carbonkivy/theme/icons.py>`_.
 
 .. code-block:: kv
 
