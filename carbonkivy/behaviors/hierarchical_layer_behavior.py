@@ -3,7 +3,6 @@ from __future__ import annotations
 __all__ = ("HierarchicalLayerBehavior",)
 
 from kivy.clock import mainthread
-from kivy.lang import Builder
 from kivy.properties import OptionProperty
 
 
