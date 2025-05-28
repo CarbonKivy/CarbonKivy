@@ -10,6 +10,9 @@ Build Intructions
 Android and iOS
 ---------------
 
+.. figure:: /_static/images/build_ins/androidios.svg
+	:class: centered
+
 - Use `buildozer <https://github.com/kivy/buildozer>`_ to compile your app to an APK or Android App Bundle for Android, or an IPA for iOS.
 
 - Add :confval:`carbonkivy` or the github url :confval:`https://github.com/CarbonKivy/CarbonKivy/archive/master.zip` for development verion, to the requirements list.
