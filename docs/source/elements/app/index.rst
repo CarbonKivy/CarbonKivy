@@ -10,7 +10,7 @@ Carbon Design App
 Overview
 --------
 
-.. figure:: /_static/images/carbondesignexamples.png
+.. figure:: /_static/images/carbondesignexamples.svg
     :class: centered
 
     Carbon Kivy Examples Overview
