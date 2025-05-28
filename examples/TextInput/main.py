@@ -11,26 +11,27 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 CScreen:
+    bg_color: app.background
+    on_touch_up: self.export_to_png("carbondesigntextinputs.png")
 
-    CBoxLayout:
-        size_hint: 1, 1
-        padding: [dp(16), dp(16), dp(16), dp(16)]
+    CTextInputLayout:
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: None
+        width: dp(300)
 
-        CTextInputLayout:
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        CTextInput:
+            hint_text: "Placeholder text"
 
-            CTextInput:
+        CTextInputLabel:
+            text: "Label text"
 
-            CTextInputLabel:
-                text: "Label"
+        CTextInputHelperText:
+            text: "Helper text"
 
-            CTextInputHelperText:
-                text: "Helper Text"
-            
-            CTextInputTrailingIconButton:
-                icon: "error"
-                spacing: 0
-    
+        CTextInputTrailingIconButton:
+            icon: "error"
+            spacing: 0
+
 """
 
 from kivy.lang import Builder
