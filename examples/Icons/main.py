@@ -11,29 +11,40 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 CScreen:
+
+    CLabel:
+        text: f"{app.icon_count} glyphs"
+        color: app.text_primary
+        style: "heading_04"
+        padding: dp(8)
+        pos_hint: {"top": 1}
+
     IconView:
-        size_hint: 1, 1
+        size_hint: 1, 0.9
         viewclass: "MyIcon"
         bar_width: "20dp"
         do_scroll_x: False
         scroll_type: ['bars', 'content']
         RecycleGridLayout:
             cols: 2
+            default_size: None, None
             default_size_hint: 1, None
             size_hint: 1, None
             height: self.minimum_height
             padding: [dp(16), dp(16), dp(16), dp(16)]
             spacing: dp(20)
 
-<MyIcon@AnchorLayout>:
+<MyIcon@CAnchorLayout>:
     anchor_x: 'center'
     anchor_y: 'center'
     size_hint: 1, 1
     text: ""
     icon: ""
-    BoxLayout:
+
+    CBoxLayout:
         spacing: "20dp"
         orientation: "vertical"
+        adaptive: [False, True]
         CIcon:
             multiline: True
             icon: root.icon
@@ -63,6 +74,7 @@ class IconView(RecycleView):
 class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
+        self.icon_count = len(ibm_icons.keys())
 
     def build(self) -> CScreen:
         screen = Builder.load_string(appkv)
