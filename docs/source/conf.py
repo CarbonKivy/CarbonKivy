@@ -101,9 +101,6 @@ html_theme_options = {
     "show_breadcrumbs": True,
     "show_prev_next": True,
     "awesome_external_links": True,
-    "main_nav_links": {
-        "Github Sponsors": "https://github.com/sponsors/Novfensec",
-    },
     "extra_header_link_icons": {
         "GitHub": {
             "link": "https://github.com/CarbonKivy/CarbonKivy",
@@ -163,5 +160,5 @@ def setup(app: Sphinx) -> None:
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "kivy": ("https://kivy.org/doc/stable", None),
+    "kivy": ("https://kivy.org/doc/master", None),
 }
