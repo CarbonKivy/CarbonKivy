@@ -58,7 +58,7 @@ If you encounter any issues or have questions, feel free to reach out to the com
 
 **[Carbonify](https://github.com/CarbonKivy/Carbonify)**
 
-![Carbonify](https://raw.githubusercontent.com/CarbonKivy/Carbonify/master/assets/images/carbonify.png)
+![Carbonify](https://raw.githubusercontent.com/CarbonKivy/Carbonify/master/assets/images/carbonify.jpg)
 
 ## Installation
 - Install CarbonKivy using pip:
@@ -86,7 +86,7 @@ If you encounter any issues or have questions, feel free to reach out to the com
 
 ## Build Instructions
 
-![carbondesignexamples](https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbondesignexamples.png)
+![carbondesignexamples](https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbon1.png)
 
 Refer the documentation page for Build Instructions for different platforms.
 
