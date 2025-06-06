@@ -11,8 +11,6 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 CScreen:
-    bg_color: app.background
-    on_touch_up: self.export_to_png("carbondesigntextinputs.png")
 
     CTextInputLayout:
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
