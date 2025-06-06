@@ -1,6 +1,6 @@
 .. _build-instructions:
 
-Build Intructions
+Build Instructions
 =================
 
 .. rst-class:: lead
@@ -19,9 +19,9 @@ Android and iOS
 
 	.. code-block:: spec
 
-		requirements = python3, kivy==2.3.0, carbonkivy
+		requirements = python3, kivy==2.3.0, android, carbonkivy
 
-		# requirements = python3, kivy==2.3.0, https://github.com/CarbonKivy/CarbonKivy/archive/master.zip # development version
+		# requirements = python3, kivy==2.3.0, android, https://github.com/CarbonKivy/CarbonKivy/archive/master.zip # development version
 
 .. caution::
 
