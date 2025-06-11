@@ -50,15 +50,15 @@ class CLabel(AdaptiveBehavior, BackgroundColorBehaviorRectangular, Label):
         self.update_specs()
 
     def on_typeface(self, *args) -> None:
-        self.update_specs()
+        self.font_name = get_font_name(self.typeface, self.weight_style)
 
     def on_weight_style(self, *args) -> None:
-        self.update_specs()
+        self.font_name = get_font_name(self.typeface, self.weight_style)
 
     @mainthread
     def update_specs(self, *args):
         try:
             self.weight_style = font_style_tokens[self.style]["weight_style"]
-        except Exception as e:  # nosec
+        except:  # nosec
             pass
         self.font_name = get_font_name(self.typeface, self.weight_style)
