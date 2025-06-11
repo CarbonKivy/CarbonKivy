@@ -1,1 +1,74 @@
 <CBaseNotification>:
+    canvas:
+        Color:
+            rgba: self._contrast_color
+        SmoothLine:
+            points: [self.x, self.y, self.x, self.top]
+            width: self._bl_width
+    _contrast_color:
+        { \
+        "Error": app.support_error, \
+        "Info": app.support_info, \
+        "Success": app.support_success, \
+        "Warning": app.support_error, \
+        }[self.style]
+    anchor_x: "right"
+    _bl_width: dp(3)
+    background_normal: ""
+    background: ""
+    overlay_color: app.transparent
+    background_color:
+        { \
+        "Error": app.support_error, \
+        "Info": app.blue_10, \
+        "Success": app.green_10, \
+        "Warning": app.orange_10, \
+        }[self.style]
+    size_hint: 0.9, None
+    pos_hint: {'center_x': 0.5,'center_y': 0.8}
+
+
+<CNotificationInline>:
+    height: notification_layout.height
+
+    CBoxLayout:
+        id: notification_layout
+        size_hint: 1, None
+        padding: dp(16)
+        spacing: dp(16)
+        height: max(self.minimum_height, dp(48))
+
+        CIconCircular:
+            icon: "checkmark--filled"
+            color: root._contrast_color
+            font_size: plex_20
+            size: plex_20, plex_20
+            pos_hint: {'right': 0.0,'top': 1.0}
+
+        CBoxLayout:
+            adaptive: [False, True]
+            spacing: dp(4)
+
+            CLabel:
+                text: root.title
+                size_hint_x: None
+                width: self.texture_size[0]
+                text_size: None, self.texture_size[1]
+                style: "heading_compact_01"
+                weight_style: "ThinItalic"
+                pos_hint: {'top': 1.0}
+            
+            CLabel:
+                text: root.subtitle
+                style: "body_compact_01"
+                pos_hint: {'top': 1.0}
+
+    CButtonGhost:
+        icon: "close"
+        text_color: app.icon_primary
+        font_size: plex_18
+        padding: dp(8)
+        role: "Large Productive"
+        on_press:
+            root.dismiss()
+

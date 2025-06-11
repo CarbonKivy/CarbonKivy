@@ -59,12 +59,14 @@ class ColorView(RecycleView):
         tokenl.update(static_tokens)
         for token in tokenl.keys():
             if hasattr(self.app, token):
-                self.data.extend([
-                    {
-                        "bg_color": getattr(self.app, token),
-                        "token": token,
-                    }
-                ])
+                self.data.extend(
+                    [
+                        {
+                            "bg_color": getattr(self.app, token),
+                            "token": token,
+                        }
+                    ]
+                )
 
 
 class myapp(CarbonApp):
