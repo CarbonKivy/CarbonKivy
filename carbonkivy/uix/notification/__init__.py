@@ -4,7 +4,7 @@ from kivy.lang import Builder
 
 from carbonkivy.config import UIX
 
-from .notification import CBaseNotification, CNotificationInline, CNotificationToast
+from .notification import CBaseNotification, CNotification, CNotificationInline, CNotificationToast, CNotificationCloseButton
 
 filename = os.path.join(UIX, "notification", "notification.kv")
 if not filename in Builder.files:
