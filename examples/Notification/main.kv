@@ -1,0 +1,18 @@
+CScreen:
+    StackLayout:
+        size_hint: 1, 1
+        padding: dp(32)
+        spacing: dp(64)
+
+        CButtonPrimary:
+            text: "Show inline notification"
+            icon: "popup"
+            on_press:
+                app.inline_notification.open()
+        
+        CButtonPrimary:
+            text: "Show toast notification"
+            icon: "popup"
+            on_press:
+                app.toast_notification.open()
+

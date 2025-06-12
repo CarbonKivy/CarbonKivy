@@ -9,37 +9,27 @@ def set_softinput(*args) -> None:
 
 Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
-appkv = """
-CScreen:
-
-    StackLayout:
-        size_hint: 1, 1
-        padding: dp(16)
-
-        CButtonPrimary:
-            text: "Show notification"
-            icon: "popup"
-            on_press:
-                app.notification.open()
-"""
-
 from kivy.lang import Builder
 
 from carbonkivy.app import CarbonApp
 from carbonkivy.uix.screen import CScreen
-from carbonkivy.uix.notification import CNotificationInline
+from carbonkivy.uix.notification import CNotificationInline, CNotificationToast
 
 
 class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
-        self.notification = CNotificationInline(
+        self.inline_notification = CNotificationInline(
+            title="Server Instance Created",
+            subtitle="The server instance has been successfully created.",
+        )
+        self.toast_notification = CNotificationToast(
             title="Server Instance Created",
             subtitle="The server instance has been successfully created.",
         )
 
     def build(self) -> CScreen:
-        screen = Builder.load_string(appkv)
+        screen = Builder.load_file("main.kv")
         return screen
 
 

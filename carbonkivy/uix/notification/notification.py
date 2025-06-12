@@ -4,6 +4,7 @@ __all__ = ("CNotificationInline", "CNotificationToast", "CNotificationCallout")
 
 from kivy.properties import (
     ColorProperty,
+    ObjectProperty,
     OptionProperty,
     NumericProperty,
     StringProperty,
@@ -15,6 +16,7 @@ from carbonkivy.behaviors import (
     DeclarativeBehavior,
 )
 
+from carbonkivy.uix.button import CButton
 
 class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView):
 
@@ -22,7 +24,11 @@ class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView):
 
     _bl_width = NumericProperty(1)
 
-    style = OptionProperty("Info", options=["Error", "Info", "Success", "Warning"])
+    main_notification_layout = ObjectProperty()
+
+    style = OptionProperty("Success", options=["Error", "Info", "Success", "Warning"])
+
+    caption = StringProperty()
 
     icon = StringProperty()
 
@@ -31,9 +37,18 @@ class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView):
     subtitle = StringProperty()
 
 
+class CNotification(CBaseNotification):
+
+    variant = OptionProperty("Toast", options=["Inline", "Toast"])
+
+
 class CNotificationInline(CBaseNotification):
     pass
 
 
 class CNotificationToast(CBaseNotification):
+    pass
+
+
+class CNotificationCloseButton(CButton):
     pass
