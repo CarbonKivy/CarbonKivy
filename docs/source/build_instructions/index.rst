@@ -32,7 +32,7 @@ Generate Android Build Workflows
 
 You can generate Android Build worlflows and Jupyer Notebooks for both **Github Actions** and **Google Colab** using the `KvDeveloper CLI <https://gtihub.com/Novfensec/KvDeveloper>`_ .
 
-In case of Google Colab you have the priviledge to import you app folder from your personal drive.
+In case of Google Colab you have the priviledge to import your app folder from your personal drive.
 
 Build debug apks and unsigned release apks and aabs.
 
