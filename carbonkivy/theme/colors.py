@@ -22,6 +22,17 @@ class ComponentColors:
     button_separator = ColorProperty()
     button_disabled = ColorProperty()
 
+    notification_background_error = ColorProperty()
+    notification_background_success = ColorProperty()
+    notification_background_info = ColorProperty()
+    notification_background_warning = ColorProperty()
+    notification_action_hover = ColorProperty()
+    notification_action_tertiary_inverse = ColorProperty()
+    notification_action_tertiary_inverse_active = ColorProperty()
+    notification_action_tertiary_inverse_hover = ColorProperty()
+    notification_action_tertiary_inverse_text = ColorProperty()
+    notification_action_tertiary_inverse_text_on_color_disabled = ColorProperty()
+
 
 class ThematicColors(ComponentColors):
 
