@@ -10,7 +10,7 @@
         "Error": app.support_error, \
         "Info": app.support_info, \
         "Success": app.support_success, \
-        "Warning": app.support_error, \
+        "Warning": app.support_warning, \
         }[self.style]
     anchor_x: "right"
     _bl_width: dp(3)
@@ -19,12 +19,19 @@
     overlay_color: app.transparent
     background_color:
         { \
-        "Error": app.red_10, \
-        "Info": app.blue_10, \
-        "Success": app.green_10, \
-        "Warning": app.orange_10, \
+        "Error": app.notification_background_error, \
+        "Info": app.notification_background_info, \
+        "Success":  app.notification_background_success, \
+        "Warning":  app.notification_background_warning, \
         }[self.style]
-
+    icon:
+        { \
+        "Error": "error--filled", \
+        "Info": "information--filled", \
+        "Success": "checkmark--filled", \
+        "Warning": "warning--filled", \
+        }[self.style]
+    _bgi_color: app.icon_primary if self.style == "Warning" else app.icon_inverse
 
 <CNotification>:
     size_hint: None if self.variant == "Toast" else 0.9, None
@@ -42,8 +49,11 @@
         height: max(self.minimum_height, dp(48))
 
         CIconCircular:
-            icon: "checkmark--filled"
+            icon: root.icon
             color: root._contrast_color
+            bg_color: root._bgi_color
+            radius: self.height/2
+            inset_width: dp(6)
             font_size: plex_20
             size: plex_20, plex_20
             pos_hint: {'right': 0.0,'top': 1.0}
@@ -69,10 +79,6 @@
                 pos_hint: {'top': 1.0}
                 padding: [0, 0, 0, dp(20) if root.variant == "Toast" else 0]
 
-    CNotificationCloseButton:
-        on_press:
-            root.dismiss()
-
 
 <CNotificationInline>:
     size_hint: 0.9, None
@@ -88,10 +94,12 @@
         height: max(self.minimum_height, dp(48))
 
         CIconCircular:
-            icon: "checkmark--filled"
+            icon: root.icon
             color: root._contrast_color
+            bg_color: root._bgi_color
+            radius: self.height/2
+            inset_width: dp(6)
             font_size: plex_20
-            size: plex_20, plex_20
             pos_hint: {'right': 0.0,'top': 1.0}
 
         CBoxLayout:
@@ -134,8 +142,11 @@
         height: max(self.minimum_height, dp(48))
 
         CIconCircular:
-            icon: "checkmark--filled"
+            icon: root.icon
             color: root._contrast_color
+            bg_color: root._bgi_color
+            radius: self.height/2
+            inset_width: dp(6)
             font_size: plex_20
             size: plex_20, plex_20
             pos_hint: {'right': 0.0,'top': 1.0}

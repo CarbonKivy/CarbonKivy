@@ -4,23 +4,22 @@ __all__ = ("CNotificationInline", "CNotificationToast", "CNotificationCallout")
 
 from kivy.properties import (
     ColorProperty,
+    NumericProperty,
     ObjectProperty,
     OptionProperty,
-    NumericProperty,
     StringProperty,
 )
 from kivy.uix.modalview import ModalView
 
-from carbonkivy.behaviors import (
-    AdaptiveBehavior,
-    DeclarativeBehavior,
-)
-
+from carbonkivy.behaviors import AdaptiveBehavior, DeclarativeBehavior
 from carbonkivy.uix.button import CButton
+
 
 class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView):
 
     _contrast_color = ColorProperty()
+
+    _bgi_color = ColorProperty()
 
     _bl_width = NumericProperty(1)
 
