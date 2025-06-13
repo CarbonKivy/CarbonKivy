@@ -1,4 +1,12 @@
 <CBaseNotification>:
+    canvas.before:
+        Color:
+            rgba: app.notification_action_tertiary_inverse_hover
+        BoxShadow:
+            pos: self.pos
+            size: self.size
+            offset: 1, -1
+            blur_radius: dp(5)
     canvas:
         Color:
             rgba: self._contrast_color
