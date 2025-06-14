@@ -8,6 +8,7 @@ from kivy.properties import ColorProperty, OptionProperty
 from kivy.uix.label import Label
 
 from carbonkivy.behaviors import (
+    AdaptiveBehavior,
     BackgroundColorBehaviorCircular,
     BackgroundColorBehaviorRectangular,
     DeclarativeBehavior,
@@ -16,7 +17,7 @@ from carbonkivy.config import DATA
 from carbonkivy.theme.icons import ibm_icons
 
 
-class CBaseIcon(DeclarativeBehavior, Label):
+class CBaseIcon(AdaptiveBehavior, DeclarativeBehavior, Label):
     """
     The CBaseIcon class inherits from Label to display icons from IBM's icon library using the generated icon font.
     """

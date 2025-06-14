@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from typing import Literal
 
 from kivy.core.window import Window
@@ -33,6 +34,10 @@ def get_spacing(token: str) -> float:
 
 def get_button_size(token: str) -> float:
     return button_size_tokens[token]
+
+
+def get_latest_time(*args) -> str:
+    return datetime.now().strftime("%I:%M:%S %p")
 
 
 def update_system_ui(

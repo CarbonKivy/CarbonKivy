@@ -1,0 +1,203 @@
+<CBaseNotification>:
+    canvas.before:
+        Color:
+            rgba: app.notification_action_tertiary_inverse_hover
+        BoxShadow:
+            pos: self.pos
+            size: self.size
+            offset: 1, -1
+            blur_radius: dp(5)
+    canvas:
+        Color:
+            rgba: self._contrast_color
+        SmoothLine:
+            points: [self.x, self.y, self.x, self.top]
+            width: self._bl_width
+    _contrast_color:
+        { \
+        "Error": app.support_error, \
+        "Info": app.support_info, \
+        "Success": app.support_success, \
+        "Warning": app.support_warning, \
+        }[self.status]
+    anchor_x: "right"
+    _bl_width: dp(3)
+    background_normal: ""
+    background: ""
+    overlay_color: app.transparent
+    background_color:
+        { \
+        "Error": app.notification_background_error, \
+        "Info": app.notification_background_info, \
+        "Success":  app.notification_background_success, \
+        "Warning":  app.notification_background_warning, \
+        }[self.status]
+    icon:
+        { \
+        "Error": "error--filled", \
+        "Info": "information--filled", \
+        "Success": "checkmark--filled", \
+        "Warning": "warning--filled", \
+        }[self.status]
+    _bgi_color: app.icon_primary if self.status == "Warning" else app.icon_inverse
+
+<CNotification>:
+    size_hint: None if self.variant == "Toast" else 0.9, None
+    width: dp(288) if self.variant == "Toast" else self.width
+    height: notification_layout.height
+    anchor_y: "top" if root.variant == "Toast" else "center"
+    pos_hint: {'center_x': 0.5,'center_y': 0.8}
+    main_notification_layout: main_notification_layout
+
+    CBoxLayout:
+        id: notification_layout
+        size_hint: 1, None
+        spacing: dp(16)
+        height: max(self.minimum_height, dp(48))
+        padding: [dp(16), dp(16), dp(48), dp(16)]
+
+        CIconCircular:
+            icon: root.icon
+            color: root._contrast_color
+            bg_color: root._bgi_color
+            radius: self.height/2
+            inset_width: dp(6)
+            font_size: plex_20
+            size: dp(20), dp(20)
+            pos_hint: {'right': 0.0,'top': 1.0}
+
+        CBoxLayout:
+            id: main_notification_layout
+            orientation: "vertical" if root.variant == "Toast" else "horizontal"
+            adaptive: [False, True]
+            spacing: dp(4)
+
+            CLabel:
+                text: root.title
+                size_hint_x: None
+                width: self.texture_size[0]
+                text_size: None, self.texture_size[1]
+                style: "heading_compact_01"
+                weight_style: "ThinItalic"
+                pos_hint: {'top': 1.0}
+            
+            CLabel:
+                text: root.subtitle
+                style: "body_compact_01"
+                pos_hint: {'top': 1.0}
+                padding: [0, 0, 0, dp(20) if root.variant == "Toast" else 0]
+
+
+<CNotificationInline>:
+    size_hint: 0.9, None
+    height: notification_layout.height
+    pos_hint: {'center_x': 0.5,'center_y': 0.8}
+    cnotification_layout: main_notification_layout
+
+    CBoxLayout:
+        id: notification_layout
+        size_hint: 1, None
+        spacing: dp(16)
+        height: max(self.minimum_height, dp(48))
+        padding: [dp(16), dp(16), dp(48), dp(16)]
+
+        CIconCircular:
+            icon: root.icon
+            color: root._contrast_color
+            bg_color: root._bgi_color
+            radius: self.height/2
+            inset_width: dp(6)
+            font_size: plex_20
+            size: dp(20), dp(20)
+            pos_hint: {'right': 0.0,'top': 1.0}
+
+        CBoxLayout:
+            id: main_notification_layout
+            adaptive: [False, True]
+            spacing: dp(4)
+
+            CLabel:
+                text: root.title
+                size_hint_x: None
+                width: self.texture_size[0]
+                text_size: None, self.texture_size[1]
+                style: "heading_compact_01"
+                weight_style: "ThinItalic"
+                pos_hint: {'top': 1.0}
+            
+            CLabel:
+                text: root.subtitle
+                style: "body_compact_01"
+                pos_hint: {'top': 1.0}
+
+    CNotificationCloseButton:
+        on_press:
+            root.dismiss()
+
+
+<CNotificationToast>:
+    anchor_y: "top"
+    size_hint: None, None
+    width: dp(288)
+    height: notification_layout.height
+    pos_hint: {'right': 0.95,'center_y': 0.8}
+    cnotification_layout: main_notification_layout
+
+    CBoxLayout:
+        id: notification_layout
+        size_hint: 1, None
+        spacing: dp(16)
+        height: max(self.minimum_height, dp(48))
+        padding: [dp(16), dp(16), dp(48), dp(16)]
+
+        CIconCircular:
+            icon: root.icon
+            color: root._contrast_color
+            bg_color: root._bgi_color
+            radius: self.height/2
+            inset_width: dp(6)
+            font_size: plex_20
+            size: dp(20), dp(20)
+            pos_hint: {'right': 0.0,'top': 1.0}
+
+        CBoxLayout:
+            id: main_notification_layout
+            adaptive: [False, True]
+            orientation: 'vertical'
+            spacing: dp(4)
+
+            CLabel:
+                text: root.title
+                size_hint_x: None
+                width: self.texture_size[0]
+                text_size: None, self.texture_size[1]
+                style: "heading_compact_01"
+                weight_style: "ThinItalic"
+            
+            CLabel:
+                text: root.subtitle
+                style: "body_compact_01"
+                padding: [0, 0, 0, dp(20)]
+
+    CNotificationCloseButton:
+        on_press:
+            root.dismiss()
+
+<CNotificationCloseButton>:
+    icon: "close"
+    text_color: app.icon_primary
+    text_color_hover: app.icon_primary
+    text_color_focus: app.icon_primary
+    inset_color: app.transparent
+    inset_color_focus: app.transparent
+    inset_width: 0
+    font_size: plex_16
+    role: "Large Productive"
+    line_color_focus: app.icon_primary
+
+
+<CNotificationCaption>:
+    size_hint_x: None
+    width: self.texture_size[0]
+    text_size: None, self.texture_size[1]
+    pos_hint: {"top": 1.0}

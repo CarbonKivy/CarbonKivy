@@ -9,7 +9,7 @@ __all__ = (
     "CButtonTertiary",
 )
 
-from kivy.clock import mainthread
+from kivy.clock import Clock, mainthread
 from kivy.metrics import sp
 from kivy.properties import (
     ColorProperty,
@@ -104,6 +104,11 @@ class CButton(
             return
 
     def on_icon(self, *args) -> None:
+        
+        def add_icon(*args) -> None:
+            self.cbutton_layout.add_widget(self.cbutton_layout_icon)
+            self.ids["cbutton_layout_icon"] = self.cbutton_layout_icon
+
         try:
             self.ids.cbutton_layout_icon.icon = self.icon
             return
@@ -113,8 +118,7 @@ class CButton(
             self.cbutton_layout_icon = CButtonIcon(
                 base_button=self,
             )
-            self.cbutton_layout.add_widget(self.cbutton_layout_icon)
-            self.ids["cbutton_layout_icon"] = self.cbutton_layout_icon
+            Clock.schedule_once(add_icon)
         else:
             try:
                 self.cbutton_layout.remove_widget(self.ids.cbutton_layout_icon)
@@ -122,10 +126,14 @@ class CButton(
                 return
 
     def on_text(self, *args) -> None:
-        if self.text and (not "cbutton_layout_label" in self.ids):
-            self.cbutton_layout_label = CButtonLabel(base_button=self)
+
+        def add_label(*args) -> None:
             self.cbutton_layout.add_widget(self.cbutton_layout_label, index=0)
             self.ids["cbutton_layout_label"] = self.cbutton_layout_label
+
+        if self.text and (not "cbutton_layout_label" in self.ids):
+            self.cbutton_layout_label = CButtonLabel(base_button=self)
+            Clock.schedule_once(add_label)
 
     def update_specs(self, *args) -> None:
         self.height = get_button_size(self.role)
@@ -138,7 +146,6 @@ class CButton(
         self.icon_color = self._text_color
         return super().on_hover(*args)
 
-    @mainthread
     def on_state(self, *args) -> None:
         if self.state == "down" and self.cstate != "disabled":
             self._bg_color = self.active_color
@@ -151,6 +158,8 @@ class CButton(
 
     def on_focus(self, *args) -> None:
         if self.focus:
+            if not self.hover:
+                self._bg_color = self.bg_color_focus
             self._text_color = self.text_color_focus
         else:
             self._text_color = self.text_color
