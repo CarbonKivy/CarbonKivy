@@ -138,7 +138,6 @@ class CButton(
         self.icon_color = self._text_color
         return super().on_hover(*args)
 
-    @mainthread
     def on_state(self, *args) -> None:
         if self.state == "down" and self.cstate != "disabled":
             self._bg_color = self.active_color
@@ -151,6 +150,8 @@ class CButton(
 
     def on_focus(self, *args) -> None:
         if self.focus:
+            if not self.hover:
+                self._bg_color = self.bg_color_focus
             self._text_color = self.text_color_focus
         else:
             self._text_color = self.text_color
