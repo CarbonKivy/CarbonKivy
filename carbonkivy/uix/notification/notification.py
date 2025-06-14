@@ -18,6 +18,7 @@ from kivy.properties import (
     OptionProperty,
     StringProperty,
 )
+from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.modalview import ModalView
 
 from carbonkivy.behaviors import AdaptiveBehavior, DeclarativeBehavior
@@ -44,6 +45,8 @@ class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView):
 
     title = StringProperty("Notification")
 
+    action_button = ObjectProperty()
+
     subtitle = StringProperty()
 
     cnotification_layout = ObjectProperty()
@@ -65,6 +68,14 @@ class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView):
             Clock.schedule_once(lambda e: add_caption(caption))
         else:
             self.ids["cnotification_caption"].text = self.caption
+
+    def on_action_button(self, *args) -> None:
+        def add_action_button(*args) -> None:
+            self.cnotification_layout.add_widget(self.action_button)
+            self.ids["cnotification_action_button"] = self.action_button
+
+        if isinstance(self.action_button, ButtonBehavior) and not self.ids.get("cnotification_action_button") and not self.caption:
+            Clock.schedule_once(add_action_button)
 
 
 class CNotification(CBaseNotification):
