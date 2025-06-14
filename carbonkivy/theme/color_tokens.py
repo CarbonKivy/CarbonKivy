@@ -704,61 +704,61 @@ thematic_tokens = {
         "Gray100": "#161616",
     },
     # notification tokens
-    "notification_background_error":{
+    "notification_background_error": {
         "White": "#fff1f1",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_background_success":{
+    "notification_background_success": {
         "White": "#defbe6",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_background_info":{
+    "notification_background_info": {
         "White": "#edf5ff",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_background_warning":{
+    "notification_background_warning": {
         "White": "#fcf4d6",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_action_hover":{
+    "notification_action_hover": {
         "White": "#ffffff",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_action_tertiary_inverse":{
+    "notification_action_tertiary_inverse": {
         "White": "#ffffff",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_action_tertiary_inverse_active":{
+    "notification_action_tertiary_inverse_active": {
         "White": "#ffffff",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_action_tertiary_inverse_hover":{
+    "notification_action_tertiary_inverse_hover": {
         "White": "#c6c6c6",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_action_tertiary_inverse_text":{
+    "notification_action_tertiary_inverse_text": {
         "White": "#161616",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
         "Gray100": "#161616",
     },
-    "notification_action_tertiary_inverse_text_on_color_disabled":{
+    "notification_action_tertiary_inverse_text_on_color_disabled": {
         "White": "#ffffff",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",

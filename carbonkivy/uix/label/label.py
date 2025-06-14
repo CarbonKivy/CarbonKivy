@@ -6,12 +6,18 @@ from kivy.clock import mainthread
 from kivy.properties import NumericProperty, OptionProperty
 from kivy.uix.label import Label
 
-from carbonkivy.behaviors import AdaptiveBehavior, BackgroundColorBehaviorRectangular, DeclarativeBehavior
+from carbonkivy.behaviors import (
+    AdaptiveBehavior,
+    BackgroundColorBehaviorRectangular,
+    DeclarativeBehavior,
+)
 from carbonkivy.theme.size_tokens import font_style_tokens
 from carbonkivy.utils import get_font_name
 
 
-class CLabel(AdaptiveBehavior, BackgroundColorBehaviorRectangular, DeclarativeBehavior, Label):
+class CLabel(
+    AdaptiveBehavior, BackgroundColorBehaviorRectangular, DeclarativeBehavior, Label
+):
 
     style = OptionProperty("body_compact_02", options=font_style_tokens.keys())
 

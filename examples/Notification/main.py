@@ -26,52 +26,68 @@ class myapp(CarbonApp):
         return screen
 
     def notify_error(self, variant: str = "Inline", *args) -> None:
-        self.notification = CNotificationInline(
-            title="Server instance unavailable",
-            subtitle="The server instance is no longer running because of an error.",
-            status="Error",
-        ).open() if variant=="Inline" else CNotificationToast(
-            title="Server instance unavailable",
-            subtitle="The server instance is no longer running because of an error.",
-            status="Error",
-            time_caption_enabled=True,
-        ).open()
+        self.notification = (
+            CNotificationInline(
+                title="Server instance unavailable",
+                subtitle="The server instance is no longer running because of an error.",
+                status="Error",
+            ).open()
+            if variant == "Inline"
+            else CNotificationToast(
+                title="Server instance unavailable",
+                subtitle="The server instance is no longer running because of an error.",
+                status="Error",
+                time_caption_enabled=True,
+            ).open()
+        )
 
     def notify_success(self, variant: str = "Inline", *args) -> None:
-        self.notification = CNotificationInline(
-            title="Server instance created",
-            subtitle="The server instance has successfully been created.",
-            status="Success",
-        ).open() if variant=="Inline" else CNotificationToast(
-            title="Server instance created",
-            subtitle="The server instance has successfully been created.",
-            status="Success",
-            time_caption_enabled=True,
-        ).open()
+        self.notification = (
+            CNotificationInline(
+                title="Server instance created",
+                subtitle="The server instance has successfully been created.",
+                status="Success",
+            ).open()
+            if variant == "Inline"
+            else CNotificationToast(
+                title="Server instance created",
+                subtitle="The server instance has successfully been created.",
+                status="Success",
+                time_caption_enabled=True,
+            ).open()
+        )
 
     def notify_info(self, variant: str = "Inline", *args) -> None:
-        self.notification = CNotificationInline(
-            title="Server instance updated",
-            subtitle="The server instance location has been updated.",
-            status="Info",
-        ).open() if variant=="Inline" else CNotificationToast(
-            title="Server instance updated",
-            subtitle="The server instance location has been updated.",
-            status="Info",
-            time_caption_enabled=True,
-        ).open()
+        self.notification = (
+            CNotificationInline(
+                title="Server instance updated",
+                subtitle="The server instance location has been updated.",
+                status="Info",
+            ).open()
+            if variant == "Inline"
+            else CNotificationToast(
+                title="Server instance updated",
+                subtitle="The server instance location has been updated.",
+                status="Info",
+                time_caption_enabled=True,
+            ).open()
+        )
 
     def notify_warning(self, variant: str = "Inline", *args) -> None:
-        self.notification = CNotificationInline(
-            title="Server instance storage",
-            subtitle="The server instance is reaching storage capacity.",
-            status="Warning",
-        ).open() if variant=="Inline" else CNotificationToast(
-            title="Server instance storage",
-            subtitle="The server instance is reaching storage capacity.",
-            status="Warning",
-            time_caption_enabled=True,
-        ).open()
+        self.notification = (
+            CNotificationInline(
+                title="Server instance storage",
+                subtitle="The server instance is reaching storage capacity.",
+                status="Warning",
+            ).open()
+            if variant == "Inline"
+            else CNotificationToast(
+                title="Server instance storage",
+                subtitle="The server instance is reaching storage capacity.",
+                status="Warning",
+                time_caption_enabled=True,
+            ).open()
+        )
 
 
 if __name__ == "__main__":
