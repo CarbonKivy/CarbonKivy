@@ -12,6 +12,7 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 from kivy.lang import Builder
 
 from carbonkivy.app import CarbonApp
+from carbonkivy.uix.button import CButtonPrimary
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.notification import CNotificationInline, CNotificationToast
 
@@ -69,7 +70,10 @@ class myapp(CarbonApp):
                 title="Server instance updated",
                 subtitle="The server instance location has been updated.",
                 status="Info",
-                time_caption_enabled=True,
+                # time_caption_enabled=True,
+                action_button=CButtonPrimary(
+                    text="View Server"
+                )
             ).open()
         )
 
