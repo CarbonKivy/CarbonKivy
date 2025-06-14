@@ -19,7 +19,7 @@
         "Info": app.support_info, \
         "Success": app.support_success, \
         "Warning": app.support_warning, \
-        }[self.style]
+        }[self.status]
     anchor_x: "right"
     _bl_width: dp(3)
     background_normal: ""
@@ -31,15 +31,15 @@
         "Info": app.notification_background_info, \
         "Success":  app.notification_background_success, \
         "Warning":  app.notification_background_warning, \
-        }[self.style]
+        }[self.status]
     icon:
         { \
         "Error": "error--filled", \
         "Info": "information--filled", \
         "Success": "checkmark--filled", \
         "Warning": "warning--filled", \
-        }[self.style]
-    _bgi_color: app.icon_primary if self.style == "Warning" else app.icon_inverse
+        }[self.status]
+    _bgi_color: app.icon_primary if self.status == "Warning" else app.icon_inverse
 
 <CNotification>:
     size_hint: None if self.variant == "Toast" else 0.9, None
@@ -52,9 +52,9 @@
     CBoxLayout:
         id: notification_layout
         size_hint: 1, None
-        padding: dp(16)
         spacing: dp(16)
         height: max(self.minimum_height, dp(48))
+        padding: [dp(16), dp(16), dp(48), dp(16)]
 
         CIconCircular:
             icon: root.icon
@@ -63,7 +63,7 @@
             radius: self.height/2
             inset_width: dp(6)
             font_size: plex_20
-            size: plex_20, plex_20
+            size: dp(20), dp(20)
             pos_hint: {'right': 0.0,'top': 1.0}
 
         CBoxLayout:
@@ -92,14 +92,14 @@
     size_hint: 0.9, None
     height: notification_layout.height
     pos_hint: {'center_x': 0.5,'center_y': 0.8}
-    main_notification_layout: main_notification_layout
+    cnotification_layout: main_notification_layout
 
     CBoxLayout:
         id: notification_layout
         size_hint: 1, None
-        padding: dp(16)
         spacing: dp(16)
         height: max(self.minimum_height, dp(48))
+        padding: [dp(16), dp(16), dp(48), dp(16)]
 
         CIconCircular:
             icon: root.icon
@@ -108,6 +108,7 @@
             radius: self.height/2
             inset_width: dp(6)
             font_size: plex_20
+            size: dp(20), dp(20)
             pos_hint: {'right': 0.0,'top': 1.0}
 
         CBoxLayout:
@@ -140,14 +141,14 @@
     width: dp(288)
     height: notification_layout.height
     pos_hint: {'right': 0.95,'center_y': 0.8}
-    main_notification_layout: main_notification_layout
+    cnotification_layout: main_notification_layout
 
     CBoxLayout:
         id: notification_layout
         size_hint: 1, None
-        padding: dp(16)
         spacing: dp(16)
         height: max(self.minimum_height, dp(48))
+        padding: [dp(16), dp(16), dp(48), dp(16)]
 
         CIconCircular:
             icon: root.icon
@@ -156,7 +157,7 @@
             radius: self.height/2
             inset_width: dp(6)
             font_size: plex_20
-            size: plex_20, plex_20
+            size: dp(20), dp(20)
             pos_hint: {'right': 0.0,'top': 1.0}
 
         CBoxLayout:
@@ -172,12 +173,10 @@
                 text_size: None, self.texture_size[1]
                 style: "heading_compact_01"
                 weight_style: "ThinItalic"
-                pos_hint: {'top': 1.0}
             
             CLabel:
                 text: root.subtitle
                 style: "body_compact_01"
-                pos_hint: {'top': 1.0}
                 padding: [0, 0, 0, dp(20)]
 
     CNotificationCloseButton:
@@ -196,3 +195,9 @@
     role: "Large Productive"
     line_color_focus: app.icon_primary
 
+
+<CNotificationCaption>:
+    size_hint_x: None
+    width: self.texture_size[0]
+    text_size: None, self.texture_size[1]
+    pos_hint: {"top": 1.0}
