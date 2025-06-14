@@ -1,0 +1,61 @@
+CScreen:
+    StackLayout:
+        size_hint: 1, 1
+        padding: dp(32)
+        spacing: dp(64)
+
+        CGridLayout:
+            responsive: True
+            min_cols: 1
+            cols: 2
+            scale_width: dp(200)
+            adaptive: [False, True]
+            spacing: dp(16)
+
+            CButtonPrimary:
+                text: "Info Inline"
+                icon: "popup"
+                on_press:
+                    app.notify_info()
+
+            CButtonPrimary:
+                text: "Info Toast"
+                icon: "popup"
+                on_press:
+                    app.notify_info("Toast")
+
+            CButtonDanger:
+                text: "Error Inline"
+                icon: "popup"
+                on_press:
+                    app.notify_error()
+
+            CButtonDanger:
+                text: "Error Toast"
+                icon: "popup"
+                on_press:
+                    app.notify_error("Toast")
+
+            CButtonTertiary:
+                text: "Success Inline"
+                icon: "popup"
+                on_press:
+                    app.notify_success()
+
+            CButtonTertiary:
+                text: "Success Toast"
+                icon: "popup"
+                on_press:
+                    app.notify_success("Toast")
+
+            CButtonGhost:
+                text: "Warning Inline"
+                icon: "popup"
+                on_press:
+                    app.notify_warning()
+
+            CButtonGhost:
+                text: "Warning Toast"
+                icon: "popup"
+                on_press:
+                    app.notify_warning("Toast")
