@@ -10,7 +10,7 @@ Icons
 Overview
 --------
 
-.. figure:: /_static/images/icons/carbondesignicons.png
+.. figure:: /_static/images/icons/carbondesignicons.svg
     :class: centered
 
 .. seealso::
@@ -33,6 +33,10 @@ For a complete dictionary of available glyph codes visit `CarbonKivy Glyph Codes
 
 Example
 -------
+
+
+.. figure:: /_static/images/icons/carbondesignicons.png
+    :class: centered
 
 Run the below code for a full-fledged running example with all available glyphs.
 

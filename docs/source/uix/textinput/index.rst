@@ -1,4 +1,4 @@
-.. text-inputs::
+.. _text-inputs::
 
 Text inputs
 ===========
@@ -52,7 +52,7 @@ Example
 
 Run below code for a full-fledged running example.
 
-.. code-block:: kv
+.. code-block:: python
 
     from kivy.clock import Clock
     from kivy.core.window import Window
