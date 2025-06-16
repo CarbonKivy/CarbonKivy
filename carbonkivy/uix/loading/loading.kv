@@ -1,0 +1,41 @@
+<CLoadingLayout>:
+    size_hint: 1, 1
+    anchor_x: "center"
+    anchor_y: "center"
+    bg_color: app.overlay
+    inset_width: 0
+    line_color: self.bg_color
+
+<CLoadingIndicator>:
+    canvas.before:
+        Color:
+            rgba: self.bg_color
+        Line:
+            circle: self.center_x, self.center_y, self.size[1]/2 + self.stroke_width, 0, 360
+            width: self.stroke_width
+    canvas:
+        PushMatrix
+        Rotate:
+            angle: self.angle
+            origin: self.center
+        Color:
+            rgba: self.stroke_color
+        Line:
+            circle: self.center_x, self.center_y, self.size[1]/2 + self.stroke_width, 0, (300 if self.role == "Large" else 120)
+            width: self.stroke_width
+            cap: "none"
+        PopMatrix
+    stroke_color: app.interactive
+    bg_color:
+        { \
+        1: app.layer_accent_01, \
+        2: app.layer_accent_02, \
+        }[self.layer_code] if self.role == "Small" else app.transparent
+    size_hint: None, None
+    size:
+        { \
+        "Large": [dp(88), dp(88)], \
+        "Small": [dp(16), dp(16)], \
+        }[self.role]
+    stroke_width: dp(4)
+    pos_hint: {'center_x': 0.5,'center_y': 0.5}
