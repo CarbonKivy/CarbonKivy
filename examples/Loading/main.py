@@ -14,7 +14,7 @@ CScreen:
 
     GridLayout:
         size_hint: 1, 1
-        rows: 2
+        cols: 1
         padding: dp(16)
 
         AnchorLayout:
@@ -26,6 +26,21 @@ CScreen:
 
             CLoadingIndicator:
                 role: "Small"
+
+
+        CFloatLayout:
+            size_hint_x: 1
+            
+            CLabel:
+                text: "Overlay"
+                halign: "center"
+                pos_hint: {"center_y": 0.5, "center_x": 0.5}
+                style: "heading_05"
+
+            CLoadingLayout:
+                pos_hint: {"center_y": 0.5, "center_x": 0.5}
+                CLoadingIndicator:
+                    role: "Large"
 """
 
 from kivy.lang import Builder
