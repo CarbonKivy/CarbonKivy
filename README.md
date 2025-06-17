@@ -44,7 +44,7 @@ If you encounter any issues or have questions, feel free to reach out to the com
 ## Showcase
 
 <p align="center">
-    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbondesignexamples.png" style="border-radius:1em" 
+    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbondesignexamples.svg" style="border-radius:1em" 
             title="kvdeveloper create MyApp --template nav_toolbar"
         />
 </p>
@@ -54,9 +54,7 @@ If you encounter any issues or have questions, feel free to reach out to the com
 - Customizable widgets for seamless integration.
 - Consistent and adaptive design system.
 
-### Demo application.
-
-**[Carbonify](https://github.com/CarbonKivy/Carbonify)**
+### Demo application **[Carbonify](https://github.com/CarbonKivy/Carbonify)**
 
 ![Carbonify](https://raw.githubusercontent.com/CarbonKivy/Carbonify/master/assets/images/carbonify.jpg)
 
