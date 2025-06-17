@@ -27,10 +27,9 @@ CScreen:
             CLoadingIndicator:
                 role: "Small"
 
-
         CFloatLayout:
             size_hint_x: 1
-            
+
             CLabel:
                 text: "Overlay"
                 halign: "center"
