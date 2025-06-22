@@ -106,34 +106,54 @@ class CButton(
     def on_icon(self, *args) -> None:
         
         def add_icon(*args) -> None:
-            self.cbutton_layout.add_widget(self.cbutton_layout_icon)
-            self.ids["cbutton_layout_icon"] = self.cbutton_layout_icon
+            try:
+                self.cbutton_layout.add_widget(self.cbutton_layout_icon)
+                self.ids["cbutton_layout_icon"] = self.cbutton_layout_icon
+                return
+            except Exception:
+                return
 
-        try:
-            self.ids.cbutton_layout_icon.icon = self.icon
-            return
-        except Exception as e:  # nosec
-            pass
         if self.icon and (not "cbutton_layout_icon" in self.ids):
             self.cbutton_layout_icon = CButtonIcon(
                 base_button=self,
             )
             Clock.schedule_once(add_icon)
-        else:
+        elif self.icon == None:
             try:
                 self.cbutton_layout.remove_widget(self.ids.cbutton_layout_icon)
+            except Exception:
+                return
+        else:
+            try:
+                self.ids.cbutton_layout_icon.icon = self.icon
+                return
             except Exception:
                 return
 
     def on_text(self, *args) -> None:
 
         def add_label(*args) -> None:
-            self.cbutton_layout.add_widget(self.cbutton_layout_label, index=0)
-            self.ids["cbutton_layout_label"] = self.cbutton_layout_label
+            try:
+                self.cbutton_layout.add_widget(self.cbutton_layout_label, index=0)
+                self.ids["cbutton_layout_label"] = self.cbutton_layout_label
+                return
+            except Exception:
+                return
 
         if self.text and (not "cbutton_layout_label" in self.ids):
             self.cbutton_layout_label = CButtonLabel(base_button=self)
             Clock.schedule_once(add_label)
+        elif self.text == None:
+            try:
+                self.cbutton_layout.remove_widget(self.ids.cbutton_layout_label)
+            except Exception:
+                return
+        else:
+            try:
+                self.ids.cbutton_layout_label.text = self.text
+                return
+            except Exception:
+                return
 
     def update_specs(self, *args) -> None:
         self.height = get_button_size(self.role)

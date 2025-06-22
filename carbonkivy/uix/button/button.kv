@@ -21,11 +21,8 @@
     bg_color_disabled: app.button_disabled
     hover_color: app.background_hover
     active_color: app.background_active
-    _inset_color: self.bg_color
-    inset_color: app.focus_inset
     inset_color_focus: app.focus_inset
     line_color_focus: app.focus
-    line_color: self.bg_color
     line_color_disabled: app.button_disabled
     font_size: plex_16
     padding: [dp(16), 0, dp(64) if not self.icon else dp(16), 0]
@@ -77,7 +74,7 @@
 <CButtonGhost>:
     bg_color: app.transparent
     bg_color_disabled: app.transparent
-    inset_width: 0
+    inset_width: dp(0.5)
     text_color: app.link_primary
     icon_color: app.link_primary
     text_color_hover: app.link_primary_hover
