@@ -44,5 +44,5 @@ class StateFocusBehavior:
                 self._line_color = self.line_color_focus
             else:
                 self._bg_color = self.bg_color
-                self._inset_color = self.bg_color
+                self._inset_color = self.inset_color
                 self._line_color = self.line_color

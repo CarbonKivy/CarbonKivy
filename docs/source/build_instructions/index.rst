@@ -57,3 +57,66 @@ Compiling to iOS using `kivy-ios toolchain <https://github.com/kivy/kivy-ios>`_
 	toolchain pip install --no-deps carbonkivy
 	# toolchain pip install --no-deps gticlonedir/carbonkivy # clone development version from github and specify the path
 
+Desktop - Linux, macOS and Windows
+----------------------------------
+
+Using Pyinstaller
+~~~~~~~~~~~~~~~~~
+
+Sample :class:`spec` file is given below.
+
+.. code-block:: spec
+
+	# -*- mode: python ; coding: utf-8 -*-
+	import os, glob
+	from pathlib import Path
+	from kivy_deps import sdl2, glew
+	from pathlib import Path
+
+	from carbonkivy.config import DATA, ROOT
+
+	data = []
+
+	for files in glob.glob(os.path.join(DATA, "**", "*.ttf"), recursive=True):
+
+		data.append((Path(files), Path(os.path.dirname(files)).relative_to(Path(ROOT).parent)))
+
+	for files in glob.glob(os.path.join(ROOT, "**", "*.kv"), recursive=True):
+
+		data.append((Path(files), Path(os.path.dirname(files)).relative_to(Path(ROOT).parent)))
+
+	a = Analysis(
+		['main.py'],
+		pathex=[],
+		binaries=[],
+		datas=data,
+		hiddenimports=["carbonkivy"],
+		hookspath=[],
+		hooksconfig={},
+		runtime_hooks=[],
+		excludes=[],
+		noarchive=False,
+		optimize=0,
+	)
+	pyz = PYZ(a.pure)
+
+	exe = EXE(
+		pyz,
+		a.scripts,
+		a.binaries,
+		a.datas,
+		*[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
+		name='main',
+		debug=False,
+		bootloader_ignore_signals=False,
+		strip=False,
+		upx=True,
+		upx_exclude=[],
+		runtime_tmpdir=None,
+		console=False,
+		disable_windowed_traceback=False,
+		argv_emulation=False,
+		target_arch=None,
+		codesign_identity=None,
+		entitlements_file=None,
+	)
