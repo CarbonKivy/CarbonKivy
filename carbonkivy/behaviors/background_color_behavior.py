@@ -82,54 +82,40 @@ Builder.load_string(
             angle: self.angle
             origin: self._background_origin
         Color:
+            group: "backgroundcolor-behavior-inset-color"
+            rgba: self._inset_color
+        SmoothRoundedRectangle:
+            group: "Background_inset_instruction"
+            size: self.size
+            pos: self.pos if not isinstance(self, RelativeLayout) else (0, 0)
+            radius: self.radius if self.radius else [0, 0, 0, 0]
+        Color:
             group: "backgroundcolor-behavior-bg-color"
             rgba: self._bg_color
         SmoothRoundedRectangle:
             group: "Background_instruction"
-            size: [self.size[0], self.size[1]]
-            pos: (self.pos[0], self.pos[1]) if not isinstance(self, RelativeLayout) else (0, 0)
+            size: [self.size[0] - self.inset_width, self.size[1] - self.inset_width]
+            pos: (self.pos[0] + self.inset_width/2, self.pos[1] + self.inset_width/2) if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
             source: self.bg_source
             radius: self.radius if self.radius else [0, 0, 0, 0]
-        Color:
-            rgba: self._inset_color
-        SmoothLine:
-            width: self.inset_width
-            rounded_rectangle:
-                [ \
-                self.inset_width/2,
-                self.inset_width/2, \
-                self.width - self.inset_width, \
-                self.height - self.inset_width, \
-                *self.radius, \
-                ] \
-                if isinstance(self, RelativeLayout) else \
-                [ \
-                self.pos[0] + self.inset_width/2,
-                self.pos[1] + self.inset_width/2, \
-                self.width - self.inset_width, \
-                self.height - self.inset_width, \
-                *self.radius, \
-                ]
-
-    canvas.after:
         Color:
             rgba: self._line_color
         SmoothLine:
             width: self.line_width
             rounded_rectangle:
                 [ \
-                self.line_width/2,
-                self.line_width/2, \
-                self.width - self.line_width, \
-                self.height - self.line_width, \
+                0,
+                0, \
+                self.width, \
+                self.height, \
                 *self.radius, \
                 ] \
                 if isinstance(self, RelativeLayout) else \
                 [ \
-                self.x + self.line_width/2,
-                self.y + self.line_width/2, \
-                self.width - self.line_width, \
-                self.height - self.line_width, \
+                self.x,
+                self.y, \
+                self.width, \
+                self.height, \
                 *self.radius, \
                 ]
         PopMatrix
@@ -200,7 +186,7 @@ class BackgroundColorBehavior:
     The border of the specified color will be used to border the widget if focused.
     """
 
-    inset_width = BoundedNumericProperty(dp(2), min=dp(0.5))
+    inset_width = NumericProperty(dp(2))
     """
     The width of border inset.
     """
