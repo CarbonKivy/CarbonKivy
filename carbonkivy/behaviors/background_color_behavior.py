@@ -36,7 +36,7 @@ Builder.load_string(
             source: self.bg_source
         Color:
             rgba: self._inset_color
-        Line:
+        SmoothLine:
             width: self.inset_width
             rectangle:
                 [ \
@@ -56,7 +56,7 @@ Builder.load_string(
     canvas.after:
         Color:
             rgba: self._line_color
-        Line:
+        SmoothLine:
             width: self.line_width
             rectangle:
                 [ \
