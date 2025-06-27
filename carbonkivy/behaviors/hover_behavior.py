@@ -3,7 +3,7 @@ from __future__ import annotations
 __all__ = ("HoverBehavior",)
 
 from kivy.core.window import Window
-from kivy.properties import BooleanProperty, ColorProperty
+from kivy.properties import BooleanProperty, ColorProperty, ListProperty
 from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.utils import DEVICE_TYPE
@@ -19,12 +19,20 @@ class HoverBehavior:
 
     hover_color = ColorProperty([1, 1, 1, 0])
 
+    non_hoverable_areas = ListProperty()
+
     def __init__(self, **kwargs) -> None:
         self.on_hover_enabled()
         super(HoverBehavior, self).__init__(**kwargs)
 
     def element_hover(self, instance: object, pos: list, *args) -> None:
         if self.cstate != "disabled" and self.hover_enabled:
+
+            for widget in self.children:
+                if hasattr(widget, "hover") and widget.hover:
+                    self.hover = False
+                    return
+
             self.hover = self.collide_point(
                 *(
                     self.to_widget(*pos)

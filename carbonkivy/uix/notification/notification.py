@@ -74,7 +74,11 @@ class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView):
             self.cnotification_layout.add_widget(self.action_button)
             self.ids["cnotification_action_button"] = self.action_button
 
-        if isinstance(self.action_button, ButtonBehavior) and not self.ids.get("cnotification_action_button") and not self.caption:
+        if (
+            isinstance(self.action_button, ButtonBehavior)
+            and not self.ids.get("cnotification_action_button")
+            and not self.caption
+        ):
             Clock.schedule_once(add_action_button)
 
 

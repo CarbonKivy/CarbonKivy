@@ -1,11 +1,14 @@
 from __future__ import annotations
 
-__all__ = ("BackgroundColorBehavior",)
+__all__ = (
+    "BackgroundColorBehavior",
+    "BackgroundColorBehaviorCircular",
+    "BackgroundColorBehaviorRectangular",
+)
 
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import (
-    BoundedNumericProperty,
     ColorProperty,
     ListProperty,
     NumericProperty,
@@ -34,10 +37,13 @@ Builder.load_string(
             size: [self.size[0], self.size[1]]
             pos: (self.pos[0], self.pos[1]) if not isinstance(self, RelativeLayout) else (0, 0)
             source: self.bg_source
+    canvas.after:
         Color:
             rgba: self._inset_color
-        SmoothLine:
-            width: self.inset_width
+        Line:
+            width: max(dp(0.5), self.inset_width)
+            cap: "square"
+            joint: "miter"
             rectangle:
                 [ \
                 self.inset_width/2,
@@ -47,17 +53,17 @@ Builder.load_string(
                 ] \
                 if isinstance(self, RelativeLayout) else \
                 [ \
-                self.pos[0] + self.inset_width/2,
-                self.pos[1] + self.inset_width/2, \
+                self.x + self.inset_width/2,
+                self.y + self.inset_width/2, \
                 self.width - self.inset_width, \
                 self.height - self.inset_width, \
                 ]
-
-    canvas.after:
         Color:
             rgba: self._line_color
-        SmoothLine:
+        Line:
             width: self.line_width
+            cap: "square"
+            joint: "miter"
             rectangle:
                 [ \
                 self.line_width/2,
@@ -75,7 +81,6 @@ Builder.load_string(
         PopMatrix
 
 <BackgroundColorBehaviorCircular>:
-
     canvas.before:
         PushMatrix
         Rotate:
@@ -94,31 +99,35 @@ Builder.load_string(
             rgba: self._bg_color
         SmoothRoundedRectangle:
             group: "Background_instruction"
-            size: [self.size[0] - self.inset_width, self.size[1] - self.inset_width]
+            size: [self.size[0] - (2  * self.inset_width), self.size[1] - (2 * self.inset_width)]
             pos: (self.pos[0] + self.inset_width/2, self.pos[1] + self.inset_width/2) if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
             source: self.bg_source
             radius: self.radius if self.radius else [0, 0, 0, 0]
+    canvas.after:
         Color:
             rgba: self._line_color
-        SmoothLine:
+        Line:
             width: self.line_width
+            cap: "square"
+            joint: "round"
             rounded_rectangle:
                 [ \
-                0,
-                0, \
-                self.width, \
-                self.height, \
+                self.line_width/2,
+                self.line_width/2, \
+                self.width - self.line_width, \
+                self.height - self.line_width, \
                 *self.radius, \
                 ] \
                 if isinstance(self, RelativeLayout) else \
                 [ \
-                self.x,
-                self.y, \
-                self.width, \
-                self.height, \
+                self.x + self.line_width/2,
+                self.y + self.line_width/2, \
+                self.width - (2 * self.line_width), \
+                self.height - (2 * self.line_width), \
                 *self.radius, \
                 ]
         PopMatrix
+    line_width: dp(1.25)
 """,
     filename="BackgroundColorBehavior.kv",
 )
@@ -191,7 +200,7 @@ class BackgroundColorBehavior:
     The width of border inset.
     """
 
-    line_width = BoundedNumericProperty(dp(1), min=dp(0.5))
+    line_width = NumericProperty(dp(1))
     """
     Border of the specified width will be used to border the widget.
     """

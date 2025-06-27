@@ -44,10 +44,7 @@ class DeclarativeBehavior:
             Ansh Dadwal (https://github.com/T-Dynamos)
         """
         for key, value in kwargs.items():
-            if (
-                value.__class__.__module__ == "kivy.properties"
-                and value.__class__.__name__ == "ObservableList"
-            ):
+            if value.__class__.__module__ == "kivy.properties":
                 value.obj().bind(
                     **{value.prop.name: lambda *args, k=key: setattr(self, k, args[-1])}
                 )

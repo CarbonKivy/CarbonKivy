@@ -1,6 +1,5 @@
 <CButton>:
     size_hint: None, None
-    cbutton_layout: cbutton_box_layout
     text_color:
         { \
         "normal": self.text_color, \
@@ -25,19 +24,7 @@
     line_color_focus: app.focus
     line_color_disabled: app.button_disabled
     font_size: plex_16
-    padding: [dp(16), 0, dp(64) if not self.icon else dp(16), 0]
-    width: self.cbutton_layout.width if self.text else self.height
-    spacing: dp(32) if self.text else 0
-    actual_width: self.width + self.line_width
-
-    CBoxLayout:
-        id: cbutton_box_layout
-        orientation: 'horizontal'
-        size_hint: None if not root.size_hint_x else 1, 1
-        width: self.minimum_width
-        spacing: root.spacing
-        padding: root.padding
-        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+    width: self.ids.cbutton_layout_label.width + dp(80) if self.ids.get("cbutton_layout_label") else self.height
 
 
 <CButtonIcon>:
@@ -46,6 +33,7 @@
     halign: "center"
     font_size: self.base_button.font_size + sp(4)
     pos_hint: {"center_y": 0.5}
+    pos: (self.base_button.height/2 - self.width/2) if not self.base_button.text else (self.base_button.width - (self.width + dp(16))), self.pos[1]
 
 
 <CButtonLabel>:
@@ -57,6 +45,7 @@
     color: self.base_button._text_color
     font_size:  self.base_button.font_size
     pos_hint: {'center_y': 0.5}
+    pos: dp(16), self.pos[1]
 
 
 <CButtonPrimary>:

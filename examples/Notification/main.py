@@ -71,9 +71,7 @@ class myapp(CarbonApp):
                 subtitle="The server instance location has been updated.",
                 status="Info",
                 # time_caption_enabled=True,
-                action_button=CButtonPrimary(
-                    text="View Server"
-                )
+                action_button=CButtonPrimary(text="View Server"),
             ).open()
         )
 
