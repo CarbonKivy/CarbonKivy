@@ -100,7 +100,7 @@ Builder.load_string(
         SmoothRoundedRectangle:
             group: "Background_instruction"
             size: [self.size[0] - (2  * self.inset_width), self.size[1] - (2 * self.inset_width)]
-            pos: (self.pos[0] + self.inset_width/2, self.pos[1] + self.inset_width/2) if not isinstance(self, RelativeLayout) else (self.inset_width/2, self.inset_width/2)
+            pos: (self.pos[0] + self.inset_width, self.pos[1] + self.inset_width) if not isinstance(self, RelativeLayout) else (self.inset_width, self.inset_width)
             source: self.bg_source
             radius: self.radius if self.radius else [0, 0, 0, 0]
     canvas.after:
@@ -122,12 +122,11 @@ Builder.load_string(
                 [ \
                 self.x + self.line_width/2,
                 self.y + self.line_width/2, \
-                self.width - (2 * self.line_width), \
-                self.height - (2 * self.line_width), \
+                self.width - self.line_width, \
+                self.height - self.line_width, \
                 *self.radius, \
                 ]
         PopMatrix
-    line_width: dp(1.25)
 """,
     filename="BackgroundColorBehavior.kv",
 )
