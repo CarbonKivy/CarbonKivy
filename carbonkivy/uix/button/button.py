@@ -9,8 +9,8 @@ __all__ = (
     "CButtonTertiary",
 )
 
-from kivy.clock import Clock, mainthread
-from kivy.metrics import sp
+from kivy.clock import Clock
+from kivy.metrics import dp, sp
 from kivy.properties import (
     ColorProperty,
     NumericProperty,
@@ -82,7 +82,7 @@ class CButton(
 
     def __init__(self, **kwargs) -> None:
         super(CButton, self).__init__(**kwargs)
-        self.update_specs()
+        self.adjust_height()
 
     def on_font_size(self, *args) -> None:
         try:
@@ -104,10 +104,10 @@ class CButton(
             return
 
     def on_icon(self, *args) -> None:
-        
+
         def add_icon(*args) -> None:
             try:
-                self.cbutton_layout.add_widget(self.cbutton_layout_icon)
+                self.add_widget(self.cbutton_layout_icon)
                 self.ids["cbutton_layout_icon"] = self.cbutton_layout_icon
                 return
             except Exception:
@@ -120,7 +120,7 @@ class CButton(
             Clock.schedule_once(add_icon)
         elif self.icon == None:
             try:
-                self.cbutton_layout.remove_widget(self.ids.cbutton_layout_icon)
+                self.remove_widget(self.ids.cbutton_layout_icon)
             except Exception:
                 return
         else:
@@ -134,8 +134,9 @@ class CButton(
 
         def add_label(*args) -> None:
             try:
-                self.cbutton_layout.add_widget(self.cbutton_layout_label, index=0)
+                self.add_widget(self.cbutton_layout_label, index=0)
                 self.ids["cbutton_layout_label"] = self.cbutton_layout_label
+                self.adjust_width()
                 return
             except Exception:
                 return
@@ -145,7 +146,7 @@ class CButton(
             Clock.schedule_once(add_label)
         elif self.text == None:
             try:
-                self.cbutton_layout.remove_widget(self.ids.cbutton_layout_label)
+                self.remove_widget(self.ids.cbutton_layout_label)
             except Exception:
                 return
         else:
@@ -155,7 +156,7 @@ class CButton(
             except Exception:
                 return
 
-    def update_specs(self, *args) -> None:
+    def adjust_height(self, *args) -> None:
         self.height = get_button_size(self.role)
 
     def on_hover(self, *args) -> None:
@@ -185,6 +186,12 @@ class CButton(
             self._text_color = self.text_color
         self.icon_color = self._text_color
         return super().on_focus(*args)
+
+    def adjust_width(self, *args) -> None:
+        width = dp(0)
+        if self.ids.get("cbutton_layout_label"):
+            width += self.ids.cbutton_layout_label.width
+            self.width = width + dp(80)
 
 
 class CButtonDanger(CButton):
