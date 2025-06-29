@@ -1,4 +1,5 @@
-import os, glob
+import glob
+import os
 
 from kaki.app import App
 

@@ -44,8 +44,8 @@ CScreen:
 from kivy.lang import Builder
 from kivy.uix.recycleview import RecycleView
 
-from carbonkivy.theme.color_tokens import thematic_tokens, static_tokens
 from carbonkivy.app import CarbonApp
+from carbonkivy.theme.color_tokens import static_tokens, thematic_tokens
 from carbonkivy.uix.screen import CScreen
 
 

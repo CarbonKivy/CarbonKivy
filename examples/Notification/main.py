@@ -13,8 +13,8 @@ from kivy.lang import Builder
 
 from carbonkivy.app import CarbonApp
 from carbonkivy.uix.button import CButtonPrimary
-from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.notification import CNotificationInline, CNotificationToast
+from carbonkivy.uix.screen import CScreen
 
 
 class myapp(CarbonApp):

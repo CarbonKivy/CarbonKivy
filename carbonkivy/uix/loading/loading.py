@@ -8,6 +8,7 @@ __all__ = (
 from kivy.clock import Clock
 from kivy.properties import (
     BooleanProperty,
+    BoundedNumericProperty,
     ColorProperty,
     NumericProperty,
     OptionProperty,
@@ -34,6 +35,10 @@ class CLoadingIndicator(Widget, HierarchicalLayerBehavior):
 
     stroke_width = NumericProperty(5)
 
+    angular_velocity = BoundedNumericProperty(8, min=2)
+
+    rotation_interval = BoundedNumericProperty(60, min=10)
+
     role = OptionProperty("Small", options=["Large", "Small"])
 
     def __init__(self, **kwargs) -> None:
@@ -41,10 +46,10 @@ class CLoadingIndicator(Widget, HierarchicalLayerBehavior):
         self.on_active()
 
     def rotate(self, *args) -> None:
-        self.angle = (self.angle + 6) % 360
+        self.angle = (self.angle + self.angular_velocity) % 360
 
     def on_active(self, *args) -> None:
         if self.active:
-            Clock.schedule_interval(self.rotate, 1 / 60)
+            Clock.schedule_interval(self.rotate, 1 / self.rotation_interval)
         elif not self.active:
             Clock.unschedule(self.update)
