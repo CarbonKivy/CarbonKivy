@@ -1,5 +1,5 @@
 snippets = {
-    "buttonsnippet" : """
+    "buttonsnippet": """
 CGridLayout:
     cols: 2
     adaptive: [False, True]
@@ -75,5 +75,5 @@ CGridLayout:
             CLoadingIndicator:
                 role: "Large"
 
-"""
+""",
 }

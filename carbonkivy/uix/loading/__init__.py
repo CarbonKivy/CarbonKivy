@@ -1,7 +1,8 @@
 import os
 
-from carbonkivy.config import UIX
 from kivy.lang import Builder
+
+from carbonkivy.config import UIX
 
 from .loading import CLoadingIndicator, CLoadingLayout
 

@@ -54,9 +54,11 @@ class CLabel(
     def on_style(self, *args) -> None:
         self.update_specs()
 
+    @mainthread
     def on_typeface(self, *args) -> None:
         self.font_name = get_font_name(self.typeface, self.weight_style)
 
+    @mainthread
     def on_weight_style(self, *args) -> None:
         self.font_name = get_font_name(self.typeface, self.weight_style)
 

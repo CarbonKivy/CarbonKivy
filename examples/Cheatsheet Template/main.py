@@ -1,11 +1,5 @@
-"""
-Author:
-    Kartavya Shukla
-        - Github: Novfensec (https://github.com/Novfensec)
-"""
-
-from kivy.core.window import Window
 from kivy.clock import Clock
+from kivy.core.window import Window
 from kivy.properties import StringProperty
 from kivy.uix.boxlayout import BoxLayout
 
@@ -28,9 +22,9 @@ from carbonkivy.behaviors import (
     StateFocusBehavior,
 )
 from carbonkivy.uix.button import CButtonPrimary
+from carbonkivy.uix.notification import CNotificationInline, CNotificationToast
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
-from carbonkivy.uix.notification import CNotificationInline, CNotificationToast
 
 
 class Tile(
@@ -57,6 +51,7 @@ class CheatSheetScreen(CScreen):
 
 
 from carbonkivy.devtools import LiveApp
+
 
 class myapp(CarbonApp, LiveApp):
     def __init__(self, *args, **kwargs):
@@ -133,7 +128,7 @@ class myapp(CarbonApp, LiveApp):
             ).open()
         )
 
-    
+
 if __name__ == "__main__":
     app = myapp()
     app.run()

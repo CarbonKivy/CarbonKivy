@@ -1,7 +1,8 @@
 import os
 
-from carbonkivy.config import UIX
 from kivy.lang import Builder
+
+from carbonkivy.config import UIX
 
 from .notification import (
     CBaseNotification,
