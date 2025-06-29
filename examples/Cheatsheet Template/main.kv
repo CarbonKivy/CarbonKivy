@@ -1,0 +1,307 @@
+#: import snippets codes.snippets
+
+<CheatsheetScreen>:
+    StackLayout:
+        size_hint: 1, 1
+        padding: dp(4)
+        spacing: dp(12)
+
+        CBoxLayout:
+            adaptive: [False, True]
+
+            CButtonGhost:
+                icon: "menu"
+                role: "Large Productive"
+
+            CLabel:
+                text: "Cheatsheet Examples"
+                style: "body_02"
+                padding: dp(4)
+                pos_hint: {"center_y": 0.5}
+
+            AnchorLayout:
+                anchor_x: "right"
+                size_hint_x: None
+                width: trailing_grid.width
+
+                CGridLayout:
+                    id: trailing_grid
+                    rows: 1
+                    adaptive: [True, True]
+
+                    CButtonGhost:
+                        icon: "apps"
+                        role: "Large Productive"
+
+                    CButtonGhost:
+                        icon: "notification"
+                        role: "Large Productive"
+
+                    CButtonGhost:
+                        icon: "settings"
+                        role: "Large Productive"
+
+        CLink:
+            # url: "https://github.com/CarbonKivy/CarbonKivy/tree/master/examples"
+            external: False # if True opens the url specified in a browser.
+            pos: dp(16), self.pos[1]
+
+            CLinkText:
+                text: "See examples on Github"
+
+            CLinkIcon:
+                icon: "arrow--up-right"
+
+        CScreenManager:
+            id: manager_screens
+            NotificationScreen:
+                name: "notification"
+            ButtonsScreen:
+                name: "buttons"
+            LoadingScreen:
+                name: "loading"
+
+    CBoxLayout:
+        adaptive: [False, True]
+        bg_color: app.background
+        padding: dp(4)
+
+        CScrollView:
+            do_scroll_y: False
+            do_scroll_x: True
+            size_hint: 1, None
+            height: nav_grid.height
+
+            CGridLayout:
+                id: nav_grid
+                adaptive: [True, True]
+                rows: 1
+                spacing: dp(4)
+
+                CButtonPrimary:
+                    text: "Buttons"
+                    icon: 
+                    on_press:
+                        manager_screens.current = "buttons"
+
+                CButtonPrimary:
+                    text: "Notification"
+                    on_press:
+                        manager_screens.current = "notification"
+
+                CButtonPrimary:
+                    text: "Loading"
+                    on_press:
+                        manager_screens.current = "loading"
+
+
+
+<ButtonsScreen@CScreen>:
+
+    CScrollView:
+
+        CBoxLayout:
+            orientation: "vertical"
+            spacing: dp(16)
+            padding: dp(16)
+            bg_color: app.layer_01
+            adaptive: [False, True]
+
+            CLabel:
+                text: "Buttons"
+                style: "body_02"
+
+            CGridLayout:
+                cols: 2
+                adaptive: [False, True]
+                spacing: dp(4)
+
+                CButtonPrimary:
+                    text: "Primary"
+                    icon: "arrow--right"
+                    role: "Large Productive"
+                    size_hint_x: 0.4
+
+                CButtonSecondary:
+                    text: "Secondary"
+                    icon: "arrow--right"
+                    role: "Large Productive"
+                    size_hint_x: 0.4
+
+                CButtonGhost:
+                    text: "Ghost"
+                    icon: "arrow--right"
+                    role: "Large Productive"
+                    size_hint_x: 0.4
+
+                CButtonTertiary:
+                    text: "Tertiary"
+                    icon: "arrow--right"
+                    role: "Large Productive"
+                    size_hint_x: 0.4
+
+                CButtonDanger:
+                    text: "Primary"
+                    icon: "arrow--right"
+                    role: "Large Productive"
+                    size_hint_x: 0.4
+
+            CDivider:
+
+            CodeSnippetLayout:
+
+                CodeSnippet:
+                    id: snippet
+                    text: snippets["buttonsnippet"]
+                    cursor_color: app.text_primary
+
+                CodeSnippetCopyButton:
+
+            Widget:
+                size_hint: 1, None
+                height: dp(150)
+
+<Tile>:
+    orientation: "vertical"
+    size_hint_x: 1
+    adaptive: [False, True]
+    bg_color: app.layer_01
+    inset_width: 0
+    line_width: dp(0.5)
+    padding: dp(16)
+    spacing: dp(16)
+    line_color_focus: app.focus
+
+    CLabel:
+        text: root.header
+        style: "heading_04"
+        color: app.text_primary
+
+<NotificationScreen@CScreen>:
+
+    CScrollView:
+
+        CBoxLayout:
+            orientation: "vertical"
+            adaptive: [False, True]
+            spacing: dp(8)
+
+            CGridLayout:
+                cols: 2
+                adaptive: [False, True]
+                spacing: dp(4)
+
+                Tile:
+                    header: "Instance Location"
+
+                    CButtonPrimary:
+                        text: "Update"
+                        icon: "arrow--right"
+                        size_hint_x: 0.9
+                        on_press:
+                            app.notify_info("Toast")
+
+                Tile:
+                    header: "Instance Storage"
+
+                    CButtonPrimary:
+                        text: "Refresh"
+                        icon: "arrow--right"
+                        size_hint_x: 0.9
+                        on_press:
+                            app.notify_warning("Toast")
+
+                Tile:
+                    header: "Destroy Instance"
+
+                    CButtonPrimary:
+                        text: "Destroy"
+                        icon: "arrow--right"
+                        size_hint_x: 0.9
+                        on_press:
+                            app.notify_error("Toast")
+
+                Tile:
+                    header: "New Instance"
+
+                    CButtonPrimary:
+                        text: "Start"
+                        icon: "arrow--right"
+                        size_hint_x: 0.9
+                        on_press:
+                            app.notify_success("Toast")
+
+            CDivider:
+
+            CodeSnippetLayout:
+
+                CodeSnippet:
+                    id: snippet
+                    text: snippets["notificationsnippet"]
+                    cursor_color: app.text_primary
+
+                CodeSnippetCopyButton:
+
+            Widget:
+                size_hint: 1, None
+                height: dp(150)
+
+
+<LoadingScreen@CScreen>:
+
+    CScrollView:
+
+        CBoxLayout:
+            orientation: "vertical"
+            adaptive: [False, True]
+            spacing: dp(8)
+
+            CGridLayout:
+                cols: 1
+                padding: dp(16)
+                spacing: dp(16)
+                adaptive: [False, True]
+
+                AnchorLayout:
+                    size_hint: 1, None
+                    height: dp(180)
+
+                    CLoadingIndicator:
+                        role: "Large"
+
+                AnchorLayout:
+                    size_hint: 1, None
+                    height: dp(180)
+
+                    CLoadingIndicator:
+                        role: "Small"
+
+                CFloatLayout:
+                    size_hint: 1, None
+                    height: dp(180)
+
+                    CLabel:
+                        text: "Overlay"
+                        halign: "center"
+                        pos_hint: {"center_y": 0.5, "center_x": 0.5}
+                        style: "heading_05"
+
+                    CLoadingLayout:
+                        pos_hint: {"center_y": 0.5, "center_x": 0.5}
+                        CLoadingIndicator:
+                            role: "Large"
+
+            CDivider:
+
+            CodeSnippetLayout:
+
+                CodeSnippet:
+                    id: snippet
+                    text: snippets["loadingsnippet"]
+                    cursor_color: app.text_primary
+
+                CodeSnippetCopyButton:
+
+            Widget:
+                size_hint: 1, None
+                height: dp(150)
