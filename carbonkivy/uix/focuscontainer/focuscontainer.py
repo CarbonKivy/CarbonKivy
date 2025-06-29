@@ -26,15 +26,3 @@ class FocusContainer(
 
     def __init__(self, **kwargs) -> None:
         super(FocusContainer, self).__init__(**kwargs)
-
-    def on_touch_down(self, touch) -> bool | None:
-        super().on_touch_down(touch)
-        if self.cstate != "disabled":
-            self.focus = self.collide_point(*touch.pos)
-        return super().on_touch_down(touch)
-
-    def on_focus(self, *args) -> None:
-        if self.focus:
-            self._bg_color = self.bg_color_focus
-        elif not self.hover:
-            self._bg_color = self.bg_color

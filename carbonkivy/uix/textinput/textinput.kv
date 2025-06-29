@@ -17,29 +17,29 @@
 <CTextInputLabel>:
     color: app.text_secondary
     style: "label_01"
-    pos: [0, self.parent.height + (self.height/2)]
+    pos: [0, self.parent.height + (dp(8))]
     adaptive: [False, True]
 
 <CTextInputHelperText>:
     color: app.text_helper
     style: "helper_text_01"
-    pos: [0, -self.height]
+    pos: [0, - (self.height + dp(4))]
     adaptive: [False, True]
 
 <CTextInputTrailingIconButton>:
     text_color: app.icon_primary
-    spacing: 0
-    pos: [self.parent.width - (self.width + dp(8)), (dp(4))]
+    role: "Large Productive"
+    pos: [self.parent.width - (self.width), self.parent.height - (self.height)]
 
 <CTextInput>:
-    canvas.before:
+    canvas.after:
         Color:
             rgba: app.border_strong_01
         Line:
             width: dp(0.5)
             points: [self.x + dp(0.25), self.y + dp(0.25), self.right - dp(0.25), self.y + dp(0.25)]
 
-    padding: [dp(16), dp(16), dp(48), dp(16)]
+    padding: [dp(16), dp(14.5), dp(48), dp(14.5)]
     size_hint_y: None
     font_size: plex_14
     height: self.minimum_height
@@ -50,3 +50,5 @@
     foreground_color: app.text_primary
     cursor_color: app.text_primary
     password_mask: u"\u2022"
+    font_name: "ibmplexsans"
+    pos_hint: {'center_y': 0.5}
