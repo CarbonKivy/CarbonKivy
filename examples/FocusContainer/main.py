@@ -19,9 +19,6 @@ CScreen:
         size_hint: 1, None
         height: dp(150)
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
-
-
-
 """
 
 from kivy.lang import Builder
