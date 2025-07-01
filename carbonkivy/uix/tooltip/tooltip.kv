@@ -1,0 +1,29 @@
+<CTooltip>:
+    canvas.before:
+        Color:
+            rgba: self.bg_color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Triangle:
+            points: 
+                [ \
+                self.center_x - dp(4), 
+                self.center_y - self.height/2, \
+                self.center_x + dp(4), \
+                self.center_y - self.height/2, \
+                self.center_x, \
+                self.y - dp(8), \
+                ]
+
+    bg_color: app.background_inverse
+    text_color: app.text_inverse
+    size_hint: None, None
+    width: min(dp(150), self.width)
+    height: self.minimum_height
+    padding: [dp(16), dp(8), dp(16), dp(8)]
+
+    CLabel:
+        text: root.text
+        color: root.text_color
+        style: "body_01"
