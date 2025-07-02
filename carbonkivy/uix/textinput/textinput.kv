@@ -39,10 +39,10 @@
             width: dp(0.5)
             points: [self.x + dp(0.25), self.y + dp(0.25), self.right - dp(0.25), self.y + dp(0.25)]
 
-    padding: [dp(16), dp(14.5), dp(48), dp(14.5)]
+    padding: [dp(16), dp(12), dp(48), dp(12)]
     size_hint_y: None
     font_size: plex_14
-    height: self.minimum_height
+    height: max(dp(48), self.minimum_height)
     background_normal: ""
     background_color: app.transparent
     background_active: ""
