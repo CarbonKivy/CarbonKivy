@@ -56,7 +56,7 @@ class CTooltip(BoxLayout):
             pos_y = instance.y - self.height - dp(12)
             self._pointer = "Upward"
 
-        self.pos = self.to_window(*[pos_x, pos_y])
+        self.pos = instance.to_window(*[pos_x, pos_y])
         self.element_x = instance_center[0]
 
     @mainthread
