@@ -15,7 +15,9 @@ class TooltipBehavior:
         super(TooltipBehavior, self).__init__(**kwargs)
 
     def on_tooltip(self, *args) -> None:
-        if hasattr(self.tooltip, "set_visibility") and hasattr(self.tooltip.set_visibility, "__call__"):
+        if hasattr(self.tooltip, "set_visibility") and hasattr(
+            self.tooltip.set_visibility, "__call__"
+        ):
             if isinstance(self, HoverBehavior):
                 self.bind(hover=self.tooltip.set_visibility)
         else:
