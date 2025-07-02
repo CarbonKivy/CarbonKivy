@@ -71,5 +71,6 @@ class CTooltip(BoxLayout):
         else:
             try:
                 instance.unbind(pos=self.update_pos)
+                Window.remove_widget(self)
             except Exception:
                 return
