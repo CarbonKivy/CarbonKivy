@@ -10,7 +10,7 @@ Tooltip
 Overview
 --------
 
-A tooltip is embedded within other components rather than being used as a standalone component. Since tooltips are embedded within other components, there’s no need to include them again. They provide additional information when a user hovers over or focuses on a UI element and should only be used when necessary to offer quick context without cluttering the interface.
+A tooltip is embedded within other components rather than being used as a standalone component. They provide additional information when a user hovers over or focuses on a UI element and should only be used when necessary to offer quick context without cluttering the interface.
 
 *Only vertical variant of CTooltip is available.*
 
@@ -41,7 +41,7 @@ Live demo
             class TooltipLink(CLink, TooltipBehavior):
                 def __init__(self, **kwargs) -> None:
                     super().__init__(**kwargs)
-                    self.tooltip = CTooltip(text="This is a tooltip.")
+                    self.tooltip = CTooltip(text="Occasionally, services are updated in a specified time window to ensure no down time for customers.")
 
             kvlang = """
             CScreen:
@@ -49,10 +49,100 @@ Live demo
                     pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
                     CLinkIcon:
-                        icon: "Occasionally, services are updated in a specified time window to ensure no down time for customers."
+                        icon: "help"
             """
 
             ...
+
+Usage
+-----
+
+For embedding a tooltip to any widget, the widget needs to inherit from the :class:`~carbonkivy.behaviors.tooltip_behavior.TooltipBehavior` class and then define a tooltip widget inheriting from :class:`~carbonkivy.uix.tooltip.tooltip.CTooltip` class.
+
+Use the :class:`~carbonkivy.behaviors.tooltip_behavior.TooltipBehavior.tooltip` property to define the widget to be displayed as a tooltip.
+
+.. note::
+
+    On DESKTOP platforms, the tooltip will appear if hovered over the widget, by default.
+    For this the widget should be an instance of the class :class:`~carbonkivy.behaviors.hover_behavior.HoverBehavior`.
+
+.. code-block:: python
+
+    ...
+
+    from carbonkivy.behaviors import TooltipBehavior
+    from carbonkivy.uix.tooltip import CTooltip
+
+    from carbonkivy.uix.button import CButtonPrimary
+
+    class TooltipButton(CButtonPrimary, TooltipBehavior):
+        def __init__(self, **kwargs) -> None:
+            super().__init__(**kwargs)
+            self.tooltip = CTooltip(text="This is a Tooltip.")
+
+    ...
+
+Example
+-------
+
+.. figure:: /_static/gif/ctooltip.gif
+    :class: centered
+
+.. code-block:: python
+
+    from kivy.clock import Clock
+    from kivy.core.window import Window
+
+
+    def set_softinput(*args) -> None:
+        Window.keyboard_anim_args = {"d": 0.2, "t": "in_out_expo"}
+        Window.softinput_mode = "below_target"
+
+
+    Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
+
+    appkv = """
+    CScreen:
+
+        TooltipButton:
+            text: "Drag Me!"
+            icon: "add--large"
+            pos: [30, 30]
+    """
+
+    from kivy.input.providers.mouse import MouseMotionEvent
+    from kivy.lang import Builder
+    from kivy.metrics import dp
+
+    from carbonkivy.app import CarbonApp
+    from carbonkivy.behaviors import TooltipBehavior
+    from carbonkivy.uix.button import CButtonPrimary
+    from carbonkivy.uix.screen import CScreen
+    from carbonkivy.uix.tooltip import CTooltip
+
+
+    class TooltipButton(CButtonPrimary, TooltipBehavior):
+
+        def __init__(self, **kwargs) -> None:
+            super().__init__(**kwargs)
+            self.tooltip = CTooltip(text="This is a large Tooltip text.", width=dp(200))
+
+        def on_touch_move(self, touch: MouseMotionEvent, *args) -> bool | None:
+            self.center_x, self.center_y = touch.pos
+            return super().on_touch_move(touch)
+
+
+    class myapp(CarbonApp):
+        def __init__(self, *args, **kwargs):
+            super(myapp, self).__init__(*args, **kwargs)
+
+        def build(self) -> CScreen:
+            screen = Builder.load_string(appkv)
+            return screen
+
+
+    if __name__ == "__main__":
+        myapp().run()
 
 API
 ---
