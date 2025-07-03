@@ -33,8 +33,9 @@ class CTooltip(BoxLayout):
     def __init__(self, **kwargs) -> None:
         super(CTooltip, self).__init__(**kwargs)
 
+    @mainthread
     def update_pos(self, instance: Widget, *args) -> None:
-        pos_x, pos_y = [0, instance.y + instance.height + dp(12)]
+        pos_x, pos_y = [instance.x + instance.width / 2 - self.width / 2, instance.y + instance.height + dp(12)]
 
         instance_center = instance.to_window(instance.center_x, instance.center_y)
 
@@ -43,9 +44,9 @@ class CTooltip(BoxLayout):
         ):
             pos_x = instance.x + instance.width / 2 - self.width / 2
         elif instance_center[0] < self.width / 2:
-            pos_x = instance.x
+            pos_x = instance.center_x - dp(16)
         elif (Window.width - instance_center[0]) < self.width / 2:
-            pos_x = instance.x - self.width + instance.width
+            pos_x = instance.center_x - self.width + dp(16)
 
         if (Window.height - instance_center[1]) > (
             instance.height / 2 + self.height + dp(12)
@@ -59,7 +60,6 @@ class CTooltip(BoxLayout):
         self.pos = instance.to_window(*[pos_x, pos_y])
         self.element_x = instance_center[0]
 
-    @mainthread
     def set_visibility(self, instance: Widget, visibility: bool, *args) -> None:
         if visibility:
             try:
