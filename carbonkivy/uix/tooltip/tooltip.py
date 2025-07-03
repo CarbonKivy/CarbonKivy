@@ -11,6 +11,7 @@ from kivy.properties import (
     NumericProperty,
     OptionProperty,
     StringProperty,
+    VariableListProperty,
 )
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
@@ -29,6 +30,8 @@ class CTooltip(BoxLayout):
     _pointer = OptionProperty("Upward", options=["Upward", "Downward"])
 
     text = StringProperty()
+
+    radius = VariableListProperty(length=4)
 
     def __init__(self, **kwargs) -> None:
         super(CTooltip, self).__init__(**kwargs)

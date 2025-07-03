@@ -2,10 +2,11 @@
     canvas.before:
         Color:
             rgba: self.bg_color
-        Rectangle:
+        SmoothRoundedRectangle:
             pos: self.pos
             size: self.size
-        Triangle:
+            radius: self.radius if self.radius else [0]
+        SmoothTriangle:
             points: 
                 { \
                 "Downward": [ \
@@ -36,3 +37,4 @@
         text: root.text
         color: root.text_color
         style: "body_01"
+        halign: "center"

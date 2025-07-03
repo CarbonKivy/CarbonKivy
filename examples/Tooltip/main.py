@@ -33,7 +33,7 @@ class TooltipButton(CButtonPrimary, TooltipBehavior):
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
-        self.tooltip = CTooltip(text="This is a tooltip.", width=dp(140))
+        self.tooltip = CTooltip(text="This is a large Tooltip text.", width=dp(200))
 
     def on_touch_move(self, touch: MouseMotionEvent, *args) -> bool | None:
         self.center_x, self.center_y = touch.pos
