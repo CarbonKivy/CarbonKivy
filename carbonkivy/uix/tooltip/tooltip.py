@@ -6,7 +6,6 @@ from kivy.clock import mainthread
 from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.properties import (
-    BooleanProperty,
     ColorProperty,
     NumericProperty,
     OptionProperty,
@@ -18,8 +17,6 @@ from kivy.uix.widget import Widget
 
 
 class CTooltip(BoxLayout):
-
-    visible = BooleanProperty(False)
 
     bg_color = ColorProperty()
 
