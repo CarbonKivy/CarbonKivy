@@ -106,7 +106,6 @@ Run below code for a full-fledged running example.
     if __name__ == "__main__":
         myapp().run()
 
-
 API
 ---
 

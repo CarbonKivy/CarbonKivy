@@ -28,8 +28,6 @@ CScreen:
 
         CTextInputTrailingIconButton:
             icon: "error"
-            spacing: 0
-
 """
 
 from kivy.lang import Builder
