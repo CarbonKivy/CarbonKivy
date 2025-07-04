@@ -15,11 +15,11 @@ CScreen:
     CButtonPrimary:
         text: "Primary Button"
         role: "Large Productive"
-        icon: "add"
+        icon: "add--large"
         pos_hint: {'center_y': 0.9, 'center_x': 0.35}
 
     CButtonPrimary:
-        icon: "add"
+        icon: "add--large"
         role: "2XL"
         spacing: 0
         pos_hint: {'center_y': 0.9, 'center_x': 0.8}
@@ -27,11 +27,11 @@ CScreen:
     CButtonSecondary:
         text: "Secondary Button"
         role: "Large Productive"
-        icon: "add"
+        icon: "add--large"
         pos_hint: {'center_y': 0.7, 'center_x': 0.35}
 
     CButtonSecondary:
-        icon: "add"
+        icon: "add--large"
         role: "2XL"
         spacing: 0
         pos_hint: {'center_y': 0.7, 'center_x': 0.8}
@@ -39,11 +39,11 @@ CScreen:
     CButtonTertiary:
         text: "Tertiary Button"
         role: "Large Productive"
-        icon: "add"
+        icon: "add--large"
         pos_hint: {'center_y': 0.5, 'center_x': 0.35}
 
     CButtonTertiary:
-        icon: "add"
+        icon: "add--large"
         role: "2XL"
         spacing: 0
         pos_hint: {'center_y': 0.5, 'center_x': 0.8}
@@ -51,11 +51,11 @@ CScreen:
     CButtonGhost:
         text: "Ghost Button"
         role: "Large Productive"
-        icon: "add"
+        icon: "add--large"
         pos_hint: {'center_y': 0.3,  'center_x': 0.35}
 
     CButtonGhost:
-        icon: "add"
+        icon: "add--large"
         role: "2XL"
         spacing: 0
         pos_hint: {'center_y': 0.3, 'center_x': 0.8}
@@ -63,11 +63,11 @@ CScreen:
     CButtonDanger:
         text: "Danger Button"
         role: "Large Productive"
-        icon: "add"
+        icon: "add--large"
         pos_hint: {'center_y': 0.1,  'center_x': 0.35}
 
     CButtonDanger:
-        icon: "add"
+        icon: "add--large"
         role: "2XL"
         spacing: 0
         pos_hint: {'center_y': 0.1, 'center_x': 0.8}

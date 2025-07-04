@@ -34,15 +34,10 @@ class DeclarativeBehavior:
 
     def __init__(self, *args, **kwargs) -> None:
         super(DeclarativeBehavior, self).__init__(*args, **kwargs)
-        self.bind_color_update(*args, **kwargs)
+        self.bind_update(*args, **kwargs)
         self.register_element(*args)
 
-    def bind_color_update(self, *args, **kwargs) -> None:
-        """
-        Bug Fix for updating colors defined in python.
-        Author:
-            Ansh Dadwal (https://github.com/T-Dynamos)
-        """
+    def bind_update(self, *args, **kwargs) -> None:
         for key, value in kwargs.items():
             if value.__class__.__module__ == "kivy.properties":
                 value.obj().bind(
