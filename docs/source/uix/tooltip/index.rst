@@ -10,6 +10,11 @@ Tooltip
 Overview
 --------
 
+.. figure:: /_static/images/tooltip/carbondesigntooltip.png
+    :class: centered
+
+    Carbon Design Tooltip Overview
+
 A tooltip is embedded within other components rather than being used as a standalone component. They provide additional information when a user hovers over or focuses on a UI element and should only be used when necessary to offer quick context without cluttering the interface.
 
 *Only vertical variant of CTooltip is available.*
@@ -84,9 +89,6 @@ Use the :class:`~carbonkivy.behaviors.tooltip_behavior.TooltipBehavior.tooltip` 
 
 Example
 -------
-
-.. figure:: /_static/gif/ctooltip.gif
-    :class: centered
 
 .. code-block:: python
 

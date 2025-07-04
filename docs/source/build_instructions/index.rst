@@ -1,7 +1,7 @@
 .. _build-instructions:
 
 Build Instructions
-=================
+==================
 
 .. rst-class:: lead
 
@@ -67,7 +67,7 @@ We need to just inlcude our data assets (.kv, .ttf, .png etc.) and rest all will
 
 Sample :class:`spec` file is given below. Make additions for your own data files with the pattern for them to be present in the final distribution.
 
-Example if you want to inlcude all your kv files under the :class:`root` directory and assets under :class:`assets/` directory, the inclusion should be done like below:
+Example if you want to inlcude all your kv files under the :class:`root` directory and assets under :class:`assets/` directory, the inclusion can be done like below:
 
     .. code-block:: spec
 
@@ -78,7 +78,7 @@ Example if you want to inlcude all your kv files under the :class:`root` directo
 
         data_files = []
 
-        for files in glob.glob(os.path.join(base_dir, "assets", "**", "*.{png, jpg, ttf}"), recursive=True):
+        for files in glob.glob(os.path.join(base_dir, "**", "*.{png, jpg, ttf, kv}"), recursive=True):
 
             data_files.append((Path(files), Path(os.path.dirname(files)).relative_to(base_dir)))
 
@@ -111,7 +111,7 @@ For compilation run below command:
     from kivy_deps import sdl2, glew
     from pathlib import Path
 
-    from carbonkivy.config import DATA, ROOT
+    from carbonkivy.config import ROOT
 
     data = []
 
