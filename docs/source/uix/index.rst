@@ -10,4 +10,3 @@ List of the available Components of the CarbonKivy library.
         :glob:
 
         ./**/*
-

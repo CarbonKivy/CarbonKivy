@@ -77,3 +77,4 @@ Explore the full capabilities of CarbonKivy by diving into the documentation. Le
     :hidden:
 
     build_instructions/index
+    devtools/index
