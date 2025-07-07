@@ -1,0 +1,112 @@
+<MainScreen>:
+    Image:
+        source: "magicpattern.jpg"
+        size_hint: 1, 1
+        fit_mode: "cover"
+
+    CBoxLayout:
+        orientation: "vertical"
+        size_hint_x: 0.9
+        adaptive: [False, True]
+        width: dp(320)
+        padding: dp(32)
+        spacing: dp(20)
+        bg_color: [1, 1, 1, 0.9]
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        CLink:
+            text_color: [0.2, 0.2, 0.9, 1]
+            role: "Large"
+
+            CLinkIcon:
+                icon: "arrow--left"
+
+        CLabel:
+            text: "Login"
+            style: "heading_07"
+            halign: "center"
+
+        CBoxLayout:
+            orientation: "vertical"
+            spacing: dp(64)
+            padding: [0, dp(32), 0, dp(16)]
+            adaptive: [False, True]
+
+            CTextInputLayout:
+                bg_color: app.transparent
+                hover_enabled: False
+                CTextInputLabel:
+                    text: "E-Mail"
+                CTextInput:
+                    hint_text: "Enter your e-mail"
+                    input_type: "mail"
+                CTextInputHelperText:
+                    text: "inbox@service.domain"
+
+            CTextInputLayout:
+                bg_color: app.transparent
+                hover_enabled: False
+                CTextInputLabel:
+                    text: "Password"
+                CTextInput:
+                    hint_text: "Enter your password"
+                CTextInputHelperText:
+                    text: "minimum 8 characters"
+
+        CLink:
+            text_color: [0.2, 0.2, 0.9, 1]
+
+            CLinkText:
+                text: "forgot password"
+
+            CLinkIcon:
+                icon: "help"
+
+        CBoxLayout:
+            spacing: dp(1)
+            padding: [0, dp(8)]
+            adaptive: [False, True]
+        
+            CButtonGhost:
+                text: "Login"
+                icon: "login"
+                role: "Large Productive"
+                text_color: [0.2, 0.2, 0.9, 1]
+                size_hint_x: 0.5
+        
+            CButtonPrimary:
+                text: "Signup"
+                icon: "user--profile"
+                role: "Large Productive"
+                bg_color: [0.2, 0.2, 0.9, 1]
+                size_hint_x: 0.5
+
+        CDivider:
+    
+        CLabel:
+            text: "or continue with..."
+            style: "body_compact_02"
+            halign: "center"
+    
+        GridLayout:
+            cols:2
+            size_hint: 1, None
+            height: self.minimum_height
+            padding: [0, dp(48)]
+    
+            AnchorLayout:
+    
+                CButtonGhost:
+                    font_size: plex_48
+                    text_color: app.text_primary
+                    icon: "logo--github"
+                    role: "2XL"
+                    spacing: 0
+    
+            AnchorLayout:
+    
+                CButtonGhost:
+                    font_size: plex_48
+                    icon: "logo--twitter"
+                    role: "2XL"
+                    spacing: 0
