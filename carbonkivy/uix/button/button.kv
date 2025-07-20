@@ -24,7 +24,7 @@
     line_color_focus: app.focus
     line_color_disabled: app.button_disabled
     font_size: plex_16
-    width: self.ids.cbutton_layout_label.width + dp(80) if self.ids.get("cbutton_layout_label") else self.height
+    width: self._width if self.ids.get("cbutton_layout_label") else self.height
 
 
 <CButtonIcon>:
@@ -99,4 +99,6 @@
     hover_color: app.button_danger_hover
     active_color: app.button_danger_active
     line_color: app.button_danger_secondary if self.variant == "Tertiary" else self.line_color
-    text_color: self.text_color if self.variant == "Primary" else app.button_danger_secondary
+    text_color: app.text_inverse if self.variant == "Primary" else app.button_danger_secondary
+    text_color_hover: app.text_inverse
+    text_color_focus: app.text_inverse
