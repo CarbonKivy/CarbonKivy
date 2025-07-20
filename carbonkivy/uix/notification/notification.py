@@ -21,13 +21,13 @@ from kivy.properties import (
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.modalview import ModalView
 
-from carbonkivy.behaviors import AdaptiveBehavior, DeclarativeBehavior
+from carbonkivy.behaviors import AdaptiveBehavior, DeclarativeBehavior, ElevationBehavior
 from carbonkivy.uix.button import CButton
 from carbonkivy.uix.label import CLabel
 from carbonkivy.utils import get_latest_time
 
 
-class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView):
+class CBaseNotification(AdaptiveBehavior, DeclarativeBehavior, ModalView, ElevationBehavior):
 
     time_caption_enabled = BooleanProperty(False)
 

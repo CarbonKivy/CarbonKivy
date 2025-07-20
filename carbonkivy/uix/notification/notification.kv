@@ -1,12 +1,4 @@
 <CBaseNotification>:
-    canvas.before:
-        Color:
-            rgba: app.notification_action_tertiary_inverse_hover
-        BoxShadow:
-            pos: self.pos
-            size: self.size
-            offset: 1, -1
-            blur_radius: dp(5)
     canvas:
         Color:
             rgba: self._contrast_color
@@ -40,6 +32,7 @@
         "Warning": "warning--filled", \
         }[self.status]
     _bgi_color: app.icon_primary if self.status == "Warning" else app.icon_inverse
+    shadow_color: app.background_inverse_hover
 
 <CNotification>:
     size_hint: None if self.variant == "Toast" else 0.9, None

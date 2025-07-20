@@ -5,6 +5,7 @@ from .background_color_behavior import (
     BackgroundColorBehaviorRectangular,
 )
 from .declarative_behavior import DeclarativeBehavior
+from .elevation_behavior import ElevationBehavior
 from .hierarchical_layer_behavior import HierarchicalLayerBehavior
 from .hover_behavior import HoverBehavior
 from .state_focus_behavior import StateFocusBehavior
