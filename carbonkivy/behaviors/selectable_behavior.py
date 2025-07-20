@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-__all__ = ("SelectiveBehavior",)
+__all__ = ("SelectableBehavior",)
 
 from kivy.properties import BooleanProperty
 
 
-class SelectionBehavior:
+class SelectableBehavior:
 
     selected = BooleanProperty(False)
 
