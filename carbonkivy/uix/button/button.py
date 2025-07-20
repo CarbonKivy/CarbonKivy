@@ -12,6 +12,7 @@ __all__ = (
 from kivy.clock import Clock
 from kivy.metrics import dp, sp
 from kivy.properties import (
+    BooleanProperty,
     ColorProperty,
     NumericProperty,
     ObjectProperty,
@@ -44,15 +45,7 @@ class CButton(
     RelativeLayout,
 ):
 
-    text = StringProperty(None, allownone=True)
-
-    icon = StringProperty(None, allownone=True)
-
-    font_size = NumericProperty()
-
-    actual_width = NumericProperty()
-
-    padding = VariableListProperty([0], length=4)
+    dynamic_width = BooleanProperty(True)
 
     icon_color = ColorProperty([1, 1, 1, 1])
 
@@ -66,6 +59,8 @@ class CButton(
 
     _text_color = ColorProperty()
 
+    cbutton_layout = ObjectProperty()
+
     role = OptionProperty(
         "Medium",
         options=[
@@ -78,7 +73,17 @@ class CButton(
         ],
     )
 
-    cbutton_layout = ObjectProperty()
+    actual_width = NumericProperty()
+
+    font_size = NumericProperty()
+
+    _width = NumericProperty()
+
+    text = StringProperty(None, allownone=True)
+
+    icon = StringProperty(None, allownone=True)
+
+    padding = VariableListProperty([0], length=4)
 
     def __init__(self, **kwargs) -> None:
         super(CButton, self).__init__(**kwargs)
@@ -152,6 +157,7 @@ class CButton(
         else:
             try:
                 self.ids.cbutton_layout_label.text = self.text
+                self.adjust_width()
                 return
             except Exception:
                 return
@@ -188,10 +194,11 @@ class CButton(
         return super().on_focus(*args)
 
     def adjust_width(self, *args) -> None:
-        width = dp(0)
-        if self.ids.get("cbutton_layout_label"):
-            width += self.ids.cbutton_layout_label.width
-            self.width = width + dp(80)
+        if self.dynamic_width == True:
+            _width = dp(0)
+            if self.ids.get("cbutton_layout_label"):
+                _width += self.ids.cbutton_layout_label.width
+                self._width = _width + dp(80)
 
 
 class CButtonDanger(CButton):

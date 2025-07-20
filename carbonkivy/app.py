@@ -14,7 +14,7 @@ from carbonkivy.utils import update_system_ui
 
 class CarbonApp(App, CarbonTheme):
     """
-    The Main App class inherits from CarbonTheme to define and update the theme and appropriate colors based on the given theme.
+    The Main App class inherits from CarbonTheme to update the theme and appropriate colors based on the given theme.
     """
 
     def __init__(self, **kwargs) -> None:

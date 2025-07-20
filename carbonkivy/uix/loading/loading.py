@@ -15,7 +15,7 @@ from kivy.properties import (
 )
 from kivy.uix.widget import Widget
 
-from carbonkivy.behaviors import HierarchicalLayerBehavior
+from carbonkivy.behaviors import DeclarativeBehavior, HierarchicalLayerBehavior
 from carbonkivy.uix.anchorlayout import CAnchorLayout
 
 
@@ -23,7 +23,7 @@ class CLoadingLayout(CAnchorLayout, HierarchicalLayerBehavior):
     pass
 
 
-class CLoadingIndicator(Widget, HierarchicalLayerBehavior):
+class CLoadingIndicator(Widget, HierarchicalLayerBehavior, DeclarativeBehavior):
 
     active = BooleanProperty(True)
 
