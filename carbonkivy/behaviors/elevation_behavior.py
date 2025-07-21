@@ -21,6 +21,7 @@ Builder.load_string(
             size: self.size
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
+    shadow_color: app.background_inverse_hover
 """
 )
 
