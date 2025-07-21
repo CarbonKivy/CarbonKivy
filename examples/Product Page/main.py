@@ -1,6 +1,5 @@
 from kivy.core.window import Window
 from kivy.clock import Clock
-from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.utils import get_color_from_hex
 
@@ -18,7 +17,6 @@ from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
 from carbonkivy.utils import update_system_ui
 from carbonkivy.uix.icon import CIconCircular
-from carbonkivy.uix.button import CButtonGhost
 from carbonkivy.behaviors import StateFocusBehavior
 
 
