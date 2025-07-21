@@ -1,3 +1,11 @@
+<ScreenManager>:
+    canvas.before:
+        Clear
+    canvas:
+        Clear
+    canvas.after:
+        Clear
+
 <ProductScreen>:
 
     CStackLayout:
@@ -10,26 +18,30 @@
 
             CImage:
                 id: productimage
-                source: "nikeshoes.png"
-                ratio: [1, 1]
+                source: "nikeshoes.jpg"
+                ratio: [1.3, 1]
                 fit_mode: "cover"
 
             CBoxLayout:
-                orientation: "vertical"
+                orientation: "horizontal"
                 adaptive: [False, True]
                 padding: [dp(16), dp(16), dp(16), dp(16)]
+                spacing: dp(8)
                 pos_hint: {"top": 1}
 
                 CButtonGhost:
                     icon: "arrow--left"
-                    spacing: 0
                     text_color: app.text_primary
 
         CBoxLayout:
             size_hint: 1, None
             height: root.height - productimage.height
 
-            CScrollView:
+            ScrollView:
+                on_parent:
+                    self.effect_cls.friction = 0.01
+                    self.effect_cls.scroll_distance = sp(0)
+
                 InfoLayout:
                     orientation: "vertical"
                     adaptive: [False, True]
@@ -59,7 +71,6 @@
         CLabel:
             text: "423 SOLD "
             style: "body_compact_01"
-            color: app.text_secondary
             size_hint_x: None
             width: self.texture_size[0]
             text_size: None, self.texture_size[1]
@@ -75,14 +86,12 @@
         CLabel:
             text: "4.3"
             size_hint_x: None
-            color: app.text_secondary
             width: self.texture_size[0]
             text_size: None, self.texture_size[1]
             pos_hint: {"center_y": 0.5}
 
         CLabel:
             text: "153 reviews"
-            color: app.text_secondary
             pos_hint: {"center_y": 0.5}
 
     CDivider:
@@ -95,14 +104,13 @@
     CLabel:
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         style: "body_01"
-        color: app.text_secondary
 
     GridLayout:
         cols: 2
         size_hint: 1, None
         height: self.minimum_height
         spacing: dp(8)
-        
+
         CBoxLayout:
             orientation: "vertical"
             adaptive: [False, True]
@@ -116,19 +124,18 @@
             CBoxLayout:
                 adaptive: [True, True]
 
-                CIconCircular:
+                SelectableIconSize:
                     icon: "number--7"
                     font_size: plex_48
                     radius: self.height/2
 
-                CIconCircular:
+                SelectableIconSize:
                     icon: "number--8"
-                    color: app.text_on_color
                     font_size: plex_48
+                    focus: True
                     radius: self.height/2
-                    bg_color: app.layer_selected_inverse
 
-                CIconCircular:
+                SelectableIconSize:
                     icon: "number--9"
                     font_size: plex_48
                     radius: self.height/2
@@ -145,20 +152,20 @@
 
             CBoxLayout:
                 adaptive: [True, True]
+                spacing: dp(8)
 
-                CIconCircular:
-                    bg_color: app.blue_60
+                SelectableIconColor:
+                    bg_color: rgba("#B3E140")
+                    focus: True
                     size: dp(48), dp(48)
                     radius: self.height/2
 
-                CIconCircular:
+                SelectableIconColor:
                     bg_color: app.gray_100
-                    color: app.text_on_color
-                    line_color: app.focus
                     size: dp(48), dp(48)
                     radius: self.height/2
 
-                CIconCircular:
+                SelectableIconColor:
                     bg_color: app.yellow_30
                     size: dp(48), dp(48)
                     radius: self.height/2
@@ -175,19 +182,33 @@
             CLabel:
                 text: "TOTAL PRICE"
                 style: "body_compact_02"
-                color: app.text_secondary
-            
+
             CLabel:
                 text: "$690"
                 style: "heading_04"
                 color: app.text_primary
-        
+
         CButtonSecondary:
             text: "ADD TO CART"
-            icon: "shopping--cart"
             role: "Large Productive"
+            icon: "shopping--cart"
+            pos_hint: {"center_y": 0.5}
 
     Widget:
         size_hint: 1, None
-        height: dp(150)
+        height: dp(50)
 
+
+<SelectableIconColor@SelectableIcon>:
+    icon: "checkmark" if self.focus else "blank"
+    focus_enabled: not self.focus
+    line_color_focus: app.focus
+    color: app.text_on_color
+    inset_width: dp(3)
+    line_width: dp(1)
+
+
+<SelectableIconSize@SelectableIcon>:
+    focus_enabled: not self.focus
+    line_color_focus: app.focus
+    color: app.text_primary 
