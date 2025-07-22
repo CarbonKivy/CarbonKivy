@@ -62,6 +62,11 @@ register("CTextInputHelperText", module="carbonkivy.uix.textinput")
 register("CTextInputTrailingIconButton", module="carbonkivy.uix.textinput")
 register("CTooltip", module="carbonkivy.uix.tooltip")
 register("FocusContainer", module="carbonkivy.uix.focuscontainer")
+register("UIShell", module="carbonkivy.uix.shell")
+register("UIShellHeader", module="carbonkivy.uix.shell")
+register("UIShellHeaderName", module="carbonkivy.uix.shell")
+register("UIShellHeaderMenuButton", module="carbonkivy.uix.shell")
+register("UIShellLeftPanel", module="carbonkivy.uix.shell")
 
 # Register the behavior with Kivy's Factory
 register("AdaptiveBehavior", "carbonkivy.behaviors.adpative_behavior")
