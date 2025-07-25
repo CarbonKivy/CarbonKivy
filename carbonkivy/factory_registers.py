@@ -65,8 +65,11 @@ register("FocusContainer", module="carbonkivy.uix.focuscontainer")
 register("UIShell", module="carbonkivy.uix.shell")
 register("UIShellHeader", module="carbonkivy.uix.shell")
 register("UIShellHeaderName", module="carbonkivy.uix.shell")
+register("UIShellHeaderButton", module="carbonkivy.uix.shell")
 register("UIShellHeaderMenuButton", module="carbonkivy.uix.shell")
 register("UIShellLeftPanel", module="carbonkivy.uix.shell")
+register("UIShellPanelLayout", module="carbonkivy.uix.shell")
+register("UIShellRightPanel", module="carbonkivy.uix.shell")
 
 # Register the behavior with Kivy's Factory
 register("AdaptiveBehavior", "carbonkivy.behaviors.adpative_behavior")
