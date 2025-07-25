@@ -22,14 +22,12 @@ class HomeScreen(CScreen):
     pass
 
 
-from carbonkivy.devtools import LiveApp
-
-class myapp(CarbonApp, LiveApp):
+class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
-        # self.load_all_kv_files(self.directory)
+        self.load_all_kv_files(self.directory)
 
-    def build_app(self) -> CScreenManager:
+    def build(self) -> CScreenManager:
         self.manager_screens = CScreenManager()
         self.manager_screens.add_widget(HomeScreen(name="home"))
         return self.manager_screens

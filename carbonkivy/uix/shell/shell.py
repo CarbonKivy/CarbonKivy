@@ -1,9 +1,14 @@
 from __future__ import annotations
 
-__all__ = ("UIShell", "UIShellHeader", "UIShellHeaderName", "UIShellHeaderMenuButton",)
+__all__ = (
+    "UIShell",
+    "UIShellHeader",
+    "UIShellHeaderName",
+    "UIShellHeaderMenuButton",
+)
 
 from kivy.animation import Animation
-from kivy.clock import Clock, mainthread
+from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.properties import BooleanProperty, ColorProperty, ObjectProperty
 
@@ -57,14 +62,15 @@ class UIShellLeftPanel(CRelativeLayout):
         def set_visibility(*args) -> None:
             if self.visibility:
                 self.opacity = 1
-                Animation(x = 0, d=0.25).start(self)
+                Animation(x=0, d=0.25).start(self)
                 try:
                     self.panel_shell.bg_color = self.overlay
                 except:
                     return
             else:
-                (Animation(x = 0 - self.width, d=0.25) +
-                Animation(opacity = 0, d=0.25)).start(self)
+                (
+                    Animation(x=0 - self.width, d=0.25) + Animation(opacity=0, d=0.25)
+                ).start(self)
                 try:
                     self.panel_shell.bg_color = [1, 1, 1, 0]
                 except:
@@ -90,10 +96,11 @@ class UIShellRightPanel(CRelativeLayout):
         def set_visibility(*args) -> None:
             if self.visibility:
                 self.opacity = 1
-                Animation(x = Window.width - self.width, d=0.25).start(self)
+                Animation(x=Window.width - self.width, d=0.25).start(self)
             else:
-                (Animation(x = Window.width, d=0.25) +
-                Animation(opacity = 0, d=0.25)).start(self)
+                (
+                    Animation(x=Window.width, d=0.25) + Animation(opacity=0, d=0.25)
+                ).start(self)
 
         Clock.schedule_once(set_visibility)
 

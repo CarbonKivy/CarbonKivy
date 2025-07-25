@@ -35,7 +35,10 @@ class CTooltip(BoxLayout):
 
     @mainthread
     def update_pos(self, instance: Widget, *args) -> None:
-        pos_x, pos_y = [instance.x + instance.width / 2 - self.width / 2, instance.y + instance.height + dp(12)]
+        pos_x, pos_y = [
+            instance.x + instance.width / 2 - self.width / 2,
+            instance.y + instance.height + dp(12),
+        ]
 
         instance_center = instance.to_window(instance.center_x, instance.center_y)
 
