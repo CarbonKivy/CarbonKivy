@@ -1,23 +1,23 @@
 <HomeScreen>:
 
-    # CBoxLayout:
-    #     orientation: 'vertical'
-    #     adaptive: [False, True]
-
-    #     CLabel:
-    #         style: "heading_07"
-    #         text: "Home"
-
-
     UIShell:
-        id: panel_shell
+        id: left_panel_shell
 
         UIShellLeftPanel:
-            panel_shell: panel_shell
+            panel_shell: left_panel_shell
             visibility: shell_menu_btn.active
 
-            CLabel:
-                text: "hello"
+            UIShellPanelLayout:
+
+                CLabel:
+                    text: "Hello"
+
+    UIShell:
+        id: right_panel_shell
+
+        UIShellRightPanel:
+            panel_shell: right_panel_shell
+            visibility: shell_switcher_btn.focus
 
     UIShell:
         id: shell
@@ -29,4 +29,8 @@
                 id: shell_menu_btn
 
             UIShellHeaderName:
-                text: "Shell"
+                text: "Header name"
+            
+            CButtonGhost:
+                id: shell_switcher_btn
+                icon: "switcher"

@@ -8,8 +8,11 @@ from .shell import (
     UIShell,
     UIShellHeader,
     UIShellHeaderName,
+    UIShellHeaderButton,
     UIShellHeaderMenuButton,
     UIShellLeftPanel,
+    UIShellRightPanel,
+    UIShellPanelLayout,
 )
 
 filename = os.path.join(UIX, "shell", "shell.kv")
