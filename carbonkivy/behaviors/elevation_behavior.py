@@ -11,7 +11,7 @@ from kivy.properties import (
 )
 
 Builder.load_string(
-"""
+    """
 <ElevationBehavior>:
     canvas.before:
         Color:
