@@ -6,13 +6,14 @@ from carbonkivy.config import UIX
 
 from .shell import (
     UIShell,
+    UIShellButton,
     UIShellHeader,
-    UIShellHeaderName,
-    UIShellHeaderButton,
     UIShellHeaderMenuButton,
+    UIShellHeaderName,
+    UIShellLayout,
     UIShellLeftPanel,
-    UIShellRightPanel,
     UIShellPanelLayout,
+    UIShellRightPanel,
 )
 
 filename = os.path.join(UIX, "shell", "shell.kv")
