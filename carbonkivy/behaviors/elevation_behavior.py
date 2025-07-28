@@ -4,11 +4,7 @@ __all__ = ("ElevationBehavior",)
 
 from kivy.lang import Builder
 from kivy.metrics import dp
-from kivy.properties import (
-    ColorProperty,
-    NumericProperty,
-    VariableListProperty,
-)
+from kivy.properties import ColorProperty, NumericProperty, VariableListProperty
 
 Builder.load_string(
     """
@@ -21,7 +17,7 @@ Builder.load_string(
             size: self.size
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
-    shadow_color: app.background_inverse_hover
+    shadow_color: app.notification_action_tertiary_inverse_hover
 """
 )
 
