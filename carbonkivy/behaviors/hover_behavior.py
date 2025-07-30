@@ -26,7 +26,9 @@ class HoverBehavior:
         super(HoverBehavior, self).__init__(**kwargs)
 
     def element_hover(self, instance: object, pos: list, *args) -> None:
-        if self.cstate != "disabled" and self.hover_enabled:
+        if not self.is_visible():
+            self.hover = False
+        if self.cstate != "disabled" and self.hover_enabled and self.is_visible():
 
             for widget in self.children:
                 if hasattr(widget, "hover") and widget.hover:
@@ -40,6 +42,12 @@ class HoverBehavior:
                     else self.to_parent(*self.to_widget(*pos))
                 )
             )
+
+    def is_visible(self, *args) -> bool:
+        if not self.get_root_window():
+            return False
+        else:
+            return True
 
     def on_hover_enabled(self, *args) -> None:
         if DEVICE_TYPE != "mobile":
