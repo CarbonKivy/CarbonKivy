@@ -3,12 +3,15 @@
     background_normal: ""
     background: ""
     overlay_color: app.overlay
+    anchor_x: "right"
+    anchor_y: "top"
 
 <CModalLayout>:
-    size_hint: 1, 1
+    orientation: "vertical"
+    adaptive: [False, True]
 
 <CModalBody>:
-    size_hint: 1, 1
+    adaptive: [False, True]
     padding: dp(16)
     spacing: dp(16)
 
@@ -23,7 +26,6 @@
 
 <CModalFooter>:
     adaptive: [False, True]
-    spacing: dp(16)
 
 <CModalHeaderLabel>:
     style: "label_01"
@@ -37,6 +39,5 @@
     icon: "close"
     text_color: app.icon_primary
     font_size: plex_20
-    pos_hint: {'right': 1.0, 'top': 1.0}
     on_press:
         self.parent.dismiss()
