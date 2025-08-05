@@ -17,6 +17,7 @@ from carbonkivy.behaviors import (
     ElevationBehavior,
 )
 from carbonkivy.uix.button import CButton
+from carbonkivy.uix.boxlayout import CBoxLayout
 from carbonkivy.uix.relativelayout import CRelativeLayout
 from carbonkivy.uix.stacklayout import CStackLayout
 from carbonkivy.uix.label import CLabel
@@ -26,12 +27,10 @@ from carbonkivy.uix.shell import UIShellButton
 class CModal(
     AdaptiveBehavior, DeclarativeBehavior, ModalView
 ):
-    """
-    Base class for modal dialogs in CarbonKivy.
-    """
+    pass
 
 
-class CModalLayout(CStackLayout):
+class CModalLayout(CBoxLayout):
     pass
 
 
