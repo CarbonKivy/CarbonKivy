@@ -7,9 +7,7 @@ from carbonkivy.behaviors import (
     AdaptiveBehavior,
     DeclarativeBehavior,
 )
-from carbonkivy.uix.button import CButton
 from carbonkivy.uix.boxlayout import CBoxLayout
-from carbonkivy.uix.relativelayout import CRelativeLayout
 from carbonkivy.uix.stacklayout import CStackLayout
 from carbonkivy.uix.label import CLabel
 from carbonkivy.uix.shell import UIShellButton
