@@ -16,6 +16,9 @@ CScreen:
         text: "Drag Me"
         icon: "add--large"
         pos: [30, 30]
+    
+    CCheckbox:
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
 """
 
 from kivy.input.providers.mouse import MouseMotionEvent
