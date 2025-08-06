@@ -1,20 +1,11 @@
 from __future__ import annotations
 
-from kivy.clock import Clock, mainthread
-from kivy.properties import (
-    BooleanProperty,
-    ColorProperty,
-    NumericProperty,
-    ObjectProperty,
-    OptionProperty,
-    StringProperty,
-)
 from kivy.uix.modalview import ModalView
+from kivy.uix.widget import Widget
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
     DeclarativeBehavior,
-    ElevationBehavior,
 )
 from carbonkivy.uix.button import CButton
 from carbonkivy.uix.boxlayout import CBoxLayout
@@ -27,8 +18,16 @@ from carbonkivy.uix.shell import UIShellButton
 class CModal(
     AdaptiveBehavior, DeclarativeBehavior, ModalView
 ):
-    pass
 
+    def __init__(self, **kwargs):
+        super(CModal, self).__init__(**kwargs)
+
+    def add_widget(self, widget: Widget, *args, **kwargs):
+        if isinstance(widget, CModalLayout) and (not "cmodal_layout" in self.ids):
+            self.size_hint_y = None
+            self.ids["cmodal_layout"] = widget
+            widget.bind(height=self.setter("height"))
+        return super().add_widget(widget, *args, **kwargs)
 
 class CModalLayout(CBoxLayout):
     pass
