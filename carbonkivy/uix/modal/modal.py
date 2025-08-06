@@ -1,21 +1,28 @@
 from __future__ import annotations
 
+__all__ = (
+    "CModal",
+    "CModalLayout",
+    "CModalHeader",
+    "CModalHeaderLabel",
+    "CModalHeaderTitle",
+    "CModalBody",
+    "CModalBodyContent",
+    "CModalFooter",
+    "CModalCloseButton",
+)
+
 from kivy.uix.modalview import ModalView
 from kivy.uix.widget import Widget
 
-from carbonkivy.behaviors import (
-    AdaptiveBehavior,
-    DeclarativeBehavior,
-)
+from carbonkivy.behaviors import AdaptiveBehavior, DeclarativeBehavior
 from carbonkivy.uix.boxlayout import CBoxLayout
-from carbonkivy.uix.stacklayout import CStackLayout
 from carbonkivy.uix.label import CLabel
 from carbonkivy.uix.shell import UIShellButton
+from carbonkivy.uix.stacklayout import CStackLayout
 
 
-class CModal(
-    AdaptiveBehavior, DeclarativeBehavior, ModalView
-):
+class CModal(AdaptiveBehavior, DeclarativeBehavior, ModalView):
 
     def __init__(self, **kwargs):
         super(CModal, self).__init__(**kwargs)
@@ -26,6 +33,7 @@ class CModal(
             self.ids["cmodal_layout"] = widget
             widget.bind(height=self.setter("height"))
         return super().add_widget(widget, *args, **kwargs)
+
 
 class CModalLayout(CBoxLayout):
     pass
