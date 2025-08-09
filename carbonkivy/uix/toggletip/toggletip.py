@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-__all__ = ("CTooltip",)
+__all__ = ("CToggletip",)
 
 from kivy.clock import mainthread
 from kivy.core.window import Window
@@ -16,7 +16,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 
 
-class CTooltip(BoxLayout):
+class CToggletip(BoxLayout):
 
     bg_color = ColorProperty()
 
@@ -30,10 +30,8 @@ class CTooltip(BoxLayout):
 
     radius = VariableListProperty(length=4)
 
-    margin = NumericProperty(None, allownone=True)
-
     def __init__(self, **kwargs) -> None:
-        super(CTooltip, self).__init__(**kwargs)
+        super(CToggletip, self).__init__(**kwargs)
 
     @mainthread
     def update_pos(self, instance: Widget, *args) -> None:
@@ -49,9 +47,9 @@ class CTooltip(BoxLayout):
         ):
             pos_x = instance.x + instance.width / 2 - self.width / 2
         elif instance_center[0] < self.width / 2:
-            pos_x = instance.center_x - dp(16) if (not self.margin) else self.margin
+            pos_x = instance.center_x - dp(16)
         elif (Window.width - instance_center[0]) < self.width / 2:
-            pos_x = instance.center_x - self.width + dp(16) if (not self.margin) else Window.width - self.width - self.margin
+            pos_x = instance.center_x - self.width + dp(16)
 
         if (Window.height - instance_center[1]) > (
             instance.height / 2 + self.height + dp(12)
@@ -65,7 +63,6 @@ class CTooltip(BoxLayout):
         self.pos = instance.to_window(*[pos_x, pos_y])
         self.element_x = instance_center[0]
 
-    @mainthread
     def set_visibility(self, instance: Widget, visibility: bool, *args) -> None:
         if visibility:
             try:
