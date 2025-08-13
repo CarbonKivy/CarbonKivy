@@ -26,9 +26,10 @@
                 self.y + self.height + dp(6), \
                 ], \
                 }[self._pointer]
+    orientation: "vertical"
     bg_color: app.background_inverse
-    text_color: app.text_inverse
     size_hint: None, None
     width: min(dp(288), self.width)
     height: self.minimum_height
     padding: [dp(16), dp(8), dp(16), dp(8)]
+    spacing: dp(16)
