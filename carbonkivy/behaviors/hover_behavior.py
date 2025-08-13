@@ -19,8 +19,6 @@ class HoverBehavior:
 
     hover_color = ColorProperty([1, 1, 1, 0])
 
-    non_hoverable_areas = ListProperty()
-
     def __init__(self, **kwargs) -> None:
         self.on_hover_enabled()
         super(HoverBehavior, self).__init__(**kwargs)
@@ -28,7 +26,7 @@ class HoverBehavior:
     def element_hover(self, instance: object, pos: list, *args) -> None:
         if not self.is_visible():
             self.hover = False
-        if self.cstate != "disabled" and self.hover_enabled and self.is_visible():
+        if (hasattr(self, "cstate") and self.cstate != "disabled") and self.hover_enabled and self.is_visible():
 
             for widget in self.children:
                 if hasattr(widget, "hover") and widget.hover:
@@ -44,7 +42,11 @@ class HoverBehavior:
             )
 
     def is_visible(self, *args) -> bool:
-        if not self.get_root_window():
+        if (
+            not self.get_root_window() 
+            or self.disabled 
+            or self.opacity == 0
+        ):
             return False
         else:
             return True
