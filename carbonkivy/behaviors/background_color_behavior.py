@@ -24,7 +24,7 @@ Builder.load_string(
 
 <BackgroundColorBehaviorRectangular>:
 
-    canvas.before:
+    canvas:
         PushMatrix
         Rotate:
             angle: self.angle
@@ -81,7 +81,7 @@ Builder.load_string(
         PopMatrix
 
 <BackgroundColorBehaviorCircular>:
-    canvas.before:
+    canvas:
         PushMatrix
         Rotate:
             angle: self.angle
@@ -239,6 +239,14 @@ class BackgroundColorBehavior:
     def on_cstate(self, *args) -> None:
         if self.cstate == "disabled":
             self.disabled = True
+        else:
+            self.disabled = False
+
+    def on_disabled(self, *args) -> None:
+        if self.disabled == True:
+            self.cstate = "disabled"
+        else:
+            self.cstate = "normal"
 
     def update_background_origin(self, instance, pos: list) -> None:
         """Fired when the values of :attr:`pos` change."""
