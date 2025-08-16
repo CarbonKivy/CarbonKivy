@@ -13,8 +13,8 @@ Builder.load_string(
         Color:
             rgba: self.shadow_color
         BoxShadow:
-            pos: self.pos
             size: self.size
+            pos: self.pos if not isinstance(self, RelativeLayout) else (0, 0)
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
     shadow_color: app.notification_action_tertiary_inverse_hover
@@ -28,4 +28,4 @@ class ElevationBehavior:
 
     shadow_offset = VariableListProperty([1, -1], length=2)
 
-    shadow_blur_radius = NumericProperty(dp(5))
+    shadow_blur_radius = NumericProperty(dp(10))

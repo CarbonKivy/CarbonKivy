@@ -24,6 +24,15 @@
     line_color_focus: app.focus
     line_color_disabled: app.button_disabled
     font_size: plex_16
+    height: 
+        { \
+        "Small": dp("32"), \
+        "Medium": dp("40"), \
+        "Large Productive": dp("48"), \
+        "Large Expressive": dp("48"), \
+        "Extra Large": dp("64"), \
+        "2XL": dp("80"), \
+        }[self.role]
     width: self._width if self.ids.get("cbutton_layout_label") else self.height
 
 
@@ -94,6 +103,16 @@
 
 
 <CButtonDanger>:
+    bg_color:
+        { \
+        "normal": { \
+        "Primary": app.button_danger_primary, \
+        "Tertiary": app.transparent, \
+        "Ghost": app.transparent, \
+        }[self.variant], \
+        "disabled": self.bg_color_disabled, \
+        "active": self.active_color,\
+        }[self.cstate]
     bg_color: app.button_danger_primary if self.variant == "Primary" else app.transparent
     bg_color_focus: app.button_danger_primary
     hover_color: app.button_danger_hover
