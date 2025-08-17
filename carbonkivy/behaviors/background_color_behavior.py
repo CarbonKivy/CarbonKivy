@@ -87,23 +87,37 @@ Builder.load_string(
             angle: self.angle
             origin: self._background_origin
         Color:
-            group: "backgroundcolor-behavior-inset-color"
-            rgba: self._inset_color
-        SmoothRoundedRectangle:
-            group: "Background_inset_instruction"
-            size: self.size
-            pos: self.pos if not isinstance(self, RelativeLayout) else (0, 0)
-            radius: self.radius if self.radius else [0, 0, 0, 0]
-        Color:
             group: "backgroundcolor-behavior-bg-color"
             rgba: self._bg_color
         SmoothRoundedRectangle:
             group: "Background_instruction"
-            size: [self.size[0] - (2  * self.inset_width), self.size[1] - (2 * self.inset_width)]
-            pos: (self.pos[0] + self.inset_width, self.pos[1] + self.inset_width) if not isinstance(self, RelativeLayout) else (self.inset_width, self.inset_width)
+            size: [self.size[0], self.size[1]]
+            pos: (self.x, self.y) if not isinstance(self, RelativeLayout) else (0, 0)
             source: self.bg_source
             radius: self.radius if self.radius else [0, 0, 0, 0]
-    canvas.after:
+    canvas.after:        
+        Color:
+            rgba: self._inset_color
+        Line:
+            width: max(dp(0.5), self.inset_width)
+            cap: "square"
+            joint: "round"
+            rounded_rectangle:
+                [ \
+                self.inset_width/2,
+                self.inset_width/2, \
+                self.width - self.inset_width, \
+                self.height - self.inset_width, \
+                *self.radius, \
+                ] \
+                if isinstance(self, RelativeLayout) else \
+                [ \
+                self.x + self.inset_width/2,
+                self.y + self.inset_width/2, \
+                self.width - self.inset_width, \
+                self.height - self.inset_width, \
+                *self.radius, \
+                ]
         Color:
             rgba: self._line_color
         Line:
@@ -209,6 +223,7 @@ class BackgroundColorBehavior:
 
     cstate = OptionProperty("normal", options=["active", "disabled", "normal"])
 
+    _cstate = StringProperty("normal")
     _bg_color = ColorProperty([1, 1, 1, 0])
     _inset_color = ColorProperty([1, 1, 1, 0])
     _line_color = ColorProperty([1, 1, 1, 0])
@@ -240,13 +255,14 @@ class BackgroundColorBehavior:
         if self.cstate == "disabled":
             self.disabled = True
         else:
+            self._cstate = self.cstate
             self.disabled = False
 
     def on_disabled(self, *args) -> None:
         if self.disabled == True:
             self.cstate = "disabled"
         else:
-            self.cstate = "normal"
+            self.cstate = self._cstate
 
     def update_background_origin(self, instance, pos: list) -> None:
         """Fired when the values of :attr:`pos` change."""
