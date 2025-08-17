@@ -28,4 +28,4 @@ class ElevationBehavior:
 
     shadow_offset = VariableListProperty([1, -1], length=2)
 
-    shadow_blur_radius = NumericProperty(dp(10))
+    shadow_blur_radius = NumericProperty(dp(5))

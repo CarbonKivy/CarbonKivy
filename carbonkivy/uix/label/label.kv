@@ -1,6 +1,21 @@
 #: import font_style_tokens carbonkivy.theme.size_tokens.font_style_tokens
 
 <CLabel>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: self.angle
+            origin: self._background_origin
+        Color:
+            group: "backgroundcolor-behavior-bg-color-label"
+            rgba: self._bg_color
+        Rectangle:
+            group: "Background_instruction_label"
+            size: [self.size[0], self.size[1]]
+            pos: (self.pos[0], self.pos[1]) if not isinstance(self, RelativeLayout) else (0, 0)
+            source: self.bg_source
+    canvas.after:
+        PopMatrix
     adaptive: [False, True]
     text_size: self.width, None
     font_size: font_style_tokens[self.style]["font_size"]

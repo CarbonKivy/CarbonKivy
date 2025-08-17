@@ -51,6 +51,11 @@ class CLabel(
         super(CLabel, self).__init__(**kwargs)
         self.update_specs()
 
+    def on_kv_post(self, base_widget):
+        self.canvas.remove_group("backgroundcolor-behavior-bg-color")
+        self.canvas.remove_group("Background_instruction")
+        return super().on_kv_post(base_widget)
+
     def on_style(self, *args) -> None:
         self.update_specs()
 
