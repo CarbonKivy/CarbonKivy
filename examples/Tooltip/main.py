@@ -1,5 +1,6 @@
 from kivy.clock import Clock
 from kivy.core.window import Window
+from kivy.properties import StringProperty
 
 
 def set_softinput(*args) -> None:
@@ -15,28 +16,44 @@ CScreen:
     TooltipButton:
         text: "Drag Me"
         icon: "add--large"
-        pos: [30, 30]
+        pos: [dp(30), dp(30)]
     
     CCheckbox:
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+<MToggletip>:
+    CLabel:
+        text: root.text
+        color: app.text_inverse
+    
+    CButtonPrimary:
+        text: "View more"
+        role: "Large Productive"
 """
 
 from kivy.input.providers.mouse import MouseMotionEvent
 from kivy.lang import Builder
 from kivy.metrics import dp
+from kivy.properties import StringProperty
 
 from carbonkivy.app import CarbonApp
-from carbonkivy.behaviors import TooltipBehavior
+from carbonkivy.behaviors import TooltipBehavior, ElevationBehavior
 from carbonkivy.uix.button import CButtonPrimary
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.tooltip import CTooltip
+from carbonkivy.uix.toggletip import CToggletip
 
 
-class TooltipButton(CButtonPrimary, TooltipBehavior):
+class MToggletip(CToggletip):
+
+    text = StringProperty()
+
+
+class TooltipButton(CButtonPrimary, ElevationBehavior, TooltipBehavior):
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
-        self.tooltip = CTooltip(text="This is a large Tooltip text.", width=dp(200))
+        self.tooltip = MToggletip(text="This is a large Toggletip text.", width=dp(200), margin=dp(2), pointer="Upward")
 
     def on_touch_move(self, touch: MouseMotionEvent, *args) -> bool | None:
         self.center_x, self.center_y = touch.pos
