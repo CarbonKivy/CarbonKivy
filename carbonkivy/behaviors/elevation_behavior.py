@@ -17,6 +17,7 @@ Builder.load_string(
             pos: self.pos if not isinstance(self, RelativeLayout) else (0, 0)
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
+            spread_radius: [dp(0), dp(0)]
     shadow_color: app.notification_action_tertiary_inverse_hover
 """
 )
@@ -26,6 +27,6 @@ class ElevationBehavior:
 
     shadow_color = ColorProperty()
 
-    shadow_offset = VariableListProperty([1, -1], length=2)
+    shadow_offset = VariableListProperty([dp(1), -dp(1)], length=2)
 
     shadow_blur_radius = NumericProperty(dp(5))
