@@ -99,18 +99,21 @@ class UIShellRightPanel(CRelativeLayout):
 
     def __init__(self, **kwargs) -> None:
         super(UIShellRightPanel, self).__init__(**kwargs)
+        self.animation = Animation()
         Window.bind(size=self.on_visibility)
 
     def on_visibility(self, *args) -> None:
 
         def set_visibility(*args) -> None:
+            self.animation.cancel_all(self)
             if self.visibility:
                 self.opacity = 1
-                Animation(x=Window.width - self.width, d=0.25).start(self)
+                self.animation = Animation(x=Window.width - self.width, d=0.25)
             else:
-                (
+                self.animation = (
                     Animation(x=Window.width, d=0.25) + Animation(opacity=0, d=0.25)
-                ).start(self)
+                )
+            self.animation.start(self)
 
         Clock.schedule_once(set_visibility)
 
