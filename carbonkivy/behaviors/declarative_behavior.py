@@ -39,7 +39,7 @@ class DeclarativeBehavior:
 
     def bind_update(self, *args, **kwargs) -> None:
         for key, value in kwargs.items():
-            if value.__class__.__module__ == "kivy.properties":
+            if value.__class__.__module__ == "kivy.properties" and value.__class__.__name__ == "ObservableList":
                 value.obj().bind(
                     **{value.prop.name: lambda *args, k=key: setattr(self, k, args[-1])}
                 )
