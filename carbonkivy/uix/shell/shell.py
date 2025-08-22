@@ -66,25 +66,29 @@ class UIShellLeftPanel(CRelativeLayout):
 
     def __init__(self, **kwargs) -> None:
         super(UIShellLeftPanel, self).__init__(**kwargs)
+        self.animation = Animation()
+        Window.bind(size=self.on_visibility)
 
     def on_visibility(self, *args) -> None:
+        self.animation.cancel_all(self)
 
         def set_visibility(*args) -> None:
             if self.visibility:
                 self.opacity = 1
-                Animation(x=0, d=0.125).start(self)
+                self.animation = Animation(x=0, d=0.125)
                 try:
                     self.panel_shell.bg_color = self.overlay
                 except:
                     return
             else:
-                (
+                self.animation = (
                     Animation(x=0 - self.width, d=0.125) + Animation(opacity=0, d=0.25)
-                ).start(self)
+                )
                 try:
                     self.panel_shell.bg_color = [1, 1, 1, 0]
                 except:
                     return
+            self.animation.start(self)
 
         Clock.schedule_once(set_visibility)
 
@@ -103,15 +107,15 @@ class UIShellRightPanel(CRelativeLayout):
         Window.bind(size=self.on_visibility)
 
     def on_visibility(self, *args) -> None:
+        self.animation.cancel_all(self)
 
         def set_visibility(*args) -> None:
-            self.animation.cancel_all(self)
             if self.visibility:
                 self.opacity = 1
-                self.animation = Animation(x=Window.width - self.width, d=0.25)
+                self.animation = Animation(x=Window.width - self.width, d=0.05)
             else:
                 self.animation = (
-                    Animation(x=Window.width, d=0.25) + Animation(opacity=0, d=0.25)
+                    Animation(x=Window.width, d=0.05) + Animation(opacity=0, d=0.25)
                 )
             self.animation.start(self)
 
