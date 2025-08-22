@@ -8,9 +8,10 @@ from kivy.metrics import dp
 from kivy.properties import BooleanProperty, ObjectProperty, NumericProperty, OptionProperty
 from kivy.uix.widget import Widget
 
+from carbonkivy.behaviors import ElevationBehavior
 from carbonkivy.uix.boxlayout import CBoxLayout
 
-class CDropdown(CBoxLayout):
+class CDropdown(CBoxLayout, ElevationBehavior):
 
     visibility = BooleanProperty(False, allownone=True)
 
