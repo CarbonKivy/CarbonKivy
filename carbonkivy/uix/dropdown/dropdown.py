@@ -52,6 +52,11 @@ class CDropdown(CBoxLayout, ElevationBehavior):
 
         self.pos = instance.to_window(*[pos_x, pos_y])
 
+    def on_touch_down(self, touch):
+        if not self.collide_point(*touch.pos) and not self.master.collide_point(*self.master.to_parent(*self.master.to_widget(*touch.pos))):
+            self.visibility = False
+        return super().on_touch_down(touch)
+
     def on_visibility(self, *args) -> None:
 
         def set_visibility(*args) -> None:
