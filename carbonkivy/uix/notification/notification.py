@@ -32,7 +32,7 @@ from carbonkivy.utils import get_latest_time
 
 
 class CBaseNotification(
-    AdaptiveBehavior, DeclarativeBehavior, ModalView, ElevationBehavior
+    AdaptiveBehavior, DeclarativeBehavior, ElevationBehavior, ModalView
 ):
 
     time_caption_enabled = BooleanProperty(False)

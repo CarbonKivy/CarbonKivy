@@ -2,31 +2,27 @@ from __future__ import annotations
 
 __all__ = ("ElevationBehavior",)
 
+from kivy.event import EventDispatcher
 from kivy.lang import Builder
 from kivy.metrics import dp
-from kivy.properties import ColorProperty, NumericProperty, VariableListProperty
+from kivy.properties import NumericProperty, VariableListProperty
 
 Builder.load_string(
     """
 <ElevationBehavior>:
     canvas.before:
         Color:
-            rgba: self.shadow_color
+            rgba: app.notification_action_tertiary_inverse_hover
         BoxShadow:
             size: self.size
-            pos: self.pos if not isinstance(self, RelativeLayout) else (0, 0)
+            pos: self.pos
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
-            spread_radius: [dp(0), dp(0)]
-    shadow_color: app.notification_action_tertiary_inverse_hover
 """
 )
 
+class ElevationBehavior(EventDispatcher):
 
-class ElevationBehavior:
+    shadow_offset = VariableListProperty([dp(2), -dp(3)], length=2)
 
-    shadow_color = ColorProperty()
-
-    shadow_offset = VariableListProperty([dp(1), -dp(1)], length=2)
-
-    shadow_blur_radius = NumericProperty(dp(5))
+    shadow_blur_radius = NumericProperty(dp(0))
