@@ -86,6 +86,7 @@ class CLink(
                 self._text_color = self.text_color
 
     def on_touch_down(self, touch) -> bool:
+        super().on_touch_down(touch)
         if self.cstate != "disabled":
             if self.focus and self.external:
                 Clock.schedule_once(lambda e: webbrowser.open_new_tab(self.url))

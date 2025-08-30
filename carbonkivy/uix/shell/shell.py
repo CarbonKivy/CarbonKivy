@@ -68,6 +68,7 @@ class UIShellLeftPanel(CRelativeLayout):
         super(UIShellLeftPanel, self).__init__(**kwargs)
         self.animation = Animation()
         Window.bind(size=self.on_visibility)
+        self.pos = (0, 0)
 
     def on_visibility(self, *args) -> None:
         self.animation.cancel_all(self)
