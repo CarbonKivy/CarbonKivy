@@ -1,6 +1,6 @@
 <CButton>:
     size_hint: None, None
-    text_color:
+    _text_color:
         { \
         "normal": self.text_color, \
         "disabled": self.text_color_disabled, \
@@ -10,7 +10,7 @@
     text_color_focus: app.text_on_color
     text_color_disabled: app.text_on_color_disabled
     icon_color: app.text_on_color
-    bg_color:
+    _bg_color:
         { \
         "normal": self.bg_color, \
         "disabled": self.bg_color_disabled, \
@@ -61,16 +61,26 @@
     bg_color: app.button_primary
     active_color: app.button_primary_active
     hover_color: app.button_primary_hover
+    bg_color:
+        { \
+        "normal": self.bg_color, \
+        "disabled": self.bg_color_disabled, \
+        "active": self.active_color,\
+        }[self.cstate]
 
 
 <CButtonSecondary>:
-    bg_color: app.button_secondary
+    bg_color:
+        { \
+        "normal": app.button_secondary, \
+        "disabled": self.bg_color_disabled, \
+        "active": self.active_color,\
+        }[self.cstate]
     active_color: app.button_secondary_active
     hover_color: app.button_secondary_hover
 
 
 <CButtonGhost>:
-    bg_color: app.transparent
     bg_color_disabled: app.transparent
     inset_width: dp(0.5)
     text_color: app.link_primary
@@ -80,10 +90,15 @@
     inset_color: app.transparent
     inset_color_focus: app.transparent
     padding: [dp(16), 0, dp(16), 0]
+    bg_color:
+        { \
+        "normal": app.transparent, \
+        "disabled": self.bg_color_disabled, \
+        "active": self.active_color,\
+        }[self.cstate]
 
 
 <CButtonTertiary>:
-    bg_color: app.transparent
     bg_color_focus: app.button_tertiary
     bg_color_disabled: app.transparent
     active_color: app.button_tertiary_active
@@ -100,6 +115,13 @@
         "active": self.bg_color, \
         "disabled": self.line_color_disabled, \
         }[self.cstate]
+    bg_color:
+        { \
+        "normal": app.transparent, \
+        "disabled": self.bg_color_disabled, \
+        "active": self.active_color,\
+        }[self.cstate]
+
 
 
 <CButtonDanger>:

@@ -257,6 +257,8 @@ class BackgroundColorBehavior:
         else:
             self._cstate = self.cstate
             self.disabled = False
+            for items in self.children:
+                items.disabled = False
 
     def on_disabled(self, *args) -> None:
         if self.disabled == True:
