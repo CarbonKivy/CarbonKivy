@@ -24,7 +24,7 @@ CScreen:
         text: "IBM Plex Serif"
         style: "heading_04"
         typeface: "IBM Plex Serif"
-        weight_style: "Medium"
+        weight_style: "Italic"
         halign: "center"
         pos_hint: {"center_y": 0.5}
 
