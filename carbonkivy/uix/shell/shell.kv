@@ -1,7 +1,9 @@
 #: import Window kivy.core.window.Window
 
+
 <UIShell>:
     size_hint: 1, 1
+
 
 <UIShellHeader>:
     canvas.before:
@@ -14,6 +16,7 @@
     height: dp(56)
     padding: [dp(8), dp(8), dp(8), 0]
     bg_color: app.background
+
 
 <UIShellHeaderName>:
     size_hint: None, 1
@@ -63,3 +66,26 @@
 <UIShellLayout>:
     size_hint: 1, 1
     padding: [dp(8), dp(64), dp(8), dp(8)]
+
+
+<UIShellPanelSelectionLayout>:
+    orientation: "vertical"
+    adaptive: [False, True]
+
+
+<UIShellPanelSelectionItem>:
+    canvas.after:
+        Color:
+            rgba: app.border_interactive if self.selected else app.transparent
+        Line:
+            width: dp(2)
+            cap: "square"
+            points: [self.x + dp(1), self.y + dp(2), self.x + dp(1), self.top - dp(2)]
+    padding: [dp(16), dp(8)]
+    spacing: dp(16)
+    adaptive: [False, True]
+    bg_color: app.background_selected if self.selected else app.background
+    hover_color: app.background_hover
+    active_color: app.background_active
+    bg_color_focus: self.bg_color
+    line_color_focus: app.focus
