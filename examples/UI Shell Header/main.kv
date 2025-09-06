@@ -9,8 +9,16 @@
 
             UIShellPanelLayout:
 
-                CLabel:
-                    text: "Hello"
+                UIShellPanelSelectionLayout:
+
+                    UIShellPanelSelectionItem:
+                        default: True
+                        text: "Home"
+                        right_icon: "home"
+
+                    UIShellPanelSelectionItem:
+                        text: "Profile"
+                        right_icon: "account"
 
     UIShell:
         id: right_panel_shell
@@ -30,7 +38,17 @@
 
             UIShellHeaderName:
                 text: "Header name"
-            
-            CButtonGhost:
-                id: shell_switcher_btn
-                icon: "switcher"
+
+            CAnchorLayout:
+                anchor_x: "right"
+
+                CGridLayout:
+                    adaptive: [True, True]
+                    rows: 1
+
+                    UIShellButton:
+                        icon: "search"
+
+                    UIShellButton:
+                        id: shell_switcher_btn
+                        icon: "switcher"

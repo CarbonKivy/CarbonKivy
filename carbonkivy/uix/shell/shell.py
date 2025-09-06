@@ -9,6 +9,8 @@ __all__ = (
     "UIShellHeaderMenuButton",
     "UIShellLayout",
     "UIShellPanelLayout",
+    "UIShellPanelSelectionItem",
+    "UIShellPanelSelectionLayout",
     "UIShellLeftPanel",
     "UIShellRightPanel",
 )
@@ -16,17 +18,20 @@ __all__ = (
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.core.window import Window
-from kivy.metrics import dp
+from kivy.input.providers.mouse import MouseMotionEvent
+from kivy.metrics import dp, sp
 from kivy.properties import (
     BooleanProperty,
     ColorProperty,
-    NumericProperty,
+    StringProperty,
     ObjectProperty,
 )
+from kivy.uix.behaviors import ButtonBehavior
 
-from carbonkivy.behaviors import StateFocusBehavior
+from carbonkivy.behaviors import StateFocusBehavior, SelectionBehavior, HoverBehavior, SelectableBehavior
 from carbonkivy.uix.boxlayout import CBoxLayout
 from carbonkivy.uix.button import CButtonGhost
+from carbonkivy.uix.icon import CIcon
 from carbonkivy.uix.label import CLabel
 from carbonkivy.uix.relativelayout import CRelativeLayout
 from carbonkivy.uix.stacklayout import CStackLayout
@@ -129,3 +134,66 @@ class UIShellLayout(CStackLayout):
 
 class UIShellPanelLayout(UIShellLayout):
     pass
+
+
+class UIShellPanelSelectionLayout(SelectionBehavior, CBoxLayout):
+    pass
+
+
+class UIShellPanelSelectionItem(
+    ButtonBehavior,
+    CBoxLayout,
+    StateFocusBehavior,
+    HoverBehavior,
+    SelectableBehavior
+):
+
+    text = StringProperty()
+
+    left_icon = StringProperty("blank")
+
+    right_icon = StringProperty("blank")
+
+    def __init__(self, **kwargs) -> None:
+        super(UIShellPanelSelectionItem, self).__init__(**kwargs)
+
+    def on_touch_down(self, touch: MouseMotionEvent) -> bool:
+        if self.collide_point(*touch.pos):
+            self.selected = True
+        return super().on_touch_down(touch)
+
+    def on_left_icon(self, *args) -> None:
+        try:
+            self.ids.left_icon.icon = self.left_icon
+        except:
+            pass
+
+        def add_left_icon(*args) -> None:
+            self.add_widget(CIcon(id="left_icon", icon=self.left_icon, font_size=sp(16)), index=2)
+
+        if not "left_icon" in self.ids:
+            Clock.schedule_once(add_left_icon)
+
+    def on_text(self, *args) -> None:
+        try:
+            self.ids.label.text = self.text
+        except:
+            pass
+
+        def add_text(*args) -> None:
+            self.add_widget(CLabel(id="label", text=self.text, style="label_02", font_size=sp(16)), index=1)
+
+        if not "label" in self.ids:
+            Clock.schedule_once(add_text)
+
+    def on_right_icon(self, *args) -> None:
+        try:
+            self.ids.right_icon.icon = self.right_icon
+        except:
+            pass
+
+        def add_right_icon(*args) -> None:
+            self.add_widget(CIcon(id="right_icon", icon=self.right_icon, font_size=sp(16)), index=0)
+
+        if not "right_icon" in self.ids:
+            Clock.schedule_once(add_right_icon)
