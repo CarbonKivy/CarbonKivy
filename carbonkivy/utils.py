@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from typing import Literal
+from typing import Literal, Any
 
 from kivy.core.window import Window
 from kivy.metrics import dp
@@ -109,7 +109,7 @@ def update_system_ui(
 class _Dict(DictProperty):
     """Implements access to dictionary values via a dot."""
 
-    def __getattr__(self, name):
+    def __getattr__(self, name) -> Any:
         return self[name]
 
 
