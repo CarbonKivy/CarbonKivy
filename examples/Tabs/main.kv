@@ -1,0 +1,68 @@
+<HomeScreen>:
+
+    CTabLayout:
+        size_hint: 1, 1
+
+        CTabHeader:
+            tab_manager: tab_manager
+
+            CTabHeaderItem:
+                primary_text: "Tab1"
+                icon: "add--large"
+                name_tab: "home"
+                selected: True
+
+            CTabHeaderItem:
+                primary_text: "Tab2"
+                icon: "add--large"
+                name_tab: "nope"
+
+            CTabHeaderItem:
+                primary_text: "Tab3"
+                icon: "add--large"
+                name_tab: "hope"
+
+            CTabHeaderItem:
+                primary_text: "Tab4"
+                icon: "add--large"
+                name_tab: "dope"
+
+        CTabManager:
+            id: tab_manager
+            size_hint: 1, 1
+
+            CTab:
+                name: "home"
+
+                CLabel:
+                    text: "Tab 1"
+                    halign: "center"
+                    color: app.text_primary
+                    pos_hint: {"center_y": 0.5}
+
+            CTab:
+                name: "nope"
+
+                CLabel:
+                    text: "Tab 2"
+                    halign: "center"
+                    color: app.text_primary
+                    pos_hint: {"center_y": 0.5}
+
+            CTab:
+                name: "hope"
+
+                CLabel:
+                    text: "Tab 3"
+                    halign: "center"
+                    color: app.text_primary
+                    pos_hint: {"center_y": 0.5}
+
+            CTab:
+                name: "dope"
+
+                CLabel:
+                    text: "Tab 4"
+                    halign: "center"
+                    color: app.text_primary
+                    pos_hint: {"center_y": 0.5}
