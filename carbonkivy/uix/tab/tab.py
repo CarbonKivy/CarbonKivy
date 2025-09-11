@@ -25,7 +25,7 @@ class CTabLayout(CStackLayout):
     pass
 
 
-class CTabHeader(SelectionBehavior, CGridLayout):
+class CTabHeader(SelectionBehavior, CBoxLayout):
 
     tab_manager = ObjectProperty()
 
