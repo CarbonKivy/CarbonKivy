@@ -18,8 +18,6 @@
         }[self.cstate]
     bg_color_focus: self.bg_color
     bg_color_disabled: app.button_disabled
-    hover_color: app.background_hover
-    active_color: app.background_active
     inset_color_focus: app.focus_inset
     line_color_focus: app.focus
     line_color_disabled: app.button_disabled
@@ -51,7 +49,7 @@
     size: self.texture_size
     text_size: None, self.texture_size[1]
     text: self.base_button.text
-    color: self.base_button._text_color
+    -color: self.base_button._text_color
     font_size:  self.base_button.font_size
     pos_hint: {'center_y': 0.5}
     pos: dp(16), self.pos[1]
@@ -59,6 +57,7 @@
 
 <CButtonPrimary>:
     bg_color: app.button_primary
+    text_color: app.text_on_color
     active_color: app.button_primary_active
     hover_color: app.button_primary_hover
     bg_color:
@@ -78,6 +77,7 @@
         }[self.cstate]
     active_color: app.button_secondary_active
     hover_color: app.button_secondary_hover
+    text_color: app.text_on_color
 
 
 <CButtonGhost>:
@@ -89,6 +89,7 @@
     text_color_focus: app.link_primary_hover
     inset_color: app.transparent
     inset_color_focus: app.transparent
+    hover_color: app.background_hover
     padding: [dp(16), 0, dp(16), 0]
     bg_color:
         { \
