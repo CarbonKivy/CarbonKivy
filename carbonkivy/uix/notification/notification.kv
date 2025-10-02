@@ -31,7 +31,7 @@
         "Success": "checkmark--filled", \
         "Warning": "warning--filled", \
         }[self.status]
-    _bgi_color: app.icon_primary if self.status == "Warning" else app.icon_inverse
+    _bgi_color: "gray_100" if self.status == "Warning" else app.icon_primary
     shadow_color: app.background_inverse_hover
 
 <CNotification>:
@@ -72,10 +72,12 @@
                 style: "heading_compact_01"
                 weight_style: "ThinItalic"
                 pos_hint: {'top': 1.0}
+                color: "gray_100"
             
             CLabel:
                 text: root.subtitle
                 style: "body_compact_01"
+                color: "gray_100"
                 pos_hint: {'top': 1.0}
                 padding: [0, 0, 0, dp(20) if root.variant == "Toast" else 0]
 
@@ -113,10 +115,12 @@
                 width: self.texture_size[0]
                 text_size: None, self.texture_size[1]
                 style: "heading_compact_01"
+                color: "gray_100"
             
             CLabel:
                 text: root.subtitle
                 style: "body_compact_01"
+                color: "gray_100"
 
     CNotificationCloseButton:
         on_press:
@@ -159,11 +163,13 @@
                 width: self.texture_size[0]
                 text_size: None, self.texture_size[1]
                 style: "heading_compact_01"
+                color: "gray_100"
             
             CLabel:
                 text: root.subtitle
                 style: "body_compact_01"
                 padding: [0, 0, 0, dp(20)]
+                color: "gray_100"
 
     CNotificationCloseButton:
         on_press:
@@ -171,15 +177,17 @@
 
 <CNotificationCloseButton>:
     icon: "close"
-    text_color: app.icon_primary
-    text_color_hover: app.icon_primary
-    text_color_focus: app.icon_primary
+    text_color: "gray_100"
+    text_color_hover: "gray_100"
+    text_color_focus: "gray_100"
     inset_color: app.transparent
     inset_color_focus: app.transparent
+    hover_color: app.background_hover
+    active_color: app.background_active
     inset_width: 0
     font_size: plex_16
     role: "Large Productive"
-    line_color_focus: app.icon_primary
+    line_color_focus: "gray_100"
 
 
 <CNotificationCaption>:

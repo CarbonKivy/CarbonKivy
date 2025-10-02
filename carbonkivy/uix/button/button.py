@@ -98,12 +98,6 @@ class CButton(
         self._text_color = color
         self.icon_color = color
 
-    def on_icon_color(self, *args) -> None:
-        try:
-            self.ids.cbutton_layout_icon._color = self.icon_color
-        except Exception as e:
-            return
-
     def on_icon(self, *args) -> None:
 
         def add_icon(*args) -> None:

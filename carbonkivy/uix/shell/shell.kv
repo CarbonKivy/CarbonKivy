@@ -32,6 +32,8 @@
     text_color: app.icon_primary
     text_color_hover: self.text_color
     text_color_focus: self.text_color
+    hover_color: app.background_hover
+    active_color: app.background_active
     role: "Large Productive"
 
 
@@ -74,13 +76,13 @@
 
 
 <UIShellPanelSelectionItem>:
-    canvas.after:
+    canvas:
         Color:
             rgba: app.border_interactive if self.selected else app.transparent
         Line:
             width: dp(2)
             cap: "square"
-            points: [self.x + dp(1), self.y + dp(2), self.x + dp(1), self.top - dp(2)]
+            points: [self.x + dp(2), self.y + dp(2), self.x + dp(2), self.top - dp(2)]
     padding: [dp(16), dp(8)]
     spacing: dp(16)
     adaptive: [False, True]
