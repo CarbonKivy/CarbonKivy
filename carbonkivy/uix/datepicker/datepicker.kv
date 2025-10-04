@@ -2,13 +2,16 @@
     id: cdatepicker
     orientation: "vertical"
     bg_color: app.layer_01
-    size_hint: None, None
+    size_hint_x: None
     width: dp(352)
     adaptive: [False, True]
     padding: dp(8)
 
     CDatePickerHeader:
         id: cdatepickerheader
+        size_hint_x: 1
+        adaptive: [False, True]
+        orientation: "horizontal"
 
     CGridLayout:
         size_hint: 1, None
@@ -87,10 +90,11 @@
                 font_size: sp(16)
 
     CDatePickerCalendar:
+        id: cdatepickercalendar
+        size_hint: 1, None
+        height: dp(48) * 6
         cols: 7
         rows: 6
-        adaptive: [False, True]
-        id: cdatepickercalendar
 
 
 <CDatePickerDayButton>:
@@ -110,8 +114,6 @@
 
 
 <CDatePickerHeader>:
-    size_hint_x: 1
-    adaptive: [False, True]
 
     UIShellButton:
         icon: "chevron--left"
@@ -151,6 +153,3 @@
         icon: "chevron--right"
         on_press: root.parent.month_next()
 
-
-<CDatePickerCalendar>:
-    adaptive: [False, True]
