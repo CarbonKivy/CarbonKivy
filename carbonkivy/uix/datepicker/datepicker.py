@@ -5,18 +5,10 @@ __all__ = (
 )
 
 
-from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-from kivy.uix.label import Label
-from kivy.uix.popup import Popup
-from kivy.uix.modalview import ModalView
-from kivy.uix.textinput import TextInput
 from kivy.uix.widget import Widget
 from datetime import date, timedelta
 import calendar
-from kivy.clock import Clock
+from kivy.clock import Clock, mainthread
 from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.uix.widget import Widget
@@ -36,9 +28,9 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     margin = NumericProperty(None, allownone=True)
 
-    pointer = OptionProperty("Upward", options=["Upward", "Downward"])
+    pointer = OptionProperty("Downward", options=["Upward", "Downward"])
 
-    _pointer = OptionProperty("Upward", options=["Upward", "Downward"])
+    _pointer = OptionProperty("Downward", options=["Upward", "Downward"])
 
     today = ObjectProperty(date.today())
 
@@ -53,14 +45,19 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         self.current_month = self.today.month
         self.current_year = self.today.year
         self.month_name = calendar.month_name[int(self.current_month)]
+        try:
+            self.update_pos(self.master)
+        except:
+            pass
 
+    @mainthread
     def update_pos(self, instance: Widget, *args) -> None:
         pos_x, pos_y = [
             instance.center_x - dp(16),
             instance.top + dp(12) if (self.pointer == "Downward") else instance.y - self.height - dp(12),
         ]
 
-        instance_center = instance.to_window(instance.center_x, instance.center_y)
+        instance_center = instance.to_window(*instance.to_local(*instance.to_parent(*[instance.center_x, instance.center_y])))
 
         if instance_center[0] < self.width / 2:
             pos_x = instance.center_x - dp(16) if (not self.margin) else self.margin
@@ -70,20 +67,18 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         if (Window.height - instance_center[1]) < (
             instance.height / 2 + self.height + dp(12)
         ):
-            pos_y = instance.y - self.height - dp(12)
-            self._pointer = "Upward"
+            pos_y = instance.top - self.height
         elif (instance_center[1]) < (instance.height/2 + self.height + dp(12)):
             pos_y = instance.top + dp(12)
-            self._pointer = "Downward"
         else:
             self._pointer = self.pointer
 
-        self.pos = instance.to_window(*[pos_x, pos_y])
+        self.pos = instance.to_window(*instance.to_local(*instance.to_parent(*[pos_x, pos_y])))
 
-    # def on_touch_down(self, touch):
-    #     if not self.collide_point(*touch.pos) and not self.master.collide_point(*self.master.to_parent(*self.master.to_widget(*touch.pos))):
-    #         self.visibility = False
-    #     return super().on_touch_down(touch)
+    def on_touch_down(self, touch):
+        if not self.collide_point(*touch.pos) and not self.master.collide_point(*self.master.to_parent(*self.master.to_widget(*touch.pos))):
+            self.visibility = False
+        return super().on_touch_down(touch)
 
     def on_visibility(self, *args) -> None:
 
