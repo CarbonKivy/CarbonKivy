@@ -50,6 +50,8 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     month_name = StringProperty()
 
+    selected_date = ObjectProperty(None, allownone=True)
+
     def __init__(self, **kwargs):
         super(CDatePicker, self).__init__(**kwargs)
         self.current_month = self.today.month
@@ -170,6 +172,12 @@ class CDatePickerCalendar(CGridLayout):
     def __init__(self, **kwargs) -> None:
         super(CDatePickerCalendar, self).__init__(**kwargs)
         Clock.schedule_once(self.update_calendar)
+
+    def on_selected_date(self, *args) -> None:
+        try:
+            self.parent.selected_date = self.selected_date
+        except:
+            pass
 
     def get_calendar_dates(self, year: str, month: str) -> None:
         '''Get all dates for a 7x7 calendar grid including prev/next month dates'''
