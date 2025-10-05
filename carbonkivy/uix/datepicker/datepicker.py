@@ -2,6 +2,9 @@ from __future__ import annotations
 
 __all__ = (
     "CDatePicker",
+    "CDatePickerCalendar",
+    "CDatePickerDayButton",
+    "CDatePickerHeader",
 )
 
 
@@ -12,7 +15,14 @@ from kivy.clock import Clock, mainthread
 from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.uix.widget import Widget
-from kivy.properties import BooleanProperty, ObjectProperty, NumericProperty, OptionProperty, StringProperty, DictProperty
+from kivy.properties import (
+    BooleanProperty,
+    DictProperty,
+    NumericProperty,
+    ObjectProperty,
+    OptionProperty,
+    StringProperty,
+)
 
 from carbonkivy.uix.button import CButton
 from carbonkivy.behaviors import ElevationBehavior, SelectableBehavior
@@ -101,26 +111,24 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         Clock.schedule_once(set_visibility)
 
     def month_prev(self, *args) -> None:
-        Clock.unschedule(self.ids.cdatepickercalendar.update_calendar)
         if self.current_month == 1:
             self.current_month = 12
             self.current_year -= 1
         else:
             self.current_month -= 1
         self.month_name = calendar.month_name[int(self.current_month)]
-        self.ids.cdatepickercalendar.clear_widgets()
-        Clock.schedule_once(self.ids.cdatepickercalendar.update_calendar, 0.01)
+        Clock.unschedule(self.ids.cdatepickercalendar.update_calendar)
+        Clock.schedule_once(self.ids.cdatepickercalendar.update_calendar)
 
     def month_next(self, *args) -> None:
-        Clock.unschedule(self.ids.cdatepickercalendar.update_calendar)
         if self.current_month == 12:
             self.current_month = 1
             self.current_year += 1
         else:
             self.current_month += 1
         self.month_name = calendar.month_name[int(self.current_month)]
-        self.ids.cdatepickercalendar.clear_widgets()
-        Clock.schedule_once(self.ids.cdatepickercalendar.update_calendar, 0.01)
+        Clock.unschedule(self.ids.cdatepickercalendar.update_calendar)
+        Clock.schedule_once(self.ids.cdatepickercalendar.update_calendar)
 
 
 class CDatePickerDayButton(CButton, SelectableBehavior):
@@ -135,17 +143,16 @@ class CDatePickerDayButton(CButton, SelectableBehavior):
 
     is_current_month = BooleanProperty(False)
 
-    data = DictProperty()
+    date = ObjectProperty(None, allownone=True)
+
+    callback_selection = ObjectProperty(None, allownone=True)
 
     def __init__(self, **kwargs) -> None:
         super(CDatePickerDayButton, self).__init__(**kwargs)
 
-    def on_data(self, instance, value) -> None:
-        self.day = str(value.get('day', ''))
-        self.month = str(value.get('month', ''))
-        self.year = str(value.get('year', ''))
-        self.is_today = value.get('is_today', False)
-        self.is_current_month = value.get('is_current_month', False)
+    def on_release(self) -> None:
+        if self.callback_selection:
+            self.callback_selection(self.date, self)
 
 
 class CDatePickerHeader(CBoxLayout):
@@ -156,9 +163,9 @@ class CDatePickerHeader(CBoxLayout):
 
 class CDatePickerCalendar(CGridLayout):
 
-    selected_date = ObjectProperty()
+    selected_date = ObjectProperty(None, allownone=True)
 
-    selected_button = ObjectProperty()
+    selected_button = ObjectProperty(None, allownone=True)
 
     def __init__(self, **kwargs) -> None:
         super(CDatePickerCalendar, self).__init__(**kwargs)
@@ -171,12 +178,6 @@ class CDatePickerCalendar(CGridLayout):
         first_weekday = first_day.weekday()
         # Convert Monday=0 to Sunday=0 format
         first_weekday = (first_weekday + 1) % 7
-
-        # Get the last day of the month
-        if month == 12:
-            last_day = date(year + 1, 1, 1) - timedelta(days=1)
-        else:
-            last_day = date(year, month + 1, 1) - timedelta(days=1)
 
         # Calculate start date (may be from previous month)
         start_date = first_day - timedelta(days=first_weekday)
@@ -191,37 +192,52 @@ class CDatePickerCalendar(CGridLayout):
         return dates
 
     def update_calendar(self, *args) -> None:
-        # Clear previous calendar
-        self.clear_widgets()
+        self.clear_selection()
 
         # Get all dates for the 7x7 grid
         dates = self.get_calendar_dates(int(self.parent.current_year), int(self.parent.current_month))
-
-        for calendar_date in dates:
+        
+        for i, calendar_date in enumerate(dates):
             is_current_month = calendar_date.month == int(self.parent.current_month)
             is_today = calendar_date == self.parent.today
+            print(i)
 
-            btn = CDatePickerDayButton(
-                text=str(calendar_date.day),
-                day=calendar_date.day,
-                month=calendar_date.month,
-                year=calendar_date.year,
-                is_today=is_today,
-                is_current_month=is_current_month,
-                role="Large Productive",
-            )
-            try:
-                if (btn.day == self.selected_date.day) and (btn.month == self.selected_date.month) and btn.year == self.selected_date.year:
-                    btn.selected = True
-            except:
-                pass
-            btn.bind(on_press=lambda x, btn_date=calendar_date: self.select_date(btn_date, x))
-            Clock.schedule_once(lambda e, y=btn: self.add_widget(y))
+            if len(self.children) > 1:
+                self.children[-i-1].text = str(calendar_date.day)
+                self.children[-i-1].date = calendar_date
+                self.children[-i-1].day = calendar_date.day
+                self.children[-i-1].month = calendar_date.month
+                self.children[-i-1].year = calendar_date.year
+                self.children[-i-1].is_today = is_today
+                self.children[-i-1].is_current_month = is_current_month
+
+                for widget in self.children:
+                    if widget.day == self.selected_date.day and widget.month == self.selected_date.month == self.parent.current_month and widget.year == self.selected_date.year:
+                        widget.selected = True
+                        self.selected_button = widget
+                    else:
+                        widget.selected = False
+            else:
+                btn = CDatePickerDayButton(
+                    text=str(calendar_date.day),
+                    day=calendar_date.day,
+                    month=calendar_date.month,
+                    year=calendar_date.year,
+                    date=calendar_date,
+                    is_today=is_today,
+                    is_current_month=is_current_month,
+                    role="Large Productive",
+                )
+                btn.callback_selection=self.select_date
+                Clock.schedule_once(lambda dt, y=btn: self.add_widget(y))
+
+    def clear_selection(self, *args) -> None:
+        for widget in self.children:
+            widget.selected = False
+            self.selected_button = None
 
     def select_date(self, selected_date, button):
-        # # Reset previous selection
-        # if self.selected_button:
-        #     self.selected_button.set_selected(False)
+        Clock.unschedule(self.update_calendar)
 
         # Set new selection
         self.selected_date = selected_date
@@ -230,10 +246,10 @@ class CDatePickerCalendar(CGridLayout):
 
         # If selected date is from different month, navigate to that month
         if selected_date.month != self.parent.current_month:
+            self.clear_selection()
             self.parent.current_month = selected_date.month
             self.parent.current_year = selected_date.year
             self.parent.month_name = calendar.month_name[int(self.parent.current_month)]
-            self.update_calendar()
             # Re-select the date in the new calendar view
             for child in self.parent.children:
                 if (hasattr(child, 'day') and child.day == selected_date.day and 
@@ -242,4 +258,5 @@ class CDatePickerCalendar(CGridLayout):
                     self.selected_button = child
                     break
 
+        Clock.schedule_once(self.update_calendar)
         print(f"Selected date: {self.selected_date}")
