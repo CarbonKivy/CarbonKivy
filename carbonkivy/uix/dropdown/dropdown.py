@@ -28,7 +28,7 @@ class CDropdown(CBoxLayout, ElevationBehavior):
 
     def update_pos(self, instance: Widget, *args) -> None:
         pos_x, pos_y = [
-            instance.center_x - dp(16),
+            instance.center_x - self.width / 2,
             instance.top + dp(12) if (self.pointer == "Downward") else instance.y - self.height - dp(12),
         ]
 
