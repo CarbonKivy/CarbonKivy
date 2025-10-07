@@ -1,0 +1,48 @@
+#: import DEVICE_TYPE carbonkivy.utils.DEVICE_TYPE
+
+<CModal>:
+    background_color: app.layer_01
+    background_normal: ""
+    background: ""
+    overlay_color: app.overlay
+    anchor_x: "right"
+    anchor_y: "top"
+    size_hint_x: 1 if (DEVICE_TYPE == "mobile") else None
+    width: dp(576)
+    pos_hint: {"x": 0, "y": 0} if (DEVICE_TYPE == "mobile") else {"center_x": 0.5, "center_y": 0.5}
+
+<CModalLayout>:
+    orientation: "vertical"
+    adaptive: [False, True]
+
+<CModalBody>:
+    adaptive: [False, True]
+    padding: dp(16)
+    spacing: dp(16)
+
+<CModalBodyContent>:
+    style: "body_01"
+    color: app.text_primary
+
+<CModalHeader>:
+    adaptive: [False, True]
+    padding: dp(16)
+    spacing: dp(4)
+
+<CModalFooter>:
+    adaptive: [False, True]
+
+<CModalHeaderLabel>:
+    style: "label_01"
+    color: app.text_secondary
+
+<CModalHeaderTitle>:
+    style: "heading_03"
+    color: app.text_primary
+
+<CModalCloseButton>:
+    icon: "close"
+    text_color: app.icon_primary
+    font_size: plex_20
+    on_press:
+        self.parent.dismiss()

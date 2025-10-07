@@ -2,7 +2,6 @@ from __future__ import annotations
 
 __all__ = ("CLabel",)
 
-from kivy.clock import mainthread
 from kivy.properties import NumericProperty, OptionProperty
 from kivy.uix.label import Label
 
@@ -12,7 +11,6 @@ from carbonkivy.behaviors import (
     DeclarativeBehavior,
 )
 from carbonkivy.theme.size_tokens import font_style_tokens
-from carbonkivy.utils import get_font_name
 
 
 class CLabel(
@@ -49,23 +47,8 @@ class CLabel(
 
     def __init__(self, **kwargs) -> None:
         super(CLabel, self).__init__(**kwargs)
-        self.update_specs()
 
-    def on_style(self, *args) -> None:
-        self.update_specs()
-
-    @mainthread
-    def on_typeface(self, *args) -> None:
-        self.font_name = get_font_name(self.typeface, self.weight_style)
-
-    @mainthread
-    def on_weight_style(self, *args) -> None:
-        self.font_name = get_font_name(self.typeface, self.weight_style)
-
-    @mainthread
-    def update_specs(self, *args):
-        try:
-            self.weight_style = font_style_tokens[self.style]["weight_style"]
-        except:  # nosec
-            pass
-        self.font_name = get_font_name(self.typeface, self.weight_style)
+    def on_kv_post(self, base_widget):
+        self.canvas.remove_group("backgroundcolor-behavior-bg-color")
+        self.canvas.remove_group("Background_instruction")
+        return super().on_kv_post(base_widget)

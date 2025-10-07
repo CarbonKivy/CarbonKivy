@@ -1,5 +1,13 @@
-from kivy.core.window import Window
+import os
+import sys
+
+from kivy.resources import resource_add_path
+
+sys.path.append(os.path.dirname(__file__))
+resource_add_path(os.path.dirname(__file__))
+
 from kivy.clock import Clock
+from kivy.core.window import Window
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.utils import get_color_from_hex
 
@@ -13,11 +21,11 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 
 from carbonkivy.app import CarbonApp
+from carbonkivy.behaviors import StateFocusBehavior
+from carbonkivy.uix.icon import CIconCircular
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
 from carbonkivy.utils import update_system_ui
-from carbonkivy.uix.icon import CIconCircular
-from carbonkivy.behaviors import StateFocusBehavior
 
 
 class SelectableIcon(CIconCircular, StateFocusBehavior, ButtonBehavior):
@@ -48,7 +56,7 @@ class myapp(CarbonApp):
         self.manager_screens.add_widget(ProductScreen(name="product"))
         return self.manager_screens
 
-    
+
 if __name__ == "__main__":
     app = myapp()
     app.run()

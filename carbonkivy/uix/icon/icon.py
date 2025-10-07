@@ -36,8 +36,22 @@ class CBaseIcon(AdaptiveBehavior, DeclarativeBehavior, Label):
 
 
 class CIcon(BackgroundColorBehaviorRectangular, CBaseIcon):
-    pass
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def on_kv_post(self, base_widget):
+        super().on_kv_post(base_widget)
+        self.canvas.remove_group("backgroundcolor-behavior-bg-color")
+        self.canvas.remove_group("Background_instruction")
 
 
 class CIconCircular(BackgroundColorBehaviorCircular, CBaseIcon):
-    pass
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def on_kv_post(self, base_widget):
+        super().on_kv_post(base_widget)
+        self.canvas.remove_group("backgroundcolor-behavior-bg-color")
+        self.canvas.remove_group("Background_instruction")

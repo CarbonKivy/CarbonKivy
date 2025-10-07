@@ -87,7 +87,6 @@ class CButton(
 
     def __init__(self, **kwargs) -> None:
         super(CButton, self).__init__(**kwargs)
-        self.adjust_height()
 
     def on_font_size(self, *args) -> None:
         try:
@@ -95,18 +94,9 @@ class CButton(
         except Exception:
             return
 
-    def on_role(self, *args) -> None:
-        self.height = get_button_size(self.role)
-
     def on_text_color(self, instance: object, color: list | str) -> None:
         self._text_color = color
         self.icon_color = color
-
-    def on_icon_color(self, *args) -> None:
-        try:
-            self.ids.cbutton_layout_icon._color = self.icon_color
-        except Exception as e:
-            return
 
     def on_icon(self, *args) -> None:
 
@@ -162,9 +152,6 @@ class CButton(
             except Exception:
                 return
 
-    def adjust_height(self, *args) -> None:
-        self.height = get_button_size(self.role)
-
     def on_hover(self, *args) -> None:
         if self.hover:
             self._text_color = self.text_color_hover
@@ -204,8 +191,6 @@ class CButton(
 class CButtonDanger(CButton):
 
     variant = OptionProperty("Primary", options=["Ghost", "Primary", "Tertiary"])
-
-    cstate = OptionProperty("normal", options=["normal"])
 
     def __init__(self, **kwargs) -> None:
         super(CButtonDanger, self).__init__(**kwargs)

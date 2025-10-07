@@ -1,0 +1,44 @@
+<HomeScreen>:
+    CButtonPrimary: 
+        text: "Add domain"
+        pos_hint: {"center_y": 0.5, "center_x": 0.5}
+        on_press:
+            app.modal.open()
+
+<DomainModal>:
+    CModalLayout:
+        CModalHeader:
+            CModalHeaderLabel:
+                text: "Account resources"
+            CModalHeaderTitle:
+                text: "Add a custom domain"
+        CModalBody:
+            CModalBodyContent:
+                text: "Custom domains direct requests for your apps in this Cloud Foundry organization to a URL that you own. A custom domain can be a shared domain, a shared subdomain, or a shared domain and host."
+            
+            CBoxLayout:
+                adaptive: [False, True]
+                padding: [0, dp(64)]
+
+                CTextInputLayout:
+                    CTextInput:
+                        hint_text: "e.g. bluemix.net"
+                    CTextInputLabel:
+                        text: "Domain name"
+        CModalFooter:
+            CGridLayout:
+                cols: 2
+                adaptive: [False, True]
+                spacing: dp(1)
+
+                CButtonSecondary:
+                    text: "Cancel"
+                    role: "Extra Large"
+                    size_hint_x: 1
+                
+                CButtonPrimary:
+                    text: "Add"
+                    role: "Extra Large"
+                    size_hint_x: 1
+
+    CModalCloseButton:

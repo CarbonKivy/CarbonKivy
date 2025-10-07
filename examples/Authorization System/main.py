@@ -1,5 +1,14 @@
-from kivy.core.window import Window
+import os
+import sys
+
+from kivy.resources import resource_add_path
+
+sys.path.insert(0, os.path.dirname(__file__))
+resource_add_path(os.path.dirname(__file__))
+
 from kivy.clock import Clock
+from kivy.core.window import Window
+
 
 def set_softinput(*args) -> None:
     Window.keyboard_anim_args = {"d": 0.2, "t": "in_out_expo"}
@@ -26,9 +35,6 @@ class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
         self.load_all_kv_files(self.directory)
-
-    # def on_start(self, *args) -> None:
-    #     self.stop()
 
     def build(self) -> CScreenManager:
         self.manager_screens = CScreenManager()

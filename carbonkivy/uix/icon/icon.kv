@@ -8,3 +8,38 @@
     size: self.font_size, self.font_size
     halign: "center"
     valign: "center"
+
+<CIcon>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: self.angle
+            origin: self._background_origin
+        Color:
+            group: "backgroundcolor-behavior-bg-color-icon"
+            rgba: self._bg_color
+        Rectangle:
+            group: "Background_instruction_icon"
+            size: [self.size[0], self.size[1]]
+            pos: (self.pos[0], self.pos[1]) if not isinstance(self, RelativeLayout) else (0, 0)
+            source: self.bg_source
+    canvas.after:
+        PopMatrix
+
+<CIconCircular>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: self.angle
+            origin: self._background_origin
+        Color:
+            group: "backgroundcolor-behavior-bg-color-icon"
+            rgba: self._bg_color
+        SmoothRoundedRectangle:
+            group: "Background_instruction_icon"
+            size: [self.size[0] - (2 * self.inset_width), self.size[1] - (2 * self.inset_width)]
+            pos: (self.x + self.inset_width, self.y + self.inset_width) if not isinstance(self, RelativeLayout) else (0, 0)
+            source: self.bg_source
+            radius: self.radius if self.radius else [0, 0, 0, 0]
+    canvas.after:
+        PopMatrix

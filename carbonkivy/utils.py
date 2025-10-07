@@ -1,9 +1,10 @@
 import os
 from datetime import datetime
-from typing import Literal
+from typing import Literal, Any
 
 from kivy.core.window import Window
 from kivy.metrics import dp
+from kivy.properties import DictProperty
 from kivy.utils import get_hex_from_color, platform
 
 from carbonkivy.config import IBMPlex
@@ -105,10 +106,10 @@ def update_system_ui(
         return run_on_ui_thread(statusbar)()
 
 
-class _Dict(dict):
+class _Dict(DictProperty):
     """Implements access to dictionary values via a dot."""
 
-    def __getattr__(self, name):
+    def __getattr__(self, name) -> Any:
         return self[name]
 
 

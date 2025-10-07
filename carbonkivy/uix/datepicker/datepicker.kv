@@ -1,0 +1,162 @@
+<CDatePicker>:
+    id: cdatepicker
+    orientation: "vertical"
+    bg_color: app.layer_01
+    size_hint_x: None
+    width: dp(352)
+    adaptive: [False, True]
+    padding: dp(8)
+
+    CDatePickerHeader:
+        id: cdatepickerheader
+        size_hint_x: 1
+        adaptive: [False, True]
+        orientation: "horizontal"
+
+    CGridLayout:
+        size_hint: 1, None
+        adaptive: [False, True]
+        rows: 1
+        cols: 7
+
+        AnchorLayout:
+            anchor_x: "center"
+
+            CLabel:
+                text: "S"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                font_size: sp(16)
+
+        AnchorLayout:
+            anchor_x: "center"
+
+            CLabel:
+                text: "M"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                font_size: sp(16)
+
+        AnchorLayout:
+            anchor_x: "center"
+
+            CLabel:
+                text: "T"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                font_size: sp(16)
+
+        AnchorLayout:
+            anchor_x: "center"
+
+            CLabel:
+                text: "W"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                font_size: sp(16)
+
+        AnchorLayout:
+            anchor_x: "center"
+
+            CLabel:
+                text: "Th"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                font_size: sp(16)
+
+        AnchorLayout:
+            anchor_x: "center"
+
+            CLabel:
+                text: "F"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                font_size: sp(16)
+
+        AnchorLayout:
+            anchor_x: "center"
+
+            CLabel:
+                text: "S"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                font_size: sp(16)
+
+    CDatePickerCalendar:
+        id: cdatepickercalendar
+        size_hint: 1, None
+        height: dp(48) * 6
+        cols: 7
+        rows: 6
+
+
+<CDatePickerDayButton>:
+    canvas.after:
+        Color:
+            rgba: root._text_color if ((self.hover or self.focus or self.selected) and self.is_today) else (app.interactive if self.is_today else [1, 1, 1, 0])
+        Rectangle:
+            pos: [self.center_x - dp(2), self.y + dp(8)]
+            size: dp(4), dp(4)
+    size_hint: 1, None
+    size: [dp(48), dp(48)]
+    bg_color: app.button_primary if self.selected else app.transparent
+    bg_color_focus: app.button_primary
+    active_color: app.button_primary_active
+    hover_color: app.button_primary_hover
+    line_color_focus: app.focus
+    text_color: 
+        { \
+        False: app.text_primary if self.is_current_month else app.text_disabled, \
+        True: app.text_on_color, \
+        }[self.selected]
+    text_color_focus: app.text_on_color
+    text_color_hover: app.text_on_color
+
+
+<CDatePickerHeader>:
+
+    UIShellButton:
+        icon: "chevron--left"
+        on_press: root.parent.month_prev()
+
+    CAnchorLayout:
+        size_hint: 1, 1
+        anchor_x: "center"
+        anchor_y: "center"
+
+        BoxLayout:
+            id: header_info
+            size_hint: None, None
+            height: self.minimum_height
+            width: month_label.width + year_label.width
+            spacing: dp(8)
+
+            CLabel:
+                id: month_label
+                text: root.parent.month_name
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                weight_style: "SemiBold"
+
+            CLabel:
+                id: year_label
+                text: str(root.parent.current_year)
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                weight_style: "SemiBold"
+
+    UIShellButton:
+        icon: "chevron--right"
+        on_press: root.parent.month_next()
+
