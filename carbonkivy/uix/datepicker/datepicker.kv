@@ -98,11 +98,18 @@
 
 
 <CDatePickerDayButton>:
+    canvas.after:
+        Color:
+            rgba: root._text_color if ((self.hover or self.focus or self.selected) and self.is_today) else (app.interactive if self.is_today else [1, 1, 1, 0])
+        Rectangle:
+            pos: [self.center_x - dp(2), self.y + dp(8)]
+            size: dp(4), dp(4)
     size_hint: 1, None
     size: [dp(48), dp(48)]
     bg_color: app.button_primary if self.selected else app.transparent
     bg_color_focus: app.button_primary
-    hover_color: app.button_primary
+    active_color: app.button_primary_active
+    hover_color: app.button_primary_hover
     line_color_focus: app.focus
     text_color: 
         { \
