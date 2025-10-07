@@ -1,0 +1,73 @@
+<HomeScreen>:
+
+    UIShellLayout:
+
+        CScrollView:
+
+            CStackLayout:
+                adaptive: [False, True]
+                padding: dp(16)
+                spacing: dp(16)
+
+                CLabel:
+                    style: "heading_06"
+                    text: "Purpose and function"
+
+                CLabel:
+                    markup: True
+                    text: f"The shell is perhaps the most crucial piece of any UI built with [color=#0f62fe]Carbon[/color]. It contains the shared navigation framework for the entire design system and ties the products in IBM’s portfolio together in a cohesive and elegant way. The shell is the home of the topmost navigation, where users can quickly and dependably gain their bearings and move between pages.\n\nThe shell was designed with maximum flexibility built in, to serve the needs of a broad range of products and users. Adopting the shell ensures compliance with IBM design standards, simplifies development efforts, and provides great user experiences. All IBM products built with Carbon are required to use the shell’s header.\n\nTo better understand the purpose and function of the UI shell, consider the “shell” of MacOS, which contains the Apple menu, top-level navigation, and universal, OS-level controls at the top of the screen, as well as a universal dock along the bottom or side of the screen. The Carbon UI shell is roughly analogous in function to these parts of the Mac UI. For example, the app switcher portion of the shell can be compared to the dock in MacOS."
+
+    UIShell:
+        id: left_panel_shell
+
+        UIShellLeftPanel:
+            panel_shell: left_panel_shell
+            visibility: shell_menu_btn.active
+
+            UIShellPanelLayout:
+
+                UIShellPanelSelectionLayout:
+
+                    UIShellPanelSelectionItem:
+                        default: True
+                        text: "Home"
+                        right_icon: "home"
+
+                    UIShellPanelSelectionItem:
+                        text: "Profile"
+                        right_icon: "account"
+
+    UIShell:
+        id: right_panel_shell
+
+        UIShellRightPanel:
+            panel_shell: right_panel_shell
+            visibility: shell_switcher_btn.focus
+
+    UIShell:
+        id: heaader_shell
+
+        UIShellHeader:
+            id: shell_header
+
+            UIShellHeaderMenuButton:
+                id: shell_menu_btn
+
+            UIShellHeaderName:
+                text: "Header name"
+
+            CAnchorLayout:
+                anchor_x: "right"
+
+                CGridLayout:
+                    adaptive: [True, True]
+                    rows: 1
+
+                    UIShellButton:
+                        icon: "moon" if (app.theme == "White") else "sun"
+                        on_press:
+                            app.theme = "Gray100" if (app.theme == "White") else "White"
+
+                    UIShellButton:
+                        id: shell_switcher_btn
+                        icon: "switcher"

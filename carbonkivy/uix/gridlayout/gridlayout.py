@@ -3,6 +3,7 @@ from __future__ import annotations
 __all__ = ("CGridLayout",)
 
 from kivy.clock import mainthread
+from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.properties import BooleanProperty, NumericProperty, OptionProperty
 from kivy.uix.gridlayout import GridLayout
@@ -67,12 +68,12 @@ class CGridLayout(
     def on_responsive(self, *args) -> None:
         if self.responsive:
             if self.responsive_attr == ("cols" or "both"):
-                self.bind(size=self.adjust_cols)
+                Window.bind(size=self.adjust_cols)
             if self.responsive_attr == ("rows" or "both"):
-                self.bind(size=self.adjust_rows)
+                Window.bind(size=self.adjust_rows)
         else:
-            self.unbind(size=self.adjust_cols)
-            self.unbind(size=self.adjust_rows)
+            Window.unbind(size=self.adjust_cols)
+            Window.unbind(size=self.adjust_rows)
 
     @mainthread
     def adjust_cols(self, *args) -> None:

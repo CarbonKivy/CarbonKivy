@@ -1,0 +1,35 @@
+<CToggletip>:
+    canvas.before:
+        Color:
+            rgba: self.bg_color
+        SmoothRoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: self.radius if self.radius else [0]
+        SmoothTriangle:
+            points: 
+                { \
+                "Downward": [ \
+                self.element_x - dp(6), 
+                self.y, \
+                self.element_x + dp(6), \
+                self.y, \
+                self.element_x, \
+                self.y - dp(6), \
+                ], \
+                "Upward": [ \
+                self.element_x - dp(6), 
+                self.y + self.height, \
+                self.element_x + dp(6), \
+                self.y + self.height, \
+                self.element_x, \
+                self.y + self.height + dp(6), \
+                ], \
+                }[self._pointer]
+    orientation: "vertical"
+    bg_color: app.background_inverse
+    size_hint: None, None
+    width: min(dp(288), self.width)
+    height: self.minimum_height
+    padding: [dp(16), dp(8), dp(16), dp(8)]
+    spacing: dp(16)

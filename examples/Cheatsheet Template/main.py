@@ -1,3 +1,11 @@
+import os
+import sys
+
+from kivy.resources import resource_add_path
+
+sys.path.append(os.path.dirname(__file__))
+resource_add_path(os.path.dirname(__file__))
+
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.properties import StringProperty

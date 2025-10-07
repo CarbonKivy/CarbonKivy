@@ -1,0 +1,46 @@
+<CTabLayout>:
+    spacing: dp(16)
+    padding: dp(16)
+
+<CTabHeader>:
+    size_hint: 1, None
+    adaptive: [False, True]
+    spacing: dp(1)
+
+<CTabHeaderItem>:
+    canvas.after:
+        Color:
+            rgba: app.border_interactive if self.selected else app.transparent
+        Line:
+            width: dp(1)
+            cap: "square"
+            joint: "none"
+            points: [self.x + dp(1), self.y, self.right - dp(1), self.y]
+    size_hint: None, None
+    width: dp(120)
+    height: dp(40)
+    line_color_focus: app.focus
+    hover_color: app.layer_hover_01
+    active_color: app.layer_selected_01
+
+    CTabHeaderItemLayout:
+        id: header_box_layout
+        size_hint_x: None
+        adaptive: [False, True]
+        padding: dp(16)
+        spacing: dp(16)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+
+<CTabHeaderPrimaryText>:
+    size_hint: None, None
+    size: self.texture_size
+    text_size: None, self.texture_size[1]
+    font_size: plex_16
+
+
+<CTabHeaderSecondaryText>:
+    font_size: plex_14
+
+
+<CTabHeaderIcon>:

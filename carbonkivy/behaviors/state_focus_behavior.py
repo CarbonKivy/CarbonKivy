@@ -40,6 +40,10 @@ class StateFocusBehavior:
     def on_focus(self, *args) -> None:
         if issubclass(self.__class__, BackgroundColorBehavior):
             if self.focus:
+                if hasattr(self, "hover") and self.hover:
+                    pass
+                else:
+                    self._bg_color = self.bg_color_focus
                 self._inset_color = self.inset_color_focus
                 self._line_color = self.line_color_focus
             else:

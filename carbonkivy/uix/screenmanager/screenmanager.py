@@ -2,7 +2,7 @@ from __future__ import annotations
 
 __all__ = ("CScreenManager",)
 
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import ScreenManager, FadeTransition
 
 from carbonkivy.behaviors import BackgroundColorBehaviorRectangular, DeclarativeBehavior
 
@@ -10,4 +10,7 @@ from carbonkivy.behaviors import BackgroundColorBehaviorRectangular, Declarative
 class CScreenManager(
     BackgroundColorBehaviorRectangular, ScreenManager, DeclarativeBehavior
 ):
-    pass
+
+    def __init__(self, **kwargs):
+        super(CScreenManager, self).__init__(**kwargs)
+        self.transition = FadeTransition(duration=0.05, clearcolor=[1, 1, 1, 0])

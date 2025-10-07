@@ -203,9 +203,11 @@
     icon: "checkmark" if self.focus else "blank"
     focus_enabled: not self.focus
     line_color_focus: app.focus
-    color: app.text_on_color
     inset_width: dp(3)
     line_width: dp(1)
+    color: app.text_on_color
+    inset_color: app.focus_inset
+    bg_color_focus: self.bg_color
 
 
 <SelectableIconSize@SelectableIcon>:
