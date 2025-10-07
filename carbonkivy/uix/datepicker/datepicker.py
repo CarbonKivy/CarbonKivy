@@ -170,6 +170,7 @@ class CDatePickerCalendar(CGridLayout):
     selected_button = ObjectProperty(None, allownone=True)
 
     def __init__(self, **kwargs) -> None:
+        self.selected_date = date.today()
         super(CDatePickerCalendar, self).__init__(**kwargs)
         Clock.schedule_once(self.update_calendar)
 
@@ -236,6 +237,9 @@ class CDatePickerCalendar(CGridLayout):
                     is_current_month=is_current_month,
                     role="Large Productive",
                 )
+                if btn.day == self.selected_date.day and btn.month == self.selected_date.month == self.parent.current_month and btn.year == self.selected_date.year:
+                    btn.selected = True
+                    self.selected_button = btn
                 btn.callback_selection=self.select_date
                 Clock.schedule_once(lambda dt, y=btn: self.add_widget(y))
 
