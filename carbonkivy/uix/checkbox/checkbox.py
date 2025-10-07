@@ -11,13 +11,14 @@ from carbonkivy.behaviors import (
     BackgroundColorBehaviorCircular,
     DeclarativeBehavior,
     StateFocusBehavior,
-    HoverBehavior
+    HoverBehavior,
 )
 from carbonkivy.uix.icon import CIconCircular
 
+
 class CCheckbox(
     CIconCircular,
-    StateFocusBehavior, 
+    StateFocusBehavior,
     ButtonBehavior,
 ):
     """

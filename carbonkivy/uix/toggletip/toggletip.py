@@ -39,7 +39,11 @@ class CToggletip(BoxLayout):
     def update_pos(self, instance: Widget, *args) -> None:
         pos_x, pos_y = [
             instance.center_x - self.width / 2,
-            instance.top + dp(12) if (self.pointer == "Downward") else instance.y - self.height - dp(12),
+            (
+                instance.top + dp(12)
+                if (self.pointer == "Downward")
+                else instance.y - self.height - dp(12)
+            ),
         ]
 
         instance_center = instance.to_window(instance.center_x, instance.center_y)
@@ -47,14 +51,18 @@ class CToggletip(BoxLayout):
         if instance_center[0] < self.width / 2:
             pos_x = instance.center_x - dp(16) if (not self.margin) else self.margin
         elif (Window.width - instance_center[0]) < self.width / 2:
-            pos_x = instance.center_x - self.width + dp(16) if (not self.margin) else Window.width - self.width - self.margin
+            pos_x = (
+                instance.center_x - self.width + dp(16)
+                if (not self.margin)
+                else Window.width - self.width - self.margin
+            )
 
         if (Window.height - instance_center[1]) < (
             instance.height / 2 + self.height + dp(12)
         ):
             pos_y = instance.y - self.height - dp(12)
             self._pointer = "Upward"
-        elif (instance_center[1]) < (instance.height/2 + self.height + dp(12)):
+        elif (instance_center[1]) < (instance.height / 2 + self.height + dp(12)):
             pos_y = instance.top + dp(12)
             self._pointer = "Downward"
         else:

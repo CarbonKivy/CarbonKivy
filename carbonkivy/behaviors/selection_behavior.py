@@ -27,12 +27,20 @@ class SelectionBehavior(EventDispatcher):
             self.selected_items = {}
             if value:
                 for items in self.children:
-                    if items != instance and hasattr(items, self.selection_attr) and getattr(items, self.selection_attr, False):
+                    if (
+                        items != instance
+                        and hasattr(items, self.selection_attr)
+                        and getattr(items, self.selection_attr, False)
+                    ):
                         setattr(items, self.selection_attr, False)
 
                 self.selected_items[instance] = value
             else:
-                if all(not getattr(items, self.selection_attr, False) for items in self.children if hasattr(items, self.selection_attr)):
+                if all(
+                    not getattr(items, self.selection_attr, False)
+                    for items in self.children
+                    if hasattr(items, self.selection_attr)
+                ):
                     setattr(instance, self.selection_attr, True)
                 if instance in self.selected_items:
                     del self.selected_items[instance]

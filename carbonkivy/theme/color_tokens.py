@@ -340,7 +340,7 @@ thematic_tokens = {
         "White": "#c6c6c6",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
-        "Gray100": ("#8d8d8d", .50),
+        "Gray100": ("#8d8d8d", 0.50),
     },
     # text tokens
     "text_primary": {
@@ -371,7 +371,7 @@ thematic_tokens = {
         "White": "#8d8d8d",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
-        "Gray100": ("#ffffff", .25),
+        "Gray100": ("#ffffff", 0.25),
     },
     "text_helper": {
         "White": "#6f6f6f",
@@ -395,7 +395,7 @@ thematic_tokens = {
         "White": ("#161616", 0.25),
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
-        "Gray100": ("#f4f4f4", .25),
+        "Gray100": ("#f4f4f4", 0.25),
     },
     # link tokens
     "link_primary": {
@@ -469,7 +469,7 @@ thematic_tokens = {
         "White": "#8d8d8d",
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
-        "Gray100": ("#ffffff", .25),
+        "Gray100": ("#ffffff", 0.25),
     },
     "icon_interactive": {
         "White": "#0f62fe",
@@ -487,7 +487,7 @@ thematic_tokens = {
         "White": ("#161616", 0.25),
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
-        "Gray100": ("#f4f4f4", .25),
+        "Gray100": ("#f4f4f4", 0.25),
     },
     # support tokens
     "support_error": {
@@ -598,7 +598,7 @@ thematic_tokens = {
         "White": ("#161616", 0.50),
         "Gray10": "#8d8d8d",
         "Gray90": "#262626",
-        "Gray100": ("#161616", .70),
+        "Gray100": ("#161616", 0.70),
     },
     "skeleton_element": {
         "White": "#c6c6c6",

@@ -26,7 +26,14 @@ class HoverBehavior:
     def element_hover(self, instance: object, pos: list, *args) -> None:
         if not self.is_visible():
             self.hover = False
-        if ((hasattr(self, "cstate") and self.cstate != "disabled") or (not self.disabled)) and self.hover_enabled and self.is_visible():
+        if (
+            (
+                (hasattr(self, "cstate") and self.cstate != "disabled")
+                or (not self.disabled)
+            )
+            and self.hover_enabled
+            and self.is_visible()
+        ):
 
             for widget in self.children:
                 if hasattr(widget, "hover") and widget.hover:
@@ -42,11 +49,7 @@ class HoverBehavior:
             )
 
     def is_visible(self, *args) -> bool:
-        if (
-            not self.get_root_window() 
-            or self.disabled 
-            or self.opacity == 0
-        ):
+        if not self.get_root_window() or self.disabled or self.opacity == 0:
             return False
         else:
             return True

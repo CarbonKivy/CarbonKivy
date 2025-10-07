@@ -21,6 +21,7 @@ Builder.load_string(
 """
 )
 
+
 class ElevationBehavior(EventDispatcher):
 
     shadow_offset = VariableListProperty([dp(2), -dp(3)], length=2)
