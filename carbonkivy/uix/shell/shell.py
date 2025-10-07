@@ -28,7 +28,12 @@ from kivy.properties import (
 )
 from kivy.uix.behaviors import ButtonBehavior
 
-from carbonkivy.behaviors import StateFocusBehavior, SelectionBehavior, HoverBehavior, SelectableBehavior
+from carbonkivy.behaviors import (
+    StateFocusBehavior,
+    SelectionBehavior,
+    HoverBehavior,
+    SelectableBehavior,
+)
 from carbonkivy.uix.boxlayout import CBoxLayout
 from carbonkivy.uix.button import CButtonGhost
 from carbonkivy.uix.icon import CIcon
@@ -87,8 +92,8 @@ class UIShellLeftPanel(CRelativeLayout):
                 except:
                     return
             else:
-                self.animation = (
-                    Animation(x=0 - self.width, d=0.05) + Animation(opacity=0, d=0.05)
+                self.animation = Animation(x=0 - self.width, d=0.05) + Animation(
+                    opacity=0, d=0.05
                 )
                 try:
                     self.panel_shell.bg_color = [1, 1, 1, 0]
@@ -120,8 +125,8 @@ class UIShellRightPanel(CRelativeLayout):
                 self.opacity = 1
                 self.animation = Animation(x=Window.width - self.width, d=0.05)
             else:
-                self.animation = (
-                    Animation(x=Window.width, d=0.05) + Animation(opacity=0, d=0.05)
+                self.animation = Animation(x=Window.width, d=0.05) + Animation(
+                    opacity=0, d=0.05
                 )
             self.animation.start(self)
 
@@ -141,11 +146,7 @@ class UIShellPanelSelectionLayout(SelectionBehavior, CBoxLayout):
 
 
 class UIShellPanelSelectionItem(
-    ButtonBehavior,
-    CBoxLayout,
-    StateFocusBehavior,
-    HoverBehavior,
-    SelectableBehavior
+    ButtonBehavior, CBoxLayout, StateFocusBehavior, HoverBehavior, SelectableBehavior
 ):
 
     text = StringProperty()
@@ -169,7 +170,9 @@ class UIShellPanelSelectionItem(
             pass
 
         def add_left_icon(*args) -> None:
-            self.add_widget(CIcon(id="left_icon", icon=self.left_icon, font_size=sp(16)), index=2)
+            self.add_widget(
+                CIcon(id="left_icon", icon=self.left_icon, font_size=sp(16)), index=2
+            )
 
         if not "left_icon" in self.ids:
             Clock.schedule_once(add_left_icon)
@@ -181,7 +184,10 @@ class UIShellPanelSelectionItem(
             pass
 
         def add_text(*args) -> None:
-            self.add_widget(CLabel(id="label", text=self.text, style="label_02", font_size=sp(16)), index=1)
+            self.add_widget(
+                CLabel(id="label", text=self.text, style="label_02", font_size=sp(16)),
+                index=1,
+            )
 
         if not "label" in self.ids:
             Clock.schedule_once(add_text)
@@ -193,7 +199,9 @@ class UIShellPanelSelectionItem(
             pass
 
         def add_right_icon(*args) -> None:
-            self.add_widget(CIcon(id="right_icon", icon=self.right_icon, font_size=sp(16)), index=0)
+            self.add_widget(
+                CIcon(id="right_icon", icon=self.right_icon, font_size=sp(16)), index=0
+            )
 
         if not "right_icon" in self.ids:
             Clock.schedule_once(add_right_icon)

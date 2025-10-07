@@ -66,29 +66,45 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
     def update_pos(self, instance: Widget, *args) -> None:
         pos_x, pos_y = [
             instance.center_x - dp(16),
-            instance.top + dp(12) if (self.pointer == "Downward") else instance.y - self.height - dp(12),
+            (
+                instance.top + dp(12)
+                if (self.pointer == "Downward")
+                else instance.y - self.height - dp(12)
+            ),
         ]
 
-        instance_center = instance.to_window(*instance.to_local(*instance.to_parent(*[instance.center_x, instance.center_y])))
+        instance_center = instance.to_window(
+            *instance.to_local(
+                *instance.to_parent(*[instance.center_x, instance.center_y])
+            )
+        )
 
         if instance_center[0] < self.width / 2:
             pos_x = instance.center_x - dp(16) if (not self.margin) else self.margin
         elif (Window.width - instance_center[0]) < self.width / 2:
-            pos_x = instance.center_x - self.width + dp(16) if (not self.margin) else Window.width - self.width - self.margin
+            pos_x = (
+                instance.center_x - self.width + dp(16)
+                if (not self.margin)
+                else Window.width - self.width - self.margin
+            )
 
         if (Window.height - instance_center[1]) < (
             instance.height / 2 + self.height + dp(12)
         ):
             pos_y = instance.top - self.height
-        elif (instance_center[1]) < (instance.height/2 + self.height + dp(12)):
+        elif (instance_center[1]) < (instance.height / 2 + self.height + dp(12)):
             pos_y = instance.top + dp(12)
         else:
             self._pointer = self.pointer
 
-        self.pos = instance.to_window(*instance.to_local(*instance.to_parent(*[pos_x, pos_y])))
+        self.pos = instance.to_window(
+            *instance.to_local(*instance.to_parent(*[pos_x, pos_y]))
+        )
 
     def on_touch_down(self, touch):
-        if not self.collide_point(*touch.pos) and not self.master.collide_point(*self.master.to_parent(*self.master.to_widget(*touch.pos))):
+        if not self.collide_point(*touch.pos) and not self.master.collide_point(
+            *self.master.to_parent(*self.master.to_widget(*touch.pos))
+        ):
             self.visibility = False
         return super().on_touch_down(touch)
 
@@ -108,7 +124,6 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
                     Window.remove_widget(self)
                 except Exception:
                     return
-
 
         Clock.schedule_once(set_visibility)
 
@@ -181,7 +196,7 @@ class CDatePickerCalendar(CGridLayout):
             pass
 
     def get_calendar_dates(self, year: str, month: str) -> None:
-        '''Get all dates for a 7x7 calendar grid including prev/next month dates'''
+        """Get all dates for a 7x7 calendar grid including prev/next month dates"""
         # Get the first day of the month and its weekday
         first_day = date(year, month, 1)
         first_weekday = first_day.weekday()
@@ -204,8 +219,10 @@ class CDatePickerCalendar(CGridLayout):
         self.clear_selection()
 
         # Get all dates for the 7x7 grid
-        dates = self.get_calendar_dates(int(self.parent.current_year), int(self.parent.current_month))
-        
+        dates = self.get_calendar_dates(
+            int(self.parent.current_year), int(self.parent.current_month)
+        )
+
         for i, calendar_date in enumerate(dates):
             is_current_month = calendar_date.month == int(self.parent.current_month)
             is_today = calendar_date == self.parent.today
@@ -221,7 +238,13 @@ class CDatePickerCalendar(CGridLayout):
                 self.children[-i].is_current_month = is_current_month
 
                 for widget in self.children:
-                    if widget.day == self.selected_date.day and widget.month == self.selected_date.month == self.parent.current_month and widget.year == self.selected_date.year:
+                    if (
+                        widget.day == self.selected_date.day
+                        and widget.month
+                        == self.selected_date.month
+                        == self.parent.current_month
+                        and widget.year == self.selected_date.year
+                    ):
                         widget.selected = True
                         self.selected_button = widget
                     else:
@@ -237,10 +260,16 @@ class CDatePickerCalendar(CGridLayout):
                     is_current_month=is_current_month,
                     role="Large Productive",
                 )
-                if btn.day == self.selected_date.day and btn.month == self.selected_date.month == self.parent.current_month and btn.year == self.selected_date.year:
+                if (
+                    btn.day == self.selected_date.day
+                    and btn.month
+                    == self.selected_date.month
+                    == self.parent.current_month
+                    and btn.year == self.selected_date.year
+                ):
                     btn.selected = True
                     self.selected_button = btn
-                btn.callback_selection=self.select_date
+                btn.callback_selection = self.select_date
                 Clock.schedule_once(lambda dt, y=btn: self.add_widget(y))
 
     def clear_selection(self, *args) -> None:
@@ -264,8 +293,12 @@ class CDatePickerCalendar(CGridLayout):
             self.parent.month_name = calendar.month_name[int(self.parent.current_month)]
             # Re-select the date in the new calendar view
             for child in self.parent.children:
-                if (hasattr(child, 'day') and child.day == selected_date.day and 
-                    child.month == selected_date.month and child.year == selected_date.year):
+                if (
+                    hasattr(child, "day")
+                    and child.day == selected_date.day
+                    and child.month == selected_date.month
+                    and child.year == selected_date.year
+                ):
                     child.selected = True
                     self.selected_button = child
                     break

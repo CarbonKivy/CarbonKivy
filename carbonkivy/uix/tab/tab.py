@@ -10,7 +10,11 @@ from kivy.metrics import sp
 from kivy.properties import StringProperty, ObjectProperty
 from kivy.uix.behaviors import ButtonBehavior
 
-from carbonkivy.behaviors import SelectableBehavior, SelectionBehavior, StateFocusBehavior
+from carbonkivy.behaviors import (
+    SelectableBehavior,
+    SelectionBehavior,
+    StateFocusBehavior,
+)
 from carbonkivy.uix.boxlayout import CBoxLayout
 from carbonkivy.uix.gridlayout import CGridLayout
 from carbonkivy.uix.icon import CIcon
@@ -42,7 +46,9 @@ class CTabHeader(SelectionBehavior, CBoxLayout):
         return super().add_widget(widget, *args, **kwargs)
 
 
-class CTabHeaderItem(ButtonBehavior, CBoxLayout,  StateFocusBehavior, SelectableBehavior):
+class CTabHeaderItem(
+    ButtonBehavior, CBoxLayout, StateFocusBehavior, SelectableBehavior
+):
 
     primary_text = StringProperty()
 
@@ -103,9 +109,10 @@ class CTabHeaderItem(ButtonBehavior, CBoxLayout,  StateFocusBehavior, Selectable
 
         def add_icon(*args) -> None:
             icon = CTabHeaderIcon(icon=self.icon)
-            self.ids.header_box_layout.add_widget(icon, index = 0)
+            self.ids.header_box_layout.add_widget(icon, index=0)
             self.ids["icon"] = icon
             self.ids.header_box_layout.width += self.ids.icon.width
+
         if not "icon" in self.ids:
             Clock.schedule_once(add_icon)
 

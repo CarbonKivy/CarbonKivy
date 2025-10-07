@@ -3,6 +3,7 @@ from kivy.properties import ObjectProperty, ListProperty
 
 from tkinter.filedialog import askopenfiles, askopenfile
 
+
 class CFileUploader(EventDispatcher):
 
     files = ListProperty()

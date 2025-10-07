@@ -46,7 +46,6 @@ class CIcon(BackgroundColorBehaviorRectangular, CBaseIcon):
         self.canvas.remove_group("Background_instruction")
 
 
-
 class CIconCircular(BackgroundColorBehaviorCircular, CBaseIcon):
 
     def __init__(self, **kwargs):
@@ -56,4 +55,3 @@ class CIconCircular(BackgroundColorBehaviorCircular, CBaseIcon):
         super().on_kv_post(base_widget)
         self.canvas.remove_group("backgroundcolor-behavior-bg-color")
         self.canvas.remove_group("Background_instruction")
-
