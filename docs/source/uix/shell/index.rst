@@ -16,8 +16,6 @@ Overview
 
     Carbon Design UI Shell Overview
 
-The UI shell header serves as the primary navigation and orientation element for users within the interface. It can function independently or be integrated with the UI shell's left and right panels to support more advanced navigation scenarios.
-
 The UI shell consists of three modular components: the header, the left panel, and the right panel. Each component can be used on its own, but they are designed to work seamlessly together, providing a consistent and flexible user experience across different products and platforms.
 
 Live demo
@@ -88,6 +86,22 @@ Live demo
 
                                 UIShellButton:
                                     icon: "switcher"
+
+.. Individual components
+.. ---------------------
+
+.. The :class:`~carbonkivy.uix.shell.UIShell` inherits from :class:`~carbonkivy.uix.stacklayout.CStackLayout` holds different individual components.
+
+.. UI shell header
+.. ~~~~~~~~~~~~~~~
+
+.. The UI shell header serves as the primary navigation and orientation element for users within the interface. It can function independently or be integrated with the UI shell's left and right panels to support more advanced navigation scenarios.
+
+.. Let us explore different scenarios available for the ui shell header.
+
+.. 1. default
+
+
 
 API
 ---
