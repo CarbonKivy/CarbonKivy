@@ -208,16 +208,16 @@ class CDatePickerCalendar(CGridLayout):
         for i, calendar_date in enumerate(dates):
             is_current_month = calendar_date.month == int(self.parent.current_month)
             is_today = calendar_date == self.parent.today
-            print(i)
 
             if len(self.children) > 1:
-                self.children[-i-1].text = str(calendar_date.day)
-                self.children[-i-1].date = calendar_date
-                self.children[-i-1].day = calendar_date.day
-                self.children[-i-1].month = calendar_date.month
-                self.children[-i-1].year = calendar_date.year
-                self.children[-i-1].is_today = is_today
-                self.children[-i-1].is_current_month = is_current_month
+                i += 1
+                self.children[-i].text = str(calendar_date.day)
+                self.children[-i].date = calendar_date
+                self.children[-i].day = calendar_date.day
+                self.children[-i].month = calendar_date.month
+                self.children[-i].year = calendar_date.year
+                self.children[-i].is_today = is_today
+                self.children[-i].is_current_month = is_current_month
 
                 for widget in self.children:
                     if widget.day == self.selected_date.day and widget.month == self.selected_date.month == self.parent.current_month and widget.year == self.selected_date.year:
