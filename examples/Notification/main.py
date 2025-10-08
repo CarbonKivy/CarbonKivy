@@ -20,6 +20,7 @@ from carbonkivy.uix.screen import CScreen
 class myapp(CarbonApp):
 
     def __init__(self, *args, **kwargs):
+        self.theme = "Gray100"
         super(myapp, self).__init__(*args, **kwargs)
 
     def build(self) -> CScreen:

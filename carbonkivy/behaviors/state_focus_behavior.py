@@ -26,7 +26,7 @@ class StateFocusBehavior:
 
     def on_touch(self, instance: object, touch: list[float, float], *args) -> None:
         if issubclass(self.__class__, BackgroundColorBehavior):
-            if self.cstate != "disabled":
+            if self.cstate != "disabled" and self.get_root_window():
                 self.focus = self.collide_point(
                     *self.to_parent(*self.to_widget(*touch.pos))
                 )

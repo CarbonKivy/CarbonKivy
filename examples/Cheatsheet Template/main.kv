@@ -1,98 +1,85 @@
 #: import snippets codes.snippets
 
 <CheatsheetScreen>:
-    StackLayout:
-        size_hint: 1, 1
-        padding: dp(4)
-        spacing: dp(12)
-
+    UIShellLayout:
         CBoxLayout:
-            adaptive: [False, True]
+            orientation: "vertical"
+            padding: dp(16)
+            spacing: dp(16)
 
-            CButtonGhost:
-                icon: "menu"
-                role: "Large Productive"
+            CLink:
+                # url: "https://github.com/CarbonKivy/CarbonKivy/tree/master/examples"
+                external: False # if True opens the url specified in a browser.
+                pos: dp(16), self.pos[1]
 
-            CLabel:
-                text: "Cheatsheet Examples"
-                style: "body_02"
-                padding: dp(4)
-                pos_hint: {"center_y": 0.5}
+                CLinkText:
+                    text: "See examples on Github"
 
-            AnchorLayout:
-                anchor_x: "right"
-                size_hint_x: None
-                width: trailing_grid.width
+                CLinkIcon:
+                    icon: "arrow--up-right"
+
+            CScreenManager:
+                id: manager_screens
+                NotificationScreen:
+                    name: "notification"
+                ButtonsScreen:
+                    name: "buttons"
+                LoadingScreen:
+                    name: "loading"
+
+            CScrollView:
+                do_scroll_y: False
+                do_scroll_x: True
+                size_hint: 1, None
+                height: nav_grid.height
 
                 CGridLayout:
-                    id: trailing_grid
-                    rows: 1
+                    id: nav_grid
                     adaptive: [True, True]
+                    rows: 1
+                    spacing: dp(4)
 
-                    CButtonGhost:
-                        icon: "apps"
-                        role: "Large Productive"
+                    CButtonPrimary:
+                        text: "Buttons"
+                        icon: 
+                        on_press:
+                            manager_screens.current = "buttons"
 
-                    CButtonGhost:
-                        icon: "notification"
-                        role: "Large Productive"
+                    CButtonPrimary:
+                        text: "Notification"
+                        on_press:
+                            manager_screens.current = "notification"
 
-                    CButtonGhost:
+                    CButtonPrimary:
+                        text: "Loading"
+                        on_press:
+                            manager_screens.current = "loading"
+
+    UIShell:
+        UIShellHeader:
+            UIShellHeaderMenuButton:
+            UIShellHeaderName:
+                text: "Cheatsheet Examples"
+
+            CAnchorLayout:
+                anchor_x: "right"
+
+                CGridLayout:
+                    adaptive: [True, True]
+                    rows: 1
+
+                    UIShellButton:
+                        icon: "moon" if (app.theme == "White") else "sun"
+                        on_press:
+                            app.theme = "Gray100" if (app.theme == "White") else "White"
+
+                    UIShellButton:
+                        id: settings_btn
                         icon: "settings"
-                        role: "Large Productive"
 
-        CLink:
-            # url: "https://github.com/CarbonKivy/CarbonKivy/tree/master/examples"
-            external: False # if True opens the url specified in a browser.
-            pos: dp(16), self.pos[1]
-
-            CLinkText:
-                text: "See examples on Github"
-
-            CLinkIcon:
-                icon: "arrow--up-right"
-
-        CScreenManager:
-            id: manager_screens
-            NotificationScreen:
-                name: "notification"
-            ButtonsScreen:
-                name: "buttons"
-            LoadingScreen:
-                name: "loading"
-
-    CBoxLayout:
-        adaptive: [False, True]
-        bg_color: app.background
-        padding: dp(4)
-
-        CScrollView:
-            do_scroll_y: False
-            do_scroll_x: True
-            size_hint: 1, None
-            height: nav_grid.height
-
-            CGridLayout:
-                id: nav_grid
-                adaptive: [True, True]
-                rows: 1
-                spacing: dp(4)
-
-                CButtonPrimary:
-                    text: "Buttons"
-                    icon: 
-                    on_press:
-                        manager_screens.current = "buttons"
-
-                CButtonPrimary:
-                    text: "Notification"
-                    on_press:
-                        manager_screens.current = "notification"
-
-                CButtonPrimary:
-                    text: "Loading"
-                    on_press:
-                        manager_screens.current = "loading"
+                    UIShellButton:
+                        id: shell_switcher_btn
+                        icon: "switcher"
 
 
 

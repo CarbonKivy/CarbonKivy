@@ -53,7 +53,12 @@ class TooltipButton(CButtonPrimary, ElevationBehavior, TooltipBehavior):
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
-        self.tooltip = MToggletip(text="This is a large Toggletip text.", width=dp(200), margin=dp(2), pointer="Upward")
+        self.tooltip = MToggletip(
+            text="This is a large Toggletip text.",
+            width=dp(200),
+            margin=dp(2),
+            pointer="Upward",
+        )
 
     def on_touch_move(self, touch: MouseMotionEvent, *args) -> bool | None:
         self.center_x, self.center_y = touch.pos
