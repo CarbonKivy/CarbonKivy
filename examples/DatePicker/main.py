@@ -20,11 +20,16 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 from carbonkivy.app import CarbonApp
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
-from carbonkivy.uix.modal import CModal
+from carbonkivy.uix.datepicker import CDatePicker
 
 
-class DomainModal(CModal):
-    pass
+class CustomDatePicker(CDatePicker):
+
+    def __init__(self, **kwargs) -> None:
+        super(CustomDatePicker, self).__init__(**kwargs)
+
+    def on_selected_date(self, instance, value) -> None:
+        self.visibility = False
 
 
 class UI(CScreenManager):
@@ -32,15 +37,17 @@ class UI(CScreenManager):
 
 
 class HomeScreen(CScreen):
-    pass
+
+    def on_kv_post(self, base_widget: object) -> None:
+        self.filter_dropdown = CustomDatePicker(master=self.ids.datepicker_btn)
+        return super().on_kv_post(base_widget)
 
 
 class myapp(CarbonApp):
-    def __init__(self, *args, **kwargs):
-        self.theme = "Gray100"
+
+    def __init__(self, *args, **kwargs) -> None:
         super(myapp, self).__init__(*args, **kwargs)
         self.load_all_kv_files(self.directory)
-        self.modal = DomainModal()
 
     def build(self) -> CScreenManager:
         self.manager_screens = CScreenManager()

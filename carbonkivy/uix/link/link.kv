@@ -33,7 +33,7 @@
         "Medium": "body_compact_01", \
         "Large": "body_compact_02", \
         }[self.parent.role]
-    color: self.parent._text_color
+    -color: self.parent._text_color
     disabled_color: self.parent.text_color_disabled
 
 <CLinkIcon>:
@@ -46,4 +46,4 @@
     pos_hint: {'center_y': 0.5}
     valign: "center"
     disabled_color: self.parent.text_color_disabled
-    color: self.parent._text_color
+    -color: self.parent._text_color

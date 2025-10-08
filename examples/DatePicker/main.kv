@@ -1,0 +1,10 @@
+<HomeScreen>:
+
+    CButtonPrimary:
+        id: datepicker_btn
+        text: "filters"
+        icon: "list--dropdown"
+        pos_hint: {"center_x": 0.8, "center_y": 0.5}
+        on_press:
+            root.filter_dropdown.visibility = True
+

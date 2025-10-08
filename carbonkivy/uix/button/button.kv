@@ -90,6 +90,7 @@
     inset_color: app.transparent
     inset_color_focus: app.transparent
     hover_color: app.background_hover
+    active_color: app.background_active
     padding: [dp(16), 0, dp(16), 0]
     bg_color:
         { \
@@ -106,8 +107,8 @@
     hover_color: app.button_tertiary_hover
     inset_color: app.transparent
     inset_color_focus: app.focus_inset
-    text_color: app.link_primary
-    icon_color: app.link_primary
+    text_color: app.button_tertiary
+    icon_color: app.button_tertiary
     text_color_hover: app.text_inverse
     text_color_focus: app.text_inverse
     line_color:
@@ -141,6 +142,6 @@
     hover_color: app.button_danger_hover
     active_color: app.button_danger_active
     line_color: app.button_danger_secondary if self.variant == "Tertiary" else self.line_color
-    text_color: app.text_inverse if self.variant == "Primary" else app.button_danger_secondary
-    text_color_hover: app.text_inverse
-    text_color_focus: app.text_inverse
+    text_color: app.text_on_color if self.variant == "Primary" else app.button_danger_secondary
+    text_color_hover: app.text_on_color
+    text_color_focus: app.text_on_color

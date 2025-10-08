@@ -57,10 +57,10 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         self.current_month = self.today.month
         self.current_year = self.today.year
         self.month_name = calendar.month_name[int(self.current_month)]
-        try:
+
+    def on_master(self, *args) -> None:
+        if self.master:
             self.update_pos(self.master)
-        except:
-            pass
 
     @mainthread
     def update_pos(self, instance: Widget, *args) -> None:
@@ -167,7 +167,7 @@ class CDatePickerDayButton(CButton, SelectableBehavior):
     def __init__(self, **kwargs) -> None:
         super(CDatePickerDayButton, self).__init__(**kwargs)
 
-    def on_release(self) -> None:
+    def on_press(self) -> None:
         if self.callback_selection:
             self.callback_selection(self.date, self)
 
