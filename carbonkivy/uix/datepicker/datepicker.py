@@ -191,8 +191,9 @@ class CDatePickerCalendar(CGridLayout):
     def on_selected_date(self, *args) -> None:
         try:
             self.parent.selected_date = self.selected_date
-        except:
-            pass
+        except Exception as e:
+            print(e)
+
 
     def get_calendar_dates(self, year: str, month: str) -> None:
         """Get all dates for a 7x7 calendar grid including prev/next month dates"""
@@ -246,6 +247,7 @@ class CDatePickerCalendar(CGridLayout):
                     ):
                         widget.selected = True
                         self.selected_button = widget
+                        self.selected_date = widget.date
                     else:
                         widget.selected = False
             else:
@@ -268,6 +270,7 @@ class CDatePickerCalendar(CGridLayout):
                 ):
                     btn.selected = True
                     self.selected_button = btn
+                    self.selected_date = btn.date
                 btn.callback_selection = self.select_date
                 Clock.schedule_once(lambda dt, y=btn: self.add_widget(y))
 
