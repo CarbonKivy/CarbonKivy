@@ -17,7 +17,6 @@ from kivy.metrics import dp
 from kivy.uix.widget import Widget
 from kivy.properties import (
     BooleanProperty,
-    DictProperty,
     NumericProperty,
     ObjectProperty,
     OptionProperty,
