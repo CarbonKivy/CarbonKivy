@@ -50,7 +50,7 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     month_name = StringProperty()
 
-    selected_date = ObjectProperty(None, allownone=True)
+    selected_date = ObjectProperty(date.today(), allownone=True)
 
     def __init__(self, **kwargs):
         super(CDatePicker, self).__init__(**kwargs)
