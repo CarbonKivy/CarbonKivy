@@ -2,6 +2,8 @@ import glob
 import os
 
 from kaki.app import App
+from kivy.clock import mainthread
+from kivy.factory import Factory
 
 
 class LiveApp(App):
@@ -18,3 +20,19 @@ class LiveApp(App):
             os.path.join(self.directory, "**", "*.kv"), recursive=True
         ):
             self.KV_FILES.append(file)
+
+    @mainthread
+    def set_error(self, exc, tb=None):
+        from kivy.core.window import Window
+        lbl = Factory.CLabel(
+            padding_y = 150,
+            text="{}\n\n{}".format(exc, tb or "")
+            )
+        lbl.texture_update()
+        sv = Factory.ScrollView(
+            size_hint = (1, 1),
+            pos_hint = {'x': 0, 'y': 0},
+            do_scroll_x = False,
+            scroll_y = 0)
+        sv.add_widget(lbl)
+        self.set_widget(sv)
