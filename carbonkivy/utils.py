@@ -115,10 +115,13 @@ class _Dict(DictProperty):
 
 # Feel free to override this const if you're designing for a device such as
 # a GNU/Linux tablet.
-DEVICE_IOS = platform == "ios" or platform == "macosx"
-if platform != "android" and platform != "ios":
-    DEVICE_TYPE = "desktop"
-elif Window.width >= dp(738) and Window.height >= dp(738):
-    DEVICE_TYPE = "tablet"
-else:
-    DEVICE_TYPE = "mobile"
+DEVICE_TYPE = os.environ.get("devicetype", None)
+
+if not DEVICE_TYPE:
+    DEVICE_IOS = platform == "ios" or platform == "macosx"
+    if platform != "android" and platform != "ios":
+        DEVICE_TYPE = "desktop"
+    elif Window.width >= dp(738) and Window.height >= dp(738):
+        DEVICE_TYPE = "tablet"
+    else:
+        DEVICE_TYPE = "mobile"
