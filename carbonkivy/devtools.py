@@ -11,6 +11,7 @@ class LiveApp(App):
     def __init__(self, **kwargs) -> None:
         super(LiveApp, self).__init__(**kwargs)
         self.DEBUG = True
+        self.RAISE_ERROR = False
         self.CLASSES = {self.root: "main"}  # main file name or root file name
 
         self.AUTORELOADER_PATHS = [
@@ -25,8 +26,8 @@ class LiveApp(App):
     def set_error(self, exc, tb=None):
         from kivy.core.window import Window
         lbl = Factory.CLabel(
-            padding_y = 150,
-            text="{}\n\n{}".format(exc, tb or "")
+            padding=16,
+            text="{}\n\n{}".format(exc, tb or ""),
             )
         lbl.texture_update()
         sv = Factory.ScrollView(
