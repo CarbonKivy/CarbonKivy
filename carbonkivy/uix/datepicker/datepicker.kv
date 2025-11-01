@@ -1,8 +1,10 @@
+#: import DEVICE_TYPE carbonkivy.utils.DEVICE_TYPE
+
 <CDatePicker>:
     id: cdatepicker
     orientation: "vertical"
     bg_color: app.layer_01
-    size_hint_x: None
+    size_hint_x: None if DEVICE_TYPE == "desktop" else 1
     width: dp(352)
     adaptive: [False, True]
     padding: dp(8)

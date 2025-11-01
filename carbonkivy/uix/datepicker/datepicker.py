@@ -8,9 +8,9 @@ __all__ = (
 )
 
 
-from kivy.uix.widget import Widget
-from datetime import date, timedelta
 import calendar
+from datetime import date, timedelta
+from kivy.uix.widget import Widget
 from kivy.clock import Clock, mainthread
 from kivy.core.window import Window
 from kivy.metrics import dp
@@ -23,10 +23,11 @@ from kivy.properties import (
     StringProperty,
 )
 
-from carbonkivy.uix.button import CButton
 from carbonkivy.behaviors import ElevationBehavior, SelectableBehavior
+from carbonkivy.uix.button import CButton
 from carbonkivy.uix.boxlayout import CBoxLayout
 from carbonkivy.uix.gridlayout import CGridLayout
+from carbonkivy.utils import DEVICE_TYPE
 
 
 class CDatePicker(CBoxLayout, ElevationBehavior):
@@ -58,7 +59,7 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         self.month_name = calendar.month_name[int(self.current_month)]
 
     def on_master(self, *args) -> None:
-        if self.master:
+        if self.master and DEVICE_TYPE == "desktop":
             self.update_pos(self.master)
 
     @mainthread
@@ -108,23 +109,27 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         return super().on_touch_down(touch)
 
     def on_visibility(self, *args) -> None:
+        Clock.unschedule(self.set_visibility)
+        Clock.schedule_once(self.set_visibility)
 
-        def set_visibility(*args) -> None:
-            if self.visibility:
-                try:
+    def set_visibility(self, *args) -> None:
+        if self.visibility:
+            try:
+                if DEVICE_TYPE == "desktop":
                     self.update_pos(self.master)
                     self.master.bind(pos=self.update_pos)
-                    Window.add_widget(self)
-                except Exception as e:
-                    print(e)
-            else:
-                try:
-                    self.master.unbind(pos=self.update_pos)
-                    Window.remove_widget(self)
-                except Exception:
-                    return
+                else:
+                    self.pos_hint = {"center_y": 0.5}
+                Window.add_widget(self)
+            except Exception as e:
+                print(e)
+        else:
+            try:
+                self.master.unbind(pos=self.update_pos)
+                Window.remove_widget(self)
+            except Exception:
+                return
 
-        Clock.schedule_once(set_visibility)
 
     def month_prev(self, *args) -> None:
         if self.current_month == 1:

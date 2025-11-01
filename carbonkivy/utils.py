@@ -44,7 +44,9 @@ def get_latest_time(*args) -> str:
 def update_system_ui(
     status_bar_color: list[float] | str,
     navigation_bar_color: list[float] | str,
-    icon_style: Literal["Light", "Dark"],
+    icon_style: Literal["Light", "Dark"] = "Dark",
+    pad_status: bool = True,
+    pad_nav: bool = False,
 ) -> None:
     """
     Update the color system of the status and navigation bar.
@@ -73,7 +75,7 @@ def update_system_ui(
 
         try:
             WindowCompat = autoclass("androidx.core.view.WindowCompat")
-            inset_controller = WindowCompat.getInsetsController(window, window.decorView)
+            inset_controller = WindowCompat.getInsetsController(window, decor_view)
         except Exception as e:
             inset_controller = None
 
@@ -125,7 +127,15 @@ def update_system_ui(
                     def onApplyWindowInsets(self, view, insets):
                         try:
                             status_insets = insets.getInsets(WindowInsetsType.statusBars())
-                            content_view.setPadding(0, status_insets.top, 0, 0)
+                            nav_insets = insets.getInsets(WindowInsetsType.navigationBars())
+                            if pad_status:
+                                content_view.setPadding(0, status_insets.top, 0, 0)
+                            if pad_nav:
+                                content_view.setPadding(0, 0, 0, nav_insets.bottom)
+                            if pad_status:
+                                content_view.setPadding(0, status_insets.top, 0, 0)
+                            if pad_status and pad_nav:
+                                content_view.setPadding(0, status_insets.top, 0, nav_insets.bottom)
                             content_view.setBackgroundColor(self.status_color)
                             window.setNavigationBarColor(self.navigation_color)
                         except Exception as e:
