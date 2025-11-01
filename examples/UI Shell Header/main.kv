@@ -24,28 +24,46 @@
             panel_shell: left_panel_shell
             visibility: shell_menu_btn.active
 
-            UIShellPanelLayout:
+            ScrollView:
+                do_scroll_x: False
 
-                UIShellPanelSelectionLayout:
+                UIShellPanelLayout:
 
-                    UIShellPanelSelectionItem:
-                        default: True
-                        text: "Home"
-                        right_icon: "home"
+                    UIShellPanelSelectionLayout:
 
-                    UIShellPanelSelectionItem:
-                        text: "Profile"
-                        right_icon: "account"
+                        UIShellPanelSelectionItem:
+                            text: "Category title"
+                            left_icon: "incomplete"
+                            right_icon: "chevron--down"
+
+                        UIShellPanelSelectionItem:
+                            text: "Category title"
+                            left_icon: "incomplete"
+                            right_icon: "chevron--down"
+
+                        UIShellPanelSelectionItem:
+                            default: True
+                            text: "Category title"
+                            left_icon: "incomplete"
+                            right_icon: "chevron--down"
+
+                        UIShellPanelSelectionItem:
+                            text: "Link"
+                            left_icon: "incomplete"
+
+                        UIShellPanelSelectionItem:
+                            text: "Link"
+                            left_icon: "incomplete"
 
     UIShell:
         id: right_panel_shell
 
         UIShellRightPanel:
             panel_shell: right_panel_shell
-            visibility: shell_switcher_btn.focus
+            visibility: shell_notification_btn.focus
 
     UIShell:
-        id: heaader_shell
+        id: header_shell
 
         UIShellHeader:
             id: shell_header
@@ -54,7 +72,8 @@
                 id: shell_menu_btn
 
             UIShellHeaderName:
-                text: "Header name"
+                markup: True
+                text: "[font=ibmplexsans]IBM[/font] [Platform]"
 
             CAnchorLayout:
                 anchor_x: "right"
@@ -64,9 +83,12 @@
                     rows: 1
 
                     UIShellButton:
-                        icon: "moon" if (app.theme == "White") else "sun"
-                        on_press:
-                            app.theme = "Gray100" if (app.theme == "White") else "White"
+                        id: shell_search_btn
+                        icon: "search"
+
+                    UIShellButton:
+                        id: shell_notification_btn
+                        icon: "notification"
 
                     UIShellButton:
                         id: shell_switcher_btn

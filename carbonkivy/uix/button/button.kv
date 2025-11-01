@@ -137,8 +137,7 @@
         "disabled": self.bg_color_disabled, \
         "active": self.active_color,\
         }[self.cstate]
-    bg_color: app.button_danger_primary if self.variant == "Primary" else app.transparent
-    bg_color_focus: app.button_danger_primary
+    -bg_color_focus: app.button_danger_primary
     hover_color: app.button_danger_hover
     active_color: app.button_danger_active
     line_color: app.button_danger_secondary if self.variant == "Tertiary" else self.line_color

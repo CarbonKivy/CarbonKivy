@@ -8,26 +8,26 @@ __all__ = (
 )
 
 
-from kivy.uix.widget import Widget
-from datetime import date, timedelta
 import calendar
+from datetime import date, timedelta
+from kivy.uix.widget import Widget
 from kivy.clock import Clock, mainthread
 from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.uix.widget import Widget
 from kivy.properties import (
     BooleanProperty,
-    DictProperty,
     NumericProperty,
     ObjectProperty,
     OptionProperty,
     StringProperty,
 )
 
-from carbonkivy.uix.button import CButton
 from carbonkivy.behaviors import ElevationBehavior, SelectableBehavior
+from carbonkivy.uix.button import CButton
 from carbonkivy.uix.boxlayout import CBoxLayout
 from carbonkivy.uix.gridlayout import CGridLayout
+from carbonkivy.utils import DEVICE_TYPE
 
 
 class CDatePicker(CBoxLayout, ElevationBehavior):
@@ -50,7 +50,7 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     month_name = StringProperty()
 
-    selected_date = ObjectProperty(None, allownone=True)
+    selected_date = ObjectProperty(date.today(), allownone=True)
 
     def __init__(self, **kwargs):
         super(CDatePicker, self).__init__(**kwargs)
@@ -59,7 +59,7 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         self.month_name = calendar.month_name[int(self.current_month)]
 
     def on_master(self, *args) -> None:
-        if self.master:
+        if self.master and DEVICE_TYPE == "desktop":
             self.update_pos(self.master)
 
     @mainthread
@@ -109,23 +109,27 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         return super().on_touch_down(touch)
 
     def on_visibility(self, *args) -> None:
+        Clock.unschedule(self.set_visibility)
+        Clock.schedule_once(self.set_visibility)
 
-        def set_visibility(*args) -> None:
-            if self.visibility:
-                try:
+    def set_visibility(self, *args) -> None:
+        if self.visibility:
+            try:
+                if DEVICE_TYPE == "desktop":
                     self.update_pos(self.master)
                     self.master.bind(pos=self.update_pos)
-                    Window.add_widget(self)
-                except Exception as e:
-                    print(e)
-            else:
-                try:
-                    self.master.unbind(pos=self.update_pos)
-                    Window.remove_widget(self)
-                except Exception:
-                    return
+                else:
+                    self.pos_hint = {"center_y": 0.5}
+                Window.add_widget(self)
+            except Exception as e:
+                print(e)
+        else:
+            try:
+                self.master.unbind(pos=self.update_pos)
+                Window.remove_widget(self)
+            except Exception:
+                return
 
-        Clock.schedule_once(set_visibility)
 
     def month_prev(self, *args) -> None:
         if self.current_month == 1:
@@ -192,8 +196,9 @@ class CDatePickerCalendar(CGridLayout):
     def on_selected_date(self, *args) -> None:
         try:
             self.parent.selected_date = self.selected_date
-        except:
-            pass
+        except Exception as e:
+            print(e)
+
 
     def get_calendar_dates(self, year: str, month: str) -> None:
         """Get all dates for a 7x7 calendar grid including prev/next month dates"""
@@ -247,6 +252,7 @@ class CDatePickerCalendar(CGridLayout):
                     ):
                         widget.selected = True
                         self.selected_button = widget
+                        self.selected_date = widget.date
                     else:
                         widget.selected = False
             else:
@@ -269,6 +275,7 @@ class CDatePickerCalendar(CGridLayout):
                 ):
                     btn.selected = True
                     self.selected_button = btn
+                    self.selected_date = btn.date
                 btn.callback_selection = self.select_date
                 Clock.schedule_once(lambda dt, y=btn: self.add_widget(y))
 

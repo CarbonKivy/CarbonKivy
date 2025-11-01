@@ -96,20 +96,20 @@ register("UIShellPanelLayout", module="carbonkivy.uix.shell")
 register("UIShellRightPanel", module="carbonkivy.uix.shell")
 
 # Register the behavior with Kivy's Factory
-register("AdaptiveBehavior", "carbonkivy.behaviors.adpative_behavior")
+register("AdaptiveBehavior", module="carbonkivy.behaviors.adaptive_behavior")
 register(
-    "BackgroundColorBehaviorCircular", "carbonkivy.behaviors.background_color_behavior"
+    "BackgroundColorBehaviorCircular", module="carbonkivy.behaviors.background_color_behavior"
 )
 register(
     "BackgroundColorBehaviorRectangular",
-    "carbonkivy.behaviors.background_color_behavior",
+    module="carbonkivy.behaviors.background_color_behavior",
 )
-register("ElevationBehavior", "carbonkivy.behaviors.elevation_behavior")
+register("ElevationBehavior", module="carbonkivy.behaviors.elevation_behavior")
 register(
-    "HierarchicalLayerBehavior", "carbonkivy.behaviors.hierarchical_layer_behavior"
+    "HierarchicalLayerBehavior", module="carbonkivy.behaviors.hierarchical_layer_behavior"
 )
-register("HoverBehavior", "carbonkivy.behaviors.hover_behavior")
-register("StateFocusBehavior", "carbonkivy.behaviors.state_focus_behavior")
+register("HoverBehavior", module="carbonkivy.behaviors.hover_behavior")
+register("StateFocusBehavior", module="carbonkivy.behaviors.state_focus_behavior")
 
 
 # Alias for the register function from Factory
