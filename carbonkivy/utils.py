@@ -57,8 +57,8 @@ def update_system_ui(
         https://github.com/Novfensec
     """
     if platform == "android":
-        from android.runnable import run_on_ui_thread
-        from jnius import autoclass, PythonJavaClass, java_method
+        from android.runnable import run_on_ui_thread # type: ignore
+        from jnius import autoclass, PythonJavaClass, java_method # type: ignore
 
         Color = autoclass("android.graphics.Color")
         WindowManager = autoclass("android.view.WindowManager$LayoutParams")
@@ -156,7 +156,7 @@ def update_system_ui(
 
 def get_display_cutout_insets():
     if platform == "android":
-        from jnius import autoclass
+        from jnius import autoclass # type: ignore
 
         activity = autoclass('org.kivy.android.PythonActivity').mActivity
         decor_view = activity.getWindow().getDecorView()

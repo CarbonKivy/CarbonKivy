@@ -22,8 +22,9 @@ from kivy.metrics import dp, sp
 from kivy.properties import (
     BooleanProperty,
     ColorProperty,
-    StringProperty,
+    NumericProperty,
     ObjectProperty,
+    StringProperty,
 )
 from kivy.uix.behaviors import ButtonBehavior
 
@@ -73,6 +74,8 @@ class UIShellLeftPanel(CRelativeLayout):
 
     panel_shell = ObjectProperty(None, allownone=True)
 
+    panel_width = NumericProperty()
+
     def __init__(self, **kwargs) -> None:
         super(UIShellLeftPanel, self).__init__(**kwargs)
         self.animation = Animation()
@@ -85,13 +88,15 @@ class UIShellLeftPanel(CRelativeLayout):
         def set_visibility(*args) -> None:
             if self.visibility:
                 self.opacity = 1
-                self.animation = Animation(x=0, d=0.05)
+                self.animation = Animation(width=self.panel_width, d=0.05)+ Animation(
+                    opacity=1, d=0.05
+                )
                 try:
                     self.panel_shell.bg_color = self.overlay
                 except:
                     return
             else:
-                self.animation = Animation(x=0 - self.width, d=0.05) + Animation(
+                self.animation = Animation(width=dp(0), d=0.05) + Animation(
                     opacity=0, d=0.05
                 )
                 try:
@@ -111,6 +116,8 @@ class UIShellRightPanel(CRelativeLayout):
 
     panel_shell = ObjectProperty(None, allownone=True)
 
+    panel_width = NumericProperty()
+
     def __init__(self, **kwargs) -> None:
         super(UIShellRightPanel, self).__init__(**kwargs)
         self.animation = Animation()
@@ -122,7 +129,7 @@ class UIShellRightPanel(CRelativeLayout):
         def set_visibility(*args) -> None:
             if self.visibility:
                 self.opacity = 1
-                self.animation = Animation(x=Window.width - self.width, d=0.05)
+                self.animation = Animation(x=Window.width - self.panel_width, d=0.05)
             else:
                 self.animation = Animation(x=Window.width, d=0.05) + Animation(
                     opacity=0, d=0.05
