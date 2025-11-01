@@ -27,8 +27,6 @@ Live demo
 
 .. tab-set::
 
-.. tab-set::
-
     .. tab-item:: Header w/ sideNav
 
         .. raw:: html
