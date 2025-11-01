@@ -32,7 +32,7 @@ class CBaseIcon(AdaptiveBehavior, DeclarativeBehavior, Label):
         super(CBaseIcon, self).__init__(**kwargs)
 
     def on_icon(self, *args) -> None:
-        self.text = ibm_icons[self.icon]
+        self.text = ibm_icons.get(self.icon, "blank")
 
 
 class CIcon(BackgroundColorBehaviorRectangular, CBaseIcon):

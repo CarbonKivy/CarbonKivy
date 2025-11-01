@@ -49,17 +49,18 @@
     bg_color: app.background
     overlay: app.overlay
     size_hint:  None, 1
-    width: dp(256)
+    panel_width: dp(288)
     visibility: False
     opacity: 0
     pos_hint: {'right': 0}
 
 
 <UIShellRightPanel>:
-    bg_color: app.background_selected
+    bg_color: app.layer_01
     overlay: app.overlay
     size_hint:  None, 1
-    width: dp(256)
+    panel_width: dp(288)
+    width: self.panel_width
     opacity: 0
     visibility: False
     pos_hint: {'right': 1}
@@ -68,6 +69,11 @@
 <UIShellLayout>:
     size_hint: 1, 1
     padding: [dp(8), dp(64), dp(8), dp(8)]
+
+
+<UIShellPanelLayout>:
+    size_hint_x: None
+    width: dp(288)
 
 
 <UIShellPanelSelectionLayout>:

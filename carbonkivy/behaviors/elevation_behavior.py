@@ -15,7 +15,7 @@ Builder.load_string(
             rgba: app.notification_action_tertiary_inverse_hover
         BoxShadow:
             size: self.size
-            pos: self.pos
+            pos: (self.pos[0] + self.shadow_offset[0], self.pos[1] + self.shadow_offset[1]) if not isinstance(self, RelativeLayout) else (self.shadow_offset[0], self.shadow_offset[1])
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
 """
@@ -24,6 +24,9 @@ Builder.load_string(
 
 class ElevationBehavior(EventDispatcher):
 
-    shadow_offset = VariableListProperty([dp(2), -dp(3)], length=2)
+    shadow_offset = VariableListProperty([dp(1), -dp(1.5)], length=2)
 
-    shadow_blur_radius = NumericProperty(dp(0))
+    shadow_blur_radius = NumericProperty(0)
+
+    def __init__(self, **kwargs) -> None:
+        super(ElevationBehavior, self).__init__(**kwargs)

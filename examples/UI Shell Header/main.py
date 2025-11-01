@@ -31,13 +31,12 @@ class HomeScreen(CScreen):
 
 
 class myapp(CarbonApp):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super(myapp, self).__init__(*args, **kwargs)
-        self.theme = "Gray100"
         self.load_all_kv_files(self.directory)
 
-    def build(self) -> CScreenManager:
-        self.manager_screens = CScreenManager()
+    def build(self) -> UI:
+        self.manager_screens = UI()
         self.manager_screens.add_widget(HomeScreen(name="home"))
         return self.manager_screens
 
