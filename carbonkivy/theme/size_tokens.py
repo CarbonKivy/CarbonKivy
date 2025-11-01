@@ -17,8 +17,8 @@ spacing_tokens = {
 }
 
 font_style_tokens = {
-    # Productive set suffix '-01'
-    # Expressive set suffix '-02'
+    # Productive set suffix '_01'
+    # Expressive set suffix '_02'
     "code_01": {
         "font_size": sp("12"),
         "line_height": sp("16"),

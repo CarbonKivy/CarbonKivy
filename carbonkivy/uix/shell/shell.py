@@ -6,12 +6,11 @@ __all__ = (
     "UIShellHeader",
     "UIShellHeaderMenuButton",
     "UIShellHeaderName",
-    "UIShellHeaderMenuButton",
     "UIShellLayout",
+    "UIShellLeftPanel",
     "UIShellPanelLayout",
     "UIShellPanelSelectionItem",
     "UIShellPanelSelectionLayout",
-    "UIShellLeftPanel",
     "UIShellRightPanel",
 )
 
