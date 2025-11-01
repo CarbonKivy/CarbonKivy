@@ -33,7 +33,6 @@ class HomeScreen(CScreen):
 class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
-        self.theme = "Gray100"
         self.load_all_kv_files(self.directory)
 
     def build(self) -> CScreenManager:
