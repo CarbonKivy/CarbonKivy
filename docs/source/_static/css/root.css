@@ -30,3 +30,7 @@ iframe {
     width: 100%;
     height: 14rem;
 }
+
+pre {
+    max-height: 35rem;
+}
