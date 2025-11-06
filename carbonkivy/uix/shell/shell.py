@@ -80,25 +80,24 @@ class UIShellLeftPanel(CRelativeLayout):
         super(UIShellLeftPanel, self).__init__(**kwargs)
         self.animation = Animation()
         Window.bind(size=self.on_visibility)
-        self.pos = (0, 0)
+        self.pos = (-self.panel_width, 0)
 
     def on_visibility(self, *args) -> None:
         self.animation.cancel_all(self)
 
         def set_visibility(*args) -> None:
             if self.visibility:
-                self.opacity = 1
-                self.animation = Animation(width=self.panel_width, d=0.05)+ Animation(
-                    opacity=1, d=0.05
-                )
+                self.animation = Animation(width=self.panel_width, d=0.015)+ Animation(
+                    opacity=1, d=0.015
+                ) + Animation(x=0, d=0.015)
                 try:
                     self.panel_shell.bg_color = self.overlay
                 except:
                     return
             else:
-                self.animation = Animation(width=dp(0), d=0.05) + Animation(
-                    opacity=0, d=0.05
-                )
+                self.animation = Animation(
+                    opacity=0, d=0.015
+                ) + Animation(width=dp(0), d=0.015) + Animation(x=0 - self.panel_width, d=0.015)
                 try:
                     self.panel_shell.bg_color = [1, 1, 1, 0]
                 except:
