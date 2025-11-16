@@ -13,6 +13,8 @@ from .shell import (
     UIShellLayout,
     UIShellLeftPanel,
     UIShellPanelLayout,
+    UIShellPanelSelectionLayout,
+    UIShellPanelSelectionItem,
     UIShellRightPanel,
 )
 

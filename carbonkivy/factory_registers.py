@@ -93,6 +93,7 @@ register("UIShellHeaderMenuButton", module="carbonkivy.uix.shell")
 register("UIShellLeftPanel", module="carbonkivy.uix.shell")
 register("UIShellLayout", module="carbonkivy.uix.shell")
 register("UIShellPanelLayout", module="carbonkivy.uix.shell")
+register("UIShellPanelSelectionLayout", module="carbonkivy.uix.shell")
 register("UIShellRightPanel", module="carbonkivy.uix.shell")
 
 # Register the behavior with Kivy's Factory
