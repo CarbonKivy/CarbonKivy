@@ -23,6 +23,7 @@ class SelectionBehavior(EventDispatcher):
         return super().add_widget(widget, *args, **kwargs)
 
     def update_selection(self, instance: object, value: bool, *args) -> None:
+        print(instance)
         if self.selection_type == "Single":
             self.selected_items = {}
             if value:
