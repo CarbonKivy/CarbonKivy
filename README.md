@@ -16,14 +16,14 @@
 [![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=carbonkivy/carbonkivy@github)](https://gitads.dev/v1/ad-track?source=carbonkivy/carbonkivy@github)
 
 ## Overview
-<p><img src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbonkivy_logo256.png" height="180" align="right" padding="11"/></p>
+<p><img src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy-docs/master/docs/source/_static/images/carbonkivy_logo256.png" height="180" align="right" padding="11"/></p>
 
 CarbonKivy is a Python library that integrates IBM's [Carbon Design System](https://www.carbondesignsystem.com/) with the Kivy framework. It provides a modern, accessible, and user-friendly UI toolkit inspired by Carbon’s design principles, enabling developers to create consistent and visually appealing applications in Kivy.
 
 Designed with both creativity and performance in mind, CarbonKivy empowers developers to build stunning, feature-rich applications with ease. Whether you’re a seasoned developer or just starting with Kivy, this framework provides the tools and resources to bring your ideas to life.
 
 <p align="center">
-    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbonkivy_banner720.png" style="border-radius:1em" 
+    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy-docs/master/docs/source/_static/images/carbonkivy_banner720.png" style="border-radius:1em" 
             title="kvdeveloper create MyApp --template nav_toolbar"
         />
 </p>
@@ -50,7 +50,7 @@ If you encounter any issues or have questions, feel free to reach out to the com
 ## Showcase
 
 <p align="center">
-    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbondesignexamples.svg" style="border-radius:1em" 
+    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy-docs/master/docs/source/_static/images/carbondesignexamples.svg" style="border-radius:1em" 
             title="kvdeveloper create MyApp --template nav_toolbar"
         />
 </p>
@@ -90,7 +90,7 @@ If you encounter any issues or have questions, feel free to reach out to the com
 
 ## Build Instructions
 
-![carbondesignexamples](https://raw.githubusercontent.com/CarbonKivy/CarbonKivy/master/docs/source/_static/images/carbon1.png)
+![carbondesignexamples](https://raw.githubusercontent.com/CarbonKivy/CarbonKivy-docs/master/docs/source/_static/images/carbon1.png)
 
 Refer the documentation page for Build Instructions for different platforms.
 
