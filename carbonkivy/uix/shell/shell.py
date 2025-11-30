@@ -176,7 +176,7 @@ class UIShellPanelSelectionItem(
 
         def add_left_icon(*args) -> None:
             self.add_widget(
-                CIcon(id="left_icon", icon=self.left_icon, font_size=sp(16)), index=2
+                CIcon(id="left_icon", icon=self.left_icon, font_size=sp(16), pos_hint={"center_y": 0.5}), index=2
             )
 
         if not "left_icon" in self.ids:
@@ -190,7 +190,7 @@ class UIShellPanelSelectionItem(
 
         def add_text(*args) -> None:
             self.add_widget(
-                CLabel(id="label", text=self.text, style="label_02", font_size=sp(16)),
+                CLabel(id="label", text=self.text, style="label_02", font_size=sp(16), pos_hint={"center_y": 0.5}),
                 index=1,
             )
 
@@ -205,7 +205,7 @@ class UIShellPanelSelectionItem(
 
         def add_right_icon(*args) -> None:
             self.add_widget(
-                CIcon(id="right_icon", icon=self.right_icon, font_size=sp(16)), index=0
+                CIcon(id="right_icon", icon=self.right_icon, font_size=sp(16), pos_hint={"center_y": 0.5}), index=0
             )
 
         if not "right_icon" in self.ids:
