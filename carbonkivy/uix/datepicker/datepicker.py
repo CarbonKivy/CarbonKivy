@@ -10,11 +10,10 @@ __all__ = (
 
 import calendar
 from datetime import date, timedelta
-from kivy.uix.widget import Widget
+
 from kivy.clock import Clock, mainthread
 from kivy.core.window import Window
 from kivy.metrics import dp
-from kivy.uix.widget import Widget
 from kivy.properties import (
     BooleanProperty,
     NumericProperty,
@@ -22,10 +21,11 @@ from kivy.properties import (
     OptionProperty,
     StringProperty,
 )
+from kivy.uix.widget import Widget
 
 from carbonkivy.behaviors import ElevationBehavior, SelectableBehavior
-from carbonkivy.uix.button import CButton
 from carbonkivy.uix.boxlayout import CBoxLayout
+from carbonkivy.uix.button import CButton
 from carbonkivy.uix.gridlayout import CGridLayout
 from carbonkivy.utils import DEVICE_TYPE
 
@@ -130,7 +130,6 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
             except Exception:
                 return
 
-
     def month_prev(self, *args) -> None:
         if self.current_month == 1:
             self.current_month = 12
@@ -198,7 +197,6 @@ class CDatePickerCalendar(CGridLayout):
             self.parent.selected_date = self.selected_date
         except Exception as e:
             print(e)
-
 
     def get_calendar_dates(self, year: str, month: str) -> None:
         """Get all dates for a 7x7 calendar grid including prev/next month dates"""

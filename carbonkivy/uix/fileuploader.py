@@ -1,7 +1,7 @@
-from kivy.event import EventDispatcher
-from kivy.properties import ObjectProperty, ListProperty
+from tkinter.filedialog import askopenfile, askopenfiles
 
-from tkinter.filedialog import askopenfiles, askopenfile
+from kivy.event import EventDispatcher
+from kivy.properties import ListProperty, ObjectProperty
 
 
 class CFileUploader(EventDispatcher):

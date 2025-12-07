@@ -99,7 +99,8 @@ register("UIShellRightPanel", module="carbonkivy.uix.shell")
 # Register the behavior with Kivy's Factory
 register("AdaptiveBehavior", module="carbonkivy.behaviors.adaptive_behavior")
 register(
-    "BackgroundColorBehaviorCircular", module="carbonkivy.behaviors.background_color_behavior"
+    "BackgroundColorBehaviorCircular",
+    module="carbonkivy.behaviors.background_color_behavior",
 )
 register(
     "BackgroundColorBehaviorRectangular",
@@ -107,7 +108,8 @@ register(
 )
 register("ElevationBehavior", module="carbonkivy.behaviors.elevation_behavior")
 register(
-    "HierarchicalLayerBehavior", module="carbonkivy.behaviors.hierarchical_layer_behavior"
+    "HierarchicalLayerBehavior",
+    module="carbonkivy.behaviors.hierarchical_layer_behavior",
 )
 register("HoverBehavior", module="carbonkivy.behaviors.hover_behavior")
 register("StateFocusBehavior", module="carbonkivy.behaviors.state_focus_behavior")
