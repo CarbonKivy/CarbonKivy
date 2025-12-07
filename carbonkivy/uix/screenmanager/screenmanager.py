@@ -2,7 +2,7 @@ from __future__ import annotations
 
 __all__ = ("CScreenManager",)
 
-from kivy.uix.screenmanager import ScreenManager, FadeTransition
+from kivy.uix.screenmanager import FadeTransition, ScreenManager
 
 from carbonkivy.behaviors import BackgroundColorBehaviorRectangular, DeclarativeBehavior
 

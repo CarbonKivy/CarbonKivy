@@ -7,8 +7,8 @@ from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.properties import (
     BooleanProperty,
-    ObjectProperty,
     NumericProperty,
+    ObjectProperty,
     OptionProperty,
 )
 from kivy.uix.widget import Widget

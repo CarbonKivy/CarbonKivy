@@ -29,10 +29,10 @@ from kivy.properties import (
 from kivy.uix.behaviors import ButtonBehavior
 
 from carbonkivy.behaviors import (
-    StateFocusBehavior,
-    SelectionBehavior,
     HoverBehavior,
     SelectableBehavior,
+    SelectionBehavior,
+    StateFocusBehavior,
 )
 from carbonkivy.uix.boxlayout import CBoxLayout
 from carbonkivy.uix.button import CButtonGhost
@@ -87,17 +87,21 @@ class UIShellLeftPanel(CRelativeLayout):
 
         def set_visibility(*args) -> None:
             if self.visibility:
-                self.animation = Animation(width=self.panel_width, d=0.015)+ Animation(
-                    opacity=1, d=0.015
-                ) + Animation(x=0, d=0.015)
+                self.animation = (
+                    Animation(width=self.panel_width, d=0.015)
+                    + Animation(opacity=1, d=0.015)
+                    + Animation(x=0, d=0.015)
+                )
                 try:
                     self.panel_shell.bg_color = self.overlay
                 except:
                     return
             else:
-                self.animation = Animation(
-                    opacity=0, d=0.015
-                ) + Animation(width=dp(0), d=0.015) + Animation(x=0 - self.panel_width, d=0.015)
+                self.animation = (
+                    Animation(opacity=0, d=0.015)
+                    + Animation(width=dp(0), d=0.015)
+                    + Animation(x=0 - self.panel_width, d=0.015)
+                )
                 try:
                     self.panel_shell.bg_color = [1, 1, 1, 0]
                 except:
@@ -176,7 +180,13 @@ class UIShellPanelSelectionItem(
 
         def add_left_icon(*args) -> None:
             self.add_widget(
-                CIcon(id="left_icon", icon=self.left_icon, font_size=sp(16), pos_hint={"center_y": 0.5}), index=2
+                CIcon(
+                    id="left_icon",
+                    icon=self.left_icon,
+                    font_size=sp(16),
+                    pos_hint={"center_y": 0.5},
+                ),
+                index=2,
             )
 
         if not "left_icon" in self.ids:
@@ -190,7 +200,13 @@ class UIShellPanelSelectionItem(
 
         def add_text(*args) -> None:
             self.add_widget(
-                CLabel(id="label", text=self.text, style="label_02", font_size=sp(16), pos_hint={"center_y": 0.5}),
+                CLabel(
+                    id="label",
+                    text=self.text,
+                    style="label_02",
+                    font_size=sp(16),
+                    pos_hint={"center_y": 0.5},
+                ),
                 index=1,
             )
 
@@ -205,7 +221,13 @@ class UIShellPanelSelectionItem(
 
         def add_right_icon(*args) -> None:
             self.add_widget(
-                CIcon(id="right_icon", icon=self.right_icon, font_size=sp(16), pos_hint={"center_y": 0.5}), index=0
+                CIcon(
+                    id="right_icon",
+                    icon=self.right_icon,
+                    font_size=sp(16),
+                    pos_hint={"center_y": 0.5},
+                ),
+                index=0,
             )
 
         if not "right_icon" in self.ids:

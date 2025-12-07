@@ -3,12 +3,10 @@ from __future__ import annotations
 __all__ = ("CCheckbox",)
 
 from kivy.input.providers.mouse import MouseMotionEvent
-from kivy.uix.behaviors import ButtonBehavior
 from kivy.properties import BooleanProperty
+from kivy.uix.behaviors import ButtonBehavior
 
-from carbonkivy.behaviors import (
-    StateFocusBehavior,
-)
+from carbonkivy.behaviors import StateFocusBehavior
 from carbonkivy.uix.icon import CIconCircular
 
 

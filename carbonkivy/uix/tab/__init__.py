@@ -7,11 +7,11 @@ from carbonkivy.config import UIX
 from .tab import (
     CTab,
     CTabHeader,
+    CTabHeaderIcon,
     CTabHeaderItem,
     CTabHeaderItemLayout,
     CTabHeaderPrimaryText,
     CTabHeaderSecondaryText,
-    CTabHeaderIcon,
     CTabLayout,
     CTabManager,
 )

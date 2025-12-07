@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from typing import Literal, Any
+from typing import Any, Literal
 
 from kivy.core.window import Window
 from kivy.metrics import dp
@@ -57,8 +57,8 @@ def update_system_ui(
         https://github.com/Novfensec
     """
     if platform == "android":
-        from android.runnable import run_on_ui_thread # type: ignore
-        from jnius import autoclass, PythonJavaClass, java_method # type: ignore
+        from android.runnable import run_on_ui_thread  # type: ignore
+        from jnius import PythonJavaClass, autoclass, java_method  # type: ignore
 
         Color = autoclass("android.graphics.Color")
         WindowManager = autoclass("android.view.WindowManager$LayoutParams")
@@ -71,7 +71,7 @@ def update_system_ui(
         activity = PythonActivity.mActivity
         window = activity.getWindow()
         decor_view = window.getDecorView()
-        content_view = window.findViewById(autoclass('android.R$id').content)
+        content_view = window.findViewById(autoclass("android.R$id").content)
 
         try:
             WindowCompat = autoclass("androidx.core.view.WindowCompat")
@@ -114,20 +114,29 @@ def update_system_ui(
             decor_view.setSystemUiVisibility(visibility_flags)
 
             if Build_VERSION.SDK_INT >= VERSION_CODES.VANILLA_ICE_CREAM:
+
                 class InsetsListener(PythonJavaClass):
-                    __javainterfaces__ = ['android/view/View$OnApplyWindowInsetsListener']
-                    __javacontext__ = 'app'
+                    __javainterfaces__ = [
+                        "android/view/View$OnApplyWindowInsetsListener"
+                    ]
+                    __javacontext__ = "app"
 
                     def __init__(self, status_color, navigation_color):
                         super().__init__()
                         self.status_color = status_color
                         self.navigation_color = navigation_color
 
-                    @java_method('(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;')
+                    @java_method(
+                        "(Landroid/view/View;Landroid/view/WindowInsets;)Landroid/view/WindowInsets;"
+                    )
                     def onApplyWindowInsets(self, view, insets):
                         try:
-                            status_insets = insets.getInsets(WindowInsetsType.statusBars())
-                            nav_insets = insets.getInsets(WindowInsetsType.navigationBars())
+                            status_insets = insets.getInsets(
+                                WindowInsetsType.statusBars()
+                            )
+                            nav_insets = insets.getInsets(
+                                WindowInsetsType.navigationBars()
+                            )
                             if pad_status:
                                 content_view.setPadding(0, status_insets.top, 0, 0)
                             if pad_nav:
@@ -135,12 +144,15 @@ def update_system_ui(
                             if pad_status:
                                 content_view.setPadding(0, status_insets.top, 0, 0)
                             if pad_status and pad_nav:
-                                content_view.setPadding(0, status_insets.top, 0, nav_insets.bottom)
+                                content_view.setPadding(
+                                    0, status_insets.top, 0, nav_insets.bottom
+                                )
                             content_view.setBackgroundColor(self.status_color)
                             window.setNavigationBarColor(self.navigation_color)
                         except Exception as e:
                             print("Insets error:", e)
                             import traceback
+
                             traceback.print_exc()
                         return insets
 
@@ -156,9 +168,9 @@ def update_system_ui(
 
 def get_display_cutout_insets():
     if platform == "android":
-        from jnius import autoclass # type: ignore
+        from jnius import autoclass  # type: ignore
 
-        activity = autoclass('org.kivy.android.PythonActivity').mActivity
+        activity = autoclass("org.kivy.android.PythonActivity").mActivity
         decor_view = activity.getWindow().getDecorView()
         insets = decor_view.getRootWindowInsets()
 
