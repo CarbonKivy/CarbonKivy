@@ -28,11 +28,13 @@ CScreen:
         halign: "center"
         pos_hint: {"center_y": 0.5}
 
-    CLabel:
+    CLabelCircular:
         text: "IBM Plex Mono"
         style: "heading_04"
         typeface: "IBM Plex Mono"
         weight_style: "Medium"
+        bg_color: [0.2, 0.6, 0.8, 1]
+        radius: [self.height/2]
         halign: "center"
         pos_hint: {"center_y": 0.2}
 """
