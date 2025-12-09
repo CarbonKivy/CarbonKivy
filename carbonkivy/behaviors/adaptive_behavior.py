@@ -16,7 +16,7 @@ class AdaptiveBehavior:
 
         if self.adaptive[0] and self.adaptive[1]:
             self.size_hint = (None, None)
-            if issubclass(self.__class__, Label):
+            if isinstance(self, Label):
                 self.text_size = (None, None)
                 self.bind(
                     texture_size=lambda *x: self.setter("size")(self, self.texture_size)
@@ -29,7 +29,7 @@ class AdaptiveBehavior:
 
         elif self.adaptive[0]:
             self.size_hint_x = None
-            if issubclass(self.__class__, Label):
+            if isinstance(self, Label):
                 self.bind(
                     texture_size=lambda *x: self.setter("width")(
                         self, self.texture_size[0]
@@ -43,7 +43,7 @@ class AdaptiveBehavior:
 
         elif self.adaptive[1]:
             self.size_hint_y = None
-            if issubclass(self.__class__, Label):
+            if isinstance(self, Label):
                 self.bind(
                     texture_size=lambda *x: self.setter("height")(
                         self, self.texture_size[1]
