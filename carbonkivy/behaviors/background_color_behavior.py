@@ -31,7 +31,7 @@ Builder.load_string(
             origin: self._background_origin
         Color:
             group: "backgroundcolor-behavior-bg-color"
-            rgba: self._bg_color
+            rgba: self._bg_color if not self.bg_source else [1, 1, 1, 1]
         Rectangle:
             group: "Background_instruction"
             size: [self.size[0], self.size[1]]
@@ -88,7 +88,7 @@ Builder.load_string(
             origin: self._background_origin
         Color:
             group: "backgroundcolor-behavior-bg-color"
-            rgba: self._bg_color
+            rgba: self._bg_color if not self.bg_source else [1, 1, 1, 1]
         SmoothRoundedRectangle:
             group: "Background_instruction"
             size: [self.size[0], self.size[1]]
