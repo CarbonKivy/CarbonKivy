@@ -1,6 +1,10 @@
+"""
+Native file uploader for Kivy applications across multiple platforms: Windows, macOS, Linux, and Android.
+"""
+
 import sys
 from kivy.event import EventDispatcher
-from kivy.properties import ListProperty, ObjectProperty
+from kivy.properties import ListProperty, StringProperty
 from kivy.utils import platform
 
 # --- Platform specific imports ---
@@ -70,8 +74,8 @@ elif sys.platform.startswith("linux"):
 
 
 class CFileUploader(EventDispatcher):
-    files = ListProperty()
-    file = ObjectProperty()
+    files = ListProperty(None, allownone=True)
+    file = StringProperty(None, allownone=True)
 
     def __init__(self, **kwargs):
         super(CFileUploader, self).__init__(**kwargs)
@@ -162,7 +166,7 @@ class CFileUploader(EventDispatcher):
     def upload_files(self):
         """Open a file dialog to select multiple files."""
         if platform == "android":
-            self.files = self._open_file_android(multiple=True) or []
+            self._open_file_android(multiple=True)
         elif sys.platform.startswith("win"):
             self.files = self._open_file_windows(multiple=True) or []
         elif sys.platform == "darwin":
@@ -174,7 +178,7 @@ class CFileUploader(EventDispatcher):
     def upload_file(self):
         """Open a file dialog to select a single file."""
         if platform == "android":
-            self.file = self._open_file_android(multiple=False)
+            self._open_file_android(multiple=False)
         elif sys.platform.startswith("win"):
             self.file = self._open_file_windows(multiple=False)
         elif sys.platform == "darwin":
