@@ -1,5 +1,52 @@
 # Changelog
 
+- # 0.0.4
+  Massive implementations on new widgets.
+
+  - `UIX`
+    - Checkbox
+    - Partition of Label
+      - CLabel
+      - CLabelCircular
+    - DatePicker
+    - Partition of Icon
+      - CIcon
+      - CIconCircular
+    - Dropdown
+    - LoadingIndicator
+    - Modal
+    - Notification
+    - UIShellHeader
+    - UIShellLeftPanel
+    - UIShellRightPanel
+    - UI Shell Components
+    - Tab
+    - Toggletip
+    - Tooltip
+
+  - `BEHAVORS`
+    - ElevationBehavior
+    - Partition of BackgroundColorBehavior
+      - BackgroundColorBehaviorCircular
+      - BackgroundColorBehaviorRectangular
+    - SelectableBehavior
+    - SelectionBehavior
+    - TooltipBehavior
+
+  - `THEMES`
+    - [x] White
+    - [ ] Gray10
+    - [ ] Gray90
+    - [x] Gray100
+
+  - `Utilities`
+    - `update_system_ui` for Android Status and Navbar styles.
+    - Development utilities like `LiveApp` has been introduced for hot-reload setup.
+    - Native file uploader for Kivy applications across multiple platforms: Windows, macOS, Linux, and Android has been introduced. (examples are available on github.)
+
+  - An upgraded version of `StateFocusBehavior` has been introduced.
+  - General bug fixes and improvements.
+  
 - # 0.0.3
   Major Upgrades and Improvements. Implementation of new widgets.
 
