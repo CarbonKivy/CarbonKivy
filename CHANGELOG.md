@@ -1,7 +1,7 @@
 # Changelog
 
 - # 0.0.4
-  Massive implementations on new widgets.
+  Massive implementations of new widgets.
 
   - `UIX`
     - Checkbox
