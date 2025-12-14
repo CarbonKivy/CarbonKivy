@@ -18,9 +18,9 @@ def set_softinput(*args) -> None:
 Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 from carbonkivy.app import CarbonApp
+from carbonkivy.uix.dropdown import CDropdown
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
-from carbonkivy.uix.dropdown import CDropdown
 
 
 class CustomDropdown(CDropdown):

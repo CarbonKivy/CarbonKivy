@@ -3,6 +3,7 @@ Native file uploader for Kivy applications across multiple platforms: Windows, m
 """
 
 import sys
+
 from kivy.event import EventDispatcher
 from kivy.properties import ListProperty, StringProperty
 from kivy.utils import platform
@@ -20,7 +21,6 @@ if sys.platform.startswith("win"):
     OFN_ALLOWMULTISELECT = 0x00000200
     OFN_FILEMUSTEXIST = 0x00001000
     OFN_PATHMUSTEXIST = 0x00000800
-
 
     class OPENFILENAMEW(ctypes.Structure):
         _fields_ = [
@@ -52,8 +52,8 @@ if sys.platform.startswith("win"):
 
 # Android
 elif platform == "android":
-    from jnius import autoclass, cast  # type: ignore
     from android import activity  # type: ignore
+    from jnius import autoclass, cast  # type: ignore
 
     Uri = autoclass("android.net.Uri")
     Intent = autoclass("android.content.Intent")

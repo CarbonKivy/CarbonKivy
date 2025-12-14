@@ -37,11 +37,11 @@ from kivy.metrics import dp
 from kivy.properties import StringProperty
 
 from carbonkivy.app import CarbonApp
-from carbonkivy.behaviors import TooltipBehavior, ElevationBehavior
+from carbonkivy.behaviors import ElevationBehavior, TooltipBehavior
 from carbonkivy.uix.button import CButtonPrimary
 from carbonkivy.uix.screen import CScreen
-from carbonkivy.uix.tooltip import CTooltip
 from carbonkivy.uix.toggletip import CToggletip
+from carbonkivy.uix.tooltip import CTooltip
 
 
 class MToggletip(CToggletip):
