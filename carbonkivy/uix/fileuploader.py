@@ -2,7 +2,7 @@
 Native file uploader for Kivy applications across multiple platforms: Windows, macOS, Linux, and Android.
 """
 
-import sys
+import os, sys
 
 from kivy.event import EventDispatcher
 from kivy.properties import ListProperty, StringProperty
@@ -53,6 +53,7 @@ if sys.platform.startswith("win"):
 # Android
 elif platform == "android":
     from android import activity  # type: ignore
+    from android.runnable import Runnable  # type: ignore
     from jnius import autoclass, cast  # type: ignore
 
     Uri = autoclass("android.net.Uri")
@@ -81,9 +82,9 @@ class CFileUploader(EventDispatcher):
         super(CFileUploader, self).__init__(**kwargs)
 
     # --- Platform-specific implementations ---
-    def _open_file_windows(self, multiple=False):
+    def _open_file_windows(self, multiple: bool = False) -> str | list[str] | None:
         # Minimal WinAPI dialog
-        buffer = ctypes.create_unicode_buffer(1024)
+        buffer = ctypes.create_unicode_buffer(65536)
         ofn = OPENFILENAMEW()
         ofn.lStructSize = ctypes.sizeof(OPENFILENAMEW)
         ofn.lpstrFile = ctypes.cast(buffer, wintypes.LPWSTR)
@@ -95,20 +96,32 @@ class CFileUploader(EventDispatcher):
             ofn.Flags |= OFN_ALLOWMULTISELECT
 
         if ctypes.windll.comdlg32.GetOpenFileNameW(ctypes.byref(ofn)):
-            paths = buffer.value.split("\0")
-            return paths if multiple else paths[0]
-        return None
 
-    def _open_file_macos(self, multiple=False):
+            parts = buffer.value.split("\0")
+            if len(parts) == 1:  # fallback if Explorer-style failed
+                parts = buffer.value.split(" ")
+
+            if len(parts) > 1:
+                # First part is directory, rest are filenames
+                directory = parts[0]
+                files = [os.path.join(directory, f) for f in parts[1:] if f]
+                return files
+            else:
+                # Single file selected → already absolute path
+                file = parts[0]
+                return file if not multiple else [file]
+        return
+
+    def _open_file_macos(self, multiple: bool = False) -> str | list[str] | None:
         # Needs testing
         panel = NSOpenPanel.openPanel()  # type: ignore
         panel.setAllowsMultipleSelection_(multiple)
         if panel.runModal():
             urls = [str(url.path()) for url in panel.URLs()]
             return urls if multiple else urls[0]
-        return None
+        return
 
-    def _open_file_linux(self, multiple=False):
+    def _open_file_linux(self, multiple: bool = False) -> str | list[str] | None:
         action = Gtk.FileChooserAction.OPEN
         dialog = Gtk.FileChooserDialog(
             title="Select File",
@@ -134,7 +147,7 @@ class CFileUploader(EventDispatcher):
         dialog.destroy()
         return None
 
-    def on_activity_result(self, requestCode, resultCode, intent):
+    def on_activity_result(self, requestCode: int, resultCode: int, intent) -> None:
         if requestCode == 1 and resultCode == PythonActivity.RESULT_OK:  # type: ignore
             selected_files = []
             if intent is not None:
@@ -153,7 +166,7 @@ class CFileUploader(EventDispatcher):
             self.file = selected_files[0] if selected_files else None
             return
 
-    def _open_file_android(self, multiple=False):
+    def _open_file_android(self, multiple: bool = False) -> None:
         intent = Intent(Intent.ACTION_GET_CONTENT)  # type: ignore
         intent.setType("*/*")
         intent.addCategory(Intent.CATEGORY_OPENABLE)  # type: ignore
@@ -161,12 +174,12 @@ class CFileUploader(EventDispatcher):
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, True)  # type: ignore
         activity.bind(on_activity_result=self.on_activity_result)  # type: ignore
         PythonActivity.mActivity.startActivityForResult(intent, 1)  # type: ignore
-        return None
+        return
 
     def upload_files(self):
         """Open a file dialog to select multiple files."""
         if platform == "android":
-            self._open_file_android(multiple=True)
+            Runnable(self._open_file_android)(multiple=True)
         elif sys.platform.startswith("win"):
             self.files = self._open_file_windows(multiple=True) or []
         elif sys.platform == "darwin":
@@ -178,7 +191,7 @@ class CFileUploader(EventDispatcher):
     def upload_file(self):
         """Open a file dialog to select a single file."""
         if platform == "android":
-            self._open_file_android(multiple=False)
+            Runnable(self._open_file_android)(multiple=False)
         elif sys.platform.startswith("win"):
             self.file = self._open_file_windows(multiple=False)
         elif sys.platform == "darwin":
