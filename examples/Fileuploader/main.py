@@ -1,11 +1,9 @@
 import os
 import sys
 
-os.environ["devicetype"] = "mobile"
-
 from kivy.resources import resource_add_path
 
-sys.path.insert(0, os.path.dirname(__file__))
+sys.path.append(os.path.dirname(__file__))
 resource_add_path(os.path.dirname(__file__))
 
 from kivy.clock import Clock
@@ -19,19 +17,11 @@ def set_softinput(*args) -> None:
 
 Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
+
 from carbonkivy.app import CarbonApp
-from carbonkivy.uix.datepicker import CDatePicker
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
-
-
-class CustomDatePicker(CDatePicker):
-
-    def __init__(self, **kwargs) -> None:
-        super(CustomDatePicker, self).__init__(**kwargs)
-
-    def on_selected_date(self, instance, value) -> None:
-        self.visibility = False
+from fileuploader import CFileUploader
 
 
 class UI(CScreenManager):
@@ -39,17 +29,20 @@ class UI(CScreenManager):
 
 
 class HomeScreen(CScreen):
-
-    def on_kv_post(self, base_widget: object) -> None:
-        self.filter_dropdown = CustomDatePicker(master=self.ids.datepicker_btn)
-        return super().on_kv_post(base_widget)
+    pass
 
 
 class myapp(CarbonApp):
-
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
         self.load_all_kv_files(self.directory)
+        self.file_uploader = CFileUploader()
+        self.file_uploader.bind(file=self.select_file)
+        self.file_uploader.bind(files=self.select_file)
+
+    def select_file(self, instance, value):
+        print("Selected file(s):", self.file_uploader.files)
+        print("Selected file:", self.file_uploader.file)
 
     def build(self) -> CScreenManager:
         self.manager_screens = CScreenManager()
@@ -58,4 +51,5 @@ class myapp(CarbonApp):
 
 
 if __name__ == "__main__":
-    myapp().run()
+    app = myapp()
+    app.run()

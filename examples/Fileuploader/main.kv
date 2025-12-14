@@ -1,0 +1,32 @@
+<ScreenManager>:
+    canvas.before:
+        Clear
+    canvas:
+        Clear
+    canvas.after:
+        Clear
+
+<HomeScreen>:
+
+    CStackLayout:
+        size_hint: 1, 1
+        padding: dp(16)
+        spacing: dp(16)
+
+        CBoxLayout:
+            adaptive: [False, True]
+            spacing: dp(8)
+
+            CLabel:
+                text: "Multiple"
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.height
+
+            CCheckbox:
+                id: selection_check
+
+        CButtonPrimary:
+            text: "Upload File(s)"
+            on_press:
+                app.file_uploader.upload_files() if selection_check.active else app.file_uploader.upload_file()
