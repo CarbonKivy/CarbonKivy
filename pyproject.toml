@@ -28,10 +28,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Novfensec/CarbonKivy"
-Repository = "https://github.com/Novfensec/CarbonKivy"
-"Bug Tracker" = "https://github.com/Novfensec/CarbonKivy/issues"
-Changelog = "https://github.com/Novfensec/CarbonKivy/blob/master/CHANGELOG.md"
+Homepage = "https://github.com/CarbonKivy/CarbonKivy"
+Repository = "https://github.com/CarbonKivy/CarbonKivy"
+"Bug Tracker" = "https://github.com/CarbonKivy/CarbonKivy/issues"
+Changelog = "https://github.com/CarbonKivy/CarbonKivy/blob/master/CHANGELOG.md"
 
 [tool.setuptools.dynamic]
 version = {attr = "carbonkivy.__version__"}
