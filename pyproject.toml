@@ -20,7 +20,7 @@ readme = "README.md"
 license = "MIT"
 keywords = ["kivy", "python", "open source", "carbon", "design", "carbondesignsystem", "IBM", "novfensec", "carbonkivy", "kv", "android", "desktop", "user-interface"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "Topic :: Software Development :: Libraries",
   "Topic :: Multimedia :: Graphics",

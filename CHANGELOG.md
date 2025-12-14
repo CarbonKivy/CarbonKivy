@@ -46,7 +46,7 @@
 
   - An upgraded version of `StateFocusBehavior` has been introduced.
   - General bug fixes and improvements.
-  
+
 - # 0.0.3
   Major Upgrades and Improvements. Implementation of new widgets.
 
