@@ -18,9 +18,7 @@ from carbonkivy.behaviors import (
 from carbonkivy.theme.size_tokens import font_style_tokens
 
 
-class CBaseLabel(
-    AdaptiveBehavior, DeclarativeBehavior, Label
-):
+class CBaseLabel(AdaptiveBehavior, DeclarativeBehavior, Label):
 
     style = OptionProperty("body_compact_02", options=font_style_tokens.keys())
 
@@ -59,11 +57,7 @@ class CBaseLabel(
         return super().on_kv_post(base_widget)
 
 
-
-class CLabel(
-    BackgroundColorBehaviorRectangular, 
-    CBaseLabel
-):
+class CLabel(BackgroundColorBehaviorRectangular, CBaseLabel):
     pass
 
 
