@@ -132,29 +132,24 @@ class CFileUploader(EventDispatcher):
             action=action,
         )
         dialog.add_buttons(
-            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-            Gtk.STOCK_OPEN, Gtk.ResponseType.OK,
+            Gtk.STOCK_CANCEL,
+            Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_OPEN,
+            Gtk.ResponseType.OK,
         )
         dialog.set_select_multiple(multiple)
-
-        # Non-blocking: show the dialog
-        dialog.show()
-
-        # Use response handler instead of run()
-        def on_response(dlg, response):
-            if response == Gtk.ResponseType.OK:
-                if multiple:
-                    files = dlg.get_filenames()
-                    dlg.destroy()
-                    self._handle_files(files)
-                else:
-                    filename = dlg.get_filename()
-                    dlg.destroy()
-                    self._handle_file(filename)
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
+            if multiple:
+                files = dialog.get_filenames()
+                dialog.destroy()
+                return files
             else:
-                dlg.destroy()
-
-        dialog.connect("response", on_response)
+                filename = dialog.get_filename()
+                dialog.destroy()
+                return filename
+        dialog.destroy()
+        return None
 
     def on_activity_result(self, requestCode: int, resultCode: int, intent) -> None:
         if requestCode == 1 and resultCode == PythonActivity.RESULT_OK:  # type: ignore
