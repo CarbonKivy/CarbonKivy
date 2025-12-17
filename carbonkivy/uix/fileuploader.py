@@ -137,18 +137,21 @@ class CFileUploader(EventDispatcher):
         )
         dialog.set_select_multiple(multiple)
 
+        files = []
         def on_response(dlg, response):
             if response == Gtk.ResponseType.OK:
                 if multiple:
-                    self.files = dlg.get_filenames()
+                    files = dlg.get_filenames()
                     dlg.destroy()
                 else:
-                    self.file = dlg.get_filename()
+                    files = [dlg.get_filename()]
                     dlg.destroy()
             else:
                 dlg.destroy()
 
             Gtk.main_quit() # Exit the GTK main loop and return control to Kivy
+            self.file = files[0] if files else None
+            self.files = files
 
         dialog.connect("response", on_response)
 
