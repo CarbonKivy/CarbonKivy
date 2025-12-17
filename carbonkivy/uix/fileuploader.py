@@ -138,7 +138,7 @@ class CFileUploader(EventDispatcher):
             Gtk.ResponseType.OK,
         )
         dialog.set_select_multiple(multiple)
-        response = dialog.run()
+        response = dialog.show()
         if response == Gtk.ResponseType.OK:
             if multiple:
                 files = dialog.get_filenames()
