@@ -3,7 +3,6 @@ Native file uploader for Kivy applications across multiple platforms: Windows, m
 """
 
 import os, sys
-import threading
 
 from kivy.event import EventDispatcher
 from kivy.properties import ListProperty, StringProperty
@@ -133,24 +132,29 @@ class CFileUploader(EventDispatcher):
             action=action,
         )
         dialog.add_buttons(
-            Gtk.STOCK_CANCEL,
-            Gtk.ResponseType.CANCEL,
-            Gtk.STOCK_OPEN,
-            Gtk.ResponseType.OK,
+            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_OPEN, Gtk.ResponseType.OK,
         )
         dialog.set_select_multiple(multiple)
-        response = dialog.run()
-        if response == Gtk.ResponseType.OK:
-            if multiple:
-                self.files = dialog.get_filenames()
-                dialog.destroy()
-                return self.files
+
+        def on_response(dlg, response):
+            if response == Gtk.ResponseType.OK:
+                if multiple:
+                    self.files = dlg.get_filenames()
+                    dlg.destroy()
+                else:
+                    self.file = dlg.get_filename()
+                    dlg.destroy()
             else:
-                self.file = dialog.get_filename()
-                dialog.destroy()
-                return self.file
-        dialog.destroy()
-        return None
+                dlg.destroy()
+
+            Gtk.main_quit() # Exit the GTK main loop and return control to Kivy
+
+        dialog.connect("response", on_response)
+
+        # Non-blocking: show the dialog
+        dialog.show()
+        Gtk.main()
 
     def on_activity_result(self, requestCode: int, resultCode: int, intent) -> None:
         if requestCode == 1 and resultCode == PythonActivity.RESULT_OK:  # type: ignore
@@ -190,7 +194,7 @@ class CFileUploader(EventDispatcher):
         elif sys.platform == "darwin":
             self.files = self._open_file_macos(multiple=True) or []
         elif sys.platform.startswith("linux"):
-            threading.Thread(target=self._open_file_linux, kwargs={"multiple": True}).start()
+            self._open_file_linux(multiple=True)
         return self.files
 
     def upload_file(self):
@@ -202,7 +206,7 @@ class CFileUploader(EventDispatcher):
         elif sys.platform == "darwin":
             self.file = self._open_file_macos(multiple=False)
         elif sys.platform.startswith("linux"):
-            threading.Thread(target=self._open_file_linux, kwargs={"multiple": False}).start()
+            self._open_file_linux(multiple=False)
         return self.file
 
 
