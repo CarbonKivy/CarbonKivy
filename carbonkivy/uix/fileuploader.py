@@ -75,7 +75,9 @@ elif sys.platform.startswith("linux"):
 
 
 class CFileUploader(EventDispatcher):
+
     files = ListProperty(None, allownone=True)
+
     file = StringProperty(None, allownone=True)
 
     def __init__(self, **kwargs):
@@ -98,17 +100,19 @@ class CFileUploader(EventDispatcher):
         if ctypes.windll.comdlg32.GetOpenFileNameW(ctypes.byref(ofn)):
 
             parts = buffer.value.split("\0")
-            if len(parts) == 1:  # fallback if Explorer-style failed
-                parts = buffer.value.split(" ")
+            if multiple:
+                if len(parts) == 1:  # fallback if Explorer-style failed
+                    parts = buffer.value.split(" ")
 
-            if len(parts) > 1:
-                # First part is directory, rest are filenames
-                directory = parts[0]
-                files = [os.path.join(directory, f) for f in parts[1:] if f]
-                return files
+                if len(parts) > 1:
+                    # First part is directory, rest are filenames
+                    directory = parts[0]
+                    files = [os.path.join(directory, f) for f in parts[1:] if f]
+                    return files
             else:
                 # Single file selected → already absolute path
-                file = parts[0]
+                file = str(parts[0])
+                print(file)
                 return file if not multiple else [file]
         return
 
