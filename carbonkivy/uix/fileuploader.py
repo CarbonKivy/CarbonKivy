@@ -3,6 +3,7 @@ Native file uploader for Kivy applications across multiple platforms: Windows, m
 """
 
 import os, sys
+import threading
 
 from kivy.event import EventDispatcher
 from kivy.properties import ListProperty, StringProperty
@@ -141,13 +142,13 @@ class CFileUploader(EventDispatcher):
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             if multiple:
-                files = dialog.get_filenames()
+                self.files = dialog.get_filenames()
                 dialog.destroy()
-                return files
+                return self.files
             else:
-                filename = dialog.get_filename()
+                self.file = dialog.get_filename()
                 dialog.destroy()
-                return filename
+                return self.file
         dialog.destroy()
         return None
 
@@ -189,7 +190,7 @@ class CFileUploader(EventDispatcher):
         elif sys.platform == "darwin":
             self.files = self._open_file_macos(multiple=True) or []
         elif sys.platform.startswith("linux"):
-            self.files = self._open_file_linux(multiple=True) or []
+            threading.Thread(target=self._open_file_linux, kwargs={"multiple": True}).start()
         return self.files
 
     def upload_file(self):
@@ -201,7 +202,7 @@ class CFileUploader(EventDispatcher):
         elif sys.platform == "darwin":
             self.file = self._open_file_macos(multiple=False)
         elif sys.platform.startswith("linux"):
-            self.file = self._open_file_linux(multiple=False)
+            threading.Thread(target=self._open_file_linux, kwargs={"multiple": False}).start()
         return self.file
 
 
