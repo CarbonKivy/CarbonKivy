@@ -5,7 +5,7 @@ Native file uploader for Kivy applications across multiple platforms: Windows, m
 import os, sys
 
 from kivy.event import EventDispatcher
-from kivy.properties import ListProperty, StringProperty
+from kivy.properties import ListProperty, StringProperty, DictProperty
 from kivy.utils import platform
 
 # --- Platform specific imports ---
@@ -80,18 +80,32 @@ class CFileUploader(EventDispatcher):
 
     file = StringProperty(None, allownone=True)
 
+    title = StringProperty("Open")
+
+    filters = DictProperty(None, allownone=True)
+
     def __init__(self, **kwargs):
         super(CFileUploader, self).__init__(**kwargs)
 
     # --- Platform-specific implementations ---
-    def _open_file_windows(self, multiple: bool = False) -> str | list[str] | None:
+    def _open_file_windows(self, multiple: bool = False, *args) -> str | list[str] | None:
         # Minimal WinAPI dialog
         buffer = ctypes.create_unicode_buffer(65536)
         ofn = OPENFILENAMEW()
         ofn.lStructSize = ctypes.sizeof(OPENFILENAMEW)
         ofn.lpstrFile = ctypes.cast(buffer, wintypes.LPWSTR)
         ofn.nMaxFile = len(buffer)
-        ofn.lpstrFilter = "All Files\0*.*\0"
+        if self.filters:
+            parts = []
+            for label, exts in self.filters.items():
+                parts.append(label)
+                parts.append(";".join(exts))
+
+            filter_str = "\0".join(parts) + "\0\0"
+            ofn.lpstrFilter = filter_str
+        else:
+            ofn.lpstrFilter = "All Files\0*.*\0"
+
         ofn.nFilterIndex = 1
         ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST
         if multiple:
@@ -116,16 +130,19 @@ class CFileUploader(EventDispatcher):
                 return file if not multiple else [file]
         return
 
-    def _open_file_macos(self, multiple: bool = False) -> str | list[str] | None:
-        # Needs testing
-        panel = NSOpenPanel.openPanel()  # type: ignore
+    def _open_file_macos(self, multiple=False, *args) -> str | list[str] | None:
+        # needs testing
+        panel = NSOpenPanel.openPanel() # type: ignore
         panel.setAllowsMultipleSelection_(multiple)
+        if self.filters:
+            all_exts = [ext.replace("*.", "") for exts in self.filters.values() for ext in exts]
+            panel.setAllowedFileTypes_(all_exts)
         if panel.runModal():
             urls = [str(url.path()) for url in panel.URLs()]
             return urls if multiple else urls[0]
         return
 
-    def _open_file_linux(self, multiple: bool = False) -> str | list[str] | None:
+    def _open_file_linux(self, multiple: bool = False, *args) -> str | list[str] | None:
         action = Gtk.FileChooserAction.OPEN
         dialog = Gtk.FileChooserDialog(
             title="Select File",
@@ -136,6 +153,14 @@ class CFileUploader(EventDispatcher):
             Gtk.STOCK_OPEN, Gtk.ResponseType.OK,
         )
         dialog.set_select_multiple(multiple)
+
+        if self.filters:
+            for label, exts in self.filters.items():
+                f = Gtk.FileFilter()
+                f.set_name(label)
+                for ext in exts:
+                    f.add_pattern(ext)
+                dialog.add_filter(f)
 
         files = []
         def on_response(dlg, response):
@@ -178,9 +203,9 @@ class CFileUploader(EventDispatcher):
             self.file = selected_files[0] if selected_files else None
             return
 
-    def _open_file_android(self, multiple: bool = False) -> None:
+    def _open_file_android(self, multiple: bool = False, mime_type: str = "*/*", *args) -> None:
         intent = Intent(Intent.ACTION_GET_CONTENT)  # type: ignore
-        intent.setType("*/*")
+        intent.setType(mime_type)
         intent.addCategory(Intent.CATEGORY_OPENABLE)  # type: ignore
         if multiple:
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, True)  # type: ignore
@@ -188,10 +213,20 @@ class CFileUploader(EventDispatcher):
         PythonActivity.mActivity.startActivityForResult(intent, 1)  # type: ignore
         return
 
-    def upload_files(self):
-        """Open a file dialog to select multiple files."""
+    def upload_files(self, filters: list | None = None, mime_type: str = "*/*", *args) -> list:
+        """Open a file dialog to select multiple files.
+
+        filters = {
+            "JPEG Files": ["*.jpg", "*.jpeg"],
+            "PNG Files": ["*.png"],
+            "All Images": ["*.jpg", "*.jpeg", "*.png"]
+        }
+
+        """
+        if filters:
+            self.filters = filters
         if platform == "android":
-            Runnable(self._open_file_android)(multiple=True)
+            Runnable(self._open_file_android)(multiple=True, mime_type=mime_type)
         elif sys.platform.startswith("win"):
             self.files = self._open_file_windows(multiple=True) or []
         elif sys.platform == "darwin":
@@ -200,10 +235,20 @@ class CFileUploader(EventDispatcher):
             self._open_file_linux(multiple=True)
         return self.files
 
-    def upload_file(self):
-        """Open a file dialog to select a single file."""
+    def upload_file(self, filters: list | None = None, mime_type: str = "*/*", *args) -> str:
+        """Open a file dialog to select a single file.
+
+        filters = {
+            "JPEG Files": ["*.jpg", "*.jpeg"],
+            "PNG Files": ["*.png"],
+            "All Images": ["*.jpg", "*.jpeg", "*.png"]
+        }
+
+        """
+        if filters:
+            self.filters = filters
         if platform == "android":
-            Runnable(self._open_file_android)(multiple=False)
+            Runnable(self._open_file_android)(multiple=False, mime_type=mime_type)
         elif sys.platform.startswith("win"):
             self.file = self._open_file_windows(multiple=False)
         elif sys.platform == "darwin":
