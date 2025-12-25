@@ -7,7 +7,7 @@
     overlay_color: app.overlay
     anchor_x: "right"
     anchor_y: "top"
-    size_hint_x: 1 if (DEVICE_TYPE == "mobile") else None
+    size_hint_x: None if (DEVICE_TYPE == "desktop") else 1
     width: dp(576)
     pos_hint: {"x": 0, "y": 0} if (DEVICE_TYPE == "mobile") else {"center_x": 0.5, "center_y": 0.5}
 
