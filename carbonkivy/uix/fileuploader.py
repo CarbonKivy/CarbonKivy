@@ -4,6 +4,7 @@ Native file uploader for Kivy applications across multiple platforms: Windows, m
 
 import os, sys
 
+from kivy.clock import Clock
 from kivy.event import EventDispatcher
 from kivy.properties import ListProperty, StringProperty, DictProperty
 from kivy.utils import platform
@@ -60,6 +61,8 @@ elif platform == "android":
     Intent = autoclass("android.content.Intent")
     ClipData = autoclass("android.content.ClipData")
     PythonActivity = autoclass("org.kivy.android.PythonActivity")
+    ContentResolver = PythonActivity.mActivity.getContentResolver()
+    FileOutputStream = autoclass('java.io.FileOutputStream')
 
 # macOS
 elif sys.platform == "darwin":
@@ -191,17 +194,45 @@ class CFileUploader(EventDispatcher):
                 if intent.getData() is not None:
                     # Single file
                     uri = intent.getData()
-                    selected_files.append(uri.toString())
+                    filename = self.copy_content_uri(uri.toString(), 0)
+                    selected_files.append(filename)
                 elif intent.getClipData() is not None:
                     # Multiple files
                     clipData = intent.getClipData()
                     for i in range(clipData.getItemCount()):
                         uri = clipData.getItemAt(i).getUri()
-                        selected_files.append(uri.toString())
+                        try:
+                            filename = self.copy_content_uri(uri.toString(), i)
+                            selected_files.append(filename)
+                        except Exception as e:
+                            print(e)
 
-            self.files = selected_files
-            self.file = selected_files[0] if selected_files else None
-            return
+            def _apply(_dt):
+                self.files = selected_files
+                self.file = self.files[0] if self.files else None
+
+            Clock.schedule_once(_apply)
+        return
+
+    def copy_content_uri(self, uri_string, index=0):
+        """Resolve a content:// URI into a local temp file path."""
+        uri = Uri.parse(uri_string)
+        inputStream = ContentResolver.openInputStream(uri)
+
+        temp_path = os.path.join(
+            PythonActivity.mActivity.getFilesDir().getAbsolutePath(),
+            f"picked_{os.path.basename(uri.getPath())}"   # unique filename per file
+        )
+        fos = FileOutputStream(temp_path)
+        buf = bytearray(1024)
+        while True:
+            read = inputStream.read(buf)
+            if read == -1:
+                break
+            fos.write(buf, 0, read)
+        fos.close()
+        inputStream.close()
+        return temp_path
 
     def _open_file_android(self, multiple: bool = False, mime_type: str = "*/*", *args) -> None:
         intent = Intent(Intent.ACTION_GET_CONTENT)  # type: ignore
