@@ -93,25 +93,32 @@ def update_system_ui(
             status_color_int = parse_color(status_bar_color)
             navigation_color_int = parse_color(navigation_bar_color)
 
-            if icon_style == "Dark":
-                visibility_flags = (
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                    | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                )
-                try:
-                    inset_controller.setAppearanceLightStatusBars(False)
-                    inset_controller.setAppearanceLightNavigationBars(False)
-                except Exception as e:
-                    print(e)
+            if Build_VERSION.SDK_INT >= VERSION_CODES.R and inset_controller:
+                # API 30+ (Android 11+)
+                WindowInsetsController = autoclass("android.view.WindowInsetsController")
+                if icon_style == "Dark":
+                    inset_controller.setSystemBarsAppearance(
+                        0,
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                        | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                    )
+                else:
+                    inset_controller.setSystemBarsAppearance(
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                        | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                        | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                    )
             else:
-                visibility_flags = 0
-                try:
-                    inset_controller.setAppearanceLightStatusBars(True)
-                    inset_controller.setAppearanceLightNavigationBars(True)
-                except Exception as e:
-                    print(e)
-
-            decor_view.setSystemUiVisibility(visibility_flags)
+                # Legacy flags for API 23–29
+                if icon_style == "Dark":
+                    visibility_flags = (
+                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                        | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    )
+                else:
+                    visibility_flags = 0
+                decor_view.setSystemUiVisibility(visibility_flags)
 
             if Build_VERSION.SDK_INT >= VERSION_CODES.VANILLA_ICE_CREAM:
 
@@ -131,22 +138,15 @@ def update_system_ui(
                     )
                     def onApplyWindowInsets(self, view, insets):
                         try:
-                            status_insets = insets.getInsets(
-                                WindowInsetsType.statusBars()
-                            )
-                            nav_insets = insets.getInsets(
-                                WindowInsetsType.navigationBars()
-                            )
-                            if pad_status:
-                                content_view.setPadding(0, status_insets.top, 0, 0)
-                            if pad_nav:
-                                content_view.setPadding(0, 0, 0, nav_insets.bottom)
-                            if pad_status:
-                                content_view.setPadding(0, status_insets.top, 0, 0)
-                            if pad_status and pad_nav:
-                                content_view.setPadding(
-                                    0, status_insets.top, 0, nav_insets.bottom
-                                )
+                            status_insets = insets.getInsets(WindowInsetsType.statusBars())
+                            nav_insets = insets.getInsets(WindowInsetsType.navigationBars())
+
+                            top_pad = status_insets.top if pad_status else 0
+                            bottom_pad = nav_insets.bottom if pad_nav else 0
+
+                            content_view.setPadding(0, top_pad, 0, bottom_pad)
+                            content_view.setBackgroundColor(self.status_color)
+
                             content_view.setBackgroundColor(self.status_color)
                             window.setNavigationBarColor(self.navigation_color)
                         except Exception as e:
