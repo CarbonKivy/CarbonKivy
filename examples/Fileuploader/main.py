@@ -39,6 +39,11 @@ class myapp(CarbonApp):
         self.file_uploader = CFileUploader()
         self.file_uploader.bind(file=self.select_file)
         self.file_uploader.bind(files=self.select_file)
+        self.file_uploader.filters = {
+            "All Images": ["*.jpg", "*.jpeg", "*.png"],
+            "JPEG Files": ["*.jpg", "*.jpeg"],
+            "PNG Files": ["*.png"],
+        }
 
     def select_file(self, instance, value):
         print("Selected file(s):", self.file_uploader.files)
