@@ -95,7 +95,9 @@ def update_system_ui(
 
             if Build_VERSION.SDK_INT >= VERSION_CODES.R and inset_controller:
                 # API 30+ (Android 11+)
-                WindowInsetsController = autoclass("android.view.WindowInsetsController")
+                WindowInsetsController = autoclass(
+                    "android.view.WindowInsetsController"
+                )
                 if icon_style == "Dark":
                     inset_controller.setSystemBarsAppearance(
                         0,
@@ -138,8 +140,12 @@ def update_system_ui(
                     )
                     def onApplyWindowInsets(self, view, insets):
                         try:
-                            status_insets = insets.getInsets(WindowInsetsType.statusBars())
-                            nav_insets = insets.getInsets(WindowInsetsType.navigationBars())
+                            status_insets = insets.getInsets(
+                                WindowInsetsType.statusBars()
+                            )
+                            nav_insets = insets.getInsets(
+                                WindowInsetsType.navigationBars()
+                            )
 
                             top_pad = status_insets.top if pad_status else 0
                             bottom_pad = nav_insets.bottom if pad_nav else 0

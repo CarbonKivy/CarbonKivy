@@ -2,11 +2,13 @@
 Native file uploader for Kivy applications across multiple platforms: Windows, macOS, Linux, and Android.
 """
 
-import os, sys
+import os
+import sys
+import threading
 
 from kivy.clock import Clock
 from kivy.event import EventDispatcher
-from kivy.properties import ListProperty, StringProperty, DictProperty
+from kivy.properties import DictProperty, ListProperty, StringProperty
 from kivy.utils import platform
 
 # --- Platform specific imports ---
@@ -62,7 +64,7 @@ elif platform == "android":
     ClipData = autoclass("android.content.ClipData")
     PythonActivity = autoclass("org.kivy.android.PythonActivity")
     ContentResolver = PythonActivity.mActivity.getContentResolver()
-    FileOutputStream = autoclass('java.io.FileOutputStream')
+    FileOutputStream = autoclass("java.io.FileOutputStream")
 
 # macOS
 elif sys.platform == "darwin":
@@ -91,7 +93,7 @@ class CFileUploader(EventDispatcher):
         super(CFileUploader, self).__init__(**kwargs)
 
     # --- Platform-specific implementations ---
-    def _open_file_windows(self, multiple: bool = False, *args) -> str | list[str] | None:
+    def _open_file_windows(self, multiple: bool = False, *args) -> None:
         # Minimal WinAPI dialog
         buffer = ctypes.create_unicode_buffer(65536)
         ofn = OPENFILENAMEW()
@@ -115,7 +117,7 @@ class CFileUploader(EventDispatcher):
             ofn.Flags |= OFN_ALLOWMULTISELECT
 
         if ctypes.windll.comdlg32.GetOpenFileNameW(ctypes.byref(ofn)):
-
+            selected_files = []
             parts = buffer.value.split("\0")
             if multiple:
                 if len(parts) == 1:  # fallback if Explorer-style failed
@@ -124,36 +126,51 @@ class CFileUploader(EventDispatcher):
                 if len(parts) > 1:
                     # First part is directory, rest are filenames
                     directory = parts[0]
-                    files = [os.path.join(directory, f) for f in parts[1:] if f]
-                    return files
+                    selected_files = [
+                        os.path.join(directory, f) for f in parts[1:] if f
+                    ]
             else:
                 # Single file selected → already absolute path
-                file = str(parts[0])
-                print(file)
-                return file if not multiple else [file]
+                selected_files = [str(parts[0])]
+
+            def _apply(_dt):
+                self.files = selected_files
+                self.file = self.files[0] if self.files else None
+
+            Clock.schedule_once(_apply)
         return
 
-    def _open_file_macos(self, multiple=False, *args) -> str | list[str] | None:
+    def _open_file_macos(self, multiple=False, *args) -> None:
         # needs testing
-        panel = NSOpenPanel.openPanel() # type: ignore
+        selected_files = []
+        panel = NSOpenPanel.openPanel()  # type: ignore
         panel.setAllowsMultipleSelection_(multiple)
         if self.filters:
-            all_exts = [ext.replace("*.", "") for exts in self.filters.values() for ext in exts]
+            all_exts = [
+                ext.replace("*.", "") for exts in self.filters.values() for ext in exts
+            ]
             panel.setAllowedFileTypes_(all_exts)
         if panel.runModal():
-            urls = [str(url.path()) for url in panel.URLs()]
-            return urls if multiple else urls[0]
+            selected_files = [str(url.path()) for url in panel.URLs()]
+
+            def _apply(_dt):
+                self.files = selected_files
+                self.file = self.files[0] if self.files else None
+
+            Clock.schedule_once(_apply)
         return
 
-    def _open_file_linux(self, multiple: bool = False, *args) -> str | list[str] | None:
+    def _open_file_linux(self, multiple: bool = False, *args) -> None:
         action = Gtk.FileChooserAction.OPEN
         dialog = Gtk.FileChooserDialog(
             title="Select File",
             action=action,
         )
         dialog.add_buttons(
-            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-            Gtk.STOCK_OPEN, Gtk.ResponseType.OK,
+            Gtk.STOCK_CANCEL,
+            Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_OPEN,
+            Gtk.ResponseType.OK,
         )
         dialog.set_select_multiple(multiple)
 
@@ -165,21 +182,25 @@ class CFileUploader(EventDispatcher):
                     f.add_pattern(ext)
                 dialog.add_filter(f)
 
-        files = []
+        selected_files = []
+
         def on_response(dlg, response):
             if response == Gtk.ResponseType.OK:
                 if multiple:
-                    files = dlg.get_filenames()
+                    selected_files = dlg.get_filenames()
                     dlg.destroy()
                 else:
-                    files = [dlg.get_filename()]
+                    selected_files = [dlg.get_filename()]
                     dlg.destroy()
             else:
                 dlg.destroy()
 
-            Gtk.main_quit() # Exit the GTK main loop and return control to Kivy
-            self.file = files[0] if files else None
-            self.files = files
+            Gtk.main_quit()  # Exit the GTK main loop and return control to Kivy
+            Clock.schedule_once(_apply)
+
+        def _apply(_dt):
+            self.files = selected_files
+            self.file = self.files[0] if self.files else None
 
         dialog.connect("response", on_response)
 
@@ -221,7 +242,7 @@ class CFileUploader(EventDispatcher):
 
         temp_path = os.path.join(
             PythonActivity.mActivity.getFilesDir().getAbsolutePath(),
-            f"picked_{os.path.basename(uri.getPath())}"   # unique filename per file
+            f"picked_{os.path.basename(uri.getPath())}",  # unique filename per file
         )
         fos = FileOutputStream(temp_path)
         buf = bytearray(1024)
@@ -234,7 +255,9 @@ class CFileUploader(EventDispatcher):
         inputStream.close()
         return temp_path
 
-    def _open_file_android(self, multiple: bool = False, mime_type: str = "*/*", *args) -> None:
+    def _open_file_android(
+        self, multiple: bool = False, mime_type: str = "*/*", *args
+    ) -> None:
         intent = Intent(Intent.ACTION_GET_CONTENT)  # type: ignore
         intent.setType(mime_type)
         intent.addCategory(Intent.CATEGORY_OPENABLE)  # type: ignore
@@ -244,7 +267,9 @@ class CFileUploader(EventDispatcher):
         PythonActivity.mActivity.startActivityForResult(intent, 1)  # type: ignore
         return
 
-    def upload_files(self, filters: list | None = None, mime_type: str = "*/*", *args) -> list:
+    def upload_files(
+        self, filters: list | None = None, mime_type: str = "*/*", *args
+    ) -> None:
         """Open a file dialog to select multiple files.
 
         filters = {
@@ -259,14 +284,22 @@ class CFileUploader(EventDispatcher):
         if platform == "android":
             Runnable(self._open_file_android)(multiple=True, mime_type=mime_type)
         elif sys.platform.startswith("win"):
-            self.files = self._open_file_windows(multiple=True) or []
+            threading.Thread(
+                target=self._open_file_windows, kwargs={"multiple": True}
+            ).start()
         elif sys.platform == "darwin":
-            self.files = self._open_file_macos(multiple=True) or []
+            threading.Thread(
+                target=self._open_file_macos, kwargs={"multiple": True}
+            ).start()
         elif sys.platform.startswith("linux"):
-            self._open_file_linux(multiple=True)
-        return self.files
+            threading.Thread(
+                target=self._open_file_linux, kwargs={"multiple": True}
+            ).start()
+        return
 
-    def upload_file(self, filters: list | None = None, mime_type: str = "*/*", *args) -> str:
+    def upload_file(
+        self, filters: list | None = None, mime_type: str = "*/*", *args
+    ) -> None:
         """Open a file dialog to select a single file.
 
         filters = {
@@ -281,12 +314,18 @@ class CFileUploader(EventDispatcher):
         if platform == "android":
             Runnable(self._open_file_android)(multiple=False, mime_type=mime_type)
         elif sys.platform.startswith("win"):
-            self.file = self._open_file_windows(multiple=False)
+            threading.Thread(
+                target=self._open_file_windows, kwargs={"multiple": False}
+            ).start()
         elif sys.platform == "darwin":
-            self.file = self._open_file_macos(multiple=False)
+            threading.Thread(
+                target=self._open_file_macos, kwargs={"multiple": False}
+            ).start()
         elif sys.platform.startswith("linux"):
-            self._open_file_linux(multiple=False)
-        return self.file
+            threading.Thread(
+                target=self._open_file_linux, kwargs={"multiple": False}
+            ).start()
+        return
 
 
 if __name__ == "__main__":
