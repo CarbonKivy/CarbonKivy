@@ -52,7 +52,6 @@ if sys.platform.startswith("win"):
             ("FlagsEx", wintypes.DWORD),
         ]
 
-
 # Android
 elif platform == "android":
     from android import activity  # type: ignore
@@ -73,10 +72,15 @@ elif sys.platform == "darwin":
 
 # Linux
 elif sys.platform.startswith("linux"):
-    import gi  # type: ignore
+    import importlib.util
 
-    gi.require_version("Gtk", "3.0")
-    from gi.repository import Gtk  # type: ignore
+    if importlib.util.find_spec("gi") is None:
+        print("PyGObject (gi) is not installed. Try: sudo apt install python3-gi")
+        sys.exit(1)
+    else:
+        import gi # type: ignore
+        gi.require_version("Gtk", "3.0")
+        from gi.repository import Gtk # type: ignore
 
 
 class CFileUploader(EventDispatcher):
