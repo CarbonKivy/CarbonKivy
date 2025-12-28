@@ -196,14 +196,15 @@ class CFileUploader(EventDispatcher):
                 else:
                     selected_files = [dlg.get_filename()]
                     dlg.destroy()
+
+                def _apply(_dt):
+                    self.files = selected_files
+                    self.file = self.files[0] if self.files else None
+
+                Clock.schedule_once(_apply)
             else:
                 dlg.destroy()
 
-            def _apply(_dt):
-                self.files = selected_files
-                self.file = self.files[0] if self.files else None
-
-            Clock.schedule_once(_apply)
             Gtk.main_quit()  # Exit the GTK main loop and return control to Kivy
 
 
