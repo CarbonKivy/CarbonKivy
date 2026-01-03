@@ -24,7 +24,7 @@ class SelectionBehavior(EventDispatcher):
 
     def update_selection(self, instance: object, value: bool, *args) -> None:
         if self.selection_type == "Single":
-            self.selected_items = {}
+            selected_items = {}
             if value:
                 for items in self.children:
                     if (
@@ -34,7 +34,8 @@ class SelectionBehavior(EventDispatcher):
                     ):
                         setattr(items, self.selection_attr, False)
 
-                self.selected_items[instance] = value
+                selected_items[instance] = value
+                self.selected_items = selected_items
             else:
                 if all(
                     not getattr(items, self.selection_attr, False)
@@ -42,11 +43,11 @@ class SelectionBehavior(EventDispatcher):
                     if hasattr(items, self.selection_attr)
                 ):
                     setattr(instance, self.selection_attr, True)
-                if instance in self.selected_items:
-                    del self.selected_items[instance]
+                    self.selected_items = {instance: True}
         elif self.selection_type == "Multiple":
+            new_dict = dict(self.selected_items)
             if value:
-                self.selected_items[instance] = value
+                new_dict[instance] = True
             else:
-                if instance in self.selected_items:
-                    del self.selected_items[instance]
+                new_dict.pop(instance, None)
+            self.selected_items = new_dict
