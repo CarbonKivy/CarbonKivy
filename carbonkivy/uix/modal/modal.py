@@ -12,8 +12,10 @@ __all__ = (
     "CModalCloseButton",
 )
 
+from kivy.clock import Clock
 from kivy.uix.modalview import ModalView
 from kivy.uix.widget import Widget
+from kivy.properties import ObjectProperty
 
 from carbonkivy.behaviors import AdaptiveBehavior, DeclarativeBehavior
 from carbonkivy.uix.boxlayout import CBoxLayout
@@ -34,6 +36,14 @@ class CModal(AdaptiveBehavior, DeclarativeBehavior, ModalView):
             widget.bind(height=self.setter("height"))
         return super().add_widget(widget, *args, **kwargs)
 
+    def remove_widget(self, widget, *args, **kwargs):
+        super().remove_widget(widget, *args, **kwargs)
+
+    def on_dismiss(self):
+        for event in Clock.get_events():
+            if not event.loop and event.timeout > 0:
+                event.cancel()
+        super().on_dismiss()
 
 class CModalLayout(CBoxLayout):
     pass

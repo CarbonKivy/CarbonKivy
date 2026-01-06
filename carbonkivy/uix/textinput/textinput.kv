@@ -17,7 +17,7 @@
 <CTextInputLabel>:
     color: app.text_secondary
     style: "label_01"
-    pos: [0, self.parent.height + (dp(8))]
+    pos: [0, self.parent.height + (dp(8))] if self.parent else [0, 0]
     adaptive: [False, True]
 
 <CTextInputHelperText>:
@@ -29,7 +29,7 @@
 <CTextInputTrailingIconButton>:
     text_color: app.icon_primary
     role: "Large Productive"
-    pos: [self.parent.width - (self.width), self.parent.height - (self.height)]
+    pos: [self.parent.width - (self.width), self.parent.height - (self.height)] if self.parent else [0, 0]
 
 <CTextInput>:
     canvas.after:
