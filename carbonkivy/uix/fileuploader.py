@@ -5,6 +5,7 @@ Native file uploader for Kivy applications across multiple platforms: Windows, m
 import os
 import sys
 import threading
+import platform as pyplatform
 
 from kivy.clock import Clock
 from kivy.event import EventDispatcher
@@ -17,7 +18,11 @@ if sys.platform.startswith("win"):
     import ctypes
     from ctypes import wintypes
 
-    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+    try:
+        ctypes.windll.shcore.SetProcessDpiAwareness(1)
+    except Exception as e:
+        print(e)
+    
     ctypes.windll.user32.SetProcessDPIAware()
 
     OFN_EXPLORER = 0x00000008
