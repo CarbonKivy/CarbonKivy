@@ -43,7 +43,7 @@ class CModal(AdaptiveBehavior, DeclarativeBehavior, ModalView):
         for event in Clock.get_events():
             if not event.loop and event.timeout > 0:
                 event.cancel()
-        super().on_dismiss()
+        return super().on_dismiss()
 
 class CModalLayout(CBoxLayout):
     pass
