@@ -296,15 +296,15 @@ class CFileUploader(EventDispatcher):
             Runnable(self._open_file_android)(multiple=True, mime_type=mime_type)
         elif sys.platform.startswith("win"):
             threading.Thread(
-                target=self._open_file_windows, kwargs={"multiple": True}
+                target=self._open_file_windows, daemon=True, kwargs={"multiple": True}
             ).start()
         elif sys.platform == "darwin":
             threading.Thread(
-                target=self._open_file_macos, kwargs={"multiple": True}
+                target=self._open_file_macos, daemon=True, kwargs={"multiple": True}
             ).start()
         elif sys.platform.startswith("linux"):
             threading.Thread(
-                target=self._open_file_linux, kwargs={"multiple": True}
+                target=self._open_file_linux, daemon=True, kwargs={"multiple": True}
             ).start()
         return
 
@@ -326,15 +326,15 @@ class CFileUploader(EventDispatcher):
             Runnable(self._open_file_android)(multiple=False, mime_type=mime_type)
         elif sys.platform.startswith("win"):
             threading.Thread(
-                target=self._open_file_windows, kwargs={"multiple": False}
+                target=self._open_file_windows, daemon=True, kwargs={"multiple": False}
             ).start()
         elif sys.platform == "darwin":
             threading.Thread(
-                target=self._open_file_macos, kwargs={"multiple": False}
+                target=self._open_file_macos, daemon=True, kwargs={"multiple": False}
             ).start()
         elif sys.platform.startswith("linux"):
             threading.Thread(
-                target=self._open_file_linux, kwargs={"multiple": False}
+                target=self._open_file_linux, daemon=True, kwargs={"multiple": False}
             ).start()
         return
 
