@@ -19,10 +19,10 @@
     overlay_color: app.transparent
     background_color:
         { \
-        "Error": app.notification_background_error, \
-        "Info": app.notification_background_info, \
-        "Success":  app.notification_background_success, \
-        "Warning":  app.notification_background_warning, \
+        "Error": self.theme_cls.notification_background_error, \
+        "Info": self.theme_cls.notification_background_info, \
+        "Success":  self.theme_cls.notification_background_success, \
+        "Warning":  self.theme_cls.notification_background_warning, \
         }[self.status]
     icon:
         { \
@@ -31,8 +31,8 @@
         "Success": "checkmark--filled", \
         "Warning": "warning--filled", \
         }[self.status]
-    _bgi_color: app.gray_100 if self.status == "Warning" else app.text_inverse
-    shadow_color: app.background_inverse_hover
+    _bgi_color: self.theme_cls.gray_100 if self.status == "Warning" else self.theme_cls.text_inverse
+    -shadow_color: self.theme_cls.notification_action_tertiary_inverse_hover
 
 <CNotification>:
     size_hint: None if self.variant == "Toast" else 0.9, None
@@ -40,7 +40,7 @@
     height: notification_layout.height
     anchor_y: "top" if root.variant == "Toast" else "center"
     pos_hint: {'center_x': 0.5,'center_y': 0.8}
-    main_notification_layout: main_notification_layout
+    cnotification_layout: main_notification_layout
 
     CBoxLayout:
         id: notification_layout
@@ -72,12 +72,12 @@
                 style: "heading_compact_01"
                 weight_style: "ThinItalic"
                 pos_hint: {'top': 1.0}
-                color: app.text_primary
-            
+                color: root.theme_cls.text_primary
+
             CLabel:
                 text: root.subtitle
                 style: "body_compact_01"
-                color: app.text_primary
+                color: root.theme_cls.text_primary
                 pos_hint: {'top': 1.0}
                 padding: [0, 0, 0, dp(20) if root.variant == "Toast" else 0]
 
@@ -115,12 +115,12 @@
                 width: self.texture_size[0]
                 text_size: None, self.texture_size[1]
                 style: "heading_compact_01"
-                color: app.text_primary
+                color: root.theme_cls.text_primary
             
             CLabel:
                 text: root.subtitle
                 style: "body_compact_01"
-                color: app.text_primary
+                color: root.theme_cls.text_primary
 
     CNotificationCloseButton:
         on_press:
@@ -163,13 +163,13 @@
                 width: self.texture_size[0]
                 text_size: None, self.texture_size[1]
                 style: "heading_compact_01"
-                color: app.text_primary
+                color: root.theme_cls.text_primary
             
             CLabel:
                 text: root.subtitle
                 style: "body_compact_01"
                 padding: [0, 0, 0, dp(20)]
-                color: app.text_primary
+                color: root.theme_cls.text_primary
 
     CNotificationCloseButton:
         on_press:
@@ -177,17 +177,17 @@
 
 <CNotificationCloseButton>:
     icon: "close"
-    text_color: app.text_primary
-    text_color_hover: app.text_primary
-    text_color_focus: app.text_primary
-    inset_color: app.transparent
-    inset_color_focus: app.transparent
-    hover_color: app.background_hover
-    active_color: app.background_active
+    text_color: self.parent.theme_cls.text_primary
+    text_color_hover: self.parent.theme_cls.text_primary
+    text_color_focus: self.parent.theme_cls.text_primary
+    inset_color: self.parent.theme_cls.transparent
+    inset_color_focus: self.parent.theme_cls.transparent
+    hover_color: self.parent.theme_cls.background_hover
+    active_color: self.parent.theme_cls.background_active
     inset_width: 0
     font_size: plex_16
     role: "Large Productive"
-    line_color_focus: app.focus
+    line_color_focus: self.parent.theme_cls.focus
 
 
 <CNotificationCaption>:
