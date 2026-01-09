@@ -9,6 +9,7 @@ __all__ = (
     "CNotificationToast",
 )
 
+from kivy.app import App
 from kivy.clock import Clock
 from kivy.properties import (
     BooleanProperty,
@@ -26,6 +27,7 @@ from carbonkivy.behaviors import (
     DeclarativeBehavior,
     ElevationBehavior,
 )
+from carbonkivy.theme.theme import CarbonTheme
 from carbonkivy.uix.button import CButton
 from carbonkivy.uix.label import CLabel
 from carbonkivy.utils import get_latest_time
@@ -45,6 +47,8 @@ class CBaseNotification(
 
     status = OptionProperty("Success", options=["Error", "Info", "Success", "Warning"])
 
+    contrast = OptionProperty("Low", options=["Low", "High"])
+
     caption = StringProperty(None, allownone=True)
 
     icon = StringProperty()
@@ -56,6 +60,21 @@ class CBaseNotification(
     subtitle = StringProperty()
 
     cnotification_layout = ObjectProperty()
+
+    theme_cls = ObjectProperty(CarbonTheme(defaults=False))
+
+    def __init__(self, *args, **kwargs) -> None:
+        super(CBaseNotification, self).__init__(*args, **kwargs)
+        self.on_contrast()
+
+    def on_contrast(self, *args) -> None:
+        if self.contrast == "High":
+            if App.get_running_app().theme in ["Gray90", "Gray100"]:
+                self.theme_cls.theme = "White"
+            else:
+                self.theme_cls.theme = "Gray100"
+        else:
+            self.theme_cls.theme = App.get_running_app().theme
 
     def on_time_caption_enabled(self, *args) -> None:
         if self.time_caption_enabled and not self.caption:
@@ -91,6 +110,9 @@ class CBaseNotification(
 class CNotification(CBaseNotification):
 
     variant = OptionProperty("Toast", options=["Inline", "Toast"])
+
+    def __init__(self, *args, **kwargs) -> None:
+        super(CNotification, self).__init__(*args, **kwargs)
 
 
 class CNotificationInline(CBaseNotification):
