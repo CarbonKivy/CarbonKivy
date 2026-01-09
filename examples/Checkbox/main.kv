@@ -1,0 +1,46 @@
+<HomeScreen>:
+
+    CBoxLayout:
+        adaptive: [True, True]
+        padding: dp(16)
+        spacing: dp(8)
+        orientation: "vertical"
+        pos_hint: {"center_y": 0.5, "center_x": 0.5}
+
+        CLabel:
+            text: "Group label"
+            style: "label_01"
+            color: app.text_secondary
+
+        CBoxLayout:
+            adaptive: [True, True]
+            spacing: dp(8)
+
+            CCheckbox:
+                line_width: dp(0.75)
+
+            CLabel:
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                text: "Checkbox label"
+                pos_hint: {"center_y": 0.5}
+        
+        CBoxLayout:
+            adaptive: [True, True]
+            spacing: dp(8)
+
+            CCheckbox:
+                line_width: dp(0.75)
+
+            CLabel:
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.texture_size[1]
+                text: "Checkbox label"
+                pos_hint: {"center_y": 0.5}
+
+        CLabel:
+            text: "Helper text goes here"
+            style: "label_01"
+            color: app.text_secondary
