@@ -7,7 +7,7 @@ import os
 from kivy.core.window import Window
 from kivy.event import EventDispatcher
 from kivy.lang import Builder
-from kivy.properties import ListProperty, OptionProperty
+from kivy.properties import ListProperty, OptionProperty, BooleanProperty
 from kivy.utils import colormap, get_color_from_hex
 
 from carbonkivy.config import THEME
@@ -31,13 +31,16 @@ class CarbonTheme(EventDispatcher, ThematicColors, StaticColors):
         list(thematic_tokens.keys()) + list(static_tokens.keys())
     )
 
+    defaults = BooleanProperty(True)
+
     def __init__(self, **kwargs) -> None:
         super(CarbonTheme, self).__init__(**kwargs)
         self.on_theme()
 
     def on_theme(self, *args) -> None:
         colormap.update(self.parse_thematic_tokens())
-        Window.clearcolor = colormap["background"]
+        if self.defaults:
+            Window.clearcolor = colormap["background"]
         self.update_thematic_colors()
 
     def parse_thematic_tokens(self, *args) -> dict:
