@@ -39,11 +39,6 @@ class CModal(AdaptiveBehavior, DeclarativeBehavior, ModalView):
     def remove_widget(self, widget, *args, **kwargs):
         super().remove_widget(widget, *args, **kwargs)
 
-    def on_dismiss(self):
-        for event in Clock.get_events():
-            if not event.loop and event.timeout > 0:
-                event.cancel()
-        return super().on_dismiss()
 
 class CModalLayout(CBoxLayout):
     pass
