@@ -1,8 +1,6 @@
 import os
 import sys
 
-os.environ["devicetype"] = "mobile"
-
 from kivy.resources import resource_add_path
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -40,9 +38,9 @@ class UI(CScreenManager):
 
 class HomeScreen(CScreen):
 
-    def on_kv_post(self, base_widget: object) -> None:
-        self.filter_dropdown = CustomDatePicker(master=self.ids.datepicker_btn)
-        return super().on_kv_post(base_widget)
+    def __init__(self, *args, **kwargs):
+        self.datepicker = CustomDatePicker()
+        super().__init__(*args, **kwargs)
 
 
 class myapp(CarbonApp):

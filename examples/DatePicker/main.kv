@@ -1,10 +1,29 @@
 <HomeScreen>:
 
-    CButtonPrimary:
-        id: datepicker_btn
-        text: "filters"
-        icon: "list--dropdown"
-        pos_hint: {"center_x": 0.8, "center_y": 0.5}
-        on_press:
-            root.filter_dropdown.visibility = True
+    CStackLayout:
+        size_hint: [1, 1]
+        padding: dp(16)
 
+        CBoxLayout:
+            adaptive: [False, True]
+            orientation: "vertical"
+            padding: [0, dp(32)]
+
+            CTextInputLayout:
+                id: datepicker_input
+
+                CTextInput:
+                    id: datepicker_textinput
+                    readonly: True
+                    text: root.datepicker.selected_date.strftime("%d/%m/%y") if root.datepicker.selected_date else ""
+                    hint_text: "mm/dd/yy"
+
+                CTextInputTrailingIconButton:
+                    icon: "calendar"
+                    line_color_focus: app.transparent
+                    on_press:
+                        root.datepicker.master = datepicker_textinput
+                        root.datepicker.visibility = True
+
+<CustomDatePicker>:
+    shadow_color: [0, 0, 0, 0.2]

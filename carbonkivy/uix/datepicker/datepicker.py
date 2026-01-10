@@ -50,7 +50,7 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     month_name = StringProperty()
 
-    selected_date = ObjectProperty(date.today(), allownone=True)
+    selected_date = ObjectProperty(None, allownone=True)
 
     def __init__(self, **kwargs):
         super(CDatePicker, self).__init__(**kwargs)
@@ -60,27 +60,23 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     def on_master(self, *args) -> None:
         if self.master and DEVICE_TYPE == "desktop":
-            self.update_pos(self.master)
+            Clock.schedule_once(lambda dt: self.update_pos(self.master), 2)
 
     @mainthread
     def update_pos(self, instance: Widget, *args) -> None:
         pos_x, pos_y = [
-            instance.center_x - dp(16),
+            instance.center_x - self.width/2,
             (
                 instance.top + dp(12)
                 if (self.pointer == "Downward")
-                else instance.y - self.height - dp(12)
+                else instance.y - self.height - dp(16)
             ),
         ]
 
-        instance_center = instance.to_window(
-            *instance.to_local(
-                *instance.to_parent(*[instance.center_x, instance.center_y])
-            )
-        )
+        instance_center = instance.to_window(instance.center_x, instance.center_y)
 
         if instance_center[0] < self.width / 2:
-            pos_x = instance.center_x - dp(16) if (not self.margin) else self.margin
+            pos_x = instance.center_x - self.width if (not self.margin) else self.margin
         elif (Window.width - instance_center[0]) < self.width / 2:
             pos_x = (
                 instance.center_x - self.width + dp(16)
@@ -91,15 +87,13 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         if (Window.height - instance_center[1]) < (
             instance.height / 2 + self.height + dp(12)
         ):
-            pos_y = instance.top - self.height
+            pos_y = instance.y - self.height - dp(12)
         elif (instance_center[1]) < (instance.height / 2 + self.height + dp(12)):
             pos_y = instance.top + dp(12)
         else:
             self._pointer = self.pointer
 
-        self.pos = instance.to_window(
-            *instance.to_local(*instance.to_parent(*[pos_x, pos_y]))
-        )
+        self.pos = instance.to_window(*[pos_x, pos_y])
 
     def on_touch_down(self, touch):
         if not self.collide_point(*touch.pos) and not self.master.collide_point(
