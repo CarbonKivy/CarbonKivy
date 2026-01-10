@@ -1,5 +1,5 @@
 __app_name__ = "CarbonKivy"
-__version__ = "0.0.4"
+__version__ = "0.0.5.dev0"
 
 from kivy.logger import Logger
 
