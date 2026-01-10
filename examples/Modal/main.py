@@ -1,5 +1,6 @@
 import os
 import sys
+import weakref
 
 from kivy.resources import resource_add_path
 
@@ -39,7 +40,14 @@ class myapp(CarbonApp):
     def __init__(self, *args, **kwargs):
         super(myapp, self).__init__(*args, **kwargs)
         self.load_all_kv_files(self.directory)
-        self.modal = DomainModal()
+
+    def open_modal(self) -> None:
+        modal = DomainModal()
+        self._modal_ref = weakref.ref(modal)
+        modal.open()
+        self._modal_ref = None
+        modal = None
+
 
     def build(self) -> CScreenManager:
         self.manager_screens = CScreenManager()
