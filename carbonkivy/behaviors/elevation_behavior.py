@@ -2,6 +2,7 @@ from __future__ import annotations
 
 __all__ = ("ElevationBehavior",)
 
+from kivy.app import App
 from kivy.event import EventDispatcher
 from kivy.lang import Builder
 from kivy.metrics import dp
@@ -12,24 +13,29 @@ Builder.load_string(
 <ElevationBehavior>:
     canvas.before:
         Color:
-            rgba: self.shadow_color
+            rgba: self._shadow_color
         BoxShadow:
             size: self.size
             pos: (self.pos[0] + self.shadow_offset[0], self.pos[1] + self.shadow_offset[1]) if not isinstance(self, RelativeLayout) else (self.shadow_offset[0], self.shadow_offset[1])
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
-    shadow_color: app.background_inverse_hover
-"""
+""",
+    filename = "ElevationBehavior.kv"
 )
 
 
 class ElevationBehavior(EventDispatcher):
 
-    shadow_offset = VariableListProperty([dp(1), -dp(1.5)], length=2)
+    shadow_offset = VariableListProperty([dp(1), -dp(1.25)], length=2)
 
     shadow_blur_radius = NumericProperty(0)
 
     shadow_color = ColorProperty()
 
-    def __init__(self, **kwargs) -> None:
-        super(ElevationBehavior, self).__init__(**kwargs)
+    _shadow_color = ColorProperty()
+
+    def __init__(self, *args, **kwargs) -> None:
+        super(ElevationBehavior, self).__init__(*args, **kwargs)
+
+    def on_shadow_color(self, instance, value) -> None:
+        self._shadow_color = value
