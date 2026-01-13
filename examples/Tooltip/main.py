@@ -55,7 +55,7 @@ class TooltipButton(CButtonPrimary, ElevationBehavior, TooltipBehavior):
         super().__init__(**kwargs)
         self.tooltip = MToggletip(
             text="This is a large Toggletip text.",
-            width=dp(200),
+            width=dp(288),
             margin=dp(2),
             pointer="Upward",
         )
