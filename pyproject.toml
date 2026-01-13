@@ -28,7 +28,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/CarbonKivy/CarbonKivy"
+Homepage = "https://carbonkivy.readthedocs.io/en/latest"
 Repository = "https://github.com/CarbonKivy/CarbonKivy"
 "Bug Tracker" = "https://github.com/CarbonKivy/CarbonKivy/issues"
 Changelog = "https://github.com/CarbonKivy/CarbonKivy/blob/master/CHANGELOG.md"
