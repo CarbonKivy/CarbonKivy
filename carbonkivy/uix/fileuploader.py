@@ -272,6 +272,7 @@ class CFileUploader(EventDispatcher):
         intent = Intent(Intent.ACTION_GET_CONTENT)  # type: ignore
         intent.setType(mime_type)
         intent.addCategory(Intent.CATEGORY_OPENABLE)  # type: ignore
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         if multiple:
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, True)  # type: ignore
         activity.bind(on_activity_result=self.on_activity_result)  # type: ignore
