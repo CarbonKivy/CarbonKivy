@@ -57,7 +57,7 @@ def update_system_ui(
         https://github.com/Novfensec
     """
     if platform == "android":
-        from android.runnable import run_on_ui_thread  # type: ignore
+        from android.runnable import Runnable  # type: ignore
         from jnius import PythonJavaClass, autoclass, java_method  # type: ignore
 
         Color = autoclass("android.graphics.Color")
@@ -88,7 +88,6 @@ def update_system_ui(
             else:
                 raise ValueError("Color must be hex string or RGBA tuple")
 
-        @run_on_ui_thread
         def apply_system_bars():
             status_color_int = parse_color(status_bar_color)
             navigation_color_int = parse_color(navigation_bar_color)
@@ -179,7 +178,7 @@ def update_system_ui(
                 window.setStatusBarColor(status_color_int)
                 window.setNavigationBarColor(navigation_color_int)
 
-        apply_system_bars()
+        Runnable(apply_system_bars)()
 
 
 def get_display_cutout_insets():
