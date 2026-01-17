@@ -16,7 +16,7 @@ from typing import Any
 
 from kivy.clock import Clock
 from kivy.input.providers.mouse import MouseMotionEvent
-from kivy.properties import ObjectProperty, StringProperty
+from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.uix.behaviors import ButtonBehavior
 
 from carbonkivy.behaviors import (
@@ -69,8 +69,24 @@ class CTabHeaderItem(
 
     tab_manager = ObjectProperty()
 
+    font_size = NumericProperty()
+
+    icon_size = NumericProperty()
+
     def __init__(self, **kwargs) -> None:
         super(CTabHeaderItem, self).__init__(**kwargs)
+
+    def on_font_size(self, *args) -> None:
+        try:
+            self.ids.primary_text_label.font_size = self.font_size
+        except Exception:
+            return
+
+    def on_icon_size(self, *args) -> None:
+        try:
+            self.ids.icon.font_size = self.icon_size
+        except Exception:
+            return
 
     def on_selected(self, *args) -> None:
         if self.selected and self.tab_manager is not None:
@@ -91,6 +107,7 @@ class CTabHeaderItem(
 
         def add_primary_text(*args) -> None:
             plabel = CTabHeaderPrimaryText(text=self.primary_text)
+            plabel.font_size = self.font_size
             self.ids.header_box_layout.add_widget(plabel, index=1)
             self.ids["primary_text_label"] = plabel
             self.ids.header_box_layout.width += self.ids.primary_text_label.width
@@ -117,7 +134,8 @@ class CTabHeaderItem(
             pass
 
         def add_icon(*args) -> None:
-            icon = CTabHeaderIcon(icon=self.icon)
+            icon = CTabHeaderIcon(icon=self.icon, pos_hint={"center_y": 0.5})
+            icon.font_size = self.icon_size
             self.ids.header_box_layout.add_widget(icon, index=0)
             self.ids["icon"] = icon
             self.ids.header_box_layout.width += self.ids.icon.width
