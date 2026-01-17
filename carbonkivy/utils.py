@@ -93,24 +93,33 @@ def update_system_ui(
             status_color_int = parse_color(status_bar_color)
             navigation_color_int = parse_color(navigation_bar_color)
 
-            if Build_VERSION.SDK_INT >= VERSION_CODES.R and inset_controller:
+            if (Build_VERSION.SDK_INT >= VERSION_CODES.R) and inset_controller:
                 # API 30+ (Android 11+)
-                WindowInsetsController = autoclass(
-                    "android.view.WindowInsetsController"
-                )
-                if icon_style == "Dark":
-                    inset_controller.setSystemBarsAppearance(
-                        0,
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-                        | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
-                    )
+                if "WindowInsetsControllerCompat" in str(type(inset_controller)):
+                    # Compat wrapper (AndroidX)
+                    if icon_style == "Dark":
+                        inset_controller.setAppearanceLightStatusBars(True)
+                        inset_controller.setAppearanceLightNavigationBars(True)
+                    else:
+                        inset_controller.setAppearanceLightStatusBars(False)
+                        inset_controller.setAppearanceLightNavigationBars(False)
                 else:
-                    inset_controller.setSystemBarsAppearance(
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-                        | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-                        | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
-                    )
+                    # Platform controller (API 30+)
+                    WindowInsetsController = autoclass("android.view.WindowInsetsController")
+                    if icon_style == "Dark":
+                        inset_controller.setSystemBarsAppearance(
+                            0,
+                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                            | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                        )
+                    else:
+                        inset_controller.setSystemBarsAppearance(
+                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                            | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                            | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                        )
+
             else:
                 # Legacy flags for API 23–29
                 if icon_style == "Dark":
@@ -163,6 +172,7 @@ def update_system_ui(
                         return insets
 
                 listener = InsetsListener(status_color_int, navigation_color_int)
+                activity._system_ui_listener = listener
                 decor_view.setOnApplyWindowInsetsListener(listener)
                 decor_view.requestApplyInsets()
             else:
