@@ -92,7 +92,7 @@ def update_system_ui(
             status_color_int = parse_color(status_bar_color)
             navigation_color_int = parse_color(navigation_bar_color)
 
-            if (Build_VERSION.SDK_INT >= VERSION_CODES.R) and inset_controller:
+            if (Build_VERSION.SDK_INT >= 11) and inset_controller:
                 # API 30+ (Android 11+)
                 if "WindowInsetsControllerCompat" in str(type(inset_controller)):
                     # Compat wrapper (AndroidX)
@@ -103,7 +103,7 @@ def update_system_ui(
                         inset_controller.setAppearanceLightStatusBars(False)
                         inset_controller.setAppearanceLightNavigationBars(False)
                 else:
-                    # Platform controller (API 30+)
+                    # Platform controller
                     WindowInsetsController = autoclass("android.view.WindowInsetsController")
                     if icon_style == "Dark":
                         inset_controller.setSystemBarsAppearance(
@@ -130,7 +130,7 @@ def update_system_ui(
                     visibility_flags = 0
                 decor_view.setSystemUiVisibility(visibility_flags)
 
-            if Build_VERSION.SDK_INT >= VERSION_CODES.VANILLA_ICE_CREAM:
+            if Build_VERSION.SDK_INT >= 35:
 
                 class InsetsListener(PythonJavaClass):
                     __javainterfaces__ = [
@@ -159,7 +159,6 @@ def update_system_ui(
                             bottom_pad = nav_insets.bottom if pad_nav else 0
 
                             content_view.setPadding(0, top_pad, 0, bottom_pad)
-                            content_view.setBackgroundColor(self.status_color)
 
                             content_view.setBackgroundColor(self.status_color)
                             window.setNavigationBarColor(self.navigation_color)
