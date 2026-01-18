@@ -28,7 +28,7 @@
     CTabHeaderItemLayout:
         id: header_box_layout
         size_hint_x: None
-        adaptive: [False, True]
+        adaptive: [False, True] if root.ids.get("primary_text_label", None) else [True, True]
         padding: dp(16)
         spacing: dp(16)
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
