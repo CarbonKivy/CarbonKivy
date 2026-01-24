@@ -52,7 +52,12 @@
     -color: self.base_button._text_color
     font_size:  self.base_button.font_size
     pos_hint: {'center_y': 0.5}
-    pos: dp(16), self.pos[1]
+    pos: 
+        { \
+        "left": [dp(16), self.pos[1]], \
+        "center": [self.base_button.width/2 - self.width/2, self.pos[1]], \
+        "right": [self.base_button.width - self.width - dp(16), self.pos[1]], \
+        }[self.base_button.text_halign]
 
 
 <CButtonPrimary>:
