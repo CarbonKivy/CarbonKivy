@@ -85,6 +85,8 @@ class CButton(
 
     padding = VariableListProperty([0], length=4)
 
+    text_halign = StringProperty("left")
+
     def __init__(self, **kwargs) -> None:
         super(CButton, self).__init__(**kwargs)
 

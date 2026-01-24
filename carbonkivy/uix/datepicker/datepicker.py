@@ -100,7 +100,22 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
             *self.master.to_parent(*self.master.to_widget(*touch.pos))
         ):
             self.visibility = False
+            return True
         return super().on_touch_down(touch)
+
+    def on_touch_up(self, touch):
+        if not self.collide_point(*touch.pos) and not self.master.collide_point(
+            *self.master.to_parent(*self.master.to_widget(*touch.pos))
+        ):
+            return True
+        return super().on_touch_down(touch)
+
+    def on_touch_move(self, touch):
+        if not self.collide_point(*touch.pos) and not self.master.collide_point(
+            *self.master.to_parent(*self.master.to_widget(*touch.pos))
+        ):
+            return True
+        return super().on_touch_move(touch)
 
     def on_visibility(self, *args) -> None:
         Clock.unschedule(self.set_visibility)
