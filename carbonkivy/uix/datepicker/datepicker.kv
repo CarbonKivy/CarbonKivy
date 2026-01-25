@@ -152,14 +152,38 @@
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
                 weight_style: "SemiBold"
 
-            CLabel:
-                id: year_label
-                text: str(root.parent.current_year)
-                size_hint: None, None
-                size: self.texture_size
-                text_size: None, self.texture_size[1]
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
-                weight_style: "SemiBold"
+            BoxLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(8)
+
+                CLabel:
+                    id: year_label
+                    text: str(root.parent.current_year)
+                    size_hint: None, None
+                    size: self.texture_size
+                    text_size: None, self.texture_size[1]
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    weight_style: "SemiBold"
+
+                BoxLayout:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: "vertical"
+
+                    UIShellButton:
+                        icon: "chevron--up"
+                        size: dp(12), dp(12)
+                        font_size: sp(8)
+                        on_press:
+                            root.parent.year_next()
+                    
+                    UIShellButton:
+                        icon: "chevron--down"
+                        size: dp(12), dp(12)
+                        font_size: sp(8)
+                        on_press:
+                            root.parent.year_prev()
 
     UIShellButton:
         icon: "chevron--right"
