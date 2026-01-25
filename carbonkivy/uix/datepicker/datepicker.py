@@ -159,6 +159,18 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
         Clock.unschedule(self.ids.cdatepickercalendar.update_calendar)
         Clock.schedule_once(self.ids.cdatepickercalendar.update_calendar)
 
+    def year_prev(self, *args) -> None:
+        self.current_year -= 1
+        self.month_name = calendar.month_name[int(self.current_month)]
+        Clock.unschedule(self.ids.cdatepickercalendar.update_calendar)
+        Clock.schedule_once(self.ids.cdatepickercalendar.update_calendar)
+
+    def year_next(self, *args) -> None:
+        self.current_year += 1
+        self.month_name = calendar.month_name[int(self.current_month)]
+        Clock.unschedule(self.ids.cdatepickercalendar.update_calendar)
+        Clock.schedule_once(self.ids.cdatepickercalendar.update_calendar)
+
 
 class CDatePickerDayButton(CButton, SelectableBehavior):
 
