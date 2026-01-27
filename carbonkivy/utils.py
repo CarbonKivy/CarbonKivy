@@ -108,26 +108,31 @@ def update_system_ui(
                     WindowInsetsController = autoclass("android.view.WindowInsetsController")
                     if icon_style == "Dark":
                         inset_controller.setSystemBarsAppearance(
-                            0,
+                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                            | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                             | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                         )
                     else:
                         inset_controller.setSystemBarsAppearance(
-                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-                            | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                            0,
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                             | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                         )
             else:
                 # Legacy flags for API 23–29
                 visibility_flags = decor_view.getSystemUiVisibility()
+
                 if icon_style == "Dark":
                     visibility_flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                     if Build_VERSION.SDK_INT >= 26:
                         visibility_flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 else:
-                    visibility_flags = 0
+                    # Safely clear ONLY the light bar flags without touching layout flags
+                    visibility_flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    if Build_VERSION.SDK_INT >= 26:
+                        visibility_flags &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+
                 decor_view.setSystemUiVisibility(visibility_flags)
 
             if Build_VERSION.SDK_INT >= 35:
