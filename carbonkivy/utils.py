@@ -93,7 +93,7 @@ def update_system_ui(
                 # API 30+ (Android 10+)
                 if inset_controller and "WindowInsetsControllerCompat" in str(type(inset_controller)):
                     # Compat wrapper (AndroidX)
-                    if icon_style == "Dark":
+                    if icon_style == "Light":
                         inset_controller.setAppearanceLightStatusBars(False)
                         inset_controller.setAppearanceLightNavigationBars(False)
                     else:
@@ -103,7 +103,7 @@ def update_system_ui(
                     # Platform controller (API 30+)
                     controller = inset_controller or window.getInsetsController()
                     WindowInsetsController = autoclass("android.view.WindowInsetsController")
-                    if icon_style == "Dark":
+                    if icon_style == "Light":
                         controller.setSystemBarsAppearance(
                             0,
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
@@ -121,7 +121,7 @@ def update_system_ui(
                 # Legacy flags for API 23–29
                 visibility_flags = decor_view.getSystemUiVisibility()
 
-                if icon_style == "Dark":
+                if icon_style == "Light":
                     visibility_flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                     if Build_VERSION.SDK_INT >= 26:
                         visibility_flags &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
