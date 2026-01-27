@@ -92,9 +92,9 @@ def update_system_ui(
             status_color_int = parse_color(status_bar_color)
             navigation_color_int = parse_color(navigation_bar_color)
 
-            if (Build_VERSION.SDK_INT >= 11) and inset_controller:
-                # API 30+ (Android 11+)
-                if "WindowInsetsControllerCompat" in str(type(inset_controller)):
+            if (Build_VERSION.SDK_INT >= 30):
+                # API 30+ (Android 10+)
+                if "WindowInsetsControllerCompat" in str(type(inset_controller)) and inset_controller:
                     # Compat wrapper (AndroidX)
                     if icon_style == "Dark":
                         inset_controller.setAppearanceLightStatusBars(True)
@@ -104,6 +104,7 @@ def update_system_ui(
                         inset_controller.setAppearanceLightNavigationBars(False)
                 else:
                     # Platform controller
+                    inset_controller = window.getInsetsController()
                     WindowInsetsController = autoclass("android.view.WindowInsetsController")
                     if icon_style == "Dark":
                         inset_controller.setSystemBarsAppearance(
@@ -118,14 +119,13 @@ def update_system_ui(
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                             | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                         )
-
             else:
                 # Legacy flags for API 23–29
+                visibility_flags = decor_view.getSystemUiVisibility()
                 if icon_style == "Dark":
-                    visibility_flags = (
-                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                        | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                    )
+                    visibility_flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    if Build_VERSION.SDK_INT >= 26:
+                        visibility_flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 else:
                     visibility_flags = 0
                 decor_view.setSystemUiVisibility(visibility_flags)
