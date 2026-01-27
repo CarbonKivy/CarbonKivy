@@ -105,14 +105,14 @@ def update_system_ui(
                     WindowInsetsController = autoclass("android.view.WindowInsetsController")
                     if icon_style == "Dark":
                         controller.setSystemBarsAppearance(
-                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-                            | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                            0,
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                             | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                         )
                     else:
                         controller.setSystemBarsAppearance(
-                            0,
+                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                            | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                             | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                         )
@@ -122,14 +122,13 @@ def update_system_ui(
                 visibility_flags = decor_view.getSystemUiVisibility()
 
                 if icon_style == "Dark":
-                    visibility_flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                    if Build_VERSION.SDK_INT >= 26:
-                        visibility_flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                else:
-                    # Safely clear ONLY the light bar flags without touching layout flags
                     visibility_flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                     if Build_VERSION.SDK_INT >= 26:
                         visibility_flags &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                else:
+                    visibility_flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    if Build_VERSION.SDK_INT >= 26:
+                        visibility_flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
 
                 decor_view.setSystemUiVisibility(visibility_flags)
 
