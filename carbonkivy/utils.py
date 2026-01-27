@@ -94,7 +94,7 @@ def update_system_ui(
 
             if (Build_VERSION.SDK_INT >= 30):
                 # API 30+ (Android 10+)
-                if "WindowInsetsControllerCompat" in str(type(inset_controller)) and inset_controller:
+                if inset_controller and "WindowInsetsControllerCompat" in str(type(inset_controller)):
                     # Compat wrapper (AndroidX)
                     if icon_style == "Dark":
                         inset_controller.setAppearanceLightStatusBars(True)
