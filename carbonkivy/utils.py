@@ -40,7 +40,6 @@ def get_button_size(token: str) -> float:
 def get_latest_time(*args) -> str:
     return datetime.now().strftime("%I:%M:%S %p")
 
-
 def update_system_ui(
     status_bar_color: list[float] | str,
     navigation_bar_color: list[float] | str,
@@ -61,9 +60,7 @@ def update_system_ui(
         from jnius import PythonJavaClass, autoclass, java_method  # type: ignore
 
         Color = autoclass("android.graphics.Color")
-        WindowManager = autoclass("android.view.WindowManager$LayoutParams")
         Build_VERSION = autoclass("android.os.Build$VERSION")
-        VERSION_CODES = autoclass("android.os.Build$VERSION_CODES")
         WindowInsetsType = autoclass("android.view.WindowInsets$Type")
         PythonActivity = autoclass("org.kivy.android.PythonActivity")
         View = autoclass("android.view.View")
@@ -103,22 +100,23 @@ def update_system_ui(
                         inset_controller.setAppearanceLightStatusBars(False)
                         inset_controller.setAppearanceLightNavigationBars(False)
                 else:
-                    # Platform controller
-                    inset_controller = window.getInsetsController()
+                    # Platform controller (API 30+)
+                    controller = inset_controller or window.getInsetsController()
                     WindowInsetsController = autoclass("android.view.WindowInsetsController")
                     if icon_style == "Dark":
-                        inset_controller.setSystemBarsAppearance(
+                        controller.setSystemBarsAppearance(
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                             | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                             | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                         )
                     else:
-                        inset_controller.setSystemBarsAppearance(
+                        controller.setSystemBarsAppearance(
                             0,
                             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                             | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
                         )
+
             else:
                 # Legacy flags for API 23–29
                 visibility_flags = decor_view.getSystemUiVisibility()
@@ -164,13 +162,12 @@ def update_system_ui(
                             bottom_pad = nav_insets.bottom if pad_nav else 0
 
                             content_view.setPadding(0, top_pad, 0, bottom_pad)
-
                             content_view.setBackgroundColor(self.status_color)
+
                             window.setNavigationBarColor(self.navigation_color)
                         except Exception as e:
                             print("Insets error:", e)
                             import traceback
-
                             traceback.print_exc()
                         return insets
 
@@ -183,7 +180,6 @@ def update_system_ui(
                 window.setNavigationBarColor(navigation_color_int)
 
         Runnable(apply_system_bars)()
-
 
 def get_display_cutout_insets():
     if platform == "android":
