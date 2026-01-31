@@ -101,7 +101,7 @@ def update_system_ui(
                         inset_controller.setAppearanceLightNavigationBars(True)
                 else:
                     # Platform controller (API 30+)
-                    controller = inset_controller or window.getInsetsController()
+                    controller = window.getInsetsController()
                     WindowInsetsController = autoclass("android.view.WindowInsetsController")
                     if icon_style == "Light":
                         controller.setSystemBarsAppearance(
