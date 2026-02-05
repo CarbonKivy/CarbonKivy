@@ -141,6 +141,10 @@ class ThematicColors(ComponentColors):
 
     interactive = ColorProperty()
 
+    highlight = ColorProperty()
+
+    toggle_off = ColorProperty()
+
     overlay = ColorProperty()
 
     skeleton_element = ColorProperty()
