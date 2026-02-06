@@ -90,7 +90,8 @@ class CTabHeaderItem(
 
     def on_selected(self, *args) -> None:
         if self.selected and self.tab_manager is not None:
-            self.tab_manager.current = self.name_tab
+            if self.tab_manager.has_screen(self.name_tab):
+                self.tab_manager.current = self.name_tab
 
     def on_touch_down(self, touch: MouseMotionEvent) -> bool:
         if self.collide_point(*touch.pos):
