@@ -40,6 +40,7 @@ def get_button_size(token: str) -> float:
 def get_latest_time(*args) -> str:
     return datetime.now().strftime("%I:%M:%S %p")
 
+
 def update_system_ui(
     status_bar_color: list[float] | str,
     navigation_bar_color: list[float] | str,
@@ -89,9 +90,11 @@ def update_system_ui(
             status_color_int = parse_color(status_bar_color)
             navigation_color_int = parse_color(navigation_bar_color)
 
-            if (Build_VERSION.SDK_INT >= 30):
+            if Build_VERSION.SDK_INT >= 30:
                 # API 30+ (Android 10+)
-                if inset_controller and "WindowInsetsControllerCompat" in str(type(inset_controller)):
+                if inset_controller and "WindowInsetsControllerCompat" in str(
+                    type(inset_controller)
+                ):
                     # Compat wrapper (AndroidX)
                     if icon_style == "Light":
                         inset_controller.setAppearanceLightStatusBars(False)
@@ -102,7 +105,9 @@ def update_system_ui(
                 else:
                     # Platform controller (API 30+)
                     controller = window.getInsetsController()
-                    WindowInsetsController = autoclass("android.view.WindowInsetsController")
+                    WindowInsetsController = autoclass(
+                        "android.view.WindowInsetsController"
+                    )
                     if icon_style == "Light":
                         controller.setSystemBarsAppearance(
                             0,
@@ -167,6 +172,7 @@ def update_system_ui(
                         except Exception as e:
                             print("Insets error:", e)
                             import traceback
+
                             traceback.print_exc()
                         return insets
 
@@ -179,6 +185,7 @@ def update_system_ui(
                 window.setNavigationBarColor(navigation_color_int)
 
         Runnable(apply_system_bars)()
+
 
 def get_display_cutout_insets():
     if platform == "android":

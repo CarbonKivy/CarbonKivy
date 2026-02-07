@@ -20,7 +20,7 @@ Builder.load_string(
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
 """,
-    filename = "ElevationBehavior.kv"
+    filename="ElevationBehavior.kv",
 )
 
 

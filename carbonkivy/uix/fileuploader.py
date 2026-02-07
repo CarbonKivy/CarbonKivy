@@ -22,7 +22,7 @@ if sys.platform.startswith("win"):
         ctypes.windll.shcore.SetProcessDpiAwareness(1)
     except Exception as e:
         print(e)
-    
+
     ctypes.windll.user32.SetProcessDPIAware()
 
     OFN_EXPLORER = 0x00000008
@@ -57,6 +57,7 @@ if sys.platform.startswith("win"):
             ("FlagsEx", wintypes.DWORD),
         ]
 
+
 # Android
 elif platform == "android":
     from android import activity  # type: ignore
@@ -83,9 +84,10 @@ elif sys.platform.startswith("linux"):
         print("PyGObject (gi) is not installed. Try: sudo apt install python3-gi")
         sys.exit(1)
     else:
-        import gi # type: ignore
+        import gi  # type: ignore
+
         gi.require_version("Gtk", "3.0")
-        from gi.repository import Gtk # type: ignore
+        from gi.repository import Gtk  # type: ignore
 
 
 class CFileUploader(EventDispatcher):
@@ -211,7 +213,6 @@ class CFileUploader(EventDispatcher):
                 dlg.destroy()
 
             Gtk.main_quit()  # Exit the GTK main loop and return control to Kivy
-
 
         dialog.connect("response", on_response)
 
