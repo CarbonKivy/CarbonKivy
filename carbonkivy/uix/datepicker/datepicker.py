@@ -65,7 +65,7 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
     @mainthread
     def update_pos(self, instance: Widget, *args) -> None:
         pos_x, pos_y = [
-            instance.center_x - self.width/2,
+            instance.center_x - self.width / 2,
             (
                 instance.top + dp(12)
                 if (self.pointer == "Downward")
