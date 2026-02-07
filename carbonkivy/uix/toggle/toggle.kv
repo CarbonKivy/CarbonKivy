@@ -1,0 +1,21 @@
+<CToggle>:
+    canvas.after:
+        Color:
+            rgba: app.icon_on_color
+        Ellipse:
+            size: self.handle_size
+            pos: self.handle_pos if self.handle_pos else (0, 0)
+    size_hint: None, None
+    size: [dp(56), dp(30)]
+    handle_size: [dp(18), dp(18)]
+    bg_color: 
+        { \
+        True: app.support_success, \
+        False: app.toggle_off, \
+        }[self.active]
+    radius: self.height/2
+    bg_color_focus: self.bg_color
+    line_color_focus: app.focus
+    inset_color_focus: app.focus_inset
+    inset_width: dp(2)
+    inset_color: app.focus_inset
