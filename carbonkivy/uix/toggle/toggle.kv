@@ -6,8 +6,8 @@
             size: self.handle_size
             pos: self.handle_pos if self.handle_pos else (0, 0)
     size_hint: None, None
-    size: [dp(56), dp(30)]
-    handle_size: [dp(18), dp(18)]
+    size: [dp(48), dp(28)]
+    handle_size: [dp(16), dp(16)]
     bg_color: 
         { \
         True: app.support_success, \
@@ -18,4 +18,4 @@
     line_color_focus: app.focus
     inset_color_focus: app.focus_inset
     inset_width: dp(2)
-    inset_color: app.focus_inset
+    inset_color: app.transparent
