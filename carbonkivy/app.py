@@ -5,6 +5,7 @@ __all__ = ("CarbonApp",)
 import os
 
 from kivy.app import App
+from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.logger import Logger
 
@@ -20,7 +21,18 @@ class CarbonApp(App, CarbonTheme):
     def __init__(self, **kwargs) -> None:
         super(CarbonApp, self).__init__(**kwargs)
         if self.defaults:
-            update_system_ui(self.background, self.background, "Dark")
+            Clock.schedule_once(self.apply_system_bars, 0)
+
+    def apply_system_bars(self, *args) -> None:
+        icon_style = "Dark"
+        if self.theme in ["Gray90", "Gray100"]:
+            icon_style = "Light"
+        update_system_ui(self.background, self.background, icon_style=icon_style)
+
+    def on_theme(self, *args) -> None:
+        super(CarbonApp, self).__init__(*args)
+        if self.defaults:
+            Clock.schedule_once(self.apply_system_bars, 0)
 
     def load_all_kv_files(self, directory: str, *args) -> None:
         """
