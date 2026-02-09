@@ -30,7 +30,7 @@ class CarbonApp(App, CarbonTheme):
         update_system_ui(self.background, self.background, icon_style=icon_style)
 
     def on_theme(self, *args) -> None:
-        super(CarbonApp, self).__init__(*args)
+        super().on_theme(*args)
         if self.defaults:
             Clock.schedule_once(self.apply_system_bars, 0)
 

@@ -133,6 +133,8 @@ class UIShellRightPanel(CRelativeLayout):
 
     panel_width = NumericProperty()
 
+    master = ObjectProperty()
+
     def __init__(self, **kwargs) -> None:
         super(UIShellRightPanel, self).__init__(**kwargs)
         self.animation = Animation()
@@ -154,6 +156,9 @@ class UIShellRightPanel(CRelativeLayout):
         Clock.schedule_once(set_visibility)
 
     def on_touch_down(self, touch):
+        if not self.collide_point(*touch.pos):
+            self.visibility = False
+            return True
         if self.collide_point(*touch.pos):
             super().on_touch_down(touch)
             return True
