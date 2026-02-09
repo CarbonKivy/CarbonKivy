@@ -59,8 +59,8 @@
         id: right_panel_shell
 
         UIShellRightPanel:
+            id: right_panel
             panel_shell: right_panel_shell
-            visibility: shell_notification_btn.focus
 
     UIShell:
         id: header_shell
@@ -89,6 +89,8 @@
                     UIShellButton:
                         id: shell_notification_btn
                         icon: "notification"
+                        on_press:
+                            right_panel.visibility = True
 
                     UIShellButton:
                         id: shell_switcher_btn
