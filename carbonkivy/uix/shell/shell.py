@@ -110,6 +110,18 @@ class UIShellLeftPanel(CRelativeLayout):
 
         Clock.schedule_once(set_visibility)
 
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            super().on_touch_down(touch)
+            return True
+        return False
+
+    def on_touch_up(self, touch):
+        if self.collide_point(*touch.pos):
+            super().on_touch_up(touch)
+            return True
+        return False
+
 
 class UIShellRightPanel(CRelativeLayout):
 
@@ -140,6 +152,18 @@ class UIShellRightPanel(CRelativeLayout):
             self.animation.start(self)
 
         Clock.schedule_once(set_visibility)
+
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            super().on_touch_down(touch)
+            return True
+        return False
+
+    def on_touch_up(self, touch):
+        if self.collide_point(*touch.pos):
+            super().on_touch_up(touch)
+            return True
+        return False
 
 
 class UIShellLayout(CStackLayout):

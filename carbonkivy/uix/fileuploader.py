@@ -5,23 +5,23 @@ Native file uploader for Kivy applications across multiple platforms: Windows, m
 import os
 import sys
 import threading
-import platform as pyplatform
 
 from kivy.clock import Clock
 from kivy.event import EventDispatcher
 from kivy.properties import DictProperty, ListProperty, StringProperty
 from kivy.utils import platform
+from kivy.logger import Logger
 
 # --- Platform specific imports ---
 # Windows
-if sys.platform.startswith("win"):
+if platform == "win":
     import ctypes
     from ctypes import wintypes
 
     try:
         ctypes.windll.shcore.SetProcessDpiAwareness(1)
     except Exception as e:
-        print(e)
+        Logger.error(e)
 
     ctypes.windll.user32.SetProcessDPIAware()
 
@@ -72,16 +72,16 @@ elif platform == "android":
     FileOutputStream = autoclass("java.io.FileOutputStream")
 
 # macOS
-elif sys.platform == "darwin":
-    import objc
-    from Cocoa import NSOpenPanel
+elif platform == "macosx":
+    import objc # type: ignore
+    from Cocoa import NSOpenPanel # type: ignore
 
 # Linux
-elif sys.platform.startswith("linux"):
+elif platform == "linux":
     import importlib.util
 
     if importlib.util.find_spec("gi") is None:
-        print("PyGObject (gi) is not installed. Try: sudo apt install python3-gi")
+        Logger.info("PyGObject (gi) is not installed. Try: sudo apt install python3-gi")
         sys.exit(1)
     else:
         import gi  # type: ignore
@@ -238,7 +238,7 @@ class CFileUploader(EventDispatcher):
                             filename = self.copy_content_uri(uri.toString(), i)
                             selected_files.append(filename)
                         except Exception as e:
-                            print(e)
+                            Logger.error(e)
 
             def _apply(_dt):
                 self.files = selected_files
@@ -296,15 +296,15 @@ class CFileUploader(EventDispatcher):
             self.filters = filters
         if platform == "android":
             Runnable(self._open_file_android)(multiple=True, mime_type=mime_type)
-        elif sys.platform.startswith("win"):
+        elif platform == "win":
             threading.Thread(
                 target=self._open_file_windows, daemon=True, kwargs={"multiple": True}
             ).start()
-        elif sys.platform == "darwin":
+        elif platform == "macosx":
             threading.Thread(
                 target=self._open_file_macos, daemon=True, kwargs={"multiple": True}
             ).start()
-        elif sys.platform.startswith("linux"):
+        elif platform == "linux":
             threading.Thread(
                 target=self._open_file_linux, daemon=True, kwargs={"multiple": True}
             ).start()
@@ -326,15 +326,15 @@ class CFileUploader(EventDispatcher):
             self.filters = filters
         if platform == "android":
             Runnable(self._open_file_android)(multiple=False, mime_type=mime_type)
-        elif sys.platform.startswith("win"):
+        elif platform == "win":
             threading.Thread(
                 target=self._open_file_windows, daemon=True, kwargs={"multiple": False}
             ).start()
-        elif sys.platform == "darwin":
+        elif platform == "macosx":
             threading.Thread(
                 target=self._open_file_macos, daemon=True, kwargs={"multiple": False}
             ).start()
-        elif sys.platform.startswith("linux"):
+        elif platform == "linux":
             threading.Thread(
                 target=self._open_file_linux, daemon=True, kwargs={"multiple": False}
             ).start()
@@ -344,6 +344,6 @@ class CFileUploader(EventDispatcher):
 if __name__ == "__main__":
     uploader = CFileUploader()
     uploader.upload_files()
-    print("Selected files:", uploader.files)
+    Logger.debug("Selected files:", uploader.files)
     uploader.upload_file()
-    print("Selected file:", uploader.file)
+    Logger.debug("Selected file:", uploader.file)

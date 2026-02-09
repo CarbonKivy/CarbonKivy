@@ -25,10 +25,8 @@ from carbonkivy.behaviors import (
     StateFocusBehavior,
 )
 from carbonkivy.uix.boxlayout import CBoxLayout
-from carbonkivy.uix.gridlayout import CGridLayout
 from carbonkivy.uix.icon import CIcon
 from carbonkivy.uix.label import CLabel
-from carbonkivy.uix.relativelayout.relativelayout import CRelativeLayout
 from carbonkivy.uix.screen.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
 from carbonkivy.uix.stacklayout import CStackLayout

@@ -39,7 +39,7 @@ class CarbonApp(App, CarbonTheme):
         Recursively load all kv files from a given directory.
         """
 
-        for root, dirs, files in os.walk(directory):
+        for root, _, files in os.walk(directory):
             if "carbonkivy" in directory:
                 Logger.critical(
                     "CarbonKivy: "

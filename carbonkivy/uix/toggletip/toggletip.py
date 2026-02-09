@@ -71,6 +71,18 @@ class CToggletip(BoxLayout):
         self.pos = instance.to_window(*[pos_x, pos_y])
         self.element_x = instance_center[0]
 
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            super().on_touch_down(touch)
+            return True
+        return False
+
+    def on_touch_up(self, touch):
+        if self.collide_point(*touch.pos):
+            super().on_touch_up(touch)
+            return True
+        return False
+
     @mainthread
     def set_visibility(self, instance: Widget, visibility: bool, *args) -> None:
         if visibility:
