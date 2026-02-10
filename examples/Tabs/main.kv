@@ -3,29 +3,40 @@
     CTabLayout:
         size_hint: 1, 1
 
-        CTabHeader:
-            tab_manager: tab_manager
+        CScrollView:
+            size_hint: 1, None
+            height: tab_header.height
 
-            CTabHeaderItem:
-                primary_text: "Tab1"
-                icon: "add--large"
-                name_tab: "home"
-                selected: True
+            CTabHeader:
+                id: tab_header
+                tab_manager: tab_manager
+                adaptive: [True, True]
+                padding: dp(8)
 
-            CTabHeaderItem:
-                primary_text: "Tab2kja"
-                icon: "add--large"
-                name_tab: "nope"
+                CTabHeaderItem:
+                    primary_text: "Tab1"
+                    icon: "add--large"
+                    name_tab: "home"
+                    selected: True
+                    adaptive: [True, True]
 
-            CTabHeaderItem:
-                primary_text: "Tab3"
-                icon: "add--large"
-                name_tab: "hope"
+                CTabHeaderItem:
+                    primary_text: "Tab2"
+                    icon: "add--large"
+                    name_tab: "nope"
+                    adaptive: [True, True]
 
-            CTabHeaderItem:
-                primary_text: "Tab4"
-                icon: "add--large"
-                name_tab: "dope"
+                CTabHeaderItem:
+                    primary_text: "Tab3"
+                    icon: "add--large"
+                    name_tab: "hope"
+                    adaptive: [True, True]
+
+                CTabHeaderItem:
+                    primary_text: "Tab4"
+                    icon: "add--large"
+                    name_tab: "dope"
+                    adaptive: [True, True]
 
         CTabManager:
             id: tab_manager
