@@ -20,8 +20,6 @@ class CarbonApp(App, CarbonTheme):
 
     def __init__(self, **kwargs) -> None:
         super(CarbonApp, self).__init__(**kwargs)
-        if self.defaults:
-            Clock.schedule_once(self.apply_system_bars, 0)
 
     def apply_system_bars(self, *args) -> None:
         icon_style = "Dark"
