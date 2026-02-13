@@ -77,13 +77,13 @@ class CTooltip(BoxLayout):
         if self.collide_point(*touch.pos):
             super().on_touch_down(touch)
             return True
-        return False
+        return super().on_touch_down(touch)
 
     def on_touch_up(self, touch):
         if self.collide_point(*touch.pos):
             super().on_touch_up(touch)
             return True
-        return False
+        return super().on_touch_up(touch)
 
     @mainthread
     def set_visibility(self, instance: Widget, visibility: bool, *args) -> None:
