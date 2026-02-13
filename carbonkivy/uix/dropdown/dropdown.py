@@ -70,18 +70,22 @@ class CDropdown(CBoxLayout, ElevationBehavior):
         if self.collide_point(*touch.pos):
             super().on_touch_up(touch)
             return True
-        return False
+        return super().on_touch_up(touch)
 
     def on_touch_down(self, touch):
-        if not self.collide_point(*touch.pos) and not self.master.collide_point(
-            *self.master.to_parent(*self.master.to_widget(*touch.pos))
+        if (
+            not self.collide_point(*touch.pos)
+            and not self.master.collide_point(
+                *self.master.to_parent(*self.master.to_widget(*touch.pos))
+            )
+            and self.visibility
         ):
             self.visibility = False
             return True
         elif self.collide_point(*touch.pos):
             super().on_touch_down(touch)
             return True
-        return False
+        return super().on_touch_down(touch)
 
     def on_visibility(self, *args) -> None:
 

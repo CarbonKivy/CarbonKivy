@@ -114,13 +114,13 @@ class UIShellLeftPanel(CRelativeLayout):
         if self.collide_point(*touch.pos):
             super().on_touch_down(touch)
             return True
-        return False
+        return super().on_touch_down(touch)
 
     def on_touch_up(self, touch):
         if self.collide_point(*touch.pos):
             super().on_touch_up(touch)
             return True
-        return False
+        return super().on_touch_up(touch)
 
 
 class UIShellRightPanel(CRelativeLayout):
@@ -156,19 +156,19 @@ class UIShellRightPanel(CRelativeLayout):
         Clock.schedule_once(set_visibility)
 
     def on_touch_down(self, touch):
-        if not self.collide_point(*touch.pos):
+        if not self.collide_point(*touch.pos) and self.visibility:
             self.visibility = False
             return True
         if self.collide_point(*touch.pos):
             super().on_touch_down(touch)
             return True
-        return False
+        return super().on_touch_down(touch)
 
     def on_touch_up(self, touch):
         if self.collide_point(*touch.pos):
             super().on_touch_up(touch)
             return True
-        return False
+        return super().on_touch_up(touch)
 
 
 class UIShellLayout(CStackLayout):

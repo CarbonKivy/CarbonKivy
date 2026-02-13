@@ -48,7 +48,6 @@ class myapp(CarbonApp):
         self._modal_ref = None
         modal = None
 
-
     def build(self) -> CScreenManager:
         self.manager_screens = CScreenManager()
         self.manager_screens.add_widget(HomeScreen(name="home"))

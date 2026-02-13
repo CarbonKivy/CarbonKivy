@@ -73,8 +73,8 @@ elif platform == "android":
 
 # macOS
 elif platform == "macosx":
-    import objc # type: ignore
-    from Cocoa import NSOpenPanel # type: ignore
+    import objc  # type: ignore
+    from Cocoa import NSOpenPanel  # type: ignore
 
 # Linux
 elif platform == "linux":
