@@ -31,6 +31,8 @@ class CToggle(
 
     handle_pos = ListProperty()
 
+    __events__ = ("on_toggle", )
+
     def __init__(self, **kwargs) -> None:
         self.handle_pos = (0, 0)
         super(CToggle, self).__init__(**kwargs)
@@ -70,7 +72,11 @@ class CToggle(
             )
         self.animation.start(self)
 
+    def on_toggle(self, *args) -> None:
+        pass
+
     def on_touch_down(self, touch: MouseMotionEvent) -> bool | None:
         if self.collide_point(*touch.pos) and self.focus:
             self.active = not self.active
+            self.dispatch("on_toggle")
         return super().on_touch_down(touch)
