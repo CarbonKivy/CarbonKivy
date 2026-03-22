@@ -65,16 +65,18 @@ class CBaseNotification(
 
     def __init__(self, *args, **kwargs) -> None:
         super(CBaseNotification, self).__init__(*args, **kwargs)
+        self.app = App.get_running_app()
         self.on_contrast()
+        self.app.bind(theme=self.on_contrast)
 
     def on_contrast(self, *args) -> None:
         if self.contrast == "High":
-            if App.get_running_app().theme in ["Gray90", "Gray100"]:
+            if self.app.theme in ["Gray90", "Gray100"]:
                 self.theme_cls.theme = "White"
             else:
                 self.theme_cls.theme = "Gray100"
         else:
-            self.theme_cls.theme = App.get_running_app().theme
+            self.theme_cls.theme = self.app.theme
 
     def on_time_caption_enabled(self, *args) -> None:
         if self.time_caption_enabled and not self.caption:
