@@ -3,7 +3,7 @@ from __future__ import annotations
 __all__ = ("SelectionBehavior",)
 
 from kivy.event import EventDispatcher
-from kivy.properties import DictProperty, OptionProperty, StringProperty
+from kivy.properties import DictProperty, ListProperty, OptionProperty, StringProperty
 
 
 class SelectionBehavior(EventDispatcher):
@@ -14,19 +14,22 @@ class SelectionBehavior(EventDispatcher):
 
     selection_type = OptionProperty("Single", options=["Multiple", "Single"])
 
+    selection_items = ListProperty()
+
     def __init__(self, **kwargs) -> None:
         super(SelectionBehavior, self).__init__(**kwargs)
 
     def add_widget(self, widget, *args, **kwargs):
         if hasattr(widget, self.selection_attr):
             widget.bind(**{self.selection_attr: self.update_selection})
+            self.selection_items.append(widget)
         return super().add_widget(widget, *args, **kwargs)
 
     def update_selection(self, instance: object, value: bool, *args) -> None:
         if self.selection_type == "Single":
             selected_items = {}
             if value:
-                for items in self.children:
+                for items in self.selection_items:
                     if (
                         items != instance
                         and hasattr(items, self.selection_attr)
@@ -39,7 +42,7 @@ class SelectionBehavior(EventDispatcher):
             else:
                 if all(
                     not getattr(items, self.selection_attr, False)
-                    for items in self.children
+                    for items in self.selection_items
                     if hasattr(items, self.selection_attr)
                 ):
                     setattr(instance, self.selection_attr, True)
