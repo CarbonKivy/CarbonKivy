@@ -1,0 +1,38 @@
+<CRadioButton>:
+    icon: "radio-button--checked" if self.active else "radio-button"
+    font_size: plex_20
+    color: app.icon_primary
+    line_color_focus: app.focus
+    radius: self.height/2
+    active: self.selected
+
+<CRadioItem>:
+    spacing: dp(8)
+    adaptive: [False, True]
+
+<CRadioButtonLabel>:
+    style: "body_compact_01"
+    font_size: plex_14
+
+<CRadioItemLabelNeutral>:
+    style: "body_compact_01"
+    font_size: plex_14
+
+<CRadioGroupLabel>:
+    color: app.text_secondary
+    style: "label_01"
+    pos: [0, self.parent.height + (dp(8))] if self.parent else [0, 0]
+    adaptive: [False, True]
+
+<CRadioGroupHelperText>:
+    color: app.text_helper
+    style: "helper_text_01"
+    pos: [0, - (self.height + dp(4))]
+    adaptive: [False, True]
+
+<CRadioGroup>:
+    selection_type: "Single"
+    spacing: dp(8)
+
+<CRadioGroupLayout>:
+    size_hint: None, None
