@@ -31,7 +31,6 @@ from kivy.uix.behaviors import ButtonBehavior
 from carbonkivy.behaviors import (
     HoverBehavior,
     SelectableBehavior,
-    SelectionBehavior,
     StateFocusBehavior,
 )
 from carbonkivy.uix.boxlayout import CBoxLayout
@@ -39,6 +38,7 @@ from carbonkivy.uix.button import CButtonGhost
 from carbonkivy.uix.icon import CIcon
 from carbonkivy.uix.label import CLabel
 from carbonkivy.uix.relativelayout import CRelativeLayout
+from carbonkivy.uix.selectionlayout import CSelectionLayout
 from carbonkivy.uix.stacklayout import CStackLayout
 
 
@@ -179,7 +179,7 @@ class UIShellPanelLayout(UIShellLayout):
     pass
 
 
-class UIShellPanelSelectionLayout(SelectionBehavior, CBoxLayout):
+class UIShellPanelSelectionLayout(CSelectionLayout):
     pass
 
 

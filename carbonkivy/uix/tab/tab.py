@@ -16,7 +16,7 @@ from typing import Any
 
 from kivy.clock import Clock
 from kivy.input.providers.mouse import MouseMotionEvent
-from kivy.properties import ObjectProperty, StringProperty, NumericProperty
+from kivy.properties import NumericProperty, ObjectProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 
 from carbonkivy.behaviors import (

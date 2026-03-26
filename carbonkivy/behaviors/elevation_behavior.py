@@ -6,7 +6,7 @@ from kivy.app import App
 from kivy.event import EventDispatcher
 from kivy.lang import Builder
 from kivy.metrics import dp
-from kivy.properties import NumericProperty, VariableListProperty, ColorProperty
+from kivy.properties import ColorProperty, NumericProperty, VariableListProperty
 
 Builder.load_string(
     """
