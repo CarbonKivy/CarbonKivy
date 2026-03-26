@@ -1,6 +1,13 @@
+import os
+import sys
+
+from kivy.resources import resource_add_path
+
+sys.path.insert(0, os.path.dirname(__file__))
+resource_add_path(os.path.dirname(__file__))
+
 from kivy.clock import Clock
 from kivy.core.window import Window
-
 
 def set_softinput(*args) -> None:
     Window.keyboard_anim_args = {"d": 0.2, "t": "in_out_expo"}
@@ -14,6 +21,10 @@ CScreen:
 
     CToggle:
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        on_press:
+            print("toggle")
+        on_active:
+            print(self.active)
 """
 
 from kivy.lang import Builder
