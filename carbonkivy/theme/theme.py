@@ -7,7 +7,7 @@ import os
 from kivy.core.window import Window
 from kivy.event import EventDispatcher
 from kivy.lang import Builder
-from kivy.properties import ListProperty, OptionProperty, BooleanProperty
+from kivy.properties import BooleanProperty, ListProperty, OptionProperty
 from kivy.utils import colormap, get_color_from_hex
 
 from carbonkivy.config import THEME

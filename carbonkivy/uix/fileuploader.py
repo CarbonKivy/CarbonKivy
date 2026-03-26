@@ -8,9 +8,9 @@ import threading
 
 from kivy.clock import Clock
 from kivy.event import EventDispatcher
+from kivy.logger import Logger
 from kivy.properties import DictProperty, ListProperty, StringProperty
 from kivy.utils import platform
-from kivy.logger import Logger
 
 # --- Platform specific imports ---
 # Windows

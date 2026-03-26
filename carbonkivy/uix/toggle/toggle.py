@@ -12,8 +12,8 @@ from kivy.uix.relativelayout import RelativeLayout
 
 from carbonkivy.behaviors import (
     BackgroundColorBehaviorCircular,
-    StateFocusBehavior,
     DeclarativeBehavior,
+    StateFocusBehavior,
 )
 
 
@@ -31,7 +31,7 @@ class CToggle(
 
     handle_pos = ListProperty()
 
-    __events__ = ('on_toggle',)
+    __events__ = ("on_toggle",)
 
     def __init__(self, **kwargs) -> None:
         self.handle_pos = (0, 0)
