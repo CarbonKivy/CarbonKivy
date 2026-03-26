@@ -47,3 +47,15 @@
             radius: self.radius if self.radius else [min(self.size) / 2]
     canvas.after:
         PopMatrix
+
+
+<CLabelNeutral>:
+    size_hint: None, None
+    size: self.texture_size
+    text_size: None, self.texture_size[1]
+
+
+<CLabelNeutralCircular>:
+    size_hint: None, None
+    size: self.texture_size
+    text_size: None, self.texture_size[1]

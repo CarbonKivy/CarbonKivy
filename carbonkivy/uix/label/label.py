@@ -61,8 +61,16 @@ class CLabel(BackgroundColorBehaviorRectangular, CBaseLabel):
     pass
 
 
+class CLabelNeutral(CLabel):
+    pass
+
+
 class CLabelCircular(
     BackgroundColorBehaviorCircular,
     CBaseLabel,
 ):
+    pass
+
+
+class CLabelNeutralCircular(CLabelCircular):
     pass

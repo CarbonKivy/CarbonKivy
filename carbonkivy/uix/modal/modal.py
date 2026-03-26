@@ -13,9 +13,9 @@ __all__ = (
 )
 
 from kivy.clock import Clock
+from kivy.properties import ObjectProperty
 from kivy.uix.modalview import ModalView
 from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty
 
 from carbonkivy.behaviors import AdaptiveBehavior, DeclarativeBehavior
 from carbonkivy.uix.boxlayout import CBoxLayout
