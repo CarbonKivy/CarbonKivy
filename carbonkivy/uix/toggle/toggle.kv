@@ -6,8 +6,16 @@
             size: self.handle_size
             pos: self.handle_pos if self.handle_pos else (0, 0)
     size_hint: None, None
-    size: [dp(48), dp(28)]
-    handle_size: [dp(16), dp(16)]
+    size:
+        { \
+        "Large": [dp(48), dp(28)], \
+        "Small": [dp(32), dp(18)], \
+        }[self.role]
+    handle_size:
+        { \
+        "Large": [dp(16), dp(16)], \
+        "Small": [dp(10), dp(10)], \
+        }[self.role]
     bg_color: 
         { \
         True: app.support_success, \
