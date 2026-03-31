@@ -6,7 +6,7 @@ from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.input.providers.mouse import MouseMotionEvent
 from kivy.metrics import dp
-from kivy.properties import BooleanProperty, ListProperty, VariableListProperty
+from kivy.properties import BooleanProperty, ListProperty, VariableListProperty, OptionProperty
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.relativelayout import RelativeLayout
 
@@ -31,6 +31,8 @@ class CToggle(
 
     handle_pos = ListProperty()
 
+    role = OptionProperty("Large", options=["Small", "Large"])
+
     __events__ = ("on_toggle",)
 
     def __init__(self, **kwargs) -> None:
@@ -38,12 +40,17 @@ class CToggle(
         super(CToggle, self).__init__(**kwargs)
         self.animation = None
 
+    def on_kv_post(self, base_widget):
+        self.canvas.remove_group("backgroundcolor-behavior-bg-color")
+        self.canvas.remove_group("Background_instruction")
+        return super().on_kv_post(base_widget)
+
     def on_pos(self, *args) -> None:
         self.handle_pos = (
             (
-                self.pos[0] + dp(8)
+                self.pos[0] + dp(4)
                 if not self.active
-                else self.pos[0] + self.width - self.handle_size[0] - dp(8)
+                else self.pos[0] + self.width - self.handle_size[0] - dp(4)
             ),
             self.pos[1] + self.height / 2 - self.handle_size[1] / 2,
         )
@@ -57,7 +64,7 @@ class CToggle(
         if self.active:
             self.animation = Animation(
                 handle_pos=[
-                    self.pos[0] + self.width - self.handle_size[0] - dp(8),
+                    self.pos[0] + self.width - self.handle_size[0] - dp(4),
                     self.pos[1] + self.height / 2 - self.handle_size[1] / 2,
                 ],
                 d=0.095,
@@ -65,7 +72,7 @@ class CToggle(
         else:
             self.animation = Animation(
                 handle_pos=[
-                    self.pos[0] + dp(8),
+                    self.pos[0] + dp(4),
                     self.pos[1] + self.height / 2 - self.handle_size[1] / 2,
                 ],
                 d=0.095,
