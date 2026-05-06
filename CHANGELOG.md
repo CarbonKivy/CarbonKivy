@@ -1,5 +1,25 @@
 # Changelog
 
+- 0.0.5
+  Massive bug fixes and improvements with implementation of some basic widgets.
+
+  - `UIX`
+    - Radio
+    - SelectionLayout
+    - Toggle
+
+  - `THEMES`
+    - [x] White
+    - [x] Gray10
+    - [ ] Gray90
+    - [x] Gray100
+
+  - `Utilities`
+    - `update_system_ui` for Android Status and Navbar styles has been stabilized.
+    - Development utilities like `LiveApp` has been upgraded for better logging and hot-reload setup
+
+  - Overall library has been stabilized to maximum extent for this release version.
+
 - # 0.0.4
   Massive implementations of new widgets.
 
