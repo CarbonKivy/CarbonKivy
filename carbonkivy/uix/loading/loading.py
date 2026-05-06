@@ -53,9 +53,9 @@ class CLoadingIndicator(Widget, HierarchicalLayerBehavior, DeclarativeBehavior):
 
     angle = NumericProperty(0)
 
-    stroke_width = NumericProperty(5)
+    stroke_width = NumericProperty(4)
 
-    angular_velocity = BoundedNumericProperty(16, min=2)
+    angular_velocity = BoundedNumericProperty(20, min=2)
 
     rotation_interval = BoundedNumericProperty(30, min=10)
 
@@ -70,6 +70,8 @@ class CLoadingIndicator(Widget, HierarchicalLayerBehavior, DeclarativeBehavior):
 
     def on_active(self, *args) -> None:
         if self.active:
+            self.opacity = 1
             Clock.schedule_interval(self.rotate, 1 / self.rotation_interval)
         elif not self.active:
             Clock.unschedule(self.rotate)
+            self.opacity = 0

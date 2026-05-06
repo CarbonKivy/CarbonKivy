@@ -10,7 +10,7 @@
     canvas.before:
         Color:
             rgba: self.bg_color
-        Line:
+        SmoothLine:
             circle: self.center_x, self.center_y, self.size[1]/2 + self.stroke_width, 0, 360
             width: self.stroke_width
     canvas:
@@ -20,7 +20,7 @@
             origin: self.center
         Color:
             rgba: self.stroke_color
-        Line:
+        SmoothLine:
             circle: self.center_x, self.center_y, self.size[1]/2 + self.stroke_width, 0, (300 if self.role == "Large" else 120)
             width: self.stroke_width
             cap: "none"
