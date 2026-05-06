@@ -76,7 +76,7 @@ if platform == "android":
                     traceback.print_exc()
                 return insets
 
-        _global_listener: InsetsListener
+        _global_listener: InsetsListener = None
 
     def apply_legacy_flags(decor_view, icon_style):
         visibility_flags = decor_view.getSystemUiVisibility()
