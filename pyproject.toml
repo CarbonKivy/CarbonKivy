@@ -6,9 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "carbonkivy"
 dynamic = ["version"]
 dependencies = [
-  "kivy>=2.0.0",
+  "kivy>=2.3.0",
+  "pygments",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [
   {name = "Kartavya Shukla", email = "novfensec@protonmail.com"},
 ]
@@ -17,7 +18,7 @@ maintainers = [
 ]
 description = "CarbonKivy is a Python library that integrates IBM's Carbon Design System with the Kivy framework. It provides a modern, accessible, and user-friendly UI toolkit inspired by Carbon’s design principles, enabling developers to create consistent and visually appealing applications in Kivy."
 readme = "README.md"
-license = "MIT"
+license = {file = "LICENSE"}
 keywords = ["kivy", "python", "open source", "carbon", "design", "carbondesignsystem", "IBM", "novfensec", "carbonkivy", "kv", "android", "desktop", "user-interface"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
