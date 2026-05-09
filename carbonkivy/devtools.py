@@ -34,13 +34,17 @@ class LiveApp(App):
         lbl = Factory.CLabel(
             padding=16,
             typeface="IBM Plex Mono",
-            color=App.get_running_app().text_primary
+            color=App.get_running_app().text_primary,
         )
         lbl.text = f"{output}"
         lbl.font_size = sp(12)
         lbl.texture_update()
         sv = Factory.CScrollView(
-            size_hint=(1, 1), pos_hint={"x": 0, "y": 0}, do_scroll_x=False, scroll_y=0, bg_color=App.get_running_app().layer_01
+            size_hint=(1, 1),
+            pos_hint={"x": 0, "y": 0},
+            do_scroll_x=False,
+            scroll_y=0,
+            bg_color=App.get_running_app().layer_01,
         )
         sv.add_widget(lbl)
         self.set_widget(sv)

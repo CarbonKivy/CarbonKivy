@@ -6,7 +6,12 @@ from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.input.providers.mouse import MouseMotionEvent
 from kivy.metrics import dp
-from kivy.properties import BooleanProperty, ListProperty, VariableListProperty, OptionProperty
+from kivy.properties import (
+    BooleanProperty,
+    ListProperty,
+    VariableListProperty,
+    OptionProperty,
+)
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.relativelayout import RelativeLayout
 
