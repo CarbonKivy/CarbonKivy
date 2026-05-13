@@ -5,8 +5,9 @@ __all__ = ("ShimmerEffect",)
 from typing import Any
 
 from kivy.clock import Clock
-from kivy.properties import BooleanProperty, ColorProperty, NumericProperty
+from kivy.event import EventDispatcher
 from kivy.graphics import RenderContext
+from kivy.properties import BooleanProperty, ColorProperty, NumericProperty
 
 
 SHIMMER_FS = """
@@ -33,7 +34,7 @@ void main(void) {
 """
 
 
-class ShimmerEffect:
+class ShimmerEffect(EventDispatcher):
 
     shimmering = BooleanProperty(False)
 
@@ -42,6 +43,8 @@ class ShimmerEffect:
     shimmer_base_color = ColorProperty([0.6, 0.6, 0.6, 1])
 
     shimmer_shine_color = ColorProperty([0.9, 0.9, 0.9, 1])
+
+    render_fps = NumericProperty(60)
 
     def __init__(self, **kwargs):
         self.canvas = RenderContext(
@@ -62,6 +65,12 @@ class ShimmerEffect:
         self.canvas["do_shimmer"] = 1.0 if self.shimmering else 0.0
         self.bind(size=self._update_uniforms, pos=self._update_uniforms)
 
+    def on_shimmer_base_color(self, *args) -> None:
+        self.canvas["shimmer_color"] = list(self.shimmer_base_color)
+
+    def on_shimmer_shine_color(self, *args) -> None:
+        self.canvas["shine_color"] = list(self.shimmer_shine_color)
+
     def _update_uniforms(self, instance: object, value: Any) -> None:
         self.canvas["widget_size"] = [float(v) for v in self.size]
         self.canvas["widget_pos"] = [float(v) for v in self.to_window(*self.pos)]
@@ -69,7 +78,7 @@ class ShimmerEffect:
     def _update_glsl_state(self, instance: object, value: Any) -> None:
         self.canvas["do_shimmer"] = 1.0 if value else 0.0
         if value:
-            Clock.schedule_interval(self._update_time, 1 / 60.0)
+            Clock.schedule_interval(self._update_time, 1 / self.render_fps)
         else:
             Clock.unschedule(self._update_time)
             self.canvas["time"] = 0.0
