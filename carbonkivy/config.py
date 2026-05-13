@@ -1,7 +1,6 @@
 import os
-from pathlib import Path
 
-ROOT = Path(__file__).parent
+ROOT = os.path.abspath(os.path.dirname(__file__))
 
 UIX = os.path.join(ROOT, "uix")
 

@@ -26,7 +26,7 @@ Builder.load_string(
 
 class ElevationBehavior(EventDispatcher):
 
-    shadow_offset = VariableListProperty([dp(1), -dp(1.25)], length=2)
+    shadow_offset = VariableListProperty([dp(1), dp(-1.25)], length=2)
 
     shadow_blur_radius = NumericProperty(0)
 
