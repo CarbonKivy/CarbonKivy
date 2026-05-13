@@ -18,13 +18,24 @@ Window.on_restore(Clock.schedule_once(set_softinput, 0.1))
 
 appkv = """
 CScreen:
-
-    CToggle:
+    CBoxLayout:
+        adaptive: [True, True]
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
-        on_press:
-            print("toggle")
-        on_active:
-            print(self.active)
+        spacing: dp(16)
+        
+        CToggle:
+            role: "Large"
+            on_press:
+                print("toggle")
+            on_active:
+                print(self.active)
+
+        CToggle:
+            role: "Small"
+            on_press:
+                print("toggle")
+            on_active: 
+                print(self.active)
 """
 
 from kivy.lang import Builder
