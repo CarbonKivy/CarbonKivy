@@ -98,7 +98,7 @@ Builder.load_string(
     canvas.after:        
         Color:
             rgba: self._inset_color
-        Line:
+        SmoothLine:
             width: max(dp(0.5), self.inset_width)
             cap: "square"
             joint: "round"
@@ -120,7 +120,7 @@ Builder.load_string(
                 ]
         Color:
             rgba: self._line_color
-        Line:
+        SmoothLine:
             width: self.line_width
             cap: "square"
             joint: "round"

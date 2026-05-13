@@ -1,10 +1,23 @@
 <CToggle>:
+<CToggle>:
     canvas.after:
         Color:
             rgba: app.icon_on_color
-        Ellipse:
+        SmoothEllipse:
             size: self.handle_size
             pos: self.handle_pos if self.handle_pos else (0, 0)
+        Color:
+            rgba: app.support_success if self.active and self.role == "Small" else app.transparent 
+        SmoothLine:
+            width: dp(1.5)
+            cap: 'round'
+            joint: 'round'
+            points:
+                ( \
+                self.handle_pos[0] + self.handle_size[0] * 0.28, self.handle_pos[1] + self.handle_size[1] * 0.50, \
+                self.handle_pos[0] + self.handle_size[0] * 0.45, self.handle_pos[1] + self.handle_size[1] * 0.33, \
+                self.handle_pos[0] + self.handle_size[0] * 0.72, self.handle_pos[1] + self.handle_size[1] * 0.65  \
+                ) if self.handle_pos else []
     size_hint: None, None
     size:
         { \
@@ -13,8 +26,8 @@
         }[self.role]
     handle_size:
         { \
-        "Large": [dp(16), dp(16)], \
-        "Small": [dp(10), dp(10)], \
+        "Large": [dp(18), dp(18)], \
+        "Small": [dp(12), dp(12)], \
         }[self.role]
     bg_color: 
         { \
