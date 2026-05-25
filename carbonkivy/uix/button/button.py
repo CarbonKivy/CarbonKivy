@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 __all__ = (
+    "CBaseButton",
     "CButton",
+    "CButtonCircular",
     "CButtonDanger",
     "CButtonPrimary",
     "CButtonSecondary",
@@ -26,6 +28,7 @@ from kivy.uix.relativelayout import RelativeLayout
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
     BackgroundColorBehaviorRectangular,
+    BackgroundColorBehaviorCircular,
     DeclarativeBehavior,
     HoverBehavior,
     StateFocusBehavior,
@@ -35,9 +38,8 @@ from carbonkivy.uix.label import CLabel
 from carbonkivy.utils import get_button_size
 
 
-class CButton(
+class CBaseButton(
     AdaptiveBehavior,
-    BackgroundColorBehaviorRectangular,
     StateFocusBehavior,
     ButtonBehavior,
     DeclarativeBehavior,
@@ -88,7 +90,7 @@ class CButton(
     text_halign = StringProperty("left")
 
     def __init__(self, **kwargs) -> None:
-        super(CButton, self).__init__(**kwargs)
+        super(CBaseButton, self).__init__(**kwargs)
 
     def on_font_size(self, *args) -> None:
         try:
@@ -189,6 +191,13 @@ class CButton(
                 _width += self.ids.cbutton_layout_label.width
                 self._width = _width + dp(80)
 
+
+class CButton(BackgroundColorBehaviorRectangular, CBaseButton):
+    pass
+
+
+class CButtonCircular(BackgroundColorBehaviorCircular, CBaseButton):
+    pass
 
 class CButtonDanger(CButton):
 

@@ -5,7 +5,9 @@ from kivy.lang import Builder
 from carbonkivy.config import UIX
 
 from .button import (
+    CBaseButton,
     CButton,
+    CButtonCircular,
     CButtonDanger,
     CButtonGhost,
     CButtonIcon,
