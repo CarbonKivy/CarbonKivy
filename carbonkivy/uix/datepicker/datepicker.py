@@ -44,9 +44,9 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     today = ObjectProperty(date.today())
 
-    current_month = NumericProperty()
+    current_month = NumericProperty(date.today().month)
 
-    current_year = NumericProperty()
+    current_year = NumericProperty(date.today().year)
 
     month_name = StringProperty()
 
@@ -58,8 +58,6 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     def __init__(self, **kwargs):
         super(CDatePicker, self).__init__(**kwargs)
-        self.current_month = self.today.month
-        self.current_year = self.today.year
         self.month_name = calendar.month_name[int(self.current_month)]
 
     def on_master(self, *args) -> None:
