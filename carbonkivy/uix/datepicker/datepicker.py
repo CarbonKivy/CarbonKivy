@@ -210,6 +210,9 @@ class CDatePickerDayButton(CButton, SelectableBehavior):
         super(CDatePickerDayButton, self).__init__(**kwargs)
 
     def on_press(self) -> None:
+        if self.disabled:
+            return
+
         if self.callback_selection:
             self.callback_selection(self.date, self)
 
@@ -286,6 +289,7 @@ class CDatePickerCalendar(CGridLayout):
                 widget.is_today = is_today
                 widget.is_current_month = is_current_month
                 widget.disabled = is_out_of_range
+                widget.cstate = "disabled" if is_out_of_range else "normal"
 
                 for widget in self.children:
                     if (
@@ -294,6 +298,7 @@ class CDatePickerCalendar(CGridLayout):
                         == self.selected_date.month
                         == self.parent.current_month
                         and widget.year == self.selected_date.year
+                        and not widget.disabled
                     ):
                         widget.selected = True
                         self.selected_button = widget
@@ -312,6 +317,7 @@ class CDatePickerCalendar(CGridLayout):
                     role="Large Productive",
                 )
                 btn.disabled = is_out_of_range
+                btn.cstate = "disabled" if is_out_of_range else "normal"
                 if (
                     btn.day == self.selected_date.day
                     and btn.month

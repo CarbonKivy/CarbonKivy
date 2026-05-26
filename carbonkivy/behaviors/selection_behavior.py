@@ -25,6 +25,19 @@ class SelectionBehavior(EventDispatcher):
             self.selection_items.append(widget)
         return super().add_widget(widget, *args, **kwargs)
 
+    def remove_widget(self, widget, *args, **kwargs):
+        if widget in self.selection_items:
+            widget.unbind(**{self.selection_attr: self.update_selection})
+
+            self.selection_items.remove(widget)
+
+            if widget in self.selected_items:
+                new_dict = dict(self.selected_items)
+                new_dict.pop(widget, None)
+                self.selected_items = new_dict
+
+        return super().remove_widget(widget, *args, **kwargs)
+
     def update_selection(self, instance: object, value: bool, *args) -> None:
         if self.selection_type == "Single":
             selected_items = {}
