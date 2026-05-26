@@ -52,6 +52,10 @@ class CDatePicker(CBoxLayout, ElevationBehavior):
 
     selected_date = ObjectProperty(None, allownone=True)
 
+    min_date = ObjectProperty(None, allownone=True)
+
+    max_date = ObjectProperty(None, allownone=True)
+
     def __init__(self, **kwargs):
         super(CDatePicker, self).__init__(**kwargs)
         self.current_month = self.today.month
@@ -265,15 +269,23 @@ class CDatePickerCalendar(CGridLayout):
             is_current_month = calendar_date.month == int(self.parent.current_month)
             is_today = calendar_date == self.parent.today
 
+            is_out_of_range = False
+            if self.parent.min_date and calendar_date < self.parent.min_date:
+                is_out_of_range = True
+            if self.parent.max_date and calendar_date > self.parent.max_date:
+                is_out_of_range = True
+
             if len(self.children) > 1:
                 i += 1
-                self.children[-i].text = str(calendar_date.day)
-                self.children[-i].date = calendar_date
-                self.children[-i].day = calendar_date.day
-                self.children[-i].month = calendar_date.month
-                self.children[-i].year = calendar_date.year
-                self.children[-i].is_today = is_today
-                self.children[-i].is_current_month = is_current_month
+                widget = self.children[-i]
+                widget.text = str(calendar_date.day)
+                widget.date = calendar_date
+                widget.day = calendar_date.day
+                widget.month = calendar_date.month
+                widget.year = calendar_date.year
+                widget.is_today = is_today
+                widget.is_current_month = is_current_month
+                widget.disabled = is_out_of_range
 
                 for widget in self.children:
                     if (
@@ -299,12 +311,14 @@ class CDatePickerCalendar(CGridLayout):
                     is_current_month=is_current_month,
                     role="Large Productive",
                 )
+                btn.disabled = is_out_of_range
                 if (
                     btn.day == self.selected_date.day
                     and btn.month
                     == self.selected_date.month
                     == self.parent.current_month
                     and btn.year == self.selected_date.year
+                    and not btn.disabled
                 ):
                     btn.selected = True
                     self.selected_button = btn
