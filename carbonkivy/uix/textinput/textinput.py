@@ -9,6 +9,7 @@ __all__ = (
 )
 
 from kivy.clock import mainthread
+from kivy.core.window import Window
 from kivy.logger import Logger
 from kivy.properties import ObjectProperty
 from kivy.uix.relativelayout import RelativeLayout
@@ -59,6 +60,13 @@ class CTextInputLayout(
             self.height = self.ctextinput_area.height
         else:
             Logger.error("CTextInputLayout must contain a single CTextInput widget.")
+
+    def on_hover(self, *args) -> None:
+        super(CTextInputLayout, self).on_hover(*args)
+        if self.hover:
+            Window.set_system_cursor('ibeam')
+        else:
+            Window.set_system_cursor('arrow')
 
 
 class CTextInputTrailingIconButton(CButtonGhost):
