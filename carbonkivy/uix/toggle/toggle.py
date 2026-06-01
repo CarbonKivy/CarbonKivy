@@ -34,23 +34,19 @@ class CToggle(
 
     handle_size = VariableListProperty([dp(64), dp(64)], length=2)
 
-    handle_pos = ListProperty()
+    handle_pos = ListProperty([0, 0])
 
     role = OptionProperty("Large", options=["Small", "Large"])
+
+    readonly = BooleanProperty(False)
 
     __events__ = ("on_toggle",)
 
     def __init__(self, **kwargs) -> None:
-        self.handle_pos = (0, 0)
         super(CToggle, self).__init__(**kwargs)
         self.animation = None
 
-    def on_kv_post(self, base_widget):
-        self.canvas.remove_group("backgroundcolor-behavior-bg-color")
-        self.canvas.remove_group("Background_instruction")
-        return super().on_kv_post(base_widget)
-
-    def on_pos(self, *args) -> None:
+    def update_handle_pos(self, *args) -> None:
         self.handle_pos = (
             (
                 self.pos[0] + dp(4)
@@ -62,6 +58,17 @@ class CToggle(
 
     def on_kv_post(self, base_widget):
         super().on_kv_post(base_widget)
+        Clock.schedule_once(self.update_handle_pos, 1)
+
+    def on_pos(self, *args) -> None:
+        self.handle_pos = (
+            (
+                self.pos[0] + dp(4)
+                if not self.active
+                else self.pos[0] + self.width - self.handle_size[0] - dp(4)
+            ),
+            self.pos[1] + self.height / 2 - self.handle_size[1] / 2,
+        )
 
     def on_active(self, *args) -> None:
         if self.animation:
@@ -88,7 +95,19 @@ class CToggle(
         pass
 
     def on_touch_down(self, touch: MouseMotionEvent) -> bool | None:
+        if self.readonly:
+            return True
         if self.collide_point(*touch.pos) and self.focus:
             self.active = not self.active
             self.dispatch("on_toggle")
         return super().on_touch_down(touch)
+
+    def on_touch_up(self, touch):
+        if self.readonly:
+            return True
+        return super().on_touch_up(touch)
+
+    def on_touch_move(self, touch):
+        if self.readonly:
+            return True
+        return super().on_touch_move(touch)

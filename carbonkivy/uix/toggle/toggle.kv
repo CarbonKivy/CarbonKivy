@@ -1,11 +1,10 @@
 <CToggle>:
-<CToggle>:
     canvas.after:
         Color:
             rgba: app.icon_on_color
         SmoothEllipse:
             size: self.handle_size
-            pos: self.handle_pos if self.handle_pos else (0, 0)
+            pos: self.handle_pos
         Color:
             rgba: app.support_success if self.active and self.role == "Small" else app.transparent 
         SmoothLine:
