@@ -45,6 +45,7 @@ class CToggle(
     def __init__(self, **kwargs) -> None:
         super(CToggle, self).__init__(**kwargs)
         self.animation = None
+        Clock.schedule_once(self.update_handle_pos, 1)
 
     def update_handle_pos(self, *args) -> None:
         self.handle_pos = (
