@@ -68,12 +68,12 @@ class CGridLayout(
     def on_responsive(self, *args) -> None:
         if self.responsive:
             if self.responsive_attr == ("cols" or "both"):
-                Window.bind(size=self.adjust_cols)
+                Window.bind(on_resize=self.adjust_cols)
             if self.responsive_attr == ("rows" or "both"):
-                Window.bind(size=self.adjust_rows)
+                Window.bind(on_resize=self.adjust_rows)
         else:
-            Window.unbind(size=self.adjust_cols)
-            Window.unbind(size=self.adjust_rows)
+            Window.bind(on_resize=self.adjust_cols)
+            Window.bind(on_resize=self.adjust_rows)
 
     @mainthread
     def adjust_cols(self, *args) -> None:
