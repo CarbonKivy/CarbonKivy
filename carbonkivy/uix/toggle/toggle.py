@@ -45,9 +45,10 @@ class CToggle(
     def __init__(self, **kwargs) -> None:
         super(CToggle, self).__init__(**kwargs)
         self.animation = None
-        Clock.schedule_once(self.update_handle_pos, 1)
+        self.update_handle_pos()
 
     def update_handle_pos(self, *args) -> None:
+        self.animation.cancel_all(self) if self.animation else None
         self.handle_pos = (
             (
                 self.pos[0] + dp(4)
@@ -56,20 +57,16 @@ class CToggle(
             ),
             self.pos[1] + self.height / 2 - self.handle_size[1] / 2,
         )
+
+    def on_parent(self, *args):
+        Clock.schedule_once(self.update_handle_pos)
 
     def on_kv_post(self, base_widget):
         super().on_kv_post(base_widget)
-        Clock.schedule_once(self.update_handle_pos, 1)
+        Clock.schedule_once(self.update_handle_pos)
 
     def on_pos(self, *args) -> None:
-        self.handle_pos = (
-            (
-                self.pos[0] + dp(4)
-                if not self.active
-                else self.pos[0] + self.width - self.handle_size[0] - dp(4)
-            ),
-            self.pos[1] + self.height / 2 - self.handle_size[1] / 2,
-        )
+        Clock.schedule_once(self.update_handle_pos)
 
     def on_active(self, *args) -> None:
         if self.animation:
