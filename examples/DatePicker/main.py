@@ -22,6 +22,8 @@ from carbonkivy.uix.datepicker import CDatePicker
 from carbonkivy.uix.screen import CScreen
 from carbonkivy.uix.screenmanager import CScreenManager
 
+from datetime import date, timedelta
+
 
 class CustomDatePicker(CDatePicker):
 
@@ -39,7 +41,7 @@ class UI(CScreenManager):
 class HomeScreen(CScreen):
 
     def __init__(self, *args, **kwargs):
-        self.datepicker = CustomDatePicker()
+        self.datepicker = CustomDatePicker(min_date=date.today(), max_date=date.today() + timedelta(days=30), current_year="2006")
         super().__init__(*args, **kwargs)
 
 
