@@ -133,6 +133,7 @@ class CFileUploader(EventDispatcher):
             if multiple:
                 if len(parts) == 1:  # fallback if Explorer-style failed
                     parts = buffer.value.split(" ")
+                    selected_files = [parts[0]]
 
                 if len(parts) > 1:
                     # First part is directory, rest are filenames
