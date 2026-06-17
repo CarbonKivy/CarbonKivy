@@ -16,7 +16,7 @@ from typing import Any
 
 from kivy.clock import Clock
 from kivy.input.providers.mouse import MouseMotionEvent
-from kivy.properties import NumericProperty, ObjectProperty, StringProperty
+from kivy.properties import NumericProperty, ObjectProperty, StringProperty, ColorProperty
 from kivy.uix.behaviors import ButtonBehavior
 
 from carbonkivy.behaviors import (
@@ -59,9 +59,15 @@ class CTabHeaderItem(
 
     primary_text = StringProperty()
 
+    primary_text_color = ColorProperty()
+
     secondary_text = StringProperty()
 
+    secondary_text_color = ColorProperty()
+
     icon = StringProperty()
+
+    icon_color = ColorProperty()
 
     name_tab = StringProperty()
 
@@ -83,6 +89,24 @@ class CTabHeaderItem(
     def on_icon_size(self, *args) -> None:
         try:
             self.ids.icon.font_size = self.icon_size
+        except Exception:
+            return
+
+    def on_icon_color(self, *args) -> None:
+        try:
+            self.ids.icon.color = self.icon_color
+        except Exception:
+            return
+
+    def on_primary_text_color(self, *args) -> None:
+        try:
+            self.ids.primary_text.color = self.primary_text_color
+        except Exception:
+            return
+
+    def on_secondary_text_color(self, *args) -> None:
+        try:
+            self.ids.secondary_text.color = self.secondary_text_color
         except Exception:
             return
 
