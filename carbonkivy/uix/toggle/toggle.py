@@ -58,12 +58,8 @@ class CToggle(
             self.pos[1] + self.height / 2 - self.handle_size[1] / 2,
         )
 
-    def on_parent(self, *args):
-        Clock.schedule_once(self.update_handle_pos)
-
     def on_kv_post(self, base_widget):
         super().on_kv_post(base_widget)
-        Clock.schedule_once(self.update_handle_pos)
 
     def on_pos(self, *args) -> None:
         Clock.schedule_once(self.update_handle_pos)

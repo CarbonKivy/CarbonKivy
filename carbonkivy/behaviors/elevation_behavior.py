@@ -19,6 +19,8 @@ Builder.load_string(
             pos: (self.pos[0] + self.shadow_offset[0], self.pos[1] + self.shadow_offset[1]) if not isinstance(self, RelativeLayout) else (self.shadow_offset[0], self.shadow_offset[1])
             offset: self.shadow_offset
             blur_radius: self.shadow_blur_radius
+            border_radius: self.shadow_border_radius
+            spread_radius: self.shadow_spread_radius
 """,
     filename="ElevationBehavior.kv",
 )
@@ -34,6 +36,10 @@ class ElevationBehavior(EventDispatcher):
 
     _shadow_color = ColorProperty()
 
+    shadow_spread_radius = VariableListProperty([0, 0], length=2)
+
+    shadow_border_radius = VariableListProperty([0], length=4)
+    
     def __init__(self, *args, **kwargs) -> None:
         super(ElevationBehavior, self).__init__(*args, **kwargs)
 
