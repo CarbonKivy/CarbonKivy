@@ -21,6 +21,7 @@ $HEADER$
 uniform vec2 u_size;
 uniform vec2 u_pos;
 uniform float u_time;
+uniform float u_wave_height;
 uniform vec4 u_color_top;    
 uniform vec4 u_color_bottom; 
 uniform float u_grad_type;      
@@ -49,7 +50,7 @@ void main(void) {
         mix_value = smoothstep(0.0, u_radial_radius, dist);
     }
 
-    mix_value += sin(u_time + uv.x * 4.0) * 0.05;
+    mix_value += sin(u_time + uv.x * 4.0) * u_wave_height;
 
     mix_value = clamp(mix_value, 0.0, 1.0);
     gl_FragColor = mix(u_color_bottom, u_color_top, mix_value);
@@ -68,6 +69,8 @@ class GradientEffect(EventDispatcher):
 
     gradient_animated = BooleanProperty(True)
     gradient_speed = NumericProperty(1.0)
+
+    gradient_wave_height = NumericProperty(0.05)
 
     render_fps = NumericProperty(60.0)
 
@@ -89,6 +92,8 @@ class GradientEffect(EventDispatcher):
         self.canvas["u_linear_bounds"] = list(self.gradient_linear_bounds)
         self.canvas["u_radial_radius"] = float(self.gradient_radial_radius)
         self.canvas["u_radial_center"] = list(self.gradient_radial_center)
+
+        self.canvas["u_wave_height"] = float(self.gradient_wave_height)
         self.canvas["u_time"] = 0.0
 
         self._update_uniforms(None, None)
@@ -100,8 +105,11 @@ class GradientEffect(EventDispatcher):
         if self.gradient_animated and hasattr(self, "canvas"):
             self.time += dt * self.gradient_speed
             self.canvas["u_time"] = float(self.time)
-
             self.canvas.ask_update()
+
+    def on_gradient_wave_height(self, instance: object, value: Any) -> None:
+        if hasattr(self, "canvas"):
+            self.canvas["u_wave_height"] = float(value)
 
     def on_gradient_color_top(self, instance: object, value: Any) -> None:
         self.canvas["u_color_top"] = list(value)
