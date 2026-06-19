@@ -23,12 +23,12 @@ uniform vec2 u_pos;
 uniform float u_time;
 uniform float u_wave_height;
 uniform float u_wave_count;
-uniform vec4 u_color_top;    
-uniform vec4 u_color_bottom; 
-uniform float u_grad_type;      
-uniform vec2  u_linear_bounds;  
-uniform float u_radial_radius;  
-uniform vec2  u_radial_center;  
+uniform vec4 u_color_top;
+uniform vec4 u_color_bottom;
+uniform float u_grad_type;
+uniform vec2 u_linear_bounds;
+uniform float u_radial_radius;
+uniform vec2 u_radial_center;
 
 void main(void) {
     vec2 uv = (gl_FragCoord.xy - u_pos) / u_size;
@@ -37,21 +37,22 @@ void main(void) {
         discard;
     }
 
+    float wave_offset = sin(u_time + uv.x * u_wave_count) * u_wave_height;
+    vec2 animated_uv = vec2(uv.x, uv.y + wave_offset);
+
     float mix_value = 0.0;
 
     if (u_grad_type < 0.5) {
         float range = u_linear_bounds.y - u_linear_bounds.x;
         if (abs(range) < 0.0001) {
-            mix_value = step(u_linear_bounds.x, uv.y);
+            mix_value = step(u_linear_bounds.x, animated_uv.y);
         } else {
-            mix_value = smoothstep(u_linear_bounds.x, u_linear_bounds.y, uv.y);
+            mix_value = smoothstep(u_linear_bounds.x, u_linear_bounds.y, animated_uv.y);
         }
     } else {
-        float dist = distance(uv, u_radial_center);
+        float dist = distance(animated_uv, u_radial_center);
         mix_value = smoothstep(0.0, u_radial_radius, dist);
     }
-
-    mix_value += sin(u_time + uv.x * u_wave_count) * u_wave_height;
 
     mix_value = clamp(mix_value, 0.0, 1.0);
     gl_FragColor = mix(u_color_bottom, u_color_top, mix_value);
@@ -60,20 +61,16 @@ void main(void) {
 
 
 class GradientEffect(EventDispatcher):
-
     gradient_color_top = ColorProperty([1.0, 1.0, 1.0, 1.0])
     gradient_color_bottom = ColorProperty(get_color_from_hex("#0F62FE"))
     gradient_type = OptionProperty("linear", options=["linear", "radial"])
     gradient_linear_bounds = ListProperty([0.0, 1.0])
     gradient_radial_radius = NumericProperty(0.7)
     gradient_radial_center = ListProperty([0.5, 0.5])
-
     gradient_animated = BooleanProperty(True)
     gradient_speed = NumericProperty(1.0)
-
     gradient_wave_height = NumericProperty(0.05)
     gradient_wave_count = NumericProperty(4.0)
-
     render_fps = NumericProperty(60.0)
 
     def __init__(self, **kwargs):
@@ -94,7 +91,6 @@ class GradientEffect(EventDispatcher):
         self.canvas["u_linear_bounds"] = list(self.gradient_linear_bounds)
         self.canvas["u_radial_radius"] = float(self.gradient_radial_radius)
         self.canvas["u_radial_center"] = list(self.gradient_radial_center)
-
         self.canvas["u_wave_height"] = float(self.gradient_wave_height)
         self.canvas["u_wave_count"] = float(self.gradient_wave_count)
         self.canvas["u_time"] = 0.0
