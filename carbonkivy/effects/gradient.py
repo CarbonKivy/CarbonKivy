@@ -94,7 +94,7 @@ class GradientEffect(EventDispatcher):
         self._update_uniforms(None, None)
         self.bind(size=self._update_uniforms, pos=self._update_uniforms)
 
-        Clock.schedule_interval(self._update_time, 1.0 / self.fps)
+        Clock.schedule_interval(self._update_time, 1.0 / self.render_fps)
 
     def _update_time(self, dt: float | int) -> None:
         if self.gradient_animated and hasattr(self, "canvas"):
