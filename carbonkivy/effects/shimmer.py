@@ -44,7 +44,7 @@ class ShimmerEffect(EventDispatcher):
 
     shimmer_shine_color = ColorProperty([0.9, 0.9, 0.9, 1])
 
-    render_fps = NumericProperty(60)
+    render_fps = NumericProperty(60.0)
 
     def __init__(self, **kwargs):
         self.canvas = RenderContext(
