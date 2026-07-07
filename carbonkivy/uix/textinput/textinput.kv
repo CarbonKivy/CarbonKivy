@@ -1,5 +1,23 @@
-<CTextInputLayout>:
+<CTextInputLayoutBase>:
     size_hint: 1, None
+
+<CTextInputLayout>:
+    inset_color: app.transparent
+    bg_color:
+        { \
+        1: app.field_01, \
+        2: app.field_02, \
+        }[self.layer_code]
+    line_color_focus: app.focus
+    inset_width: dp(0.5)
+    hover_color:
+        { \
+        1: app.field_hover_01, \
+        2: app.field_hover_02, \
+        }[self.layer_code]
+
+<CTextInputLayoutCircular>:
+    radius: dp(12)
     inset_color: app.transparent
     bg_color:
         { \
@@ -27,18 +45,36 @@
     adaptive: [False, True]
 
 <CTextInputTrailingIconButton>:
-    text_color: app.icon_primary
+    bg_color_disabled: app.transparent
+    inset_width: dp(0.5)
+    text_color: app.text_primary
+    icon_color: app.icon_primary
+    text_color_hover: app.link_primary_hover
+    text_color_focus: app.link_primary_hover
+    inset_color: app.transparent
+    inset_color_focus: app.transparent
+    hover_color: app.background_hover
+    active_color: app.background_active
+    padding: [dp(16), 0, dp(16), 0]
+    bg_color:
+        { \
+        "normal": app.transparent, \
+        "disabled": self.bg_color_disabled, \
+        "active": self.active_color,\
+        }[self.cstate]
+
     role: "Large Productive"
     pos: [self.parent.width - (self.width), self.parent.height - (self.height)] if self.parent else [0, 0]
+    radius: self.parent.radius
 
 <CTextInput>:
-    canvas.after:
+    canvas.after: 
         Color:
-            rgba: app.border_strong_01
+            rgba: self.baseline_color
         Line:
             width: dp(0.5)
-            points: [self.x + dp(0.25), self.y + dp(0.25), self.right - dp(0.25), self.y + dp(0.25)]
-
+            cap: "square"
+            points: [self.x + dp(0.25) + self.parent.radius[3], self.y + dp(0.25), self.right - dp(0.25) - self.parent.radius[2], self.y + dp(0.25)]
     padding: [dp(16), dp(12), dp(48), dp(12)]
     size_hint_y: None
     font_size: plex_14
@@ -52,3 +88,4 @@
     password_mask: u"\u2022"
     font_name: "ibmplexsans"
     pos_hint: {'center_y': 0.5}
+    baseline_color: app.border_strong_01

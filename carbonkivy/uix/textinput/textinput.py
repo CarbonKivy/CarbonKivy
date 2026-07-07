@@ -4,6 +4,8 @@ __all__ = (
     "CTextInput",
     "CTextInputLabel",
     "CTextInputLayout",
+    "CTextInputLayoutBase",
+    "CTextInputLayoutCircular",
     "CTextInputHelperText",
     "CTextInputTrailingIconButton",
 )
@@ -11,19 +13,20 @@ __all__ = (
 from kivy.clock import mainthread
 from kivy.core.window import Window
 from kivy.logger import Logger
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, ColorProperty
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.textinput import TextInput
 
 from carbonkivy.behaviors import (
     AdaptiveBehavior,
     BackgroundColorBehaviorRectangular,
+    BackgroundColorBehaviorCircular,
     DeclarativeBehavior,
     HierarchicalLayerBehavior,
     HoverBehavior,
     StateFocusBehavior,
 )
-from carbonkivy.uix.button import CButtonGhost
+from carbonkivy.uix.button import CButtonCircular
 from carbonkivy.uix.label import CLabel
 
 
@@ -35,9 +38,8 @@ class CTextInputLabel(CLabel):
     pass
 
 
-class CTextInputLayout(
+class CTextInputLayoutBase(
     AdaptiveBehavior,
-    BackgroundColorBehaviorRectangular,
     StateFocusBehavior,
     RelativeLayout,
     DeclarativeBehavior,
@@ -48,7 +50,7 @@ class CTextInputLayout(
     ctextinput_area = ObjectProperty(None, allownone=True)
 
     def __init__(self, **kwargs) -> None:
-        super(CTextInputLayout, self).__init__(**kwargs)
+        super(CTextInputLayoutBase, self).__init__(**kwargs)
 
     def on_kv_post(self, *args):
         self.update_specs()
@@ -59,17 +61,31 @@ class CTextInputLayout(
         if self.ctextinput_area != None:
             self.height = self.ctextinput_area.height
         else:
-            Logger.error("CTextInputLayout must contain a single CTextInput widget.")
+            Logger.warning("CTextInputLayout must contain a single CTextInput widget.")
 
     def on_hover(self, *args) -> None:
-        super(CTextInputLayout, self).on_hover(*args)
+        super(CTextInputLayoutBase, self).on_hover(*args)
         if self.hover:
             Window.set_system_cursor('ibeam')
         else:
             Window.set_system_cursor('arrow')
 
 
-class CTextInputTrailingIconButton(CButtonGhost):
+class CTextInputLayout(
+    BackgroundColorBehaviorRectangular,
+    CTextInputLayoutBase,
+):
+    pass
+
+
+class CTextInputLayoutCircular(
+    BackgroundColorBehaviorCircular,
+    CTextInputLayoutBase,
+):
+    pass
+
+
+class CTextInputTrailingIconButton(CButtonCircular):
     pass
 
 
@@ -79,15 +95,17 @@ class CTextInput(
     DeclarativeBehavior,
 ):
 
+    baseline_color = ColorProperty()
+
     def __init__(self, **kwargs) -> None:
         super(CTextInput, self).__init__(**kwargs)
 
     def on_parent(self, *args) -> None:
-        if isinstance(self.parent, CTextInputLayout):
+        if isinstance(self.parent, CTextInputLayoutBase):
             self.parent.ctextinput_area = self
             self.bind(height=self.parent.update_specs)
         else:
-            Logger.error("CTextInput must be contained inside CTextInputLayout.")
+            Logger.warning("CTextInput must be contained inside CTextInputLayoutBase.")
 
     def on_password(self, *args) -> None:
         self.cursor = (0, 0)
