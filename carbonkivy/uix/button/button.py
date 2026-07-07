@@ -33,7 +33,7 @@ from carbonkivy.behaviors import (
     HoverBehavior,
     StateFocusBehavior,
 )
-from carbonkivy.uix.icon import CIcon
+from carbonkivy.uix.icon import CIconCircular
 from carbonkivy.uix.label import CLabel
 from carbonkivy.utils import get_button_size
 
@@ -89,6 +89,12 @@ class CBaseButton(
 
     text_halign = StringProperty("left")
 
+    icon_source = StringProperty()
+
+    icon_radius = VariableListProperty([0], length=4)
+
+    icon_font_size = NumericProperty()
+
     def __init__(self, **kwargs) -> None:
         super(CBaseButton, self).__init__(**kwargs)
 
@@ -128,6 +134,27 @@ class CBaseButton(
                 return
             except Exception:
                 return
+
+    def on_icon_source(self, *args) -> None:
+        try:
+            self.ids.cbutton_layout_icon.bg_source = self.icon_source
+            return
+        except Exception:
+            return
+
+    def on_icon_radius(self, *args) -> None:
+        try:
+            self.ids.cbutton_layout_icon.radius = self.icon_radius
+            return
+        except Exception:
+            return
+
+    def on_icon_font_size(self, *args) -> None:
+        try:
+            self.ids.cbutton_layout_icon.font_size = self.icon_font_size
+            return
+        except Exception:
+            return
 
     def on_text(self, *args) -> None:
 
@@ -212,7 +239,7 @@ class CButtonDanger(CButton):
         return super().on_focus(*args)
 
 
-class CButtonIcon(CIcon):
+class CButtonIcon(CIconCircular):
 
     base_button = ObjectProperty()
 

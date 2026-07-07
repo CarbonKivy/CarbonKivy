@@ -22,6 +22,7 @@
     line_color_focus: app.focus
     line_color_disabled: app.button_disabled
     font_size: plex_16
+    icon_font_size: self.font_size + sp(4)
     height: 
         { \
         "Small": dp("32"), \
@@ -37,10 +38,12 @@
 <CButtonIcon>:
     icon: self.base_button.icon
     _color: self.base_button.icon_color
+    bg_source: self.base_button.icon_source
     halign: "center"
-    font_size: self.base_button.font_size + sp(4)
+    font_size: self.base_button.icon_font_size
     pos_hint: {"center_y": 0.5}
     pos: (self.base_button.height/2 - self.width/2) if not self.base_button.text else (self.base_button.width - (self.width + dp(16))), self.pos[1]
+    radius: self.base_button.icon_radius
 
 
 <CButtonLabel>:
