@@ -226,6 +226,7 @@ class CButton(BackgroundColorBehaviorRectangular, CBaseButton):
 class CButtonCircular(BackgroundColorBehaviorCircular, CBaseButton):
     pass
 
+
 class CButtonDanger(CButton):
 
     variant = OptionProperty("Primary", options=["Ghost", "Primary", "Tertiary"])
