@@ -3,7 +3,13 @@ from __future__ import annotations
 __all__ = ("SelectionBehavior",)
 
 from kivy.event import EventDispatcher
-from kivy.properties import DictProperty, ListProperty, OptionProperty, StringProperty
+from kivy.properties import (
+    BooleanProperty,
+    DictProperty,
+    ListProperty,
+    OptionProperty,
+    StringProperty,
+)
 
 
 class SelectionBehavior(EventDispatcher):
@@ -15,6 +21,8 @@ class SelectionBehavior(EventDispatcher):
     selection_type = OptionProperty("Single", options=["Multiple", "Single"])
 
     selection_items = ListProperty()
+
+    allow_no_selection = BooleanProperty(False)
 
     def __init__(self, **kwargs) -> None:
         super(SelectionBehavior, self).__init__(**kwargs)
@@ -40,8 +48,8 @@ class SelectionBehavior(EventDispatcher):
 
     def update_selection(self, instance: object, value: bool, *args) -> None:
         if self.selection_type == "Single":
-            selected_items = {}
             if value:
+                selected_items = {}
                 for items in self.selection_items:
                     if (
                         items != instance
@@ -58,8 +66,12 @@ class SelectionBehavior(EventDispatcher):
                     for items in self.selection_items
                     if hasattr(items, self.selection_attr)
                 ):
-                    setattr(instance, self.selection_attr, True)
-                    self.selected_items = {instance: True}
+                    if not self.allow_no_selection:
+                        setattr(instance, self.selection_attr, True)
+                        self.selected_items = {instance: True}
+                    else:
+                        self.selected_items = {}
+
         elif self.selection_type == "Multiple":
             new_dict = dict(self.selected_items)
             if value:
