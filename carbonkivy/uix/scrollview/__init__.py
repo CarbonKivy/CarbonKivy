@@ -1,1 +1,1 @@
-from .scrollview import CScrollView
+from .scrollview import CScrollView, ElasticScrollView
