@@ -93,7 +93,7 @@ class CTooltip(BoxLayout):
                 instance.bind(pos=self.update_pos)
                 Window.add_widget(self)
             except Exception as e:
-                print(e)
+                return
         else:
             try:
                 instance.unbind(pos=self.update_pos)
