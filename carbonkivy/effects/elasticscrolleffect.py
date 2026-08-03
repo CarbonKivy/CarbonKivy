@@ -4,6 +4,9 @@ from kivy.effects.scroll import ScrollEffect
 
 
 class ElasticScrollEffect(ScrollEffect):
+    """
+    Adapted from https://github.com/kivymd/KivyMD/blob/57b1b8b073118e598c6e203c1a59f9e0170a20f5/kivymd/uix/scrollview.py#L319
+    """
 
     minimum_absorbed_velocity = 0
     maximum_velocity = 10000
