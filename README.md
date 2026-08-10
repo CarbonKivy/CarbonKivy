@@ -1,6 +1,6 @@
 # CarbonKivy
 
-[![PyPI version](https://img.shields.io/pypi/v/carbonkivy.svg?color=blueviolet&logo=pypi&logoColor=white)](https://pypi.org/project/kvdeveloper)
+[![PyPI version](https://img.shields.io/pypi/v/carbonkivy.svg?color=blueviolet&logo=pypi&logoColor=white)](https://pypi.org/project/carbonkivy)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/carbonkivy.svg?color=yellow&logo=python&logoColor=ffd43b)](#Installation)
 ![Downloads](https://static.pepy.tech/badge/carbonkivy)
 [![Code style: Black](https://img.shields.io/badge/code%20style-black-000000.svg?color=purple)](https://github.com/psf/black)
@@ -23,8 +23,7 @@ CarbonKivy is a Python library that integrates IBM's [Carbon Design System](http
 Designed with both creativity and performance in mind, CarbonKivy empowers developers to build stunning, feature-rich applications with ease. Whether you’re a seasoned developer or just starting with Kivy, this framework provides the tools and resources to bring your ideas to life.
 
 <p align="center">
-    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy-docs/master/docs/source/_static/images/carbonkivy_banner720.png" style="border-radius:1em" 
-            title="kvdeveloper create MyApp --template nav_toolbar"
+    <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy-docs/master/docs/source/_static/images/carbonkivy_banner720.png" style="border-radius:1em"
         />
 </p>
 
@@ -51,7 +50,6 @@ If you encounter any issues or have questions, feel free to reach out to the com
 
 <p align="center">
     <img width="800" src="https://raw.githubusercontent.com/CarbonKivy/CarbonKivy-docs/master/docs/source/_static/images/carbondesignexamples.svg" style="border-radius:1em" 
-            title="kvdeveloper create MyApp --template nav_toolbar"
         />
 </p>
 
