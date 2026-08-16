@@ -31,6 +31,7 @@ class DeclarativeBehavior:
     """
 
     __ids = _Dict()
+    __classnames = _Dict()
 
     def __init__(self, *args, **kwargs) -> None:
         super(DeclarativeBehavior, self).__init__(*args, **kwargs)
