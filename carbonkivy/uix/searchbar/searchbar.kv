@@ -1,0 +1,36 @@
+#:import CIcon carbonkivy.uix.icon.CIcon
+
+<CSearchBar>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: dp(44)
+    padding: [dp(12), 0, dp(4), 0]
+    spacing: dp(4)
+    canvas.before:
+        Color:
+            rgba: app.field_01
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(8)]
+
+    CIcon:
+        icon: 'search'
+        size_hint_x: None
+        width: dp(28)
+        font_size: sp(18)
+        color: app.icon_secondary
+        halign: 'center'
+        valign: 'middle'
+
+    TextInput:
+        id: text_input
+        hint_text: 'Search'
+        hint_text_color: app.text_placeholder
+        foreground_color: app.text_primary
+        background_color: 0, 0, 0, 0
+        cursor_color: app.text_primary
+        font_size: sp(14)
+        multiline: False
+        padding: [dp(4), dp(10), dp(4), dp(10)]
+        on_text: root._on_text_change(self.text)

@@ -1,0 +1,24 @@
+<CAppBar>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: dp(56)
+    padding: [dp(4), 0, dp(4), 0]
+    spacing: 0
+    canvas.before:
+        Color:
+            rgba: app.layer_01
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<_CAppBarIconBtn>:
+    color: app.icon_primary
+    halign: 'center'
+    valign: 'middle'
+    canvas.before:
+        Color:
+            rgba: app.background_hover if self.state == 'down' else (0, 0, 0, 0)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(22)]

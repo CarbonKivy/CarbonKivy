@@ -1,0 +1,13 @@
+<CFAB>:
+    size_hint: None, None
+    size: dp(56), dp(56)
+    font_size: sp(28)
+    halign: 'center'
+    valign: 'middle'
+    color: app.text_on_color
+    canvas.before:
+        Color:
+            rgba: app.support_success if self.state == 'normal' else app.layer_accent_active_01
+        Ellipse:
+            pos: self.pos
+            size: self.size
