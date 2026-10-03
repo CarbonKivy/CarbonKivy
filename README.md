@@ -10,8 +10,6 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/CarbonKivy/CarbonKivy?color=red&logo=github&logoColor=white)](https://github.com/CarbonKivy/CarbonKivy)
 [![GitHub issues](https://img.shields.io/github/issues/CarbonKivy/CarbonKivy?color=blueviolet&logo=github&logoColor=white)](https://github.com/CarbonKivy/CarbonKivy/issues)
 
-<!-- GitAds-Verify: SRMDUV8G51D3M5OJOVUK17BMY96SHNCC -->
-
 ## GitAds Sponsored
 [![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=carbonkivy/carbonkivy@github)](https://gitads.dev/v1/ad-track?source=carbonkivy/carbonkivy@github)
 
